@@ -1,20 +1,30 @@
 function App() {
     this.config = {
         chunk: {
-            n: 1
+            n: 16,
+            width: 100,
+            height: 100,
+            margin: 40
         },
         snippet: {
-            n: 1,
-            size: 10,
+            n: 500,
+            size: 7,
             corners: 3
         },
-        greyness: 0.9,
+        greyness: 0.8,
+        lightness: 0.3,
         animation: {
             frequency: (1000 / 60)
+        },
+        typography: {
+            title: {
+                font: '14px Arial',
+                color: '#000'
+            }
         }
     };
     this.canvas = null;
-    this.chunks = [];
+    this.children = [];
     this.animation = null;
 }
 
@@ -22,22 +32,10 @@ App.prototype.init = function(canvas) {
     $(canvas).html('');
     this.canvas = new Canvas(canvas, this);
     this.animation = new Animation(this, this.canvas, this.config);
-};
-
-App.prototype.reset = function(n, size, corners, greyness) {
-    var self = this;
-    this.chunks = [];
-    this.draw(n, size, corners, greyness);
-};
-
-App.prototype.set = function(n, size, corners, greyness) {
-    this.config.snippet.n = n;
-    this.config.snippet.size = size;
-    this.config.snippet.corners = corners;
-    this.config.greyness = greyness;
     for (var i = 0; i < this.config.chunk.n; i++) {
-        var chunk = new Chunk(this, this.canvas, this.config);
-        this.chunks.push(chunk);
+        var position = this.canvas.getGridPosition(i, this.config.chunk.n, this.config.chunk.margin),
+            chunk = new Chunk(this, this.canvas, this.config, position, i);
+        this.children.push(chunk);
     }
 };
 
@@ -47,21 +45,32 @@ App.prototype.draw = function() {
 
 
 App.prototype.intro = function() {
+    var elements = this.getSnippets(),
+        time1 = 2000;
+    // set elements to new position
+    for (var i = 0, l = elements.length; i < l; i++) {
+        var element = elements[i];
+        element.points.new = element.updatePoints(element.parent.getRandomPositionInCircle(), true);
+    }
+    this.animation.start(elements, time1);
+};
+
+App.prototype.toCorner = function() {
     var elements = this.getSnippets();
     // set elements to new position
     for (var i = 0, l = elements.length; i < l; i++) {
         var element = elements[i];
-        element.points.new = element.updatePoints(this.canvas.getRandomPositionInCircle());
+        element.points.new = element.updatePoints(this.canvas.getCenter(), false);
     }
     this.animation.start(elements, 200);
 };
 
 App.prototype.getSnippets = function() {
     var elements = [];
-    for (var i = 0, l = this.chunks.length; i < l; i++) {
-        var chunk = this.chunks[i];
-        for (var j = 0, jl = chunk.snippets.length; j < jl; j++) {
-            var snippet = chunk.snippets[j];
+    for (var i = 0, l = this.children.length; i < l; i++) {
+        var chunk = this.children[i];
+        for (var j = 0, jl = chunk.children.length; j < jl; j++) {
+            var snippet = chunk.children[j];
             elements.push(snippet);
         }
     }

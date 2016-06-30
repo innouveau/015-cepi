@@ -5,7 +5,7 @@ function Snippet(parent, app, canvas, config) {
     this.config = config;
     this.color = this.getRandomColor();
     // old, current and new to register an animation
-    var currentPoints = this.updatePoints(this.canvas.getRandomPosition());
+    var currentPoints = this.updatePoints(this.canvas.getRandomPositionInCircle(), true);
     this.points = {
         old: currentPoints,
         current: currentPoints,
@@ -17,15 +17,19 @@ Snippet.prototype.getRandomColor = function() {
     var a = Math.random(),
         grey;
     if (a < this.config.greyness) {
-        grey = this.app.random(256);
+        grey = this.enlighten();
         return 'rgb(' + grey + ',' + grey + ',' + grey + ')';
     } else {
-        return 'rgb(' + this.app.random(256) + ',' + this.app.random(256) + ',' + this.app.random(256) + ')';
+        return 'rgb(' + this.enlighten() + ',' + this.enlighten() + ',' + this.enlighten() + ')';
     }
 };
 
-Snippet.prototype.updatePoints = function(position) {
-    var newTriangle = new Triangle(this.app, position, this.config.snippet.size);
+Snippet.prototype.enlighten = function() {
+    return Math.round((1 + this.config.lightness) * this.app.random(256));
+};
+
+Snippet.prototype.updatePoints = function(position, rotation) {
+    var newTriangle = new Triangle(this.app, position, this.config.snippet.size, rotation);
     return newTriangle.points;
 };
 

@@ -1,5 +1,6 @@
-function Triangle(app, position, size) {
+function Triangle(app, position, size, rotation) {
     this.app = app;
+    this.rotation = rotation;
     this.points = this.get(position, size);
 }
 
@@ -7,10 +8,15 @@ Triangle.prototype.get = function(position, size) {
     var width = size,
         height = width * (Math.sqrt(3)/2),
         triangle = [{x:0, y:0},{x: width, y:0},{x:0.5 * width, y:height}],
+        rotated,
+        shifted,
+        rounded;
 
-        rotated = this.rotate(triangle),
-        shifted = this.shift(rotated, position),
-        rounded = this.round(shifted);
+    if (this.rotation) {
+        triangle = this.rotate(triangle)
+    }
+    shifted = this.shift(triangle, position);
+    rounded = this.round(shifted);
     return rounded;
 };
 
