@@ -39,7 +39,7 @@ Snippet.prototype.animate = function(progress) {
             newPoint = this.points.new[i],
             currentPoint = this.points.current[i];
         for(var axis in oldPoint) {
-            currentPoint[axis] = (newPoint[axis] - oldPoint[axis]) * progress + oldPoint[axis];
+            currentPoint[axis] = Math.round((newPoint[axis] - oldPoint[axis]) * progress + oldPoint[axis]);
         }
     }
 };
