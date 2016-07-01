@@ -5,6 +5,6 @@ $(window).ready(function(){
     app.draw();
     setTimeout(function(){
         app.intro();
-    }, 1000);
+    }, 50);
 
 });

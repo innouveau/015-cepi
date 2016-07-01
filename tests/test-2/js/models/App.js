@@ -7,7 +7,7 @@ function App() {
             margin: 40
         },
         snippet: {
-            n: 500,
+            n: 700,
             size: 7,
             corners: 3
         },
@@ -46,7 +46,8 @@ App.prototype.draw = function() {
 
 App.prototype.intro = function() {
     var elements = this.getSnippets(),
-        time1 = 2000;
+        time1 = 10000,
+        self = this;
     // set elements to new position
     for (var i = 0, l = elements.length; i < l; i++) {
         var element = elements[i];
