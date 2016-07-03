@@ -77,7 +77,7 @@ Chunk.prototype.hover = function() {
         var element = this.children[i];
         element.points.new = element.updatePoints(element.parent.getRandomPositionInCircle(), true);
     }
-    this.app.animation.start(this.children, 1000);
+    this.canvas.animation.start(1000);
 };
 
 
