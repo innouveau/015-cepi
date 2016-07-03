@@ -1,19 +1,17 @@
-function Animation(app, canvas, config) {
+function Animation(app, canvas) {
     this.app = app;
     this.canvas = canvas;
-    this.config = config;
     this.current = 0;
     this.end = 0; // animation duration
-    this.elements = []; // elements involved in this animation
+    this.elements = canvas.chunk.children;
     this.break = false;
     this.running = false;
 }
 
 
-Animation.prototype.start = function(elements, t) {
+Animation.prototype.start = function(t) {
     this.current = 0;
     this.end = t;
-    this.elements = elements;
     this.play();
 };
 
@@ -30,18 +28,19 @@ Animation.prototype.play = function() {
         return;
     }
 
-    this.current += this.config.animation.frequency;
+    this.current += this.app.config.animation.frequency;
     if (this.current < this.end) {
         for (var i = 0, l = this.elements.length; i < l; i++) {
             var element = this.elements[i];
             element.animate(progress);
         }
-        this.canvas.draw();
+        this.canvas.update();
         window.requestAnimationFrame(function() {
             self.play();
         });
     } else {
         this.running = false;
+        this.canvas.updated = false;
     }
 };
 
@@ -64,6 +63,6 @@ Animation.prototype.kill = function() {
 window.requestAnimationFrame = (function(callback) {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
         function(callback) {
-            window.setTimeout(callback, 1000 / this.config.animation.frequency);
+            window.setTimeout(callback, 1000 / this.app.config.animation.frequency);
         };
 })();

@@ -1,20 +1,24 @@
-function App() {
+function App(container) {
     this.config = {
+        container: {
+            width: 0,
+            height: 0
+        },
         chunk: {
             n: 16,
-            width: 100,
-            height: 100,
+            width: 80,
+            height: 80,
             margin: 40
         },
         snippet: {
-            n: 700,
+            n: 500,
             size: 7,
             corners: 3
         },
         greyness: 0.8,
         lightness: 0.3,
         animation: {
-            frequency: (1000 / 60)
+            frequency: (1000 / 20)
         },
         typography: {
             title: {
@@ -23,48 +27,69 @@ function App() {
             }
         }
     };
-    this.canvas = null;
+    this.container = container;
+    this.canvases = [];
+    this.state = null;
     this.children = [];
-    this.animation = null;
 }
 
-App.prototype.init = function(canvas) {
-    $(canvas).html('');
-    this.canvas = new Canvas(canvas, this);
-    this.animation = new Animation(this, this.canvas, this.config);
+App.prototype.init = function() {
+    this.measureContainer();
+    // maintain this order: create elements, state
+    // create the elements
     for (var i = 0; i < this.config.chunk.n; i++) {
-        var position = this.canvas.getGridPosition(i, this.config.chunk.n, this.config.chunk.margin),
-            chunk = new Chunk(this, this.canvas, this.config, position, i);
+        var chunk = new Chunk(this, i);
         this.children.push(chunk);
+    }
+    // use the toplayer to be able to track events
+    this.state = new State(this, this.container);
+    this.draw();
+};
+
+App.prototype.measureContainer = function(canvases) {
+    this.config.container.width = $(this.container).outerWidth();
+    this.config.container.height = $(this.container).outerHeight();
+};
+
+// main
+
+App.prototype.draw = function(time) {
+    for (var i = 0, l = this.canvases.length; i < l; i++) {
+        var canvas = this.canvases[i];
+        if (canvas.updated) {
+            canvas.update();
+        }
     }
 };
 
-App.prototype.draw = function() {
-    this.canvas.draw();
+App.prototype.animate = function(time) {
+    for (var i = 0, l = this.canvases.length; i < l; i++) {
+        var canvas = this.canvases[i];
+        if (canvas.updated) {
+            canvas.animation.start(time);
+        }
+    }
 };
 
+// custom state changes
 
 App.prototype.intro = function() {
     var elements = this.getSnippets(),
-        time1 = 10000,
-        self = this;
+        time = 1000;
     // set elements to new position
     for (var i = 0, l = elements.length; i < l; i++) {
         var element = elements[i];
         element.points.new = element.updatePoints(element.parent.getRandomPositionInCircle(), true);
     }
-    this.animation.start(elements, time1);
+    this.animate(time);
 };
 
-App.prototype.toCorner = function() {
-    var elements = this.getSnippets();
-    // set elements to new position
-    for (var i = 0, l = elements.length; i < l; i++) {
-        var element = elements[i];
-        element.points.new = element.updatePoints(this.canvas.getCenter(), false);
-    }
-    this.animation.start(elements, 200);
+// helpers
+
+App.prototype.random = function(a) {
+    return Math.round(Math.random() * a);
 };
+
 
 App.prototype.getSnippets = function() {
     var elements = [];
@@ -77,10 +102,3 @@ App.prototype.getSnippets = function() {
     }
     return elements;
 };
-
-App.prototype.random = function(a) {
-    return Math.round(Math.random() * a);
-};
-
-
-

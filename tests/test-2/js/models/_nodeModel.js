@@ -36,3 +36,12 @@ _NodeModel.prototype.getCenter = function() {
         y: this.height / 2
     }
 };
+
+_NodeModel.prototype.contains = function(mx, my) {
+    var x = this.getX(),
+        y = this.getY();
+    return  (x <= mx) &&
+        (x + this.getWidth() >= mx) &&
+        (y <= my) &&
+        (y + this.getHeight() >= my);
+};

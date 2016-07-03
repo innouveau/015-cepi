@@ -3,30 +3,15 @@ body {
     font-family: arial;
 }
 
-.papier-container {
+#infographic {
+    width: 1200px;
+    height: 600px;
     margin: 20px;
     float: left;
 }
 
-.snippet {
-    opacity: 1;
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.8);
-}
-
-.toolkit {
-    padding: 20px;
-    float: left;
-    margin: 30px;
-    border-top: 5px solid #000;
-    float: left;
-}
-
-h1 {
-    font-size: 60px;
-    margin: 30px;
-    line-height: 54px;
-    border-top: 5px solid #000;
-    display: inline-block;
-    float: left;
-    padding: 20px;
+#infographic canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
 }

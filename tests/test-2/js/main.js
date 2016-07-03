@@ -1,10 +1,14 @@
 $(window).ready(function(){
 
-    window.app = new App();
-    app.init($('.papier-container')[0]);
-    app.draw();
+    var container = document.getElementById('infographic');
+
+    window.app = new App(container);
+    app.init();
     setTimeout(function(){
         app.intro();
-    }, 50);
+    }, 200);
+    setTimeout(function(){
+        //app.justAMove();
+    }, 5000);
 
 });
