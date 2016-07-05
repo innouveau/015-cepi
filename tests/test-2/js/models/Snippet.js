@@ -3,12 +3,13 @@ function Snippet(parent, app) {
     this.app = app;
     this.color = this.getRandomColor();
     // old, current and new to register an animation
-    var currentPoints = this.updatePoints(this.parent.canvas.getRandomPositionInCircle(), true);
+    var currentPoints = this.updatePoints(this.parent.canvas.main.getRandomPositionInCircle(), true);
     this.points = {
         old: currentPoints,
         current: currentPoints,
         new: null
-    }
+    };
+    this.canAnimate = true;
 }
 
 Snippet.prototype.getRandomColor = function() {
@@ -28,7 +29,7 @@ Snippet.prototype.enlighten = function() {
 
 Snippet.prototype.updatePoints = function(position, rotation) {
     var newTriangle = new Triangle(this.app, position, this.app.config.snippet.size, rotation);
-    this.parent.canvas.updated = true;
+    this.parent.canvas.snippets.updated = true;
     return newTriangle.points;
 };
 
@@ -37,15 +38,17 @@ Snippet.prototype.animate = function(progress) {
         var oldPoint = this.points.old[i],
             newPoint = this.points.new[i],
             currentPoint = this.points.current[i];
+
         for(var axis in oldPoint) {
             currentPoint[axis] = Math.round((newPoint[axis] - oldPoint[axis]) * progress + oldPoint[axis]);
         }
     }
 };
 
-Snippet.prototype.draw = function(points, color) {
-    var ctx = this.parent.canvas.ctx;
-    ctx.fillStyle = color;
+Snippet.prototype.draw = function() {
+    var ctx = this.parent.canvas.snippets.ctx,
+        points = this.points.current;
+    ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.moveTo(points[0].x, points[0].y);
     for (var i = 1, l = points.length; i < l; i++) {

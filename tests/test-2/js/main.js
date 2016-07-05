@@ -6,7 +6,7 @@ $(window).ready(function(){
     app.init();
     setTimeout(function(){
         app.intro();
-    }, 200);
+    }, 500);
     setTimeout(function(){
         //app.justAMove();
     }, 5000);

@@ -3,7 +3,6 @@ function Animation(app, canvas) {
     this.canvas = canvas;
     this.current = 0;
     this.end = 0; // animation duration
-    this.elements = canvas.chunk.children;
     this.break = false;
     this.running = false;
 }
@@ -29,10 +28,12 @@ Animation.prototype.play = function() {
     }
 
     this.current += this.app.config.animation.frequency;
-    if (this.current < this.end) {
-        for (var i = 0, l = this.elements.length; i < l; i++) {
-            var element = this.elements[i];
-            element.animate(progress);
+    if (this.current <= this.end) {
+        for (var i = 0, l = this.canvas.elements.length; i < l; i++) {
+            var element = this.canvas.elements[i];
+            if (element.canAnimate) {
+                element.animate(progress);
+            }
         }
         this.canvas.update();
         window.requestAnimationFrame(function() {

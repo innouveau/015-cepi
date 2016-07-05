@@ -1,5 +1,16 @@
 function _NodeModel() {}
 
+_NodeModel.prototype.createCanvas = function(name) {
+    var canvas = document.createElement('CANVAS'),
+        canvasModel;
+    canvas.width = this.app.config.container.width;
+    canvas.height = this.app.config.container.height;
+    this.app.container.appendChild(canvas);
+    canvasModel = new Canvas(this, this.app, canvas, name);
+    this.app.canvases.push(canvasModel);
+    return canvasModel;
+};
+
 
 _NodeModel.prototype.getRandomPosition = function(margin) {
     return {
