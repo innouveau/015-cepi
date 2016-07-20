@@ -1,0 +1,34 @@
+body {
+    font-size: 12px;
+    font-family: arial;
+    background: #fff;
+}
+
+#infographic {
+    position: fixed;
+    left: 50%;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    padding: 20px;
+}
+
+#infographic canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#storyline {
+    width: 50%;
+}
+
+.chapter {
+    opacity: 0;
+    margin: 100px 0;
+    padding: 80px;
+    text-align: center;
+    font-size: 28px;
+    line-height: 36px;
+    transition: all 2s ease;
+}
