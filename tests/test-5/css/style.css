@@ -1,0 +1,32 @@
+body {
+    font-size: 12px;
+    font-family: arial;
+    background: #fff;
+}
+
+#infographic {
+    width: 1200px;
+    height: 600px;
+    margin: 20px;
+}
+
+#infographic canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#hidden-element {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+}
+
+#hidden-element svg {
+    width: 100%;
+    height: 100%;
+}
+
