@@ -39,7 +39,7 @@ Position.prototype.getRandomPositionInCircle = function() {
 Position.prototype.getTimeline = function(passiveFrames) {
     var preset = this.getPreset(),
         set = preset.concat(this.pipeline);
-    for (var i = 0; i < Math.floor(passiveFrames / 4); i++) {
+    for (var i = 0; i < Math.floor(passiveFrames / 10); i++) {
         set.unshift(null);
     }
     set.unshift(this.constants.start);

@@ -13,7 +13,9 @@ $(window).ready(function(){
 
 function addPhaseListeners() {
     $(window).scroll(function(e){
-        
+        var top = $(document).scrollTop(),
+            frame = Math.round(top / 3);
+        app.draw(frame)
     })
 }
 

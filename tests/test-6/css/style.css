@@ -7,13 +7,17 @@ body {
 #story {
     width: 50%;
     height: 2000px;
-    background: pink;
+}
+
+.chapter {
+    height: 400px;
+    padding-top: 200px;
 }
 
 #infographic {
     width: 50%;
     height: 100%;
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 20px;
 }
