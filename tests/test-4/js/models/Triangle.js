@@ -1,35 +1,20 @@
-function Triangle(app, position, size, rotation) {
+function Triangle(app, size, rotation) {
     this.app = app;
     this.rotation = rotation;
-    this.points = this.get(position, size);
+    this.points = this.get(size);
 }
 
-Triangle.prototype.get = function(position, size) {
+Triangle.prototype.get = function(size) {
     var width = size,
         height = width * (Math.sqrt(3)/2),
         triangle = [{x:0, y:0},{x: width, y:0},{x:0.5 * width, y:height}],
-        shifted,
         rounded;
 
     if (this.rotation) {
         triangle = this.rotate(triangle)
     }
-    shifted = this.shift(triangle, position);
-    rounded = this.round(shifted);
+    rounded = this.round(triangle);
     return rounded;
-};
-
-Triangle.prototype.shift = function(points, position) {
-    var shifted = [];
-    for (var i = 0, l = points.length; i < l; i++) {
-        var point = points[i],
-            newPoint = {
-                x: point.x + position.x,
-                y: point.y + position.y
-            };
-        shifted.push(newPoint);
-    }
-    return shifted;
 };
 
 Triangle.prototype.rotate = function(triangle) {

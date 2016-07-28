@@ -4,9 +4,7 @@ $(window).ready(function(){
 
     window.app = new App(container);
     app.init();
-    setTimeout(function(){
-        app.intro();
-    }, 500);
+
 
     addPhaseListeners();
 

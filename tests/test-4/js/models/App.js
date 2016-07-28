@@ -5,7 +5,7 @@ function App(container) {
             height: 0
         },
         chunk: {
-            n: 12,
+            n: 8,
             width: 80,
             height: 80,
             margin: 40
@@ -31,7 +31,6 @@ function App(container) {
     this.canvases = [];
     this.state = null;
     this.phase = null;
-    this.paths = [];
     this.children = [];
 }
 
@@ -47,7 +46,6 @@ App.prototype.init = function() {
     // use the toplayer to be able to track events
     this.state = new State(this, this.container);
     this.phase = new Phase(this);
-    this.paths.push(new Path(this));
     this.draw();
 };
 
@@ -67,26 +65,13 @@ App.prototype.draw = function(time) {
     }
 };
 
-App.prototype.animate = function(time, step) {
+App.prototype.animate = function(time) {
     for (var i = 0, l = this.canvases.length; i < l; i++) {
         var canvas = this.canvases[i];
         if (canvas.updated) {
-            canvas.animation.start(time, step);
+            canvas.animation.start(time);
         }
     }
-};
-
-// custom state changes
-
-App.prototype.intro = function() {
-    var elements = this.getSnippets(),
-        time = 1000;
-    // set elements to new position
-    for (var i = 0, l = elements.length; i < l; i++) {
-        var element = elements[i];
-        element.points.new = element.updatePoints(element.parent.getRandomPositionInCircle(), true);
-    }
-    //this.animate(time);
 };
 
 // helpers

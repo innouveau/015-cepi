@@ -8,13 +8,13 @@ function Animation(app, canvas) {
 }
 
 
-Animation.prototype.start = function(t, step) {
+Animation.prototype.start = function(t) {
     this.current = 0;
     this.end = t;
-    this.play(step);
+    this.play();
 };
 
-Animation.prototype.play = function(step) {
+Animation.prototype.play = function() {
     var self = this,
         progress = this.current / this.end;
     if (this.end === 0) {
@@ -32,10 +32,16 @@ Animation.prototype.play = function(step) {
         for (var i = 0, l = this.canvas.elements.length; i < l; i++) {
             var element = this.canvas.elements[i];
             if (element.canAnimate) {
-                if (element.stepBasedAnimation) {
-                    element.setStep(step)
-                } else {
-                    element.animate(progress);
+                switch (element.animation.style) {
+                    case 0:
+                        element.animate(progress);
+                        break;
+                    case 1:
+                        element.setStep();
+                        break;
+                    case 2:
+                        element.pathWalk();
+                        break;
                 }
             }
         }

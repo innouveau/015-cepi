@@ -45,28 +45,21 @@ Phase.prototype.intro = function() {
         var element = elements[i],
             newPoint = element.parent.canvas.main.getRandomPositionInCircle();
         element.points.new = element.updatePoints(newPoint, true);
+        element.animation.style = 0;
     }
     this.app.animate(1000);
 };
 
-Phase.prototype.pipeline = function() {
-    var elements = this.elements,
-        pipeline = this.app.paths[0];
-    this.moveToPipelineStart();
-};
 
-Phase.prototype.moveToPipelineStart = function() {
-    var elements = this.elements,
-        pipeline = this.app.paths[0],
-        step = 10;
+
+Phase.prototype.pipeline = function() {
+    var elements = this.elements;
     for (var i = 0, l = elements.length; i < l; i++) {
-        var element = elements[i],
-            newPoint = pipeline.getStart();
-        element.points.new = element.updatePoints(newPoint, true);
-        element.stepBasedAnimation = true;
-        element.setVector(step);
+        var element = elements[i];
+        element.position.new = element.path.getStart();
+        element.initPathWalk(15);
     }
-    this.app.animate(2000, step);
+    this.app.animate(10000);
 };
 
 Phase.prototype.pipelineMovement = function() {
@@ -85,9 +78,8 @@ Phase.prototype.grid = function() {
     var elements = this.elements;
     // set elements to new position
     for (var i = 0, l = elements.length; i < l; i++) {
-        var element = elements[i],
-            newPoint = element.parent.getRandomPositionInCircle();
-        element.points.new = element.updatePoints(newPoint, true);
+        var element = elements[i];
+        element.position.new = element.parent.getRandomPositionInCircle();
     }
     this.app.animate(1000);
 };
