@@ -52,6 +52,26 @@ Phase.prototype.intro = function() {
 Phase.prototype.pipeline = function() {
     var elements = this.elements,
         pipeline = this.app.paths[0];
+    this.moveToPipelineStart();
+};
+
+Phase.prototype.moveToPipelineStart = function() {
+    var elements = this.elements,
+        pipeline = this.app.paths[0],
+        step = 10;
+    for (var i = 0, l = elements.length; i < l; i++) {
+        var element = elements[i],
+            newPoint = pipeline.getStart();
+        element.points.new = element.updatePoints(newPoint, true);
+        element.stepBasedAnimation = true;
+        element.setVector(step);
+    }
+    this.app.animate(2000, step);
+};
+
+Phase.prototype.pipelineMovement = function() {
+    var elements = this.elements,
+        pipeline = this.app.paths[0];
     // set elements to new position
     for (var i = 0, l = elements.length; i < l; i++) {
         var element = elements[i],

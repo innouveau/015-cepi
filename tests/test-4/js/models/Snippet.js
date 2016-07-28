@@ -7,9 +7,11 @@ function Snippet(parent, app) {
     this.points = {
         old: currentPoints,
         current: currentPoints,
-        new: null
+        new: null,
+        vector: null
     };
     this.canAnimate = true;
+    this.stepBasedAnimation = false;
 }
 
 Snippet.prototype.getRandomColor = function() {
@@ -43,6 +45,34 @@ Snippet.prototype.animate = function(progress) {
             currentPoint[axis] = Math.round((newPoint[axis] - oldPoint[axis]) * progress + oldPoint[axis]);
         }
     }
+};
+
+Snippet.prototype.setVector = function(step) {
+    this.stepBasedAnimation = true;
+    for (var i = 0, l = this.points.old.length; i < l; i++) {
+        var oldPoint = this.points.old[i],
+            newPoint = this.points.new[i],
+            vector = {
+                x: newPoint.x - oldPoint.x,
+                y: newPoint.y - oldPoint.y
+            },
+            distance = Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2)),
+            fraction = distance / step;
+        this.points.vector = {
+            x: vector.x / fraction,
+            y: vector.y / fraction
+        }
+    }
+};
+
+Snippet.prototype.setStep = function(step) {
+    for (var i = 0, l = this.points.current.length; i < l; i++) {
+        var currentPoint = this.points.current[i];
+        for(var axis in currentPoint) {
+            currentPoint[axis] += this.points.vector[axis];
+        }
+    }
+
 };
 
 Snippet.prototype.draw = function() {

@@ -20,6 +20,13 @@ Path.prototype.build = function() {
     this.node = newpath;
 };
 
+Path.prototype.getStart = function() {
+    var position = this.getPosition(0);
+    return {
+        x: position.x + this.position.x,
+        y: position.y + this.position.y
+    }
+};
 
 Path.prototype.getPosition = function(progress) {
     return this.node.getPointAtLength(progress);

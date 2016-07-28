@@ -67,11 +67,11 @@ App.prototype.draw = function(time) {
     }
 };
 
-App.prototype.animate = function(time) {
+App.prototype.animate = function(time, step) {
     for (var i = 0, l = this.canvases.length; i < l; i++) {
         var canvas = this.canvases[i];
         if (canvas.updated) {
-            canvas.animation.start(time);
+            canvas.animation.start(time, step);
         }
     }
 };
