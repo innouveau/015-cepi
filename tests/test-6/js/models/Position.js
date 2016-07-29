@@ -3,7 +3,7 @@ function Position(app, snippet) {
     this.snippet = snippet;
     this.constants = {
         start: this.getRandomPositionInCircle(),
-        spread: (Math.random() - 0.5) * 15
+        spread: (Math.random() - 0.5) * 10
     };
     this.pipeline = this.getPipeline();
 }
@@ -39,7 +39,7 @@ Position.prototype.getRandomPositionInCircle = function() {
 Position.prototype.getTimeline = function(passiveFrames) {
     var preset = this.getPreset(),
         set = preset.concat(this.pipeline);
-    for (var i = 0; i < Math.floor(passiveFrames / 10); i++) {
+    for (var i = 0; i < Math.floor(passiveFrames / 4); i++) {
         set.unshift(null);
     }
     set.unshift(this.constants.start);

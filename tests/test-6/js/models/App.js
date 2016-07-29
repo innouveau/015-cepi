@@ -5,14 +5,14 @@ function App(container) {
             height: 0
         },
         chunk: {
-            n: 16,
+            n: 8,
             width: 80,
             height: 80,
             margin: 40
         },
         snippet: {
             n: 250,
-            size: 5,
+            size: 10,
             corners: 3,
             speed: 5
         },
