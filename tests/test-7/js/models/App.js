@@ -27,7 +27,8 @@ function App(container) {
                 font: '14px Arial',
                 color: '#000'
             }
-        }
+        },
+        responsive: new Responsive(this)
     };
     this.container = container;
     this.canvases = [];

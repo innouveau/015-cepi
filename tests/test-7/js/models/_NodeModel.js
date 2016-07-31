@@ -2,9 +2,13 @@ function _NodeModel() {}
 
 _NodeModel.prototype.createCanvas = function(name) {
     var canvas = document.createElement('CANVAS'),
-        canvasModel;
-    canvas.width = this.app.config.container.width;
-    canvas.height = this.app.config.container.height;
+        canvasModel,
+        pixelRatio = this.app.config.responsive.pixelRatio;
+    canvas.width = this.app.config.container.width * pixelRatio;
+    canvas.height = this.app.config.container.height * pixelRatio;
+    canvas.style.width = this.app.config.container.width + 'px';
+    canvas.style.height = this.app.config.container.height + 'px';
+    canvas.getContext('2d').setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     this.app.container.appendChild(canvas);
     canvasModel = new Canvas(this, this.app, canvas, name);
     this.app.canvases.push(canvasModel);
