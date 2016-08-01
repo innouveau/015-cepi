@@ -22,6 +22,7 @@ Snippet.prototype.enlighten = function() {
 
 Snippet.prototype.animate = function(frame) {
     this.currentFrame = frame;
+    // TODO catch the last currentFrame when skipping frames by scrolling
     if (this.timeline[this.currentFrame]) {
         this.currentPosition = this.timeline[this.currentFrame];
     }
