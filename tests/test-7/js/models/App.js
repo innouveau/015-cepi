@@ -24,24 +24,8 @@ App.prototype.loaded = function() {
     $(this.container).addClass('loaded');
 };
 
-// main
-
 App.prototype.gotoFrame = function(frame) {
     for (var i = 0, l = this.canvases.length; i < l; i++) {
-        var canvas = this.canvases[i];
-        canvas.update(frame);
+        this.canvases[i].update(frame);
     }
 };
-
-
-// App.prototype.getSnippets = function() {
-//     var elements = [];
-//     for (var i = 0, l = this.children.length; i < l; i++) {
-//         var chunk = this.children[i];
-//         for (var j = 0, jl = chunk.children.length; j < jl; j++) {
-//             var snippet = chunk.children[j];
-//             elements.push(snippet);
-//         }
-//     }
-//     return elements;
-// };
