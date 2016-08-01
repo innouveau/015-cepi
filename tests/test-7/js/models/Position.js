@@ -34,8 +34,6 @@ Position.prototype.spread = function(set) {
     return newCoordinates;
 };
 
-
-
 Position.prototype.getTimeline = function(passiveFrames) {
     var set = [],
         roadFromCircle,
@@ -55,8 +53,6 @@ Position.prototype.getTimeline = function(passiveFrames) {
     }
     return set;
 };
-
-
 
 Position.prototype.getRoad = function(start, end) {
     var road = [],
