@@ -19,7 +19,7 @@ Position.prototype.init = function() {
 };
 
 Position.prototype.getPipeline = function() {
-    return this.spread(this.app.settings.path.coordinates);
+    return this.spread(this.app.settings.pipeline.coordinates);
 };
 
 Position.prototype.spread = function(set) {
@@ -43,12 +43,11 @@ Position.prototype.getTimeline = function(passiveFrames) {
     if (this.element.staticElement) {
         set.push(this.constants.start);
     } else {
-        roadFromCircle = this.getroadFromCircle();
-        roadToSquare = this.getRoadToSquare();
+        roadFromCircle = this.getRoad(this.constants.start, this.pipeline[0]);
         set = set.concat(roadFromCircle);
         set = set.concat(this.pipeline);
         // add waiting time, to launch snippets one by one
-        for (var i = 0; i < Math.floor(passiveFrames / 4); i++) {
+        for (var i = 0; i < Math.floor(passiveFrames / this.app.settings.animation.snippetsPerFrame); i++) {
             set.unshift(null);
         }
         // initial position
@@ -57,32 +56,12 @@ Position.prototype.getTimeline = function(passiveFrames) {
     return set;
 };
 
-Position.prototype.getroadFromCircle = function() {
-    var preset = [],
-        pipelineStart = this.pipeline[0],
-        a = pipelineStart.x - this.constants.start.x,
-        b  = pipelineStart.y - this.constants.start.y,
-        length = Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ),
-        steps = length / this.app.settings.snippet.speed,
-        vector = {
-            x: a / steps,
-            y: b / steps
-        };
-    for (var i = 0; i < steps; i++) {
-        var coordinate = {
-            x: this.constants.start.x + i * vector.x,
-            y: this.constants.start.y + i * vector.y
-        };
-        preset.push(coordinate);
-    }
-    return preset;
-};
 
-Position.prototype.getRoadToSquare = function() {
-    var thisSet = [],
-        pipelineEnd = this.pipeline[this.pipeline.length - 1],
-        a = this.constants.end.x - pipelineEnd.x,
-        b  = this.constants.end.y - pipelineEnd.y,
+
+Position.prototype.getRoad = function(start, end) {
+    var road = [],
+        a = end.x - start.x,
+        b  = end.y - start.y,
         length = Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ),
         steps = length / this.app.settings.snippet.speed,
         vector = {
@@ -91,12 +70,12 @@ Position.prototype.getRoadToSquare = function() {
         };
     for (var i = 0; i < steps; i++) {
         var coordinate = {
-            x: pipelineEnd.x + i * vector.x,
-            y: pipelineEnd.y + i * vector.y
+            x: start.x + i * vector.x,
+            y: start.y + i * vector.y
         };
-        thisSet.push(coordinate);
+        road.push(coordinate);
     }
-    return thisSet;
+    return road;
 };
 
 Position.prototype.getRandomPositioninSquare = function(margin) {
