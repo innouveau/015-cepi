@@ -47,7 +47,6 @@ Position.prototype.getTimeline = function(passiveFrames) {
         roadToSquare = this.getRoadToSquare();
         set = set.concat(roadFromCircle);
         set = set.concat(this.pipeline);
-        set = set.concat(roadToSquare);
         // add waiting time, to launch snippets one by one
         for (var i = 0; i < Math.floor(passiveFrames / 4); i++) {
             set.unshift(null);
