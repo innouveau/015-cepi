@@ -8,13 +8,11 @@ function App(container) {
 
 App.prototype.init = function() {
     for (var i = 0; i < (this.settings.chunk.n + this.settings.chunk.staticElements); i++) {
-        var staticElement = false,
-            chunk;
+        var staticElement = false;
         if (i >= this.settings.chunk.n) {
             staticElement = true;
         }
-        chunk = new Chunk(this, i, staticElement);
-        this.children.push(chunk);
+        this.children.push(new Chunk(this, i, staticElement));
     }
     this.gotoFrame(0);
     this.loaded();

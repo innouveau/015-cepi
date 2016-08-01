@@ -1,10 +1,7 @@
-function Path(points, speed) {
+function Path(position, points, speed) {
     this.speed = speed;
-    this.position = {
-        x: 200,
-        y: 190
-    };
     this.points = points;
+    this.position = position;
     this.node = null;
     this.build();
     this.length = this.getLength();
@@ -59,5 +56,5 @@ Path.prototype.getRandomPosition = function(spread) {
 };
 
 Path.prototype.destroy = function() {
-    this.node.remove(); // TODO works on all browsers??
+    this.node.remove();
 };
