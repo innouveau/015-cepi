@@ -1,23 +1,23 @@
 function Snippet(parent, app, i, staticElement) {
-    var position = parent.canvas.main.getRandomPositionInCircle();
     this.parent = parent;
     this.app = app;
     this.staticElement = staticElement;
-    this.index = i + parent.index * this.app.config.snippet.n;
+    this.index = i + parent.index * this.app.settings.snippet.n;
     this.color = this.getRandomColor();
-    this.triangle = new Triangle(this.app, this.app.config.snippet.size, true);
+    this.triangle = new Triangle(this.app, this.app.settings.snippet.size, true);
     this.position = new Position(this.app, this);
     this.timeline = this.position.getTimeline(this.index);
     this.canAnimate = true;
-    this.parent.canvas.snippets.updated = true;
+    this.parent.canvas.updated = true;
     this.currentFrame = 0;
     this.currentPosition = this.timeline[this.currentFrame];
 }
 
+Snippet.prototype = Object.create(_NodeModel.prototype);
 
 
 Snippet.prototype.enlighten = function() {
-    return Math.round((1 + this.app.config.lightness) * this.app.random(256));
+    return Math.round((1 + this.app.settings.lightness) * this.random(256));
 };
 
 Snippet.prototype.animate = function(frame) {
@@ -29,7 +29,7 @@ Snippet.prototype.animate = function(frame) {
 };
 
 Snippet.prototype.draw = function() {
-    var ctx = this.parent.canvas.snippets.ctx;
+    var ctx = this.parent.canvas.ctx;
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.moveTo(this.getCoordinate(this.triangle.points[0], 'x'), this.getCoordinate(this.triangle.points[0], 'y'));
@@ -47,7 +47,7 @@ Snippet.prototype.getCoordinate = function(point, direction) {
 Snippet.prototype.getRandomColor = function() {
     var a = Math.random(),
         grey;
-    if (a < this.app.config.greyness) {
+    if (a < this.app.settings.greyness) {
         grey = this.enlighten();
         return 'rgb(' + grey + ',' + grey + ',' + grey + ')';
     } else {

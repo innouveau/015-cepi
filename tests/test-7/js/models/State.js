@@ -13,44 +13,44 @@ function State(app, element) {
 
     var self = this;
 
-    element.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, false);
-    // Up, down, and move are for dragging
-
-    element.addEventListener('mousedown', function(e) {
-        var mouse = self.getMouse(e),
-            mx = mouse.x,
-            my = mouse.y,
-            elements = self.elements,
-            l = elements.length;
-        for (var i = l - 1; i >= 0; i--) {
-            if (elements[i].contains(mx, my)) {
-                var element = elements[i];
-                element.click();
-                return;
-            }
-        }
-    }, true);
-
-    element.addEventListener('mousemove', function(e) {
-        var mouse = self.getMouse(e),
-            mx = mouse.x,
-            my = mouse.y,
-            elements = self.elements,
-            l = elements.length;
-        for (var i = l - 1; i >= 0; i--) {
-            if (elements[i].contains(mx, my)) {
-                var element = elements[i];
-                element.hover();
-                self.hover();
-                return;
-            }
-        }
-        self.mouseout();
-    }, true);
-
-    element.addEventListener('mouseup', function(e) {
-        self.dragging = false;
-    }, true);
+    // element.addEventListener('selectstart', function(e) { e.preventDefault(); return false; }, false);
+    // // Up, down, and move are for dragging
+    //
+    // element.addEventListener('mousedown', function(e) {
+    //     var mouse = self.getMouse(e),
+    //         mx = mouse.x,
+    //         my = mouse.y,
+    //         elements = self.elements,
+    //         l = elements.length;
+    //     for (var i = l - 1; i >= 0; i--) {
+    //         if (elements[i].contains(mx, my)) {
+    //             var element = elements[i];
+    //             element.click();
+    //             return;
+    //         }
+    //     }
+    // }, true);
+    //
+    // element.addEventListener('mousemove', function(e) {
+    //     var mouse = self.getMouse(e),
+    //         mx = mouse.x,
+    //         my = mouse.y,
+    //         elements = self.elements,
+    //         l = elements.length;
+    //     for (var i = l - 1; i >= 0; i--) {
+    //         if (elements[i].contains(mx, my)) {
+    //             var element = elements[i];
+    //             element.hover();
+    //             self.hover();
+    //             return;
+    //         }
+    //     }
+    //     self.mouseout();
+    // }, true);
+    //
+    // element.addEventListener('mouseup', function(e) {
+    //     self.dragging = false;
+    // }, true);
 }
 
 

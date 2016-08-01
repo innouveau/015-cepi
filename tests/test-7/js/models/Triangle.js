@@ -4,6 +4,8 @@ function Triangle(app, size, rotation) {
     this.points = this.get(size);
 }
 
+Triangle.prototype = Object.create(_NodeModel.prototype);
+
 Triangle.prototype.get = function(size) {
     var width = size,
         height = width * (Math.sqrt(3)/2),
@@ -19,7 +21,7 @@ Triangle.prototype.get = function(size) {
 
 Triangle.prototype.rotate = function(triangle) {
     var rotated = [],
-        angle = this.app.random(360);
+        angle = this.random(360);
     for (var i = 0; i < 3; i++) {
         var side = triangle[i],
             newSide = {};

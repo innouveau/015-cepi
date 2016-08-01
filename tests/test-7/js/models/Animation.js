@@ -27,7 +27,7 @@ Animation.prototype.play = function() {
         return;
     }
 
-    this.current += this.app.config.animation.frequency;
+    this.current += this.app.settings.animation.frequency;
     if (this.current <= this.end) {
         for (var i = 0, l = this.canvas.elements.length; i < l; i++) {
             var element = this.canvas.elements[i];
@@ -64,6 +64,6 @@ Animation.prototype.kill = function() {
 window.requestAnimationFrame = (function(callback) {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
         function(callback) {
-            window.setTimeout(callback, 1000 / this.app.config.animation.frequency);
+            window.setTimeout(callback, 1000 / this.app.settings.animation.frequency);
         };
 })();

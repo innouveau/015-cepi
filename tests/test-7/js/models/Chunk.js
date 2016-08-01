@@ -2,40 +2,30 @@ function Chunk(app, index, staticElement) {
     this.app = app;
     this.index = index;
     this.staticElement = staticElement;
-    this.width = app.config.chunk.width;
-    this.height = app.config.chunk.height;
-    this.style = {
-        border: {
-            normal: '#333',
-            hover: '#f55'
-        }
-    };
-
-    this.canvas = this.createCanvases();
-    this.position = this.canvas.main.getGridPosition(index, this.app.config.chunk.n, this.app.config.chunk.margin);
+    this.width = app.settings.chunk.width;
+    this.height = app.settings.chunk.height;
+    this.canvas = this.createCanvas();
+    this.position = new Position(this.app, this);
     this.children = this.createSnippets();
     this.injectCanvases();
 }
 
-Chunk.prototype = Object.create(_NodeModel.prototype);
 
 
-Chunk.prototype.createCanvases = function() {
-    var canvas = {};
-    canvas.main = this.createCanvas( 'chunk-' + this.index + '-main', this.staticElement);
-    canvas.snippets = this.createCanvas('chunk-' + this.index + '-snippets', this.staticElement);
+Chunk.prototype.createCanvas = function() {
+    var canvas = new Canvas(this, this.app, this.staticElement, 'canvas-' + this.index);
+    this.app.canvases.push(canvas);
     return canvas;
 };
 
-Chunk.prototype.injectCanvases = function() {
-    this.canvas.main.injectElements([this]);
-    this.canvas.snippets.injectElements(this.children);
-};
 
+Chunk.prototype.injectCanvases = function() {
+    this.canvas.injectElements(this.children);
+};
 
 Chunk.prototype.createSnippets = function() {
     var children = [];
-    for (var i = 0; i < this.app.config.snippet.n; i++) {
+    for (var i = 0; i < this.app.settings.snippet.n; i++) {
         var snippet = new Snippet(this, this.app, i, this.staticElement);
         children.push(snippet);
     }

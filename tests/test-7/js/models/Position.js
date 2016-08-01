@@ -1,6 +1,6 @@
 function Position(app, snippet) {
     this.app = app;
-    this.snippet = snippet;
+    this.element = snippet;
     this.constants = {
         spread: (Math.random() - 0.5) * 10,
         start: this.getRandomPositionInCircle()
@@ -9,15 +9,17 @@ function Position(app, snippet) {
     this.init();
 }
 
+Position.prototype = Object.create(_NodeModel.prototype);
+
 Position.prototype.init = function() {
-    if (!this.snippet.staticElement) {
+    if (!this.element.staticElement) {
         this.pipeline = this.getPipeline();
         this.constants.end = this.getRandomPositioninSquare();
     }
 };
 
 Position.prototype.getPipeline = function() {
-    return this.spread(this.app.pipeline.coordinates);
+    return this.spread(this.app.settings.path.coordinates);
 };
 
 Position.prototype.spread = function(set) {
@@ -38,7 +40,7 @@ Position.prototype.getTimeline = function(passiveFrames) {
     var set = [],
         roadFromCircle,
         roadToSquare;
-    if (this.snippet.staticElement) {
+    if (this.element.staticElement) {
         set.push(this.constants.start);
     } else {
         roadFromCircle = this.getroadFromCircle();
@@ -62,7 +64,7 @@ Position.prototype.getroadFromCircle = function() {
         a = pipelineStart.x - this.constants.start.x,
         b  = pipelineStart.y - this.constants.start.y,
         length = Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ),
-        steps = length / this.app.config.snippet.speed,
+        steps = length / this.app.settings.snippet.speed,
         vector = {
             x: a / steps,
             y: b / steps
@@ -83,7 +85,7 @@ Position.prototype.getRoadToSquare = function() {
         a = this.constants.end.x - pipelineEnd.x,
         b  = this.constants.end.y - pipelineEnd.y,
         length = Math.sqrt( Math.pow(a, 2) + Math.pow(b, 2) ),
-        steps = length / this.app.config.snippet.speed,
+        steps = length / this.app.settings.snippet.speed,
         vector = {
             x: a / steps,
             y: b / steps
@@ -106,8 +108,8 @@ Position.prototype.getRandomPositioninSquare = function(margin) {
             y: 500
         };
     return {
-        x: position.x + this.app.random(width),
-        y: position.y + this.app.random(width)
+        x: position.x + this.random(width),
+        y: position.y + this.random(width)
     }
 };
 
@@ -122,5 +124,16 @@ Position.prototype.getRandomPositionInCircle = function() {
         y: y + 125
     }
 };
+
+Position.prototype.getGridPosition = function(i, l, margin) {
+    var unitsPerLine = Math.ceil(Math.sqrt(l)),
+        x = i % unitsPerLine,
+        y = Math.floor(i / unitsPerLine);
+    return {
+        x: x * (this.width / unitsPerLine) + margin,
+        y: y * (this.height / unitsPerLine) + margin
+    }
+};
+
 
 

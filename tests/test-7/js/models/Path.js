@@ -1,6 +1,5 @@
-function Path() {
-    this.app = app;
-    this.speed = this.app.config.snippet.speed;
+function Path(speed) {
+    this.speed = speed;
     this.position = {
         x: 200,
         y: 190
