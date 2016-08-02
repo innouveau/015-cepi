@@ -4,40 +4,37 @@ function Snippet(parent, app, i, staticElement) {
     this.staticElement = staticElement;
     this.index = i + parent.index * this.app.settings.snippet.n;
     this.sidestream = new Sidestream(app, this.random(5));
-    this.triangle = new Triangle(this.app, this.app.settings.snippet.size, true);
-    this.position = new Position(this.app, this);
-    this.timeline = this.position.getTimeline(this.index);
-    this.canAnimate = true;
-    this.parent.canvas.updated = true;
-    this.currentFrame = 0;
-    this.currentPosition = this.timeline[this.currentFrame];
-    this.lastFrame = this.timeline.length - 1;
+    this.startPosition = this.getStart();
+    this.currentPosition = {
+        x: this.startPosition.x,
+        y: this.startPosition.y
+    };
 }
 
 Snippet.prototype = Object.create(_NodeModel.prototype);
 
+Snippet.prototype.getStart = function() {
+    var x = this.index % this.app.settings.snippet.perRow,
+        y = Math.floor(this.index / this.app.settings.snippet.perRow);
+    return {
+        x: this.app.settings.container.width - x * this.app.settings.snippet.width,
+        y: 360 + y * this.app.settings.snippet.height
+    };
+};
+
 Snippet.prototype.animate = function(frame) {
-    if (frame > this.lastFrame) {
-        this.currentFrame = this.lastFrame;
-    } else {
-        this.currentFrame = frame;
-    }
-    if (this.timeline[this.currentFrame] !== null) {
-        this.currentPosition = this.timeline[this.currentFrame];
-    }
+    this.currentPosition.x = this.startPosition.x + frame * this.app.settings.snippet.speed;
     this.draw();
 };
 
 Snippet.prototype.draw = function() {
-    var ctx = this.parent.canvas.ctx;
-    ctx.fillStyle = this.sidestream.color;
-    ctx.beginPath();
-    ctx.moveTo(this.getCoordinate(this.triangle.points[0], 'x'), this.getCoordinate(this.triangle.points[0], 'y'));
-    for (var i = 1, l = this.triangle.points.length; i < l; i++) {
-        ctx.lineTo(this.getCoordinate(this.triangle.points[i], 'x'), this.getCoordinate(this.triangle.points[i], 'y'));
+    if (this.currentPosition.x > 0 && this.currentPosition.x < this.app.settings.container.width) {
+        var ctx = this.parent.canvas.ctx;
+        ctx.beginPath();
+        ctx.rect(this.currentPosition.x, this.currentPosition.y, this.app.settings.snippet.height, this.app.settings.snippet.height);
+        ctx.fillStyle = this.sidestream.color;
+        ctx.fill();
     }
-    ctx.closePath();
-    ctx.fill();
 };
 
 Snippet.prototype.getCoordinate = function(point, direction) {

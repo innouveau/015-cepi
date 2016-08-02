@@ -19,7 +19,6 @@ function addPhaseListeners() {
             frame = Math.round(top / 3);
         app.gotoFrame(frame);
         scrollChapters(top);
-        moveScene(top);
     })
 }
 
@@ -54,13 +53,4 @@ function scrollChapters(pixels) {
             $(this).css('opacity', 0);
         }
     })
-}
-
-function moveScene(pixels) {
-    if (pixels > 500 && pixels < 1200) {
-        $('#infographic').css('top', (125 - pixels / 4));
-    }
-    if (pixels < 500) {
-        $('#infographic').css('top', 0);
-    }
 }

@@ -3,7 +3,7 @@ function Settings(app) {
     this.pixelRatio = this.getPixelRatio();
     this.container =  this.measureContainer();
     this.chunk =  {
-        n: 8,
+        n: 16,
         staticElements: 0,
         width: 80,
         height: 80,
@@ -11,9 +11,10 @@ function Settings(app) {
     };
     this.snippet = {
             n: 250,
-            size: 10,
-            corners: 3,
-            speed: 5
+            width: 10,
+            height: 10,
+            speed: 6,
+            perRow: 800
         };
     this.greyness = 0.9;
     this.lightness = 0.3;
