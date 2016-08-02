@@ -57,14 +57,5 @@ function scrollChapters(pixels) {
 }
 
 function moveScene(pixels) {
-    var y;
-
-    if (pixels < 500) {
-        y = 0;
-    } else if (pixels < 1700) {
-        y = (125 - pixels / 4);
-    } else {
-        y = -300;
-    }
-    app.setStage(0, y);
+    app.setStage(0, (pixels / -4));
 }

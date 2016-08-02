@@ -3,30 +3,13 @@ function Position(app, snippet) {
     this.element = snippet;
     this.constants = {
         spread: (Math.random() - 0.5) * 12,
-        start: this.getRandomPositionInCircle()
+        start: this.getRandomPositionInCircle(120, {x:10,y:25}),
+        endOfSidestream: null
     };
-    this.pipeline = [];
-    this.init();
-
 }
 
 Position.prototype = Object.create(_NodeModel.prototype);
 
-Position.prototype.init = function() {
-    if (!this.element.staticElement) {
-        this.pipeline = this.getPipeline();
-        this.constants.end = this.getRandomPositioninSquare();
-    }
-};
-
-Position.prototype.getPipeline = function() {
-    var pipeline = this.app.settings.pipeline.coordinates,
-        endPoint = this.element.sidestream.endPoint;
-    if (endPoint !== 'end') {
-        pipeline = pipeline.slice(0, endPoint);
-    }
-    return this.spread(pipeline);
-};
 
 Position.prototype.spread = function(set) {
     var newCoordinates = [];
@@ -43,15 +26,24 @@ Position.prototype.spread = function(set) {
 Position.prototype.getTimeline = function(passiveFrames) {
     var set = [],
         roadFromCircle,
-        roadToSidestream;
+        pipeline,
+        roadToSidestream,
+        roadToGrid;
     if (this.element.staticElement) {
         set.push(this.constants.start);
     } else {
-        roadFromCircle = this.getRoad(this.constants.start, this.pipeline[0]);
-        roadToSidestream = this.getSidestream();
+        var endPoint = this.element.sidestream.endPoint;
+        pipeline = this.getPipeline();
+        roadFromCircle = this.getRoad(this.constants.start, pipeline[0]);
         set = set.concat(roadFromCircle);
-        set = set.concat(this.pipeline);
-        set = set.concat(roadToSidestream);
+        set = set.concat(pipeline);
+        // sidestream snippets
+        if (endPoint !== 'end') {
+            roadToSidestream = this.getSidestream(pipeline[pipeline.length - 1]);
+            roadToGrid = this.getGrid(roadToSidestream[roadToSidestream.length - 1]);
+            set = set.concat(roadToSidestream);
+            set = set.concat(roadToGrid);
+        }
         // add waiting time, to launch snippets one by one
         for (var i = 0; i < Math.floor(passiveFrames / this.app.settings.animation.snippetsPerFrame); i++) {
             set.unshift(null);
@@ -62,18 +54,31 @@ Position.prototype.getTimeline = function(passiveFrames) {
     return set;
 };
 
-Position.prototype.getSidestream = function() {
+Position.prototype.getPipeline = function() {
+    var pipeline = this.app.settings.pipeline.coordinates,
+        endPoint = this.element.sidestream.endPoint;
+    if (endPoint !== 'end') {
+        pipeline = pipeline.slice(0, endPoint);
+    }
+    return this.spread(pipeline);
+};
+
+Position.prototype.getSidestream = function(start) {
     var endPoint = this.element.sidestream.endPoint;
     if (endPoint === 'end') {
         return [];
     } else {
-        var start = this.pipeline[this.pipeline.length - 1],
-            end = {
+        var end = {
                 x: start.x,
                 y: start.y + this.app.settings.sidestream.length
             };
         return this.getRoad(start, end);
     }
+};
+
+Position.prototype.getGrid = function(start) {
+    var end = this.getRandomPositionInCircle(this.app.settings.chunk.radius, this.element.parent.position);
+    return this.getRoad(start, end);
 };
 
 Position.prototype.getRoad = function(start, end) {
@@ -109,27 +114,18 @@ Position.prototype.getRandomPositioninSquare = function(margin) {
     }
 };
 
-Position.prototype.getRandomPositionInCircle = function() {
-    var radius = 120,
-        pt_angle = Math.random() * 2 * Math.PI,
+Position.prototype.getRandomPositionInCircle = function(radius, deltaPosition) {
+    var pt_angle = Math.random() * 2 * Math.PI,
         pt_radius_sq = Math.random() * radius * radius,
         x = Math.sqrt(pt_radius_sq) * Math.cos(pt_angle) + radius,
         y = Math.sqrt(pt_radius_sq) * Math.sin(pt_angle) + radius;
     return {
-        x: x + 10,
-        y: y + 125
+        x: x + deltaPosition.x,
+        y: y + deltaPosition.y
     }
 };
 
-Position.prototype.getGridPosition = function(i, l, margin) {
-    var unitsPerLine = Math.ceil(Math.sqrt(l)),
-        x = i % unitsPerLine,
-        y = Math.floor(i / unitsPerLine);
-    return {
-        x: x * (this.width / unitsPerLine) + margin,
-        y: y * (this.height / unitsPerLine) + margin
-    }
-};
+
 
 
 

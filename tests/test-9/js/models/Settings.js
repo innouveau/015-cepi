@@ -9,18 +9,25 @@ function Settings(app) {
     this.chunk =  {
         n: 16,
         staticElements: 0,
-        width: 80,
-        height: 80,
+        radius: 20,
         margin: 40
     };
     this.snippet = {
-            n: 50,
-            width: 3,
-            height: 5,
-            speed: 5
-        };
+        n: 150,
+        width: 3,
+        height: 5,
+        speed: 5
+    };
     this.sidestream = {
         length: 300
+    };
+    this.grid = {
+        width: 400,
+        height: 400,
+        position: {
+            x: 200,
+            y: 1000
+        }
     };
     this.greyness = 0.9;
     this.lightness = 0.3;
@@ -52,6 +59,7 @@ Settings.prototype.getPixelRatio = function() {
 Settings.prototype.measureContainer = function(canvases) {
     return {
         width: $(this.app.container).outerWidth(),
-        height: $(this.app.container).outerHeight()
+        height: $(this.app.container).outerHeight(),
+        margin: 20
     }
 };

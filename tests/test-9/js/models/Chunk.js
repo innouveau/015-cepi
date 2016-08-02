@@ -4,6 +4,7 @@ function Chunk(app, index, staticElement) {
     this.staticElement = staticElement;
     this.width = app.settings.chunk.width;
     this.height = app.settings.chunk.height;
+    this.position = this.getGridPosition(index, this.app.settings.chunk.n);
     this.canvas = this.createCanvas();
     this.children = this.createSnippets();
     this.injectCanvases();
@@ -26,4 +27,15 @@ Chunk.prototype.createSnippets = function() {
         children.push(new Snippet(this, this.app, i, this.staticElement));
     }
     return children;
+};
+
+Chunk.prototype.getGridPosition = function(i, l) {
+    var unitsPerLine = Math.ceil(Math.sqrt(l)),
+        x = i % unitsPerLine,
+        y = Math.floor(i / unitsPerLine);
+    console.log(x,y, unitsPerLine);
+    return {
+        x: (x + 0.5) * (this.app.settings.grid.width / unitsPerLine) + this.app.settings.grid.position.x,
+        y: (y + 0.5) * (this.app.settings.grid.height / unitsPerLine) + this.app.settings.grid.position.y
+    }
 };
