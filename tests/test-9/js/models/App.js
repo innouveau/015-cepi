@@ -27,3 +27,10 @@ App.prototype.gotoFrame = function(frame) {
         this.canvases[i].update(frame);
     }
 };
+
+App.prototype.setStage = function(x, y) {
+    this.settings.stage.x = x;
+    this.settings.stage.y = y;
+};
+
+

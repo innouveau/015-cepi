@@ -2,6 +2,10 @@ function Settings(app) {
     this.app = app;
     this.pixelRatio = this.getPixelRatio();
     this.container =  this.measureContainer();
+    this.stage = {
+        x: 0,
+        y: 0
+    };
     this.chunk =  {
         n: 16,
         staticElements: 0,
@@ -10,7 +14,7 @@ function Settings(app) {
         margin: 40
     };
     this.snippet = {
-            n: 200,
+            n: 50,
             width: 3,
             height: 5,
             speed: 5

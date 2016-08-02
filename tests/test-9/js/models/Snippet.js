@@ -41,7 +41,7 @@ Snippet.prototype.draw = function() {
 };
 
 Snippet.prototype.getCoordinate = function(point, direction) {
-    return point[direction] + this.currentPosition[direction];
+    return point[direction] + this.currentPosition[direction] + this.app.settings.stage[direction];
 };
 
 
