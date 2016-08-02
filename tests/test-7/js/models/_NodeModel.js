@@ -1,5 +1,5 @@
 function _NodeModel() {}
 
 _NodeModel.prototype.random = function(a) {
-    return Math.round(Math.random() * a);
+    return Math.floor(Math.random() * a);
 };
