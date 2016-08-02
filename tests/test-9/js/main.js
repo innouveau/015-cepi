@@ -61,7 +61,7 @@ function moveScene(pixels) {
 
     if (pixels < 500) {
         y = 0;
-    } else  if (pixels > 500 && pixels < 1700) {
+    } else if (pixels < 1700) {
         y = (125 - pixels / 4);
     } else {
         y = -300;
