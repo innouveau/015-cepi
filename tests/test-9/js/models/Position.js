@@ -7,6 +7,7 @@ function Position(app, snippet) {
     };
     this.pipeline = [];
     this.init();
+
 }
 
 Position.prototype = Object.create(_NodeModel.prototype);
@@ -19,7 +20,12 @@ Position.prototype.init = function() {
 };
 
 Position.prototype.getPipeline = function() {
-    return this.spread(this.app.settings.pipeline.coordinates);
+    var pipeline = this.app.settings.pipeline.coordinates,
+        endPoint = this.element.sidestream.endPoint;
+    if (endPoint !== 'end') {
+        pipeline = pipeline.slice(0, endPoint);
+    }
+    return this.spread(pipeline);
 };
 
 Position.prototype.spread = function(set) {
@@ -37,13 +43,15 @@ Position.prototype.spread = function(set) {
 Position.prototype.getTimeline = function(passiveFrames) {
     var set = [],
         roadFromCircle,
-        roadToSquare;
+        roadToSidestream;
     if (this.element.staticElement) {
         set.push(this.constants.start);
     } else {
         roadFromCircle = this.getRoad(this.constants.start, this.pipeline[0]);
+        roadToSidestream = this.getSidestream();
         set = set.concat(roadFromCircle);
         set = set.concat(this.pipeline);
+        set = set.concat(roadToSidestream);
         // add waiting time, to launch snippets one by one
         for (var i = 0; i < Math.floor(passiveFrames / this.app.settings.animation.snippetsPerFrame); i++) {
             set.unshift(null);
@@ -52,6 +60,20 @@ Position.prototype.getTimeline = function(passiveFrames) {
         set.unshift(this.constants.start);
     }
     return set;
+};
+
+Position.prototype.getSidestream = function() {
+    var endPoint = this.element.sidestream.endPoint;
+    if (endPoint === 'end') {
+        return [];
+    } else {
+        var start = this.pipeline[this.pipeline.length - 1],
+            end = {
+                x: start.x,
+                y: start.y + this.app.settings.sidestream.length
+            };
+        return this.getRoad(start, end);
+    }
 };
 
 Position.prototype.getRoad = function(start, end) {

@@ -5,7 +5,6 @@ function Chunk(app, index, staticElement) {
     this.width = app.settings.chunk.width;
     this.height = app.settings.chunk.height;
     this.canvas = this.createCanvas();
-    this.position = new Position(this.app, this);
     this.children = this.createSnippets();
     this.injectCanvases();
 }

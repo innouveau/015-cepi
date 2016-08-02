@@ -57,7 +57,7 @@ function scrollChapters(pixels) {
 }
 
 function moveScene(pixels) {
-    if (pixels > 500 && pixels < 1200) {
+    if (pixels > 500 && pixels < 1700) {
         $('#infographic').css('top', (125 - pixels / 4));
     }
     if (pixels < 500) {

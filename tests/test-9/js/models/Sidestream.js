@@ -1,10 +1,41 @@
 function Sidestream(app, sidestream) {
     this.app = app;
     this.sidestream = sidestream;
+    this.endPoint = this.getEndPoint(); // the part of the tube where the sidestream begins
     this.color = this.getColor();
 }
 
 Sidestream.prototype = Object.create(_NodeModel.prototype);
+
+
+Sidestream.prototype.getEndPoint = function() {
+    switch(this.sidestream) {
+        case 0:
+            return 85;
+            break;
+        case 1:
+            return 173;
+            break;
+        case 2:
+            return 248;
+            break;
+        case 3:
+            return 314;
+            break;
+        case 4:
+            return 368;
+            break;
+        case 5:
+            return 415;
+            break;
+        // no sidestream
+        case 6:
+        case 7:
+        case 8:
+            return 'end';
+            break;
+    }
+};
 
 Sidestream.prototype.getColor = function() {
     switch(this.sidestream) {

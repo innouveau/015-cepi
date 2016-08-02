@@ -10,12 +10,14 @@ function Settings(app) {
         margin: 40
     };
     this.snippet = {
-            n: 250,
+            n: 200,
             width: 3,
             height: 5,
-            corners: 3,
             speed: 5
         };
+    this.sidestream = {
+        length: 300
+    };
     this.greyness = 0.9;
     this.lightness = 0.3;
     this.animation = {
