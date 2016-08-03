@@ -7,8 +7,9 @@ function Settings(app) {
         y: 0
     };
     this.path = {
-        dash: 5,
-        stroke: 1.5
+        dash: 16,
+        gap: 4,
+        stroke: 2
     };
     this.sidestream = {
         length: 300,
@@ -37,41 +38,20 @@ function Settings(app) {
                 name: '',
                 color: 'rgb(200,240,200)',
                 startFrame: 415
+            }, {
+                name: '',
+                color: 'rgb(200,200,200)',
+                startFrame: 'end'
+            }, {
+                name: '',
+                color: 'rgb(200,190,190)',
+                startFrame: 'end'
+            }, {
+                name: '',
+                color: 'rgb(240,220,220)',
+                startFrame: 'end'
             }
-            // }, {
-            //     name: '',
-            //     color: 'rgb(200,200,200)',
-            //     startFrame: 'end'
-            // }, {
-            //     name: '',
-            //     color: 'rgb(200,190,190)',
-            //     startFrame: 'end'
-            // }, {
-            //     name: '',
-            //     color: 'rgb(240,220,220)',
-            //     startFrame: 'end'
-            // }
         ]
-    };
-    this.grid = {
-        width: 400,
-        height: 400,
-        position: {
-            x: 200,
-            y: 1000
-        }
-    };
-    this.greyness = 0.9;
-    this.lightness = 0.3;
-    this.animation = {
-        frequency: (1000 / 20),
-        snippetsPerFrame: 4
-    };
-    this.typography = {
-        title: {
-            font: '14px Arial',
-            color: '#000'
-        }
     };
 }
 

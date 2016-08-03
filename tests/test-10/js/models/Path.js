@@ -1,129 +1,85 @@
-function Path(name, app, position, points) {
+function Path(name, sidestream, app, position, points) {
     this.app = app;
     this.points = points;
     this.position = position;
     this.name = name;
+    this.sidestreams = sidestream;
     this.container = null;
-    this.elements = [];
+    this.subpaths = [];
     this.settings = {
         length: 0,
         dashes: 0
     };
+
     this.build();
-    this.init();
+    this.measure();
     this.sets = this.intialSets();
     this.assignDashes();
-
 }
 
 Path.prototype = Object.create(_NodeModel.prototype);
-
-
-Path.prototype.init = function() {
-    this.settings.length = this.elements[0].d3Element[0][0].getTotalLength();
-    this.settings.dashes = Math.ceil(this.settings.length / this.app.settings.path.dash)
-};
 
 Path.prototype.build = function() {
     this.container = this.app.canvas.element.append('g').attr({
         class: this.name,
         transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
     });
-    for (var i = 0, l = this.app.settings.sidestream.sets.length; i < l; i++) {
-        this.buildElement(i);
+    for (var i = 0, l = this.sidestreams.length; i < l; i++) {
+        var sidestream = this.app.settings.sidestream.sets[this.sidestreams[i]];
+        this.subpaths.push(new Subpath(this.app, this, sidestream, i));
     }
 };
 
-Path.prototype.buildElement = function(i) {
-    var strokeArray = this.getStrokeArray(0),
-        sidestream = this.app.settings.sidestream.sets[i],
-        d3Element = this.container.append('path').attr({
-            'class': this.name + '-sub-' + i,
-            'd': this.points,
-            'stroke': sidestream.color,
-            'fill': 'none',
-            'stroke-width': this.app.settings.path.stroke
-        });
-    this.elements.push({
-        d3Element: d3Element,
-        sidestream: sidestream
-    })
+Path.prototype.measure = function() {
+    this.settings.length = this.subpaths[0].element[0][0].getTotalLength();
+    this.settings.dashes = Math.ceil(this.settings.length / this.app.settings.path.dash)
 };
+
 
 Path.prototype.assignDashes = function() {
-    for (var i = 0, l = this.app.settings.sidestream.sets.length; i < l; i++) {
-        this.elements[i].d3Element.attr({
-            'stroke-dasharray': this.sets[i]
-        });
+    for (var i = 0, l = this.subpaths.length; i < l; i++) {
+        this.subpaths[i].init(this.sets[i]);
     }
 };
 
-Path.prototype.animate = function(frame) {
-    // var x = frame % (this.app.settings.path.dash * 5);
-    // for (var i = 0, l = this.elements.length; i < l; i++) {
-    //     var strokeArray = this.getStrokeArray(x);
-    //     this.elements[i].d3Element.attr({
-    //         'stroke-dasharray': strokeArray
-    //     })
-    // }
-
+Path.prototype.scroll = function(frame) {
+    for (var i = 0, l = this.subpaths.length; i < l; i ++) {
+        var subpath = this.subpaths[i];
+        subpath.scroll(frame);
+    }
 };
 
 Path.prototype.intialSets = function() {
-    var sets = [[],[],[],[],[],[]],
-        steps = Math.ceil(this.settings.length / this.app.settings.path.dash),
-        gap,
+    var set = [],
+        steps = Math.ceil(this.settings.length / (this.app.settings.path.dash + this.app.settings.path.gap)),
         hit;
-
     for (var i = 0; i < steps; i++) {
-        if (i % 2 === 0) {
-            gap = true;
-            hit = -1;
-        } else {
-            gap = false;
-            hit = this.random(6);
-        }
-
-
-        for (var j = 0, jl = sets.length; j < jl; j++) {
-            if (gap || j !== hit) {
-                sets[j].push(false)
-            } else {
-                sets[j].push(true);
-            }
-        }
+        hit = this.random(this.sidestreams.length);
+        set.push(hit);
     }
-    return this.setsToStrokeArray(sets);
+    return this.setsToStrokeArray(set);
 };
 
-Path.prototype.setsToStrokeArray = function(sets) {
-    var newSets = [[],[],[],[],[],[]];
-    for (var i = 0, l = sets.length; i < l; i++) {
-        var set = sets[i],
-            newSet = newSets[i];
-        for (var j = 0, jl = set.length; j < jl; j++) {
-            var entry = set[j];
-            if ((entry && newSet[newSet.length - 1] !== 0) || newSet.length === 0) {
-                newSet.push(this.app.settings.path.dash);
-                newSet.push(0);
-            } else {
-                newSet[newSet.length - 1] += this.app.settings.path.dash;
+Path.prototype.setsToStrokeArray = function(set) {
+    var newSets = [];
+    for (var i = 0, l = set.length; i < l; i++) {
+        var hit = set[i];
+        for (var j = 0, jl = this.sidestreams.length; j < jl; j++) {
+            if (!newSets[j]) {
+                // create the dash-array, start with a dash and a gap
+                // (because it is impossible to start with a gap)
+                newSets.push([this.app.settings.path.dash, this.app.settings.path.gap]);
             }
-
+            var newSet = newSets[j];
+            if (hit === j) {
+                // add a dash and a gap
+                newSet.push(this.app.settings.path.dash);
+                newSet.push(this.app.settings.path.gap);
+            } else {
+                // make the existing gap longer
+                newSet[newSet.length - 1] += (this.app.settings.path.dash + this.app.settings.path.gap);
+            }
         }
     }
     return newSets;
-};
-
-
-Path.prototype.getStrokeArray = function(x) {
-    var set = [];
-    for (var i = 0; i < this.settings.dashes; i++) {
-        set.push(
-            (5 * this.app.settings.path.dash),
-            this.app.settings.path.dash
-        );
-    }
-    set.unshift((x));
-    return set;
 };

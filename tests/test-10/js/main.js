@@ -12,12 +12,10 @@ $(window).ready(function(){
 
 });
 
-
 function addPhaseListeners() {
     $(window).scroll(function(e){
-        var top = $(document).scrollTop(),
-            frame = Math.round(top / 3);
-        app.gotoFrame(frame);
+        var top = $(document).scrollTop();
+        app.scroll(top);
         scrollChapters(top);
         moveScene(top);
     })
