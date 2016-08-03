@@ -19,7 +19,46 @@ function Settings(app) {
         speed: 5
     };
     this.sidestream = {
-        length: 300
+        length: 300,
+        sets: [
+            {
+                name: '',
+                color: 'rgb(0,0,0)',
+                startFrame: 85
+            }, {
+                name: '',
+                color: 'rgb(80,120,120)',
+                startFrame: 173
+            }, {
+                name: '',
+                color: 'rgb(140,140,80)',
+                startFrame: 248
+            }, {
+                name: '',
+                color: 'rgb(140,180,180)',
+                startFrame: 314
+            }, {
+                name: '',
+                color: 'rgb(200,240,200)',
+                startFrame: 368
+            }, {
+                name: '',
+                color: 'rgb(200,240,200)',
+                startFrame: 415
+            }, {
+                name: '',
+                color: 'rgb(200,200,200)',
+                startFrame: 'end'
+            }, {
+                name: '',
+                color: 'rgb(200,190,190)',
+                startFrame: 'end'
+            }, {
+                name: '',
+                color: 'rgb(240,220,220)',
+                startFrame: 'end'
+            }
+        ]
     };
     this.grid = {
         width: 400,
