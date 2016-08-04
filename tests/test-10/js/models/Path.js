@@ -1,9 +1,11 @@
-function Path(name, sidestream, app, position, points) {
+function Path(name, sidestream, app, position, dash, gap, points) {
     this.app = app;
     this.points = points;
     this.position = position;
     this.name = name;
     this.sidestreams = sidestream;
+    this.dash = dash;
+    this.gap = gap;
     this.container = null;
     this.subpaths = [];
     this.settings = {
@@ -32,7 +34,7 @@ Path.prototype.build = function() {
 
 Path.prototype.measure = function() {
     this.settings.length = this.subpaths[0].element[0][0].getTotalLength();
-    this.settings.dashes = Math.ceil(this.settings.length / this.app.settings.path.dash)
+    this.settings.dashes = Math.ceil(this.settings.length / this.dash)
 };
 
 
@@ -51,7 +53,7 @@ Path.prototype.scroll = function(frame) {
 
 Path.prototype.intialSets = function() {
     var set = [],
-        steps = Math.ceil(this.settings.length / (this.app.settings.path.dash + this.app.settings.path.gap)),
+        steps = Math.ceil(this.settings.length / (this.dash + this.gap)),
         hit;
     for (var i = 0; i < steps; i++) {
         hit = this.random(this.sidestreams.length);
@@ -68,16 +70,16 @@ Path.prototype.setsToStrokeArray = function(set) {
             if (!newSets[j]) {
                 // create the dash-array, start with a dash and a gap
                 // (because it is impossible to start with a gap)
-                newSets.push([this.app.settings.path.dash, this.app.settings.path.gap]);
+                newSets.push([this.dash, this.gap]);
             }
             var newSet = newSets[j];
             if (hit === j) {
                 // add a dash and a gap
-                newSet.push(this.app.settings.path.dash);
-                newSet.push(this.app.settings.path.gap);
+                newSet.push(this.dash);
+                newSet.push(this.gap);
             } else {
                 // make the existing gap longer
-                newSet[newSet.length - 1] += (this.app.settings.path.dash + this.app.settings.path.gap);
+                newSet[newSet.length - 1] += (this.dash + this.gap);
             }
         }
     }

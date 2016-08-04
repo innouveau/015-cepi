@@ -17,7 +17,7 @@ function Settings(app) {
             {
                 name: '',
                 color: 'rgb(0,0,0)',
-                startFrame: 85
+                startFrame: 85,
             }, {
                 name: '',
                 color: 'rgb(80,120,120)',
