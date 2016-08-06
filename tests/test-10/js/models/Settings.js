@@ -16,40 +16,31 @@ function Settings(app) {
         sets: [
             {
                 name: '',
-                color: 'rgb(0,0,0)',
-                startFrame: 85,
+                color: 'rgb(0,0,0)'
             }, {
                 name: '',
-                color: 'rgb(80,120,120)',
-                startFrame: 173
+                color: 'rgb(80,120,120)'
             }, {
                 name: '',
-                color: 'rgb(140,140,80)',
-                startFrame: 248
+                color: 'rgb(140,140,80)'
             }, {
                 name: '',
-                color: 'rgb(140,180,180)',
-                startFrame: 314
+                color: 'rgb(140,180,180)'
             }, {
                 name: '',
-                color: 'rgb(200,240,200)',
-                startFrame: 368
+                color: 'rgb(200,240,200)'
             }, {
                 name: '',
-                color: 'rgb(200,240,200)',
-                startFrame: 415
+                color: 'rgb(200,240,200)'
             }, {
                 name: '',
-                color: 'rgb(200,200,200)',
-                startFrame: 'end'
+                color: 'rgb(200,200,200)'
             }, {
                 name: '',
-                color: 'rgb(200,190,190)',
-                startFrame: 'end'
+                color: 'rgb(200,190,190)'
             }, {
                 name: '',
-                color: 'rgb(240,220,220)',
-                startFrame: 'end'
+                color: 'rgb(240,220,220)'
             }
         ]
     };

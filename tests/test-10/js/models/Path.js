@@ -1,7 +1,6 @@
-function Path(name, sidestream, app, position, dash, gap, points) {
+function Path(name, sidestream, app, dash, gap, points) {
     this.app = app;
     this.points = points;
-    this.position = position;
     this.name = name;
     this.sidestreams = sidestream;
     this.dash = dash;
@@ -22,9 +21,8 @@ function Path(name, sidestream, app, position, dash, gap, points) {
 Path.prototype = Object.create(_NodeModel.prototype);
 
 Path.prototype.build = function() {
-    this.container = this.app.canvas.element.append('g').attr({
-        class: this.name,
-        transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
+    this.container = this.app.canvas.artboard.element.append('g').attr({
+        class: this.name
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {
         var sidestream = this.app.settings.sidestream.sets[this.sidestreams[i]];
