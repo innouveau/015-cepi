@@ -9,7 +9,8 @@ var valorisations = [
         link: '',
         sidestreams: [0,1,3],
         tlr: 6,
-        value: 8
+        value: 8,
+        image: 'testimage.svg'
     }, {
         id: 1,
         name: 'Absorbent materials production',
@@ -19,6 +20,7 @@ var valorisations = [
         link: '',
         sidestreams: [2,4],
         tlr: 3,
-        value: 8.7
+        value: 8.7,
+        image: 'testimage.svg'
     }
 ];

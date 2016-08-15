@@ -3,6 +3,7 @@ function Valorisation(app, valorisation) {
     this.app = app;
     this.name = valorisation.name;
     this.description = valorisation.description;
+    this.image = valorisation.image;
     this.size = 60;
     this.sidestreams = valorisation.sidestreams;
     this.tlr = valorisation.tlr;
@@ -21,7 +22,7 @@ Valorisation.prototype.getPosition = function() {
 };
 
 Valorisation.prototype.createPopup = function() {
-    var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2>' + this.description + '</div>'),
+    var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2>' + this.description + '<img src="images/' + this.image + '"></div>'),
         closeButton = $('<div class="close-valorisation">Close</div>'),
         self = this;
     div.append(closeButton);

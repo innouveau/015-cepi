@@ -71,6 +71,10 @@ h2 {
     transition: all 0.2s ease;
 }
 
+.valorisation img {
+
+}
+
 .valoriation-popup {
     position: fixed;
     left: calc(50% - 250px);

@@ -15,20 +15,24 @@ $(window).ready(function(){
 function addPhaseListeners() {
     $(window).scroll(function(e){
         var top = $(document).scrollTop();
-        app.scroll(top);
-        scrollChapters(top);
-        moveScene(top);
+        gotoFrame(top);
     });
 
     document.addEventListener("keydown", function(e) {
         if (e.keyCode == '49') {
-            var px = 3000;
-            app.scroll(px);
-            $(window).scrollTop(px);
-            scrollChapters(px);
-            moveScene(px);
+            $(document).scrollTop(0);
+            gotoFrame(0);
+        } else if (e.keyCode == '50') {
+            $(document).scrollTop(3000);
+            gotoFrame(3000);
         }
     });
+
+    function gotoFrame(frame) {
+        app.scroll(frame);
+        scrollChapters(frame);
+        moveScene(frame);
+    }
 }
 
 function initChapters() {
