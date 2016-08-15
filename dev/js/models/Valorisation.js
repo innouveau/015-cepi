@@ -5,12 +5,13 @@ function Valorisation(app, valorisation) {
     this.description = valorisation.description;
     this.image = valorisation.image;
     this.size = 60;
-    this.sidestreams = valorisation.sidestreams;
+    this.sidestreams = this.getSidestreams(valorisation.sidestreams);
     this.tlr = valorisation.tlr;
     this.value =valorisation.value;
     this.position = this.getPosition();
     this.element = this.getElement();
     this.popup = this.createPopup();
+    this.visible = true;
     this.addListeners();
 }
 
@@ -49,8 +50,17 @@ Valorisation.prototype.addListeners = function() {
     })
 };
 
+Valorisation.prototype.getSidestreams = function(ids) {
+    var sidestreams = [];
+    for (var i = 0, l = ids.length; i < l; i++) {
+        var sidestream = this.app.sidestreams[ids[i]];
+        sidestreams.push(sidestream);
+    }
+    return sidestreams;
+};
+
 Valorisation.prototype.getElement = function() {
-    var element = this.app.canvas.graphBody.append('g').attr({
+    var element = this.app.canvas.valorisationContainer.append('g').attr({
         class: 'valorisation valorisation-' + this.id,
         transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
     });
@@ -60,17 +70,35 @@ Valorisation.prototype.getElement = function() {
         fill: '#fff'
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {
-        var stream = this.app.streams[this.sidestreams[i]],
+        var sidestream = this.sidestreams[i],
             r = (this.size / 2) - i * 3;
         element.append('circle').attr({
             class: 'valorisation-sidestream',
             r: r,
             cx: this.size / 2,
             cy: this.size / 2,
-            stroke: stream.color,
+            stroke: sidestream.color,
             fill: 'none',
             'stroke-width': 2
         })
     }
     return element
+};
+
+Valorisation.prototype.hasSidestream = function(sidestreams) {
+    for (var i = 0, l = sidestreams.length; i < l; i++) {
+        var sidestream = sidestreams[i];
+        if (this.sidestreams.indexOf(sidestream) > -1){
+            return true;
+        }
+    }
+    return false;
+};
+
+Valorisation.prototype.show = function() {
+    $(this.element[0]).fadeIn(1000);
+};
+
+Valorisation.prototype.hide = function() {
+    $(this.element[0]).fadeOut(1000);
 };

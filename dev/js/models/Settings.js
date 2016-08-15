@@ -15,7 +15,7 @@ function Settings(app) {
         length: 300
     };
     this.graph = {
-        marginTop: 100,
+        marginTop: 150,
         startTop: 1200,
         startFrame: 800,
         endFrame: 1400,
@@ -28,6 +28,11 @@ function Settings(app) {
     this.valorisation = {
         fade: 1500
     };
+    this.filterSidestreams = {
+        top: 90,
+        left: 20,
+        setWidth: 100
+    }
 }
 
 

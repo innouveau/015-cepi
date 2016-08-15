@@ -90,21 +90,38 @@ h2 {
     font-weight: 300;
 }
 
+.checkbox {
+    fill: #fff;
+    stroke-width: 2px;
+    cursor: pointer;
+}
+
+.checkbox-check {
+    stroke: #000;
+    stroke-width: 1px;
+    cursor: pointer;
+}
+
 /* valorisations */
 
-.valorisation {
-    cursor: pointer;
+.valorisation-container {
     display: none;
 }
 
-.valorisation img {
-
+.valorisation {
+    cursor: pointer;
 }
+
+
+
+/* popup */
 
 .valoriation-popup {
     position: fixed;
     left: calc(50% - 250px);
-    top: 120px;
+    top: 60px;
+    max-height: calc(100% - 120px);
+    overflow: auto;
     width: 500px;
     padding: 20px 20px 120px 20px;
     background: #fff;

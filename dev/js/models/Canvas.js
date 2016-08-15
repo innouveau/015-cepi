@@ -41,9 +41,9 @@ Canvas.prototype.scrollGraph = function(frame) {
     }
     // fading of valorisations
     if ( frame > (end - 100)) {
-        $('.valorisation').fadeIn(this.app.settings.valorisation.fade);
+        $('.valorisation-container').fadeIn(this.app.settings.valorisation.fade);
     } else {
-        $('.valorisation').fadeOut(this.app.settings.valorisation.fade);
+        $('.valorisation-container').fadeOut(this.app.settings.valorisation.fade);
     }
     this.graph.attr({
         transform: 'translate(' + this.app.settings.graph.left + ',' + y + ')'
@@ -88,22 +88,22 @@ Canvas.prototype.getGraph = function() {
 };
 
 Canvas.prototype.createHeader = function(graph, settings) {
-    var header = graph.append('g').attr({
+    this.graphHeader = graph.append('g').attr({
         class: 'graph-header'
     });
-    header.append('line').attr({
+    this.graphHeader.append('line').attr({
         class: 'graph-top-bar',
         x1: 0,
         y1: 0,
         x2: settings.graph.width,
         y2: 0
     });
-    header.append('text').attr({
+    this.graphHeader.append('text').attr({
         class: 'graph-header-text',
         x: 10,
         y: 40
     }).text('Side stream valorization opportunities');
-    header.append('text').attr({
+    this.graphHeader.append('text').attr({
         class: 'graph-header-sub',
         x: 10,
         y: 62
@@ -115,6 +115,54 @@ Canvas.prototype.createBody = function(graph, settings) {
         class: 'graph-body',
         transform: 'translate(30,' + settings.graph.marginTop + ')'
     });
+    this.valorisationContainer = this.graphBody.append('g').attr('class', 'valorisation-container');
+};
+
+Canvas.prototype.buildFilters = function() {
+    this.createFilterSidestreams();
+
+};
+
+Canvas.prototype.createFilterSidestreams = function() {
+    var filter = this.graphHeader.append('g').attr({
+        class: 'filter filter-sidestreams',
+        transform: 'translate(' + this.app.settings.filterSidestreams.left + ',' + this.app.settings.filterSidestreams.top + ')'
+    });
+    for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
+        var sidestream = this.app.sidestreams[i],
+            checkboxContainer = filter.append('g').attr({
+                class: 'checkbox-container',
+                transform: 'translate(' + i * this.app.settings.filterSidestreams.setWidth + ',0)'
+            }),
+            checkboxDisplay;
+        checkboxContainer.append('rect').attr({
+            class: 'checkbox',
+            stroke: sidestream.color,
+            width: 16,
+            height: 16
+        });
+        checkboxDisplay = checkboxContainer.append('g');
+        checkboxDisplay.append('line').attr({
+            class: 'checkbox-check',
+            x1: 4,
+            y1: 4,
+            x2: 12,
+            y2: 12
+        });
+        checkboxDisplay.append('line').attr({
+            class: 'checkbox-check',
+            x1: 12,
+            y1: 4,
+            x2: 4,
+            y2: 12
+        });
+        sidestream.elements.display = checkboxDisplay;
+        (function(sidestream) {
+            checkboxContainer.on('click', function () {
+                sidestream.toggle();
+            })
+        })(sidestream);
+    }
 };
 
 Canvas.prototype.createAxis = function(graph, settings, direction, label1, label2) {
