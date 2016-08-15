@@ -1,30 +1,31 @@
 var sidestreams = [
     {
-        name: '',
+        name: 'Coarse rejects',
         color: 'rgb(0,0,0)'
     }, {
-        name: '',
+        name: 'Fine rejects',
         color: 'rgb(80,120,120)'
     }, {
-        name: '',
+        name: 'Deinking sludge',
         color: 'rgb(140,140,80)'
     }, {
-        name: '',
+        name: 'Process water',
         color: 'rgb(140,180,180)'
     }, {
-        name: '',
+        name: 'Primary wastewater treatment sludge',
         color: 'rgb(200,240,200)'
     }, {
-        name: '',
+        name: 'Secondary wastewater treatment sludge',
         color: 'rgb(200,240,200)'
-    }, {
-        name: '',
+    }
+];
+
+var outstreams = [
+    {
         color: 'rgb(200,200,200)'
     }, {
-        name: '',
         color: 'rgb(200,190,190)'
     }, {
-        name: '',
         color: 'rgb(240,220,220)'
     }
 ];

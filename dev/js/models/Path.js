@@ -3,10 +3,12 @@ function Path(name, path) {
     this.points = path.points;
     this.name = path.name;
     this.sidestreams = path.sidestreams;
+    this.animationStart = path.animationStart;
     this.dash = path.dash;
     this.gap = path.gap;
     this.container = null;
     this.subpaths = [];
+    this.cover = null;
     this.settings = {
         length: 0,
         dashes: 0
@@ -25,9 +27,10 @@ Path.prototype.build = function() {
         class: this.name
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {
-        var sidestream = this.app.sidestreams[this.sidestreams[i]];
-        this.subpaths.push(new Subpath(this.app, this, sidestream, i));
+        var stream = this.app.streams[this.sidestreams[i]];
+        this.subpaths.push(new Subpath(this.app, this, stream, i));
     }
+    this.cover = new Subpath(this.app, this, -1, -1);
 };
 
 Path.prototype.measure = function() {
@@ -40,6 +43,7 @@ Path.prototype.assignDashes = function() {
     for (var i = 0, l = this.subpaths.length; i < l; i++) {
         this.subpaths[i].init(this.sets[i]);
     }
+    this.cover.init([this.settings.length, 1000 * this.settings.length]);
 };
 
 Path.prototype.scroll = function(frame) {
@@ -47,6 +51,11 @@ Path.prototype.scroll = function(frame) {
         var subpath = this.subpaths[i];
         subpath.scroll(frame);
     }
+    var delta = frame - this.animationStart;
+    if (delta < 0) {
+        delta = 0;
+    }
+    this.cover.scroll(delta);
 };
 
 Path.prototype.intialSets = function() {

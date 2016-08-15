@@ -3,9 +3,9 @@ function Settings(app) {
     this.container =  this.measureContainer();
     this.path = {
         startTop: 0,
-        endTop: -500,
-        startFrame: 300,
-        endFrame: 900,
+        endTop: -600,
+        startFrame: 700,
+        endFrame: 1300,
         dash: 16,
         gap: 4,
         stroke: 2,
@@ -17,9 +17,9 @@ function Settings(app) {
     this.graph = {
         marginTop: 100,
         startTop: 1200,
-        startFrame: 600,
-        endFrame: 1200,
-        endTop: 140,
+        startFrame: 800,
+        endFrame: 1400,
+        endTop: 80,
         left: 30,
         width: 600,
         height: 400,

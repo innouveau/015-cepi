@@ -33,10 +33,8 @@ function addPhaseListeners() {
     function gotoFrame(frame) {
         app.scroll(frame);
         scrollChapters(frame);
-        moveScene(frame);
     }
 
-    gotoFrame(3000);
 }
 
 function initChapters() {
@@ -70,8 +68,4 @@ function scrollChapters(pixels) {
             $(this).css('opacity', 0);
         }
     })
-}
-
-function moveScene(pixels) {
-    app.setStage(0, (pixels / -4));
 }

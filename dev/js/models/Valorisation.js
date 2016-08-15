@@ -60,14 +60,14 @@ Valorisation.prototype.getElement = function() {
         fill: '#fff'
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {
-        var sidestream = this.app.sidestreams[this.sidestreams[i]],
+        var stream = this.app.streams[this.sidestreams[i]],
             r = (this.size / 2) - i * 3;
         element.append('circle').attr({
             class: 'valorisation-sidestream',
             r: r,
             cx: this.size / 2,
             cy: this.size / 2,
-            stroke: sidestream.color,
+            stroke: stream.color,
             fill: 'none',
             'stroke-width': 2
         })
