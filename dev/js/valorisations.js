@@ -44,5 +44,38 @@ var valorisations = [
         tlr: 7,
         value: 3.8,
         image: 'testimage.svg'
+    }, {
+        id: 4,
+        name: 'Test 3',
+        description: '',
+        economic: '',
+        trlDescription: '',
+        link: '',
+        sidestreams: [2,3],
+        tlr: 2.5,
+        value: 6,
+        image: 'testimage.svg'
+    }, {
+        id: 5,
+        name: 'Test 4',
+        description: '',
+        economic: '',
+        trlDescription: '',
+        link: '',
+        sidestreams: [4],
+        tlr: 4.1,
+        value: 4.5,
+        image: 'testimage.svg'
+    }, {
+        id: 6,
+        name: 'Test 5',
+        description: '',
+        economic: '',
+        trlDescription: '',
+        link: '',
+        sidestreams: [1,2,5],
+        tlr: 4,
+        value: 2,
+        image: 'testimage.svg'
     }
 ];

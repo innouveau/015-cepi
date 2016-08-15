@@ -3,7 +3,7 @@ function Settings(app) {
     this.container =  this.measureContainer();
     this.path = {
         startTop: 0,
-        endTop: -600,
+        endTop: -620,
         startFrame: 700,
         endFrame: 1300,
         dash: 16,
@@ -19,7 +19,7 @@ function Settings(app) {
         startTop: 1200,
         startFrame: 800,
         endFrame: 1400,
-        endTop: 80,
+        endTop: 30,
         left: 30,
         width: 600,
         height: 400,
@@ -30,7 +30,7 @@ function Settings(app) {
     };
     this.filterSidestreams = {
         top: 90,
-        left: 20,
+        left: 15,
         setWidth: 100
     }
 }
