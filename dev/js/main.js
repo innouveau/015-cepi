@@ -28,11 +28,15 @@ function addPhaseListeners() {
         }
     });
 
+
+
     function gotoFrame(frame) {
         app.scroll(frame);
         scrollChapters(frame);
         moveScene(frame);
     }
+
+    gotoFrame(3000);
 }
 
 function initChapters() {

@@ -50,7 +50,7 @@ Valorisation.prototype.addListeners = function() {
 };
 
 Valorisation.prototype.getElement = function() {
-    var element = this.app.canvas.graph.append('g').attr({
+    var element = this.app.canvas.graphBody.append('g').attr({
         class: 'valorisation valorisation-' + this.id,
         transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
     });

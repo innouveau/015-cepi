@@ -66,9 +66,35 @@ h2 {
     top: 0;
 }
 
+/* graph */
+
+.graph-axis, .arrowhead {
+    stroke: #000;
+    stroke-width: 1px;
+}
+
+.graph-label {
+    fill: #000;
+    stroke: none;
+}
+
+.graph-top-bar {
+    stroke: #000;
+    stroke-width: 6px;
+}
+
+.graph-header-text {
+    font-size: 28px;
+    line-height: 28px;
+    font-family: 'Alegreya';
+    font-weight: 300;
+}
+
+/* valorisations */
+
 .valorisation {
     cursor: pointer;
-    transition: all 0.2s ease;
+    display: none;
 }
 
 .valorisation img {

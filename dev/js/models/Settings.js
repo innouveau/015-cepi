@@ -1,13 +1,11 @@
 function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
-    this.stage = {
-        x: 0,
-        y: 0
-    };
     this.path = {
         startTop: 0,
         endTop: -500,
+        startFrame: 300,
+        endFrame: 900,
         dash: 16,
         gap: 4,
         stroke: 2,
@@ -17,11 +15,19 @@ function Settings(app) {
         length: 300
     };
     this.graph = {
+        marginTop: 100,
         startTop: 1200,
-        endTop: 124,
+        startFrame: 600,
+        endFrame: 1200,
+        endTop: 140,
+        left: 30,
         width: 600,
-        height: 400
-    }
+        height: 400,
+        margin: 10
+    };
+    this.valorisation = {
+        fade: 1500
+    };
 }
 
 

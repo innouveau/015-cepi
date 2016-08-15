@@ -19,8 +19,30 @@ var valorisations = [
         trlDescription: 'Both types of absorbent products mentioned here are already available on the market.',
         link: '',
         sidestreams: [2,4],
-        tlr: 3,
+        tlr: 4.2,
         value: 8.7,
+        image: 'testimage.svg'
+    }, {
+        id: 2,
+        name: 'Test 1',
+        description: '',
+        economic: '',
+        trlDescription: '',
+        link: '',
+        sidestreams: [1,2,5],
+        tlr: 6,
+        value: 5,
+        image: 'testimage.svg'
+    }, {
+        id: 3,
+        name: 'Test 2',
+        description: '',
+        economic: '',
+        trlDescription: '',
+        link: '',
+        sidestreams: [0,5],
+        tlr: 7,
+        value: 3.8,
         image: 'testimage.svg'
     }
 ];
