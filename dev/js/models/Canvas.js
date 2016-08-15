@@ -16,11 +16,43 @@ function Canvas(app) {
 }
 
 Canvas.prototype.scroll = function(frame) {
-    this.stage.position.y = -0.25 * frame;
-    this.stage.element.attr({
-        transform: 'translate(' + this.stage.position.x + ',' + this.stage.position.y + ')'
+    this.scrollPaths(frame);
+    this.scrollGraph(frame);
+};
+
+Canvas.prototype.scrollPaths = function(frame) {
+    var y,
+        start = 300,
+        end = 900;
+    if (frame < start) {
+        y = this.app.settings.path.startTop;
+    } else if (frame < end) {
+        y = this.app.settings.path.startTop + ((frame - start) / (end - start))  * (this.app.settings.path.endTop - this.app.settings.path.startTop);
+    } else {
+        y = this.app.settings.path.endTop
+    }
+    this.paths.attr({
+        transform: 'translate(' + this.app.settings.path.left + ',' + y + ')'
     })
 };
+
+Canvas.prototype.scrollGraph = function(frame) {
+    var y,
+        start = 800,
+        end = 1200;
+    if (frame < start) {
+        y = this.app.settings.graph.startTop;
+    } else if (frame < end) {
+        y = this.app.settings.graph.startTop + ((frame - start) / (end - start))  * (this.app.settings.graph.endTop - this.app.settings.graph.startTop);
+        console.log(y);
+    } else {
+        y = this.app.settings.graph.endTop
+    }
+    this.graph.attr({
+        transform: 'translate(0,' + y + ')'
+    })
+};
+
 Canvas.prototype.clear = function() {
 
 };
@@ -49,14 +81,14 @@ Canvas.prototype.getArtboard = function() {
 Canvas.prototype.getPaths = function() {
     return this.artboard.append('g').attr({
         class: 'paths',
-        transform: 'translate(50,0)'
+        transform: 'translate(' + this.app.settings.path.left + ',' + this.app.settings.path.startTop  + ')'
     });
 };
 
 Canvas.prototype.getGraph = function() {
     var graph = this.artboard.append('g').attr({
         class: 'graph',
-        transform: 'translate(0,' + this.app.settings.graph.top + ')'
+        transform: 'translate(0,' + this.app.settings.graph.startTop + ')'
     });
     graph.append('rect').attr({
         stroke: '#000',

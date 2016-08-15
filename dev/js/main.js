@@ -18,7 +18,17 @@ function addPhaseListeners() {
         app.scroll(top);
         scrollChapters(top);
         moveScene(top);
-    })
+    });
+
+    document.addEventListener("keydown", function(e) {
+        if (e.keyCode == '49') {
+            var px = 3000;
+            app.scroll(px);
+            $(window).scrollTop(px);
+            scrollChapters(px);
+            moveScene(px);
+        }
+    });
 }
 
 function initChapters() {
