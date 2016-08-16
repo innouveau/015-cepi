@@ -11,9 +11,6 @@ function Settings(app) {
         stroke: 2,
         left: 50
     };
-    this.sidestream = {
-        length: 300
-    };
     this.graph = {
         marginTop: 150,
         startTop: 1200,

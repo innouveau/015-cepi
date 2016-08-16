@@ -130,32 +130,8 @@ Canvas.prototype.createFilterSidestreams = function() {
     });
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
-            checkboxContainer = filter.append('g').attr({
-                class: 'checkbox-container',
-                transform: 'translate(' + i * this.app.settings.filterSidestreams.setWidth + ',0)'
-            }),
-            checkboxDisplay;
-        checkboxContainer.append('rect').attr({
-            class: 'checkbox',
-            stroke: sidestream.color,
-            width: 16,
-            height: 16
-        });
-        checkboxDisplay = checkboxContainer.append('g');
-        checkboxDisplay.append('line').attr({
-            class: 'checkbox-check',
-            x1: 4,
-            y1: 4,
-            x2: 12,
-            y2: 12
-        });
-        checkboxDisplay.append('line').attr({
-            class: 'checkbox-check',
-            x1: 12,
-            y1: 4,
-            x2: 4,
-            y2: 12
-        });
+            checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color),
+            checkboxDisplay = this._getCheckboxDisplay(checkboxContainer);
         sidestream.elements.display = checkboxDisplay;
         (function(sidestream) {
             checkboxContainer.on('click', function () {
@@ -163,6 +139,39 @@ Canvas.prototype.createFilterSidestreams = function() {
             })
         })(sidestream);
     }
+};
+
+Canvas.prototype._getCheckboxContainer = function(parent, x, y, color) {
+    var checkboxContainer = parent.append('g').attr({
+        class: 'checkbox-container',
+        transform: 'translate(' + x + ',' + y + ')'
+    });
+    checkboxContainer.append('rect').attr({
+        class: 'checkbox',
+        stroke: color,
+        width: 16,
+        height: 16
+    });
+    return checkboxContainer;
+};
+
+Canvas.prototype._getCheckboxDisplay = function(container) {
+    var display = container.append('g');
+    display.append('line').attr({
+        class: 'checkbox-check',
+        x1: 4,
+        y1: 4,
+        x2: 12,
+        y2: 12
+    });
+    display.append('line').attr({
+        class: 'checkbox-check',
+        x1: 12,
+        y1: 4,
+        x2: 4,
+        y2: 12
+    });
+    return display;
 };
 
 Canvas.prototype.createAxis = function(graph, settings, direction, label1, label2) {
@@ -213,3 +222,5 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         y: positions[3] + yOffset[1]
     }).text(label2)
 };
+
+

@@ -2,6 +2,7 @@ function App(container) {
     this.container = container;
     this.settings = new Settings(this);
     this.paths = [];
+    this.sets = [];
     this.valorisations = [];
     this.sidestreams = [];
     this.streams = [];
@@ -28,11 +29,16 @@ App.prototype.getPaths = function() {
 };
 
 App.prototype.getValorisations = function() {
-    for (var i = 0, l = valorisations.length; i < l; i++) {
-        var valorisation = valorisations[i];
-        this.valorisations.push(
-            new Valorisation(this, valorisation)
-        );
+    for (var i = 0, l = sets.length; i < l; i++) {
+        var set = sets[i],
+            setModel = new Set(this, set);
+        this.sets.push(setModel);
+        for (var j = 0, jl = set.valorisations.length; j < jl; j++) {
+            var valorisation = set.valorisations[j],
+                valorisationModel = new Valorisation(this, valorisation);
+            this.valorisations.push(valorisationModel);
+            setModel.children.push(valorisationModel);
+        }
     }
 };
 
@@ -76,7 +82,6 @@ App.prototype.filter = function() {
     }
     for (var j = 0, jl = this.valorisations.length; j < jl; j++) {
         var valorisation = this.valorisations[j];
-        console.log(valorisation);
         if (valorisation.hasSidestream(actives)) {
             valorisation.show();
         } else {
