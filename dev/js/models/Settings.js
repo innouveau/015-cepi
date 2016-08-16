@@ -4,8 +4,8 @@ function Settings(app) {
     this.path = {
         startTop: 0,
         endTop: -620,
-        startFrame: 700,
-        endFrame: 1300,
+        startFrame: 900,
+        endFrame: 1500,
         dash: 16,
         gap: 4,
         stroke: 2,
