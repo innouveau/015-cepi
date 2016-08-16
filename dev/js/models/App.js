@@ -82,7 +82,7 @@ App.prototype.filter = function() {
     }
     for (var j = 0, jl = this.valorisations.length; j < jl; j++) {
         var valorisation = this.valorisations[j];
-        if (valorisation.hasSidestream(actives)) {
+        if (valorisation.hasSidestream(actives) && valorisation.visible) {
             valorisation.show();
         } else {
             valorisation.hide();

@@ -90,6 +90,10 @@ h2 {
     font-weight: 300;
 }
 
+.checkbox-header {
+    font-weight: 700;
+}
+
 .checkbox {
     fill: #fff;
     stroke-width: 2px;

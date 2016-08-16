@@ -50,6 +50,9 @@ Canvas.prototype.scrollGraph = function(frame) {
     })
 };
 
+
+// creation stuff
+
 Canvas.prototype.create = function() {
     return d3.select(this.app.container).append('svg').attr({
         width: '100%',
@@ -120,7 +123,7 @@ Canvas.prototype.createBody = function(graph, settings) {
 
 Canvas.prototype.buildFilters = function() {
     this.createFilterSidestreams();
-
+    this.createFilterValorisations();
 };
 
 Canvas.prototype.createFilterSidestreams = function() {
@@ -130,7 +133,7 @@ Canvas.prototype.createFilterSidestreams = function() {
     });
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
-            checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color),
+            checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color, ''),
             checkboxDisplay = this._getCheckboxDisplay(checkboxContainer);
         sidestream.elements.display = checkboxDisplay;
         (function(sidestream) {
@@ -141,7 +144,38 @@ Canvas.prototype.createFilterSidestreams = function() {
     }
 };
 
-Canvas.prototype._getCheckboxContainer = function(parent, x, y, color) {
+Canvas.prototype.createFilterValorisations = function() {
+    var filter = this.graph.append('g').attr({
+        class: 'fitler filter-valorisations',
+        transform: 'translate(' + this.app.settings.filterValorisations.left + ',' + this.app.settings.filterValorisations.top + ')'
+    }),
+    counter = 0;
+    for (var i = 0, l = this.app.sets.length; i < l; i++) {
+        var set = this.app.sets[i];
+        filter.append('text').attr({
+            class: 'checkbox-header',
+            x: 0,
+            y: (counter * this.app.settings.filterValorisations.setHeight)
+        }).text(set.name);
+        counter+= 0.5;
+        for (var j = 0, jl = set.children.length; j < jl; j++) {
+            var valorisation = set.children[j],
+                checkboxContainer = this._getCheckboxContainer(filter, 0, counter * this.app.settings.filterValorisations.setHeight, this.app.settings.filterValorisations.color, valorisation.name),
+                checkboxDisplay = this._getCheckboxDisplay(checkboxContainer);
+            valorisation.elements.display = checkboxDisplay;
+            (function (valorisation) {
+                checkboxContainer.on('click', function () {
+                    valorisation.toggle();
+                })
+            })(valorisation);
+            counter++;
+        }
+        // skip to make space for header
+        counter++;
+    }
+};
+
+Canvas.prototype._getCheckboxContainer = function(parent, x, y, color, name) {
     var checkboxContainer = parent.append('g').attr({
         class: 'checkbox-container',
         transform: 'translate(' + x + ',' + y + ')'
@@ -152,6 +186,13 @@ Canvas.prototype._getCheckboxContainer = function(parent, x, y, color) {
         width: 16,
         height: 16
     });
+    if (name) {
+        checkboxContainer.append('text').attr({
+            class: 'checkbox-label',
+            x: 24,
+            y: 14
+        }).text(name);
+    }
     return checkboxContainer;
 };
 

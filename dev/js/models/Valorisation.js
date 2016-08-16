@@ -12,8 +12,11 @@ function Valorisation(app, valorisation) {
     this.element = this.getElement();
     this.popup = this.createPopup();
     this.visible = true;
+    this.elements = {}; // display is added by Canvas to be able to toggle it
     this.addListeners();
 }
+
+Valorisation.prototype = Object.create(_FilterModel.prototype);
 
 Valorisation.prototype.getPosition = function() {
     return {

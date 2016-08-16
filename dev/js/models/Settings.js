@@ -29,7 +29,13 @@ function Settings(app) {
         top: 90,
         left: 15,
         setWidth: 100
-    }
+    };
+    this.filterValorisations = {
+        top: 140,
+        left: 640,
+        setHeight: 30,
+        color: '#ddd'
+    };
 }
 
 
