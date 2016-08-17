@@ -2,6 +2,9 @@ function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
     this.path = {
+        frames: [
+            {}
+        ],
         startTop: 0,
         endTop: -740,
         startFrame: 1100,
@@ -43,8 +46,8 @@ function Settings(app) {
             top: 70
         },
         profit : {
-            left: 800,
-            top: 370
+            left: 628,
+            top: 340
         },
         sidestream : {
             left: 520,

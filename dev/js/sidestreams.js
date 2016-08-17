@@ -22,10 +22,10 @@ var sidestreams = [
 
 var outstreams = [
     {
-        color: 'rgb(200,200,200)'
+        color: '#D6D6D6'
     }, {
-        color: 'rgb(200,190,190)'
+        color: '#D6D6D6'
     }, {
-        color: 'rgb(240,220,220)'
+        color: '#D6D6D6'
     }
 ];

@@ -2,38 +2,11 @@ var paths = [{
     name: '',
     type: 'cover',
     sidestreams: [6,7,8],
-    dash: 16,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: true,
-    points: 'M0,93v435c0,19.299,15.701,35,35,35s35-15.701,35-35 V398c0-8.271,6.729-15,15-15s15,6.729,15,15v130c0,19.299,15.701,35,35,35s35-15.701,35-35V418c0-8.271,6.729-15,15-15 s15,6.729,15,15v110c0,19.299,15.701,35,35,35s35-15.701,35-35v-90c0-8.271,6.729-15,15-15s15,6.729,15,15v90 c0,19.299,15.701,35,35,35s35-15.701,35-35v-65c0-8.271,6.729-15,15-15s15,6.729,15,15v65c0,19.299,15.701,35,35,35s35-15.701,35-35 v-50c0-8.271,6.729-15,15-15s15,6.729,15,15v50c0,19.299,15.701,35,35,35h165'
-}, {
-    name: '',
-    type: 'cover',
-    sidestreams: [6,7,8],
-    dash: 22,
-    gap: 4,
-    animationStart: 0,
-    cover: true,
-    points: 'M3.998,120.73V528c0,17.093,13.906,31,31,31 c17.094,0,31-13.907,31-31V398c0-10.477,8.523-19,19-19s19,8.523,19,19v130c0,17.093,13.906,31,31,31c17.094,0,31-13.907,31-31V418 c0-10.477,8.523-19,19-19s19,8.523,19,19v110c0,17.093,13.907,31,31,31c17.093,0,31-13.907,31-31v-90c0-10.477,8.523-19,19-19 s19,8.523,19,19v90c0,17.093,13.907,31,31,31s31-13.907,31-31v-65c0-10.477,8.523-19,19-19s19,8.523,19,19v65 c0,17.093,13.907,31,31,31s31-13.907,31-31v-50c0-10.477,8.523-19,19-19s19,8.523,19,19v50c0,17.093,13.907,31,31,31h165'
-}, {
-    name: '',
-    type: 'cover',
-    sidestreams: [6,7,8],
-    dash: 19,
-    gap: 4,
-    animationStart: 0,
-    cover: true,
-    points: 'M8,131.472V528c0,14.888,12.112,27,27,27 s27-12.112,27-27V398c0-12.682,10.318-23,23-23s23,10.318,23,23v130c0,14.888,12.112,27,27,27s27-12.112,27-27V418 c0-12.682,10.318-23,23-23s23,10.318,23,23v110c0,14.888,12.112,27,27,27s27-12.112,27-27v-90c0-12.682,10.318-23,23-23 c12.682,0,23,10.318,23,23v90c0,14.888,12.112,27,27,27s27-12.112,27-27v-65c0-12.682,10.318-23,23-23s23,10.318,23,23v65 c0,14.888,12.112,27,27,27s27-12.112,27-27v-50c0-12.682,10.318-23,23-23s23,10.318,23,23v50c0,14.888,12.112,27,27,27h165'
-}, {
-    name: '',
-    type: 'cover',
-    sidestreams: [6,7,8],
-    dash: 19,
-    gap: 4,
-    animationStart: 0,
-    cover: true,
-    points: 'M12,139.145V528c0,12.682,10.318,23,23,23 s23-10.318,23-23V398c0-14.889,12.112-27,27-27s27,12.111,27,27v130c0,12.682,10.318,23,23,23s23-10.318,23-23V418 c0-14.889,12.112-27,27-27s27,12.111,27,27v110c0,12.682,10.318,23,23,23s23-10.318,23-23v-90c0-14.889,12.112-27,27-27 c14.888,0,27,12.111,27,27v90c0,12.682,10.318,23,23,23s23-10.318,23-23v-65c0-14.889,12.112-27,27-27s27,12.111,27,27v65 c0,12.682,10.318,23,23,23s23-10.318,23-23v-50c0-14.889,12.112-27,27-27s27,12.111,27,27v50c0,12.682,10.318,23,23,23h165'
+    points: 'M0,93v435c0,19.299,15.701,35,35,35 s35-15.701,35-35V398c0-8.271,6.729-15,15-15s15,6.729,15,15v130c0,19.299,15.701,35,35,35s35-15.701,35-35V418 c0-8.271,6.729-15,15-15s15,6.729,15,15v110c0,19.299,15.701,35,35,35s35-15.701,35-35v-90c0-8.271,6.729-15,15-15s15,6.729,15,15 v90c0,19.299,15.701,35,35,35s35-15.701,35-35v-65c0-8.271,6.729-15,15-15s15,6.729,15,15v65c0,19.299,15.701,35,35,35 s35-15.701,35-35v-50c0-8.271,6.729-15,15-15s15,6.729,15,15v50c0,19.299,15.701,35,35,35h85.525'
 }, {
     name: '',
     type: 'cover',
@@ -42,7 +15,7 @@ var paths = [{
     gap: 4,
     animationStart: 0,
     cover: true,
-    points: 'M16,145.539V528c0,10.477,8.523,19,19,19 s19-8.523,19-19V398c0-17.093,13.906-31,31-31s31,13.907,31,31v130c0,10.477,8.523,19,19,19s19-8.523,19-19V418 c0-17.093,13.906-31,31-31s31,13.907,31,31v110c0,10.477,8.523,19,19,19s19-8.523,19-19v-90c0-17.093,13.907-31,31-31 s31,13.907,31,31v90c0,10.477,8.523,19,19,19s19-8.523,19-19v-65c0-17.093,13.907-31,31-31s31,13.907,31,31v65 c0,10.477,8.523,19,19,19s19-8.523,19-19v-50c0-17.093,13.907-31,31-31s31,13.907,31,31v50c0,10.477,8.523,19,19,19h165'
+    points: 'M503.998,524.644V528c0,17.093,13.907,31,31,31 h71.445'
 }, {
     name: '',
     type: 'cover',
@@ -51,21 +24,48 @@ var paths = [{
     gap: 4,
     animationStart: 0,
     cover: true,
-    points: 'M20,151.677V528c0,8.271,6.729,15,15,15 s15-6.729,15-15V398c0-19.299,15.701-35,35-35s35,15.701,35,35v130c0,8.271,6.729,15,15,15s15-6.729,15-15V418 c0-19.299,15.701-35,35-35s35,15.701,35,35v110c0,8.271,6.729,15,15,15s15-6.729,15-15v-90c0-19.299,15.701-35,35-35 s35,15.701,35,35v90c0,8.271,6.729,15,15,15s15-6.729,15-15v-65c0-19.299,15.701-35,35-35s35,15.701,35,35v65 c0,8.271,6.729,15,15,15s15-6.729,15-15v-50c0-19.299,15.701-35,35-35s35,15.701,35,35v50c0,8.271,6.729,15,15,15h165'
+    points: 'M3.998,120.73V528c0,17.093,13.906,31,31,31 c17.094,0,31-13.907,31-31V398c0-10.477,8.523-19,19-19s19,8.523,19,19v130c0,17.093,13.906,31,31,31c17.094,0,31-13.907,31-31V418 c0-10.477,8.523-19,19-19s19,8.523,19,19v110c0,17.093,13.907,31,31,31c17.093,0,31-13.907,31-31v-90c0-10.477,8.523-19,19-19 s19,8.523,19,19v90c0,17.093,13.907,31,31,31s31-13.907,31-31v-65c0-10.477,8.523-19,19-19s19,8.523,19,19v65 c0,17.093,13.907,31,31,31s31-13.907,31-31v-50c0-10.477,8.523-19,19-19s19,8.523,19,19v46.644'
 }, {
     name: '',
-    type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 19,
+    type: 'cover',
+    sidestreams: [6,7,8],
+    dash: 21,
     gap: 4,
     animationStart: 0,
-    cover: false,
-    points: 'M0,93v432.911'
+    cover: true,
+    points: 'M8,131.472V528c0,14.888,12.112,27,27,27 s27-12.112,27-27V398c0-12.682,10.318-23,23-23s23,10.318,23,23v130c0,14.888,12.112,27,27,27s27-12.112,27-27V418 c0-12.682,10.318-23,23-23s23,10.318,23,23v110c0,14.888,12.112,27,27,27s27-12.112,27-27v-90c0-12.682,10.318-23,23-23 c12.682,0,23,10.318,23,23v90c0,14.888,12.112,27,27,27s27-12.112,27-27v-65c0-12.682,10.318-23,23-23s23,10.318,23,23v65 c0,14.888,12.112,27,27,27s27-12.112,27-27v-50c0-12.682,10.318-23,23-23s23,10.318,23,23v50c0,14.888,12.112,27,27,27h64.025'
+}, {
+    name: '',
+    type: 'cover',
+    sidestreams: [6,7,8],
+    dash: 17,
+    gap: 4,
+    animationStart: 0,
+    cover: true,
+    points: 'M12,139.145V528c0,12.682,10.318,23,23,23 s23-10.318,23-23V398c0-14.889,12.112-27,27-27s27,12.111,27,27v130c0,12.682,10.318,23,23,23s23-10.318,23-23V418 c0-14.889,12.112-27,27-27s27,12.111,27,27v110c0,12.682,10.318,23,23,23s23-10.318,23-23v-90c0-14.889,12.112-27,27-27 c14.888,0,27,12.111,27,27v90c0,12.682,10.318,23,23,23s23-10.318,23-23v-65c0-14.889,12.112-27,27-27s27,12.111,27,27v65 c0,12.682,10.318,23,23,23s23-10.318,23-23v-50c0-14.889,12.112-27,27-27s27,12.111,27,27v50c0,12.682,10.318,23,23,23h59.148'
+}, {
+    name: '',
+    type: 'cover',
+    sidestreams: [6,7,8],
+    dash: 20,
+    gap: 4,
+    animationStart: 0,
+    cover: true,
+    points: 'M16,145.539V528c0,10.477,8.523,19,19,19 s19-8.523,19-19V398c0-17.093,13.906-31,31-31s31,13.907,31,31v130c0,10.477,8.523,19,19,19s19-8.523,19-19V418 c0-17.093,13.906-31,31-31s31,13.907,31,31v110c0,10.477,8.523,19,19,19s19-8.523,19-19v-90c0-17.093,13.907-31,31-31 s31,13.907,31,31v90c0,10.477,8.523,19,19,19s19-8.523,19-19v-65c0-17.093,13.907-31,31-31s31,13.907,31,31v65 c0,10.477,8.523,19,19,19s19-8.523,19-19v-50c0-17.093,13.907-31,31-31s31,13.907,31,31v50c0,10.477,8.523,19,19,19h54.958'
+}, {
+    name: '',
+    type: 'cover',
+    sidestreams: [6,7,8],
+    dash: 18,
+    gap: 4,
+    animationStart: 0,
+    cover: true,
+    points: 'M20,151.677V528c0,8.271,6.729,15,15,15 s15-6.729,15-15V398c0-19.299,15.701-35,35-35s35,15.701,35,35v130c0,8.271,6.729,15,15,15s15-6.729,15-15V418 c0-19.299,15.701-35,35-35s35,15.701,35,35v110c0,8.271,6.729,15,15,15s15-6.729,15-15v-90c0-19.299,15.701-35,35-35 s35,15.701,35,35v90c0,8.271,6.729,15,15,15s15-6.729,15-15v-65c0-19.299,15.701-35,35-35s35,15.701,35,35v65 c0,8.271,6.729,15,15,15s15-6.729,15-15v-50c0-19.299,15.701-35,35-35s35,15.701,35,35v50c0,8.271,6.729,15,15,15h51.729'
 }, {
     name: '',
     type: 'regular',
     sidestreams: [1,2,3,4,5,6,7,8],
-    dash: 16,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -83,7 +83,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [3,4,5,6,7,8],
-    dash: 20,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -92,7 +92,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [4,5,6,7,8],
-    dash: 20,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -101,47 +101,47 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [5,6,7,8],
-    dash: 18,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
     points: 'M400,526.408V528c0,19.299,15.701,35,35,35 s35-15.701,35-35v-50c0-8.271,6.729-15,15-15s15,6.729,15,15v46.588'
 }, {
     name: '',
-    type: 'regular',
+    type: 'static',
     sidestreams: [6,7,8],
-    dash: 19,
-    gap: 4,
-    animationStart: 0,
-    cover: false,
-    points: 'M500,524.588V528c0,19.299,15.701,35,35,35h165'
-}, {
-    name: '',
-    type: 'regular',
-    sidestreams: [6,7,8],
-    dash: 18,
-    gap: 4,
-    animationStart: 0,
-    cover: false,
-    points: 'M504.294,532.295 C506.392,547.362,519.362,559,534.998,559h165'
-}, {
-    name: '',
-    type: 'regular',
-    sidestreams: [5,6,7,8],
     dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M403.998,526.193V528c0,17.093,13.907,31,31,31 s31-13.907,31-31v-50c0-10.477,8.523-19,19-19s19,8.523,19,19v50c0,1.457,0.101,2.891,0.296,4.295'
+    points: 'M500,524.588V528c0,19.299,15.701,35,35,35h85.482'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 16,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M503.998,524.644V528c0,1.457,0.101,2.891,0.296,4.295 C506.392,547.362,519.362,559,534.998,559h71.443'
 }, {
     name: '',
     type: 'regular',
-    sidestreams: [4,5,6,7,8],
+    sidestreams: [5,6,7,8],
     dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M304.229,531.79 c1.875,15.312,14.959,27.21,30.771,27.21c17.093,0,31-13.907,31-31v-65c0-10.477,8.523-19,19-19s19,8.523,19,19v63.193'
+    points: 'M403.998,526.193V528c0,17.093,13.907,31,31,31 s31-13.907,31-31v-50c0-10.477,8.523-19,19-19s19,8.523,19,19v46.644'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [4,5,6,7,8],
+    dash: 19,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M304.229,531.79 C306.104,547.102,319.188,559,335,559c17.093,0,31-13.907,31-31v-65c0-10.477,8.523-19,19-19s19,8.523,19,19v63.193'
 }, {
     name: '',
     type: 'regular',
@@ -164,29 +164,20 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [1,2,3,4,5,6,7,8],
-    dash: 17,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
     points: 'M3.998,521.794V528c0,17.093,13.906,31,31,31 c17.094,0,31-13.907,31-31V398c0-10.477,8.523-19,19-19s19,8.523,19,19v130c0,1.068,0.054,2.124,0.16,3.164'
 }, {
     name: '',
-    type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 21,
-    gap: 4,
-    animationStart: 0,
-    cover: false,
-    points: 'M3.998,120.502v401.292'
-}, {
-    name: '',
-    type: 'regular',
+    type: 'static',
     sidestreams: [6,7,8],
-    dash: 20,
+    dash: 19,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M508,524.977V528c0,14.888,12.112,27,27,27h165'
+    points: 'M508,524.571V528c0,14.888,12.112,27,27,27h64.037'
 }, {
     name: '',
     type: 'regular',
@@ -195,12 +186,12 @@ var paths = [{
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M408.391,532.588 C410.575,545.299,421.676,555,435,555c14.888,0,27-12.112,27-27v-50c0-12.682,10.318-23,23-23s23,10.318,23,23v46.977'
+    points: 'M408.391,532.588 C410.575,545.299,421.676,555,435,555c14.888,0,27-12.112,27-27v-50c0-12.682,10.318-23,23-23s23,10.318,23,23v46.571'
 }, {
     name: '',
     type: 'regular',
     sidestreams: [4,5,6,7,8],
-    dash: 19,
+    dash: 17,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -209,7 +200,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [3,4,5,6,7,8],
-    dash: 19,
+    dash: 16,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -218,7 +209,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [2,3,4,5,6,7,8],
-    dash: 19,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -227,43 +218,34 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [1,2,3,4,5,6,7,8],
-    dash: 19,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
     points: 'M11.1,540.553C15.626,549.136,24.641,555,35,555 c14.888,0,27-12.112,27-27V398c0-12.682,10.318-23,23-23s23,10.318,23,23v115.613'
 }, {
     name: '',
-    type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 18,
-    gap: 4,
-    animationStart: 0,
-    cover: false,
-    points: 'M8,131.396V528c0,4.528,1.121,8.801,3.1,12.553'
-}, {
-    name: '',
-    type: 'regular',
+    type: 'static',
     sidestreams: [6,7,8],
-    dash: 20,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M512.468,532.63 C514.616,543.101,523.903,551,535,551h165'
+    points: 'M512,524.5v3.5c0,1.585,0.161,3.134,0.468,4.63 C514.616,543.101,523.903,551,535,551h59.046'
 }, {
     name: '',
     type: 'regular',
     sidestreams: [5,6,7,8],
-    dash: 18,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M412,522.975V528c0,12.682,10.318,23,23,23 s23-10.318,23-23v-50c0-14.889,12.112-27,27-27s27,12.111,27,27v50c0,1.585,0.161,3.134,0.468,4.63'
+    points: 'M412,522.975V528c0,12.682,10.318,23,23,23 s23-10.318,23-23v-50c0-14.889,12.112-27,27-27s27,12.111,27,27v46.5'
 }, {
     name: '',
     type: 'regular',
     sidestreams: [4,5,6,7,8],
-    dash: 18,
+    dash: 19,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -272,7 +254,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [3,4,5,6,7,8],
-    dash: 18,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -281,7 +263,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [2,3,4,5,6,7,8],
-    dash: 18,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -290,7 +272,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [1,2,3,4,5,6,7,8],
-    dash: 17,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -298,30 +280,30 @@ var paths = [{
 }, {
     name: '',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 17,
+    sidestreams: [6,7,8],
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M12,138.938v385.128'
+    points: 'M589.89,547'
 }, {
     name: '',
-    type: 'regular',
+    type: 'static',
     sidestreams: [6,7,8],
-    dash: 19,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M516,523.031V528c0,10.477,8.523,19,19,19h165'
+    points: 'M516,524.57V528c0,10.477,8.523,19,19,19h54.877'
 }, {
     name: '',
     type: 'regular',
     sidestreams: [5,6,7,8],
-    dash: 16,
+    dash: 22,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M416.364,531.716 C418.097,540.42,425.795,547,435,547c10.477,0,19-8.523,19-19v-50c0-17.093,13.907-31,31-31s31,13.907,31,31v45.031'
+    points: 'M416.364,531.716 C418.097,540.42,425.795,547,435,547c10.477,0,19-8.523,19-19v-50c0-17.093,13.907-31,31-31s31,13.907,31,31v46.57'
 }, {
     name: '',
     type: 'regular',
@@ -335,7 +317,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [3,4,5,6,7,8],
-    dash: 20,
+    dash: 16,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -344,7 +326,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [2,3,4,5,6,7,8],
-    dash: 21,
+    dash: 17,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -353,38 +335,29 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [1,2,3,4,5,6,7,8],
-    dash: 20,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
     points: 'M17.118,534.424C19.757,541.748,26.776,547,35,547 c10.477,0,19-8.523,19-19V398c0-17.093,13.906-31,31-31s31,13.907,31,31v119.018'
 }, {
     name: '',
-    type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 19,
-    gap: 4,
-    animationStart: 0,
-    cover: false,
-    points: 'M16,145.307V528c0,2.254,0.394,4.417,1.118,6.424'
-}, {
-    name: '',
-    type: 'regular',
+    type: 'static',
     sidestreams: [6,7,8],
-    dash: 20,
-    gap: 4,
-    animationStart: 0,
-    cover: false,
-    points: 'M520,525.833V528c0,8.271,6.729,15,15,15h165'
-}, {
-    name: '',
-    type: 'regular',
-    sidestreams: [5,6,7,8],
     dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M420,523.709V528c0,8.271,6.729,15,15,15 s15-6.729,15-15v-50c0-19.299,15.701-35,35-35s35,15.701,35,35v47.833'
+    points: 'M520,524.555V528c0,8.271,6.729,15,15,15h51.751'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [5,6,7,8],
+    dash: 20,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M420,523.709V528c0,8.271,6.729,15,15,15 s15-6.729,15-15v-50c0-19.299,15.701-35,35-35s35,15.701,35,35v46.555'
 }, {
     name: '',
     type: 'regular',
@@ -398,7 +371,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [3,4,5,6,7,8],
-    dash: 19,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -407,7 +380,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [2,3,4,5,6,7,8],
-    dash: 18,
+    dash: 17,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -416,20 +389,11 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [1,2,3,4,5,6,7,8],
-    dash: 22,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
     points: 'M20,516.966V528c0,8.271,6.729,15,15,15 s15-6.729,15-15V398c0-19.299,15.701-35,35-35s35,15.701,35,35v127.668'
-}, {
-    name: '',
-    type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 17,
-    gap: 4,
-    animationStart: 0,
-    cover: false,
-    points: 'M20,151.508v365.458'
 }, {
     name: '',
     type: 'regular',
@@ -443,7 +407,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0],
-    dash: 22,
+    dash: 17,
     gap: 4,
     animationStart: 200,
     cover: true,
@@ -452,7 +416,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [1],
-    dash: 22,
+    dash: 19,
     gap: 4,
     animationStart: 300,
     cover: true,
@@ -461,7 +425,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [1],
-    dash: 18,
+    dash: 20,
     gap: 4,
     animationStart: 300,
     cover: true,
@@ -470,7 +434,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [2],
-    dash: 21,
+    dash: 22,
     gap: 4,
     animationStart: 400,
     cover: true,
@@ -479,7 +443,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [2],
-    dash: 21,
+    dash: 22,
     gap: 4,
     animationStart: 400,
     cover: true,
@@ -488,7 +452,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [3],
-    dash: 20,
+    dash: 21,
     gap: 4,
     animationStart: 500,
     cover: true,
@@ -497,7 +461,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [3],
-    dash: 16,
+    dash: 18,
     gap: 4,
     animationStart: 500,
     cover: true,
@@ -506,7 +470,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [4],
-    dash: 18,
+    dash: 19,
     gap: 4,
     animationStart: 600,
     cover: true,
@@ -515,7 +479,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [4],
-    dash: 19,
+    dash: 17,
     gap: 4,
     animationStart: 600,
     cover: true,
@@ -524,25 +488,25 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [5],
-    dash: 22,
+    dash: 17,
     gap: 4,
     animationStart: 700,
     cover: true,
-    points: 'M499.982,539.513 499.982,670.912 499.982,754.354 '
+    points: 'M499.982,540.313 499.982,670.912 499.982,754.354 '
 }, {
     name: '',
     type: 'regular',
     sidestreams: [5],
-    dash: 18,
+    dash: 21,
     gap: 4,
     animationStart: 700,
     cover: true,
-    points: 'M503.98,551.878 503.98,656.293 503.98,754.354 '
+    points: 'M503.98,549.878 503.98,656.293 503.98,754.354 '
 }, {
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 21,
+    dash: 19,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -551,7 +515,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 17,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -560,7 +524,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 18,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -569,7 +533,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 18,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -578,7 +542,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 19,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -587,7 +551,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 17,
+    dash: 19,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -596,7 +560,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 19,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -605,7 +569,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 17,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -614,7 +578,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 17,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -623,7 +587,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 17,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -632,7 +596,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 17,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -641,7 +605,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 18,
+    dash: 20,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -650,16 +614,16 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 19,
+    dash: 21,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M148.66,43.871 c-13.582-15.093-33.268-24.584-55.171-24.584c-40.979,0-74.2,33.222-74.2,74.201s33.221,74.201,74.2,74.201s74.2-33.222,74.2-74.201 C167.689,74.412,160.49,57.017,148.66,43.871'
+    points: 'M148.66,43.871 c-13.582-15.093-33.268-24.584-55.171-24.584c-40.979,0-74.2,33.222-74.2,74.201s33.221,74.201,74.2,74.201 s74.2-33.222,74.2-74.201C167.689,74.412,160.49,57.017,148.66,43.871'
 }, {
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 21,
+    dash: 19,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -668,7 +632,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 16,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -677,7 +641,7 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 21,
+    dash: 22,
     gap: 4,
     animationStart: 0,
     cover: false,
@@ -686,11 +650,74 @@ var paths = [{
     name: '',
     type: 'regular',
     sidestreams: [0,1,2,3,4,5,6,7,8],
-    dash: 16,
+    dash: 18,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M136.663,10.545 C123.748,3.809,109.063,0,93.489,0C41.857,0,0,41.856,0,93.488c0,51.632,41.857,93.488,93.489,93.488 c51.632,0,93.489-41.856,93.489-93.488C186.978,57.431,166.564,26.141,136.663,10.545'
+    points: 'M136.663,10.545C123.748,3.809,109.063,0,93.489,0 C41.857,0,0,41.856,0,93.488c0,51.632,41.857,93.488,93.489,93.488c51.632,0,93.489-41.856,93.489-93.488 C186.978,57.431,166.564,26.141,136.663,10.545'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [0,1,2,3,4,5,6,7,8],
+    dash: 18,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M0,93v432.911'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [0,1,2,3,4,5,6,7,8],
+    dash: 20,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M3.998,120.502v401.292'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [0,1,2,3,4,5,6,7,8],
+    dash: 17,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M8,131.396V528c0,4.528,1.121,8.801,3.1,12.553'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [0,1,2,3,4,5,6,7,8],
+    dash: 19,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M12,138.938v385.128'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [0,1,2,3,4,5,6,7,8],
+    dash: 17,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M16,145.307V528c0,2.254,0.394,4.417,1.118,6.424'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [0,1,2,3,4,5,6,7,8],
+    dash: 17,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M20,151.508v365.458'
+}, {
+    name: '',
+    type: 'regular',
+    sidestreams: [0,1,2,3,4,5,6,7,8],
+    dash: 18,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M0,93'
 }, {
     name: '',
     type: 'regular',
@@ -702,11 +729,101 @@ var paths = [{
     points: 'M0,93'
 }, {
     name: '',
-    type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    type: 'static',
+    sidestreams: [6,7,8],
     dash: 22,
     gap: 4,
     animationStart: 0,
     cover: false,
-    points: 'M0,93'
+    points: 'M677.541,513.129c0,27.478-22.274,49.752-49.752,49.752 s-49.752-22.274-49.752-49.752c0-23.963,16.94-43.969,39.499-48.695c3.309-0.692,6.738-1.057,10.253-1.057 C655.267,463.377,677.541,485.651,677.541,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 18,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M673.095,513.129c0,25.021-20.284,45.306-45.306,45.306 s-45.306-20.284-45.306-45.306c0-22.212,15.983-40.689,37.077-44.559c2.669-0.49,5.419-0.746,8.229-0.746 C652.811,467.824,673.095,488.107,673.095,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 17,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M668.647,513.129c0,22.565-18.292,40.858-40.858,40.858 s-40.858-18.293-40.858-40.858c0-21.134,16.045-38.52,36.619-40.641c1.394-0.144,2.808-0.218,4.239-0.218 C650.355,472.271,668.647,490.563,668.647,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 20,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M664.201,513.129c0,20.109-16.303,36.412-36.412,36.412 c-20.11,0-36.412-16.303-36.412-36.412c0-18.779,14.216-34.238,32.475-36.202c1.293-0.139,2.606-0.21,3.938-0.21 C647.898,476.717,664.201,493.019,664.201,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 18,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M659.754,513.129c0,17.654-14.311,31.965-31.965,31.965 s-31.965-14.311-31.965-31.965c0-16.215,12.072-29.608,27.72-31.686c1.389-0.185,2.806-0.279,4.245-0.279 C645.443,481.164,659.754,495.475,659.754,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 17,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M655.308,513.129c0,15.198-12.32,27.519-27.519,27.519 s-27.519-12.32-27.519-27.519c0-13.749,10.083-25.143,23.258-27.19c1.389-0.216,2.812-0.328,4.261-0.328 C642.987,485.61,655.308,497.931,655.308,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 21,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M650.861,513.129c0,12.742-10.33,23.072-23.072,23.072 s-23.072-10.33-23.072-23.072c0-11.501,8.416-21.036,19.426-22.785c1.188-0.188,2.405-0.287,3.646-0.287 C640.531,490.057,650.861,500.387,650.861,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 17,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M646.414,513.129c0,10.286-8.339,18.625-18.625,18.625 c-10.287,0-18.625-8.339-18.625-18.625c0-9.059,6.465-16.604,15.032-18.279c1.163-0.227,2.364-0.346,3.593-0.346 C638.075,494.504,646.414,502.842,646.414,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 20,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M641.968,513.129c0,7.831-6.348,14.179-14.179,14.179 s-14.179-6.348-14.179-14.179c0-6.578,4.479-12.11,10.556-13.712c1.156-0.305,2.371-0.467,3.623-0.467 C635.62,498.95,641.968,505.299,641.968,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 19,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M637.521,513.129c0,5.375-4.357,9.731-9.732,9.731 s-9.731-4.356-9.731-9.731c0-4.173,2.625-7.731,6.315-9.115c1.062-0.398,2.214-0.616,3.416-0.616 C633.164,503.397,637.521,507.754,637.521,513.129z'
+}, {
+    name: '',
+    type: 'static',
+    sidestreams: [6,7,8],
+    dash: 17,
+    gap: 4,
+    animationStart: 0,
+    cover: false,
+    points: 'M633.074,513.129c0,2.919-2.366,5.285-5.285,5.285 s-5.285-2.366-5.285-5.285c0-1.824,0.924-3.433,2.33-4.383c0.844-0.569,1.86-0.902,2.955-0.902 C630.708,507.844,633.074,510.21,633.074,513.129z'
 }];

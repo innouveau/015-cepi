@@ -23,12 +23,19 @@ App.prototype.getPaths = function() {
     for (var i = 0, l = paths.length; i < l; i++) {
         var path = paths[i],
             model;
-        if (path.type === 'regular') {
-            model = new Path(this, path);
-        } else {
-            model = new Cover(this, path);
+        switch (path.type) {
+            case 'regular':
+                model = new Path(this, path);
+                this.paths.push(model);
+                break;
+            case 'static':
+                model = new Static(this, path);
+                break;
+            case 'cover':
+                model = new Cover(this, path);
+                this.paths.push(model);
+                break;
         }
-        this.paths.push(model);
     }
 };
 

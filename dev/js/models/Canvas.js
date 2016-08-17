@@ -56,7 +56,7 @@ Canvas.prototype.hideElements = function(frame) {
     } else {
         $(this.sidestreamLabels[4][0]).fadeOut(500);
     }
-    if (frame > 490) {
+    if (frame > 720) {
         $(this.sidestreamLabels[5][0]).fadeIn(500);
     } else {
         $(this.sidestreamLabels[5][0]).fadeOut(500);
@@ -64,6 +64,30 @@ Canvas.prototype.hideElements = function(frame) {
 };
 
 Canvas.prototype.scrollPaths = function(frame) {
+    var step = [500, 700, 900, 1100, 1300, 1450],
+        position = [0, 200, 400, 900],
+        y;
+    if (frame < step[0]) {
+        y = position[0];
+    } else if (frame < step[1]) {
+        y = position[0] + position[1] * (frame - step[0]) / (step[1] - step[0])
+    } else if (frame < step[2]) {
+        y = position[1];
+    } else if (frame < step[3]) {
+        y = position[1] + (position[2] - position[1]) * (frame - step[2]) / (step[3] - step[2])
+    } else if (frame < step[4]) {
+        y = position[2];
+    } else if (frame < step[5]) {
+        y = position[2] + (position[3] - position[2]) * (frame - step[4]) / (step[5] - step[4])
+    } else {
+        y = position[3];
+    }
+    this.topFrame.attr({
+        transform: 'translate(' + this.app.settings.path.left + ',' + -y + ')'
+    })
+};
+
+Canvas.prototype.___scrollPaths = function(frame) {
     var y,
         start = this.app.settings.path.startFrame,
         end = this.app.settings.path.endFrame;

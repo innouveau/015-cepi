@@ -1,7 +1,7 @@
 body {
     font-size: 13px;
     line-height: 18px;
-    font-family: arial;
+    font-family: 'Alegreya';
     background: #fff;
 }
 
@@ -77,6 +77,7 @@ h2 {
 
 .label {
     fill: #fff;
+    font-family: 'Arial';
 }
 
 

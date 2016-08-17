@@ -45,6 +45,9 @@ function addProperties(properties) {
                 if (set[1] === '"#441515') {
                     type = 'cover';
                     cover = 'true';
+                } else if (set[1] === '"#153D15') {
+                    type = 'static';
+                    cover = false;
                 }
 
                 // detect sidestream by color
