@@ -28,7 +28,16 @@ body {
     width: 220px;
     left: 40px;
     opacity: 0;
+}
 
+.valorisation-frame {
+    position: fixed;
+    left: 372px;
+    width: calc(100% - 300px);
+    max-width: 500px;
+    top: 1000px;
+    padding: 40px;
+    border-top: 6px solid #000;
 }
 
 

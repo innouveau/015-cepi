@@ -85,11 +85,10 @@ Canvas.prototype.scrollGraph = function(frame) {
         end = this.app.settings.graph.endFrame;
     if (frame < start) {
         y = this.app.settings.graph.startTop;
-    } else if (frame < end) {
-        y = this.app.settings.graph.startTop + ((frame - start) / (end - start))  * (this.app.settings.graph.endTop - this.app.settings.graph.startTop);
     } else {
-        y = this.app.settings.graph.endTop
+        y = this.app.settings.graph.startTop + ((frame - start) / (end - start))  * (this.app.settings.graph.endTop - this.app.settings.graph.startTop);
     }
+
     // fading of valorisations
     if ( frame > (end - 100)) {
         $('.valorisation-container').fadeIn(this.app.settings.valorisation.fade);
@@ -98,7 +97,8 @@ Canvas.prototype.scrollGraph = function(frame) {
     }
     this.bottomFrame.attr({
         transform: 'translate(' + this.app.settings.graph.left + ',' + y + ')'
-    })
+    });
+    $('.valorisation-frame').css('top', (y + this.app.settings.graph.marginTop + this.app.settings.graph.height + 100));
 };
 
 
