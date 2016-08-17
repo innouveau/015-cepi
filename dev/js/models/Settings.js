@@ -3,9 +3,9 @@ function Settings(app) {
     this.container =  this.measureContainer();
     this.path = {
         startTop: 0,
-        endTop: -620,
-        startFrame: 900,
-        endFrame: 1500,
+        endTop: -740,
+        startFrame: 1100,
+        endFrame: 1400,
         dash: 16,
         gap: 4,
         stroke: 2,
@@ -14,7 +14,7 @@ function Settings(app) {
     this.graph = {
         marginTop: 150,
         startTop: 1200,
-        startFrame: 800,
+        startFrame: 1100,
         endFrame: 1400,
         endTop: 30,
         left: 30,
@@ -28,7 +28,8 @@ function Settings(app) {
     this.filterSidestreams = {
         top: 90,
         left: 15,
-        setWidth: 100
+        setWidth: 100,
+        labelsTop: 620 // the top position of the labels next to each sidestream
     };
     this.filterValorisations = {
         top: 140,
@@ -36,6 +37,20 @@ function Settings(app) {
         setHeight: 30,
         color: '#ddd'
     };
+    this.labels = {
+        raw : {
+            left: 170,
+            top: 70
+        },
+        profit : {
+            left: 800,
+            top: 370
+        },
+        sidestream : {
+            left: 520,
+            top: 700
+        }
+    }
 }
 
 

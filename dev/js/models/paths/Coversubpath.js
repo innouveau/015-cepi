@@ -1,14 +1,14 @@
-function Coverpath(app, parent) {
+function CoverSubpath(app, parent) {
     this.app = app;
     this.parent = parent;
     this.element = this.create();
     this.set = [];
 }
 
-Coverpath.prototype = Object.create(_NodeModel.prototype);
+CoverSubpath.prototype = Object.create(_NodeModel.prototype);
 
 
-Coverpath.prototype.create = function() {
+CoverSubpath.prototype.create = function() {
     return this.parent.container.append('path').attr({
         'class': this.parent.name + '-sub-cover',
         'd': this.parent.points,
@@ -18,14 +18,14 @@ Coverpath.prototype.create = function() {
     });
 };
 
-Coverpath.prototype.init = function(set) {
+CoverSubpath.prototype.init = function(set) {
     this.set = set;
     this.element.attr({
         'stroke-dasharray': set
     });
 };
 
-Coverpath.prototype.scroll = function(frame) {
+CoverSubpath.prototype.scroll = function(frame) {
     this.element.attr({
         'stroke-dashoffset': -3 * frame
     });

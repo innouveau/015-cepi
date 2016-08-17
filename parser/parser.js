@@ -9,12 +9,16 @@ function parseText() {
         textOut += path;
     }
     textOut = textOut.substr(0, textOut.length - 2);
-    $('#text-out').val('var paths = [' + textOut + ']');
+    $('#text-out').val('var paths = [' + textOut + '];');
 }
 
 function addProperties(properties) {
     var isPath = false,
-        sidestreams = '[7]';
+        sidestreams = '[6,7,8]',
+        dash = 22 - Math.round(Math.random() * 6),
+        cover = 'false',
+        type = 'regular',
+        start = 0;
     for (var i = 0, l = properties.length; i < l; i++) {
         var set = properties[i].split('=');
         if (set.length > 1) {
@@ -28,13 +32,58 @@ function addProperties(properties) {
                 value = value.substr(0, value.length - 1);
             }
 
-            // detect sidestream by color
+
+
+
             if (set[0] === 'stroke') {
-                // PART 1
-                if (set[1] === '"#FF00FF') {
-                    sidestreams = '[0,1,2,3,4,5]';
-                } else if (set[1] === '"FFFF00') {
-                    sidestreams = '[1,2,3,4,5]';
+                // detect cover
+                if (set[1] === '"#FF0055') {
+                    cover = 'false';
+                }
+
+                // detect whether is the cover
+                if (set[1] === '"#441515') {
+                    type = 'cover';
+                    cover = 'true';
+                }
+
+                // detect sidestream by color
+                if (set[1] === '"#FF00FF' || set[1] === '"#FF0055') {
+                    sidestreams = '[0,1,2,3,4,5,6,7,8]';
+                } else if (set[1] === '"#FFFF00') {
+                    sidestreams = '[1,2,3,4,5,6,7,8]';
+                } else if (set[1] === '"#00FFFF') {
+                    sidestreams = '[2,3,4,5,6,7,8]';
+                } else if (set[1] === '"#0000FF') {
+                    sidestreams = '[3,4,5,6,7,8]';
+                } else if (set[1] === '"#DE0000') {
+                    sidestreams = '[4,5,6,7,8]';
+                } else if (set[1] === '"#00FF00') {
+                    sidestreams = '[5,6,7,8]';
+                } else if (set[1] === '"#FF6D00') {
+                    sidestreams = '[0]';
+                    cover = 'true';
+                    start = 200;
+                } else if (set[1] === '"#49FF8D') {
+                    sidestreams = '[1]';
+                    cover = 'true';
+                    start = 300;
+                } else if (set[1] === '"#FF827C') {
+                    sidestreams = '[2]';
+                    cover = 'true';
+                    start = 400;
+                } else if (set[1] === '"#D1C49A') {
+                    sidestreams = '[3]';
+                    cover = 'true';
+                    start = 500;
+                } else if (set[1] === '"#00011F') {
+                    sidestreams = '[4]';
+                    cover = 'true';
+                    start = 600;
+                } else if (set[1] === '"#00DF22') {
+                    sidestreams = '[5]';
+                    cover = 'true';
+                    start = 700;
                 }
             }
             // check if it is a path
@@ -44,7 +93,8 @@ function addProperties(properties) {
         }
     }
     if (isPath) {
-        return "{\n\tname: '', \n\tsidestreams: " + sidestreams + ", \n\tdash: 20, \n\tgap: 4, \n\tanimationStart: 0, \n\tcover: false, \n\tpoints: '" + value + "'\n}, ";
+        console.log(sidestreams);
+        return "{\n\tname: '', \n\ttype: '" + type + "',\n\tsidestreams: " + sidestreams + ", \n\tdash: " + dash + ", \n\tgap: 4, \n\tanimationStart: " + start + ", \n\tcover: " + cover + ", \n\tpoints: '" + value + "'\n}, ";
     }
     return '';
 }
@@ -54,10 +104,20 @@ function getProperties(path) {
 
 }
 
-function findPaths(text) {
-    var paths = text.split('<path ');
+function findPaths(string) {
+    var newString = polyToPath(string),
+        paths = newString.split('<path ');
     return paths;
 }
+
+function polyToPath(string) {
+    var newString = replace(string, 'polyline', 'path');
+    newString = replace(newString, 'points="', 'd="M');
+    return newString;
+}
+
+
+
 
 function cleanPath(pathRaw) {
     var path = pathRaw.split('/>')[0];
@@ -102,4 +162,8 @@ function mergeChunks(chunks) {
         }
     }
     return text;
+}
+
+function replace(string, search, replacement) {
+    return string.split(search).join(replacement);
 }

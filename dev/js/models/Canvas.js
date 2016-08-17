@@ -3,13 +3,38 @@ function Canvas(app) {
     this.name = name;
     this.element = this.create();
     this.artboard = this.getArtboard();
+    this.topFrame = this.getTopframe();
     this.paths = this.getPaths();
-    this.graph = this.getGraph();
+    this.cover = this.getCover();
+    this.addLabels();
+    this.bottomFrame = this.getBottomFrame();
 }
 
 Canvas.prototype.scroll = function(frame) {
     this.scrollPaths(frame);
     this.scrollGraph(frame);
+    this.hideElements(frame);
+};
+
+Canvas.prototype.hideElements = function(frame) {
+    // profit label
+    if (frame > 700) {
+        $(this.profitLabel[0]).fadeIn(500);
+    } else {
+        $(this.profitLabel[0]).fadeOut(500);
+    }
+    // sidestream label
+    if (frame > 500) {
+        $(this.sidestreamLabel[0]).fadeIn(500);
+    } else {
+        $(this.sidestreamLabel[0]).fadeOut(500);
+    }
+    // sidestream labels
+    if (frame > 490) {
+        $(this.sidestreamLabels[0]).fadeIn(500);
+    } else {
+        $(this.sidestreamLabels[0]).fadeOut(500);
+    }
 };
 
 Canvas.prototype.scrollPaths = function(frame) {
@@ -23,7 +48,7 @@ Canvas.prototype.scrollPaths = function(frame) {
     } else {
         y = this.app.settings.path.endTop
     }
-    this.paths.attr({
+    this.topFrame.attr({
         transform: 'translate(' + this.app.settings.path.left + ',' + y + ')'
     })
 };
@@ -45,7 +70,7 @@ Canvas.prototype.scrollGraph = function(frame) {
     } else {
         $('.valorisation-container').fadeOut(this.app.settings.valorisation.fade);
     }
-    this.graph.attr({
+    this.bottomFrame.attr({
         transform: 'translate(' + this.app.settings.graph.left + ',' + y + ')'
     })
 };
@@ -67,46 +92,116 @@ Canvas.prototype.getArtboard = function() {
     });
 };
 
-Canvas.prototype.getPaths = function() {
+Canvas.prototype.getTopframe = function() {
     return this.artboard.append('g').attr({
-        class: 'paths',
+        class: 'top-frame',
         transform: 'translate(' + this.app.settings.path.left + ',' + this.app.settings.path.startTop  + ')'
     });
 };
 
-Canvas.prototype.getGraph = function() {
+Canvas.prototype.getPaths = function () {
+    return this.topFrame.append('g').attr({
+        class: 'paths-container'
+    });
+};
+
+Canvas.prototype.getCover = function () {
+    return this.topFrame.append('g').attr({
+        class: 'cover-paths-container'
+    });
+};
+
+Canvas.prototype.addLabels = function() {
+    this.rawLabel = this._getLabel(this.topFrame, ['Raw Material:', 'Recycled Paper'], 130, 'right', this.app.settings.labels.raw.left, this.app.settings.labels.raw.top);
+    this.profitLabel = this._getLabel(this.topFrame, ['Paper product', '(profit)'], 110, 'top', this.app.settings.labels.profit.left, this.app.settings.labels.profit.top);
+    this.sidestreamLabel = this._getLabel(this.topFrame, ['Side streams', '(costs)'], 110, 'right', this.app.settings.labels.sidestream.left, this.app.settings.labels.sidestream.top);
+    $(this.profitLabel[0]).hide();
+    $(this.sidestreamLabel[0]).hide();
+};
+
+
+Canvas.prototype._getLabel = function(parent, texts, width, position, x, y) {
+    var height = texts.length * 14 + 12,
+        distance = 100,
+        x1, y1, x2, y2, cx, cy, rx, ry, tx, ty;
+        g = parent.append('g').attr({
+        class: 'label',
+        transform: 'translate(' + x + ',' + y + ')'
+    });
+    switch (position) {
+        case 'top':
+            x1 = 0; y1 = height; x2 = 0; y2 = distance + height; cx = 0; cy = distance + height; rx = -0.5 * width; ry = 0; tx = -0.5 * width + 15; ty = 0;
+            break;
+        case 'bottom':
+            x1 = 0; y1 = 0; x2 = 0; y2 = distance; cx = 0; cy = 0; rx = -0.5 * width; ry = distance; tx = -0.5 * width + 15; ty = distance;
+            break;
+        case 'right':
+            x1 = 0; y1 = 20; x2 = distance; y2 = 20; cx = 0; cy = 20; rx = distance; ry = 0; tx = distance + 15; ty = 0;
+            break;
+    }
+    g.append('circle').attr({
+        cx: cx,
+        cy: cy,
+        r: 5,
+        fill: '#000'
+    });
+    g.append('line').attr({
+        x1: x1,
+        y1: y1,
+        x2: x2,
+        y2: y2,
+        stroke: '#000'
+    });
+    g.append('rect').attr({
+        x: rx,
+        y: ry,
+        width: width,
+        height: height,
+        fill: '#000'
+    });
+    for (var i = 0, l = texts.length; i < l; i++) {
+        g.append('text').attr({
+            x: tx,
+            y: ty + 16 + i * 15,
+            class: 'label'
+        }).text(texts[i]);
+    }
+    return g;
+};
+
+Canvas.prototype.getBottomFrame = function() {
     var settings = this.app.settings,
         header,
         graph;
 
     graph = this.artboard.append('g').attr({
-        class: 'graph',
+        class: 'bottom-frame',
         transform: 'translate(' + settings.graph.left + ',' + settings.graph.startTop + ')'
     });
     this.createHeader(graph, settings);
     this.createBody(graph, settings);
-    this.createAxis(this.graphBody, settings, 'x', 'Reducing costs / little extra profit', 'Making serious money');
-    this.createAxis(this.graphBody, settings, 'y', 'Proven Technology', 'Technology for pioneers');
+    this.createAxis(this.bottomFrameBody, settings, 'x', 'Reducing costs / little extra profit', 'Making serious money');
+    this.createAxis(this.bottomFrameBody, settings, 'y', 'Proven Technology', 'Technology for pioneers');
     return graph;
 };
 
 Canvas.prototype.createHeader = function(graph, settings) {
-    this.graphHeader = graph.append('g').attr({
+    this.bottomFrameHeader = graph.append('g').attr({
         class: 'graph-header'
     });
-    this.graphHeader.append('line').attr({
+    this.bottomFrameHeader.append('line').attr({
         class: 'graph-top-bar',
         x1: 0,
         y1: 0,
         x2: settings.graph.width,
         y2: 0
     });
-    this.graphHeader.append('text').attr({
+    this.bottomFrameHeader.append('text').attr({
         class: 'graph-header-text',
         x: 10,
         y: 40
     }).text('Side stream valorization opportunities');
-    this.graphHeader.append('text').attr({
+    this.bottomFrameHeader.append('text').attr({
         class: 'graph-header-sub',
         x: 10,
         y: 62
@@ -114,20 +209,40 @@ Canvas.prototype.createHeader = function(graph, settings) {
 };
 
 Canvas.prototype.createBody = function(graph, settings) {
-    this.graphBody = graph.append('g').attr({
+    this.bottomFrameBody = graph.append('g').attr({
         class: 'graph-body',
         transform: 'translate(30,' + settings.graph.marginTop + ')'
     });
-    this.valorisationContainer = this.graphBody.append('g').attr('class', 'valorisation-container');
+    this.valorisationContainer = this.bottomFrameBody.append('g').attr('class', 'valorisation-container');
 };
 
 Canvas.prototype.buildFilters = function() {
     this.createFilterSidestreams();
     this.createFilterValorisations();
+    this.addSidestreamLabels();
+};
+
+Canvas.prototype.addSidestreamLabels = function() {
+    this.sidestreamLabels = this.topFrame.append('g').attr({
+        class: 'sidestream-labels',
+        transform: 'translate(20,' + this.app.settings.filterSidestreams.labelsTop + ')',
+        display: 'none'
+    });
+    for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
+        var sidestream = this.app.sidestreams[i],
+            lines = sidestream.name.split(' ');
+        for (var j = 0, jl = lines.length; j < jl; j++) {
+            this.sidestreamLabels.append('text').attr({
+                class: 'sidestream-label',
+                transform: 'translate(' + i * this.app.settings.filterSidestreams.setWidth + ',' + j * 15 + ')'
+            }).text(lines[j]);
+        }
+
+    }
 };
 
 Canvas.prototype.createFilterSidestreams = function() {
-    var filter = this.graphHeader.append('g').attr({
+    var filter = this.bottomFrameHeader.append('g').attr({
         class: 'filter filter-sidestreams',
         transform: 'translate(' + this.app.settings.filterSidestreams.left + ',' + this.app.settings.filterSidestreams.top + ')'
     });
@@ -145,7 +260,7 @@ Canvas.prototype.createFilterSidestreams = function() {
 };
 
 Canvas.prototype.createFilterValorisations = function() {
-    var filter = this.graph.append('g').attr({
+    var filter = this.bottomFrame.append('g').attr({
         class: 'fitler filter-valorisations',
         transform: 'translate(' + this.app.settings.filterValorisations.left + ',' + this.app.settings.filterValorisations.top + ')'
     }),

@@ -15,16 +15,20 @@ App.prototype.init = function() {
     this.getOutstreams();
     this.getPaths();
     this.getValorisations();
-    this.canvas.buildFilters();
+    this.canvas.buildFilters(); // execute after valorisations and sidestreams are injected
     this.loaded();
 };
 
 App.prototype.getPaths = function() {
     for (var i = 0, l = paths.length; i < l; i++) {
-        var path = paths[i];
-        this.paths.push(
-            new Path(this, path)
-        );
+        var path = paths[i],
+            model;
+        if (path.type === 'regular') {
+            model = new Path(this, path);
+        } else {
+            model = new Cover(this, path);
+        }
+        this.paths.push(model);
     }
 };
 

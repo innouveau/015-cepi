@@ -1,5 +1,6 @@
 function Path(name, path) {
     this.app = app;
+    this.type = path.type;
     this.points = path.points;
     this.name = path.name;
     this.sidestreams = path.sidestreams;
@@ -9,7 +10,7 @@ function Path(name, path) {
     this.gap = path.gap;
     this.container = null;
     this.subpaths = [];
-    this.coverPath = null;
+    this.coversubPath = null;
     this.settings = {
         length: 0,
         dashes: 0
@@ -32,7 +33,7 @@ Path.prototype.build = function() {
         this.subpaths.push(new Subpath(this.app, this, stream, i));
     }
     if (this.cover) {
-        this.coverPath = new Coverpath(this.app, this);
+        this.coversubPath = new CoverSubpath(this.app, this);
     }
 };
 
@@ -47,12 +48,12 @@ Path.prototype.assignDashes = function() {
         this.subpaths[i].init(this.sets[i]);
     }
     if (this.cover) {
-        this.coverPath.init([this.settings.length, 1000 * this.settings.length]);
+        this.coversubPath.init([this.settings.length, 1000 * this.settings.length]);
     }
 };
 
 Path.prototype.scroll = function(frame) {
-    for (var i = 0, l = this.subpaths.length; i < l; i ++) {
+    for (var i = 0, l = this.subpaths.length; i < l; i++) {
         var subpath = this.subpaths[i];
         subpath.scroll(frame);
     }
@@ -61,7 +62,7 @@ Path.prototype.scroll = function(frame) {
         delta = 0;
     }
     if (this.cover) {
-        this.coverPath.scroll(delta);
+        this.coversubPath.scroll(delta);
     }
 };
 
