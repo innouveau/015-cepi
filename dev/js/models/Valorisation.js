@@ -26,27 +26,24 @@ Valorisation.prototype.getPosition = function() {
 };
 
 Valorisation.prototype.createPopup = function() {
-    var div = $('<div><h2>' + this.name + '</h2>' + this.description + '<img src="images/' + this.image + '"></div>'),
+    var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2>' + this.description + '<img src="images/' + this.image + '"></div>'),
         closeButton = $('<div class="close-valorisation">Close</div>'),
         self = this;
     div.append(closeButton);
     closeButton.click(function(){
         self.closePopup();
     });
-    //$('body').append(div);
+    $('body').append(div);
     return div;
 };
 
 Valorisation.prototype.openPopup = function() {
-    //$('.valoriation-popup').hide();
-    //this.popup.fadeIn(100);
-    $('.valorisation-frame').empty();
-    $('.valorisation-frame').append(this.popup);
+    $('.valoriation-popup').hide();
+    this.popup.fadeIn(100);
 };
 
 Valorisation.prototype.closePopup = function() {
-    //this.popup.fadeOut(100);
-    $('.valorisation-frame').empty();
+    this.popup.fadeOut(100);
 };
 
 Valorisation.prototype.addListeners = function() {

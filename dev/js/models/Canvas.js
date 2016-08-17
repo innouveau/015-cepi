@@ -19,7 +19,7 @@ Canvas.prototype.scroll = function(frame) {
 
 Canvas.prototype.hideElements = function(frame) {
     // profit label
-    if (frame > 750) {
+    if (frame > 700) {
         $(this.profitLabel[0]).fadeIn(500);
     } else {
         $(this.profitLabel[0]).fadeOut(500);
@@ -56,7 +56,7 @@ Canvas.prototype.hideElements = function(frame) {
     } else {
         $(this.sidestreamLabels[4][0]).fadeOut(500);
     }
-    if (frame > 720) {
+    if (frame > 490) {
         $(this.sidestreamLabels[5][0]).fadeIn(500);
     } else {
         $(this.sidestreamLabels[5][0]).fadeOut(500);
@@ -85,10 +85,11 @@ Canvas.prototype.scrollGraph = function(frame) {
         end = this.app.settings.graph.endFrame;
     if (frame < start) {
         y = this.app.settings.graph.startTop;
-    } else {
+    } else if (frame < end) {
         y = this.app.settings.graph.startTop + ((frame - start) / (end - start))  * (this.app.settings.graph.endTop - this.app.settings.graph.startTop);
+    } else {
+        y = this.app.settings.graph.endTop
     }
-
     // fading of valorisations
     if ( frame > (end - 100)) {
         $('.valorisation-container').fadeIn(this.app.settings.valorisation.fade);
@@ -97,8 +98,7 @@ Canvas.prototype.scrollGraph = function(frame) {
     }
     this.bottomFrame.attr({
         transform: 'translate(' + this.app.settings.graph.left + ',' + y + ')'
-    });
-    $('.valorisation-frame').css('top', (y + this.app.settings.graph.marginTop + this.app.settings.graph.height + 100));
+    })
 };
 
 
@@ -264,7 +264,7 @@ Canvas.prototype.addSidestreamLabels = function() {
         for (var j = 0, jl = lines.length; j < jl; j++) {
             sideStreamLabel.append('text').attr({
                 class: 'sidestream-label',
-                transform: 'translate(0,' + j * 15 + ')',
+                transform: 'translate(0,' + j * 15 + ')'
             }).text(lines[j]);
         }
         this.sidestreamLabels.push(sideStreamLabel);
