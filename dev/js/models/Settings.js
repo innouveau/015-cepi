@@ -2,23 +2,16 @@ function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
     this.path = {
-        frames: [
-            {}
-        ],
-        startTop: 0,
-        endTop: -740,
-        startFrame: 1100,
-        endFrame: 1400,
-        dash: 16,
-        gap: 4,
+        stages: [500, 700, 1100, 1300, 1900, 2100],
+        positions: [-80, 200, 350, 900],
         stroke: 2,
         left: 50
     };
     this.graph = {
         marginTop: 150,
         startTop: 1200,
-        startFrame: 1100,
-        endFrame: 1400,
+        startFrame: 1900,
+        endFrame: 2100,
         endTop: 30,
         left: 30,
         width: 600,

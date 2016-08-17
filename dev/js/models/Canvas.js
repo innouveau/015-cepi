@@ -19,44 +19,44 @@ Canvas.prototype.scroll = function(frame) {
 
 Canvas.prototype.hideElements = function(frame) {
     // profit label
-    if (frame > 700) {
+    if (frame > 680) {
         $(this.profitLabel[0]).fadeIn(500);
     } else {
         $(this.profitLabel[0]).fadeOut(500);
     }
     // sidestream label
-    if (frame > 500) {
+    if (frame > 960) {
         $(this.sidestreamLabel[0]).fadeIn(500);
     } else {
         $(this.sidestreamLabel[0]).fadeOut(500);
     }
     // sidestream labels
-    if (frame > 220) {
+    if (frame > 900) {
         $(this.sidestreamLabels[0][0]).fadeIn(500);
     } else {
         $(this.sidestreamLabels[0][0]).fadeOut(500);
     }
-    if (frame > 320) {
+    if (frame > 910) {
         $(this.sidestreamLabels[1][0]).fadeIn(500);
     } else {
         $(this.sidestreamLabels[1][0]).fadeOut(500);
     }
-    if (frame > 420) {
+    if (frame > 920) {
         $(this.sidestreamLabels[2][0]).fadeIn(500);
     } else {
         $(this.sidestreamLabels[2][0]).fadeOut(500);
     }
-    if (frame > 520) {
+    if (frame > 930) {
         $(this.sidestreamLabels[3][0]).fadeIn(500);
     } else {
         $(this.sidestreamLabels[3][0]).fadeOut(500);
     }
-    if (frame > 620) {
+    if (frame > 940) {
         $(this.sidestreamLabels[4][0]).fadeIn(500);
     } else {
         $(this.sidestreamLabels[4][0]).fadeOut(500);
     }
-    if (frame > 720) {
+    if (frame > 950) {
         $(this.sidestreamLabels[5][0]).fadeIn(500);
     } else {
         $(this.sidestreamLabels[5][0]).fadeOut(500);
@@ -64,42 +64,26 @@ Canvas.prototype.hideElements = function(frame) {
 };
 
 Canvas.prototype.scrollPaths = function(frame) {
-    var step = [500, 700, 900, 1100, 1300, 1450],
-        position = [0, 200, 400, 900],
+    var stages = this.app.settings.path.stages,
+        positions = this.app.settings.path.positions,
         y;
-    if (frame < step[0]) {
-        y = position[0];
-    } else if (frame < step[1]) {
-        y = position[0] + position[1] * (frame - step[0]) / (step[1] - step[0])
-    } else if (frame < step[2]) {
-        y = position[1];
-    } else if (frame < step[3]) {
-        y = position[1] + (position[2] - position[1]) * (frame - step[2]) / (step[3] - step[2])
-    } else if (frame < step[4]) {
-        y = position[2];
-    } else if (frame < step[5]) {
-        y = position[2] + (position[3] - position[2]) * (frame - step[4]) / (step[5] - step[4])
+    if (frame < stages[0]) {
+        y = positions[0];
+    } else if (frame < stages[1]) {
+        y = positions[0] + (positions[1] - positions[0]) * (frame - stages[0]) / (stages[1] - stages[0])
+    } else if (frame < stages[2]) {
+        y = positions[1];
+    } else if (frame < stages[3]) {
+        y = positions[1] + (positions[2] - positions[1]) * (frame - stages[2]) / (stages[3] - stages[2])
+    } else if (frame < stages[4]) {
+        y = positions[2];
+    } else if (frame < stages[5]) {
+        y = positions[2] + (positions[3] - positions[2]) * (frame - stages[4]) / (stages[5] - stages[4])
     } else {
-        y = position[3];
+        y = positions[3];
     }
     this.topFrame.attr({
         transform: 'translate(' + this.app.settings.path.left + ',' + -y + ')'
-    })
-};
-
-Canvas.prototype.___scrollPaths = function(frame) {
-    var y,
-        start = this.app.settings.path.startFrame,
-        end = this.app.settings.path.endFrame;
-    if (frame < start) {
-        y = this.app.settings.path.startTop;
-    } else if (frame < end) {
-        y = this.app.settings.path.startTop + ((frame - start) / (end - start))  * (this.app.settings.path.endTop - this.app.settings.path.startTop);
-    } else {
-        y = this.app.settings.path.endTop
-    }
-    this.topFrame.attr({
-        transform: 'translate(' + this.app.settings.path.left + ',' + y + ')'
     })
 };
 
@@ -145,7 +129,7 @@ Canvas.prototype.getArtboard = function() {
 Canvas.prototype.getTopframe = function() {
     return this.artboard.append('g').attr({
         class: 'top-frame',
-        transform: 'translate(' + this.app.settings.path.left + ',' + this.app.settings.path.startTop  + ')'
+        transform: 'translate(' + this.app.settings.path.left + ',' + -this.app.settings.path.positions[0]  + ')'
     });
 };
 
