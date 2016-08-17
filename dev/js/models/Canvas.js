@@ -7,6 +7,7 @@ function Canvas(app) {
     this.paths = this.getPaths();
     this.cover = this.getCover();
     this.addLabels();
+    this.sidestreamLabels = [];
     this.bottomFrame = this.getBottomFrame();
 }
 
@@ -18,7 +19,7 @@ Canvas.prototype.scroll = function(frame) {
 
 Canvas.prototype.hideElements = function(frame) {
     // profit label
-    if (frame > 700) {
+    if (frame > 750) {
         $(this.profitLabel[0]).fadeIn(500);
     } else {
         $(this.profitLabel[0]).fadeOut(500);
@@ -30,10 +31,35 @@ Canvas.prototype.hideElements = function(frame) {
         $(this.sidestreamLabel[0]).fadeOut(500);
     }
     // sidestream labels
-    if (frame > 490) {
-        $(this.sidestreamLabels[0]).fadeIn(500);
+    if (frame > 220) {
+        $(this.sidestreamLabels[0][0]).fadeIn(500);
     } else {
-        $(this.sidestreamLabels[0]).fadeOut(500);
+        $(this.sidestreamLabels[0][0]).fadeOut(500);
+    }
+    if (frame > 320) {
+        $(this.sidestreamLabels[1][0]).fadeIn(500);
+    } else {
+        $(this.sidestreamLabels[1][0]).fadeOut(500);
+    }
+    if (frame > 420) {
+        $(this.sidestreamLabels[2][0]).fadeIn(500);
+    } else {
+        $(this.sidestreamLabels[2][0]).fadeOut(500);
+    }
+    if (frame > 520) {
+        $(this.sidestreamLabels[3][0]).fadeIn(500);
+    } else {
+        $(this.sidestreamLabels[3][0]).fadeOut(500);
+    }
+    if (frame > 620) {
+        $(this.sidestreamLabels[4][0]).fadeIn(500);
+    } else {
+        $(this.sidestreamLabels[4][0]).fadeOut(500);
+    }
+    if (frame > 720) {
+        $(this.sidestreamLabels[5][0]).fadeIn(500);
+    } else {
+        $(this.sidestreamLabels[5][0]).fadeOut(500);
     }
 };
 
@@ -223,21 +249,25 @@ Canvas.prototype.buildFilters = function() {
 };
 
 Canvas.prototype.addSidestreamLabels = function() {
-    this.sidestreamLabels = this.topFrame.append('g').attr({
+    var container = this.topFrame.append('g').attr({
         class: 'sidestream-labels',
-        transform: 'translate(20,' + this.app.settings.filterSidestreams.labelsTop + ')',
-        display: 'none'
+        transform: 'translate(20,' + this.app.settings.filterSidestreams.labelsTop + ')'
     });
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
-            lines = sidestream.name.split(' ');
+            lines = sidestream.name.split(' '),
+            sideStreamLabel = container.append('g').attr({
+                class: 'label-container',
+                transform: 'translate(' + i * this.app.settings.filterSidestreams.setWidth + ',0)',
+                display: 'none'
+            });
         for (var j = 0, jl = lines.length; j < jl; j++) {
-            this.sidestreamLabels.append('text').attr({
+            sideStreamLabel.append('text').attr({
                 class: 'sidestream-label',
-                transform: 'translate(' + i * this.app.settings.filterSidestreams.setWidth + ',' + j * 15 + ')'
+                transform: 'translate(0,' + j * 15 + ')',
             }).text(lines[j]);
         }
-
+        this.sidestreamLabels.push(sideStreamLabel);
     }
 };
 
