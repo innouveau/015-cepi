@@ -7,6 +7,10 @@ function App(container) {
     this.sidestreams = [];
     this.streams = [];
     this.canvas = null;
+    this.phase = {
+        index: 0,
+        direction: 0
+    };
 }
 
 App.prototype.init = function() {
@@ -101,5 +105,10 @@ App.prototype.filter = function() {
     }
 };
 
+App.prototype.setPhase = function(i) {
+    this.phase.index = i;
+};
 
-
+App.prototype.setDirection= function(direction) {
+    this.phase.direction = direction;
+};

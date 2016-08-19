@@ -38,34 +38,65 @@ function addPhaseListeners() {
 }
 
 function initChapters() {
-    var height = 0.3 * $(window).outerHeight();
+    var intro = $('.intro'),
+        pause = 0,
+        height = parseInt(intro.css('top')) + intro.outerHeight() + pause;
     $('.chapter').each(function(index){
         var thisTop = height + (index + 1) * 400,
-            destination = 0;
+            destination = 40;
         $(this).prevAll().each(function(){
-            destination += $(this).outerHeight() + 20;
+            destination += $(this).outerHeight() + 10;
         });
-        $(this).attr('top', thisTop).attr('destination', destination).css('top', thisTop);
+        $(this).attr('top', thisTop).attr({
+            destination: destination,
+            i: index + 1,
+            active: '0'
+        }).css('top', thisTop);
     
     })
 }
 
 function scrollChapters(pixels) {
+    var chapterInZone = false;
     $('.chapter').each(function(index){
         var thisTop = parseInt($(this).attr('top')) - pixels,
             destination = parseInt($(this).attr('destination')),
             difference = thisTop - destination,
-            fadeZone = 100;
-        // make chapter sticky
-        if (thisTop < destination) {
-            thisTop = destination;
-        }
-        $(this).css('top', thisTop);
+            fadeZone = 100,
+            active,
+            index = parseInt($(this).attr('i'));
         // fade in chapter
         if (difference < fadeZone) {
             $(this).css('opacity', (1 - difference / fadeZone));
+            if (difference > 0) {
+                chapterInZone = true;
+                app.setDirection(1);
+            } else if (difference > -fadeZone) {
+                chapterInZone = true;
+                app.setDirection(-1);
+            }
         } else {
             $(this).css('opacity', 0);
         }
-    })
+
+
+        // reached endzone
+        // make chapter sticky
+        if (thisTop < destination) {
+            thisTop = destination;
+            // first entering destination
+            if (($(this).attr('active') === '0')) {
+                app.setPhase(index);
+                active = '1';
+            }
+        } else {
+            active = '0';
+        }
+        $(this).css('top', thisTop).attr('active', active);
+
+    });
+
+    if (!chapterInZone) {
+        app.setDirection(0);
+    }
 }

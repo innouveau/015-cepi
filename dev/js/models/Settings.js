@@ -12,10 +12,10 @@ function Settings(app) {
         startTop: 1200,
         startFrame: 1900,
         endFrame: 2100,
-        endTop: 30,
+        endTop: 20,
         left: 30,
         width: 600,
-        height: 400,
+        height: 250,
         margin: 10
     };
     this.valorisation = {
