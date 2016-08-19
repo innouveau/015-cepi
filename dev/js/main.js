@@ -49,8 +49,7 @@ function initChapters() {
         });
         $(this).attr('top', thisTop).attr({
             destination: destination,
-            i: index + 1,
-            active: '0'
+            i: index + 1
         }).css('top', thisTop);
     
     })
@@ -71,12 +70,9 @@ function scrollChapters(pixels) {
         // reached endzone
         // make chapter sticky
         if (thisTop <= destination) {
-            $(this).addClass('destination');
             thisTop = destination;
             // hightest entered destination
             currentPhase = index;
-        } else {
-            $(this).removeClass('destination');
         }
 
         // fade in chapter

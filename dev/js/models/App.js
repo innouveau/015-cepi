@@ -112,3 +112,7 @@ App.prototype.setPhase = function(i) {
 App.prototype.setDirection= function(direction) {
     this.phase.direction = direction;
 };
+
+App.prototype.showGraph = function() {
+    this.canvas.showGraph();
+};

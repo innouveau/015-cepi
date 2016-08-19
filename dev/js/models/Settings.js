@@ -1,13 +1,14 @@
 function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
-    this.path = {
-        stages: [500, 700, 1100, 1300, 1900, 2100],
-        positions: [-80, 60, 200, 350, 500, 900],
-        stroke: 2,
+    this.topFrame = {
+        positions: [-120, 100, 200, 350, 500, 900],
         left: 50
     };
-    this.graph = {
+    this.path = {
+        stroke: 2
+    };
+    this.bottomFrame = {
         marginTop: 150,
         startTop: 1200,
         startFrame: 1900,
@@ -18,8 +19,12 @@ function Settings(app) {
         height: 250,
         margin: 10
     };
-    this.valorisation = {
-        fade: 1500
+    this.animation = {
+        valorisation: 1000,
+        popup: 200,
+        showBottomFrame: 1000,
+        hideTopFrame: 1000,
+        labelFade: 500
     };
     this.filterSidestreams = {
         top: 90,
@@ -29,7 +34,7 @@ function Settings(app) {
     };
     this.filterValorisations = {
         top: 140,
-        left: 640,
+        left: 664,
         setHeight: 30,
         color: '#ddd'
     };

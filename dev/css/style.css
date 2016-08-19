@@ -12,7 +12,7 @@ body {
 #story {
     width: 300px;
     padding: 40px;
-    height: 5000px;
+    height: 2000px;
     position: relative;
 }
 
@@ -22,7 +22,6 @@ body {
     top: 40px;
     width: 220px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #000;
     margin-bottom: 40px;
 }
 
@@ -31,10 +30,6 @@ body {
     width: 220px;
     left: 40px;
     opacity: 0;
-}
-
-.destination {
-    color: pink;
 }
 
 .subtitle {
@@ -47,9 +42,30 @@ body {
     padding: 10px 4px;
 }
 
+.continue-line {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.continue-line:after {
+    position: absolute;
+    left: calc(50% - 11px);
+    bottom: -28px;
+    width: 22px;
+    height: 12px;
+    background-image: url('../images/continue.svg');
+    content: '';
+}
+
+.roll {
+    display: none;
+}
 
 
-/* typography */
+
+    /* typography */
 
 h1 {
     font-size: 36px;
@@ -58,8 +74,8 @@ h1 {
     font-weight: 300;
     border-top: 2px solid #000;
     border-bottom: 2px solid #000;
-    padding: 24px 4px 30px 4px;
-    margin: 0 0 30px 0;
+    padding: 16px 4px 24px 4px;
+    margin: 0 0 12px 0;
 }
 
 h2 {
@@ -67,6 +83,10 @@ h2 {
     line-height: 16px;
 }
 
+.link {
+    font-style: italic;
+    cursor: pointer;
+}
 
 /* canvas */
 
@@ -130,9 +150,6 @@ h2 {
 
 /* valorisations */
 
-.valorisation-container {
-    display: none;
-}
 
 .valorisation {
     cursor: pointer;
@@ -154,6 +171,7 @@ h2 {
     box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
     display: none;
     border: 0.5px solid #333;
+    z-index: 100;
 }
 
 .close-valorisation {

@@ -13,37 +13,56 @@ function Canvas(app) {
 
 Canvas.prototype.scroll = function(frame) {
     this.scrollPaths(frame);
-    this.scrollGraph(frame);
     this.hideElements(frame);
 };
 
 Canvas.prototype.hideElements = function(frame) {
+    // raw label
+    if (frame > 8) {
+        $(this.rawLabel[0]).fadeIn(this.app.settings.animation.labelFade);
+    } else {
+        $(this.rawLabel[0]).fadeOut(this.app.settings.animation.labelFade);
+    }
+
     // profit label
     if (frame > 680) {
-        $(this.profitLabel[0]).fadeIn(500);
+        $(this.profitLabel[0]).fadeIn(this.app.settings.animation.labelFade);
+        $('.roll').fadeIn(this.app.settings.animation.labelFade);
     } else {
-        $(this.profitLabel[0]).fadeOut(500);
+        $(this.profitLabel[0]).fadeOut(this.app.settings.animation.labelFade);
+        $('.roll').fadeOut(this.app.settings.animation.labelFade);
     }
+
     // sidestream label
-    if (frame > 960) {
-        $(this.sidestreamLabel[0]).fadeIn(500);
+    if (frame > 1000) {
+        $(this.sidestreamLabel[0]).fadeIn(this.app.settings.animation.labelFade);
     } else {
-        $(this.sidestreamLabel[0]).fadeOut(500);
+        $(this.sidestreamLabel[0]).fadeOut(this.app.settings.animation.labelFade);
     }
     // sidestream labels
-    var startFrame = 900;
+    var startFrame = 800;
     for (var i = 0, l = this.sidestreamLabels.length; i < l; i++) {
         if (frame > (startFrame + i * 10)) {
-            $(this.sidestreamLabels[i][0]).fadeIn(500);
+            $(this.sidestreamLabels[i][0]).fadeIn(this.app.settings.animation.labelFade);
         } else {
-            $(this.sidestreamLabels[i][0]).fadeOut(500);
+            $(this.sidestreamLabels[i][0]).fadeOut(this.app.settings.animation.labelFade);
         }
     }
 };
 
+Canvas.prototype.showGraph = function() {
+    var y = -this.app.settings.topFrame.positions[this.app.settings.topFrame.positions.length - 1];
+    this.topFrame.transition().duration(this.app.settings.animation.hideTopFrame).attr({
+        transform: 'translate(' + this.app.settings.topFrame.left + ',' + y + ')'
+    });
+    this.bottomFrame.transition().duration(this.app.settings.animation.showBottomFrame).attr({
+        transform: 'translate(' + this.app.settings.bottomFrame.left + ',' + this.app.settings.bottomFrame.endTop + ')'
+    })
+};
+
 Canvas.prototype.scrollPaths = function(frame) {
     var y,
-        pos = this.app.settings.path.positions,
+        pos = this.app.settings.topFrame.positions,
         index = this.app.phase.index,
         direction = this.app.phase.direction,
         part;
@@ -64,30 +83,8 @@ Canvas.prototype.scrollPaths = function(frame) {
         y = pos[index];
     }
     this.topFrame.attr({
-        transform: 'translate(' + this.app.settings.path.left + ',' + -y + ')'
+        transform: 'translate(' + this.app.settings.topFrame.left + ',' + -y + ')'
     });
-};
-
-Canvas.prototype.scrollGraph = function(frame) {
-    var y,
-        start = this.app.settings.graph.startFrame,
-        end = this.app.settings.graph.endFrame;
-    if (frame < start) {
-        y = this.app.settings.graph.startTop;
-    } else if (frame < end) {
-        y = this.app.settings.graph.startTop + ((frame - start) / (end - start))  * (this.app.settings.graph.endTop - this.app.settings.graph.startTop);
-    } else {
-        y = this.app.settings.graph.endTop
-    }
-    // fading of valorisations
-    if ( frame > (end - 100)) {
-        $('.valorisation-container').fadeIn(this.app.settings.valorisation.fade);
-    } else {
-        $('.valorisation-container').fadeOut(this.app.settings.valorisation.fade);
-    }
-    this.bottomFrame.attr({
-        transform: 'translate(' + this.app.settings.graph.left + ',' + y + ')'
-    })
 };
 
 
@@ -110,7 +107,7 @@ Canvas.prototype.getArtboard = function() {
 Canvas.prototype.getTopframe = function() {
     return this.artboard.append('g').attr({
         class: 'top-frame',
-        transform: 'translate(' + this.app.settings.path.left + ',' + -this.app.settings.path.positions[0]  + ')'
+        transform: 'translate(' + this.app.settings.topFrame.left + ',' + -this.app.settings.topFrame.positions[0]  + ')'
     });
 };
 
@@ -130,6 +127,7 @@ Canvas.prototype.addLabels = function() {
     this.rawLabel = this._getLabel(this.topFrame, ['Raw Material:', 'Recycled Paper'], 130, 'right', this.app.settings.labels.raw.left, this.app.settings.labels.raw.top);
     this.profitLabel = this._getLabel(this.topFrame, ['Paper product', '(profit)'], 110, 'top', this.app.settings.labels.profit.left, this.app.settings.labels.profit.top);
     this.sidestreamLabel = this._getLabel(this.topFrame, ['Side streams', '(costs)'], 110, 'right', this.app.settings.labels.sidestream.left, this.app.settings.labels.sidestream.top);
+    $(this.rawLabel[0]).hide();
     $(this.profitLabel[0]).hide();
     $(this.sidestreamLabel[0]).hide();
 };
@@ -191,7 +189,7 @@ Canvas.prototype.getBottomFrame = function() {
 
     graph = this.artboard.append('g').attr({
         class: 'bottom-frame',
-        transform: 'translate(' + settings.graph.left + ',' + settings.graph.startTop + ')'
+        transform: 'translate(' + settings.bottomFrame.left + ',' + settings.bottomFrame.startTop + ')'
     });
     this.createHeader(graph, settings);
     this.createBody(graph, settings);
@@ -208,7 +206,7 @@ Canvas.prototype.createHeader = function(graph, settings) {
         class: 'graph-top-bar',
         x1: 0,
         y1: 0,
-        x2: settings.graph.width,
+        x2: settings.bottomFrame.width,
         y2: 0
     });
     this.bottomFrameHeader.append('text').attr({
@@ -226,7 +224,7 @@ Canvas.prototype.createHeader = function(graph, settings) {
 Canvas.prototype.createBody = function(graph, settings) {
     this.bottomFrameBody = graph.append('g').attr({
         class: 'graph-body',
-        transform: 'translate(30,' + settings.graph.marginTop + ')'
+        transform: 'translate(30,' + settings.bottomFrame.marginTop + ')'
     });
     this.valorisationContainer = this.bottomFrameBody.append('g').attr('class', 'valorisation-container');
 };
@@ -357,13 +355,13 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         xOffset = [],
         yOffset = [];
     if (direction === 'y') {
-        positions = [-settings.graph.margin, settings.graph.margin, -settings.graph.margin, settings.graph.height - settings.graph.margin];
+        positions = [-settings.bottomFrame.margin, settings.bottomFrame.margin, -settings.bottomFrame.margin, settings.bottomFrame.height - settings.bottomFrame.margin];
         arrow1 = 'M' + (positions[0] - 5) + ',' + (positions[1] + 7) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 5) + ',' + (positions[1] + 7);
         arrow2 = 'M' + (positions[2] - 5) + ',' + (positions[3] - 7) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] + 5) + ',' + (positions[3] - 7);
         xOffset = [20, 20];
         yOffset = [10, -10];
     } else {
-        positions = [settings.graph.margin, settings.graph.height + settings.graph.margin, settings.graph.width - settings.graph.margin, settings.graph.height + settings.graph.margin];
+        positions = [settings.bottomFrame.margin, settings.bottomFrame.height + settings.bottomFrame.margin, settings.bottomFrame.width - settings.bottomFrame.margin, settings.bottomFrame.height + settings.bottomFrame.margin];
         arrow1 = 'M' + (positions[0] + 7) + ',' + (positions[1] -5) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 7) + ',' + (positions[1] + 5);
         arrow2 = 'M' + (positions[2] - 7) + ',' + (positions[3] -5) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] - 7) + ',' + (positions[3] + 5);
         xOffset = [0, -120];

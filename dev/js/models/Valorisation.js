@@ -20,8 +20,8 @@ Valorisation.prototype = Object.create(_FilterModel.prototype);
 
 Valorisation.prototype.getPosition = function() {
     return {
-        x: this.tlr * this.app.settings.graph.width / 10,
-        y: (10 - this.value) * this.app.settings.graph.height / 10
+        x: this.tlr * this.app.settings.bottomFrame.width / 10,
+        y: (10 - this.value) * this.app.settings.bottomFrame.height / 10
     }
 };
 
@@ -39,11 +39,11 @@ Valorisation.prototype.createPopup = function() {
 
 Valorisation.prototype.openPopup = function() {
     $('.valoriation-popup').hide();
-    this.popup.fadeIn(100);
+    this.popup.fadeIn(this.app.settings.animation.popup);
 };
 
 Valorisation.prototype.closePopup = function() {
-    this.popup.fadeOut(100);
+    this.popup.fadeOut(this.app.settings.animation.popup);
 };
 
 Valorisation.prototype.addListeners = function() {
@@ -99,9 +99,9 @@ Valorisation.prototype.hasSidestream = function(sidestreams) {
 };
 
 Valorisation.prototype.show = function() {
-    $(this.element[0]).fadeIn(1000);
+    $(this.element[0]).fadeIn(this.app.settings.animation.valorisation);
 };
 
 Valorisation.prototype.hide = function() {
-    $(this.element[0]).fadeOut(1000);
+    $(this.element[0]).fadeOut(this.app.settings.animation.valorisation);
 };
