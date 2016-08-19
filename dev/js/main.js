@@ -57,46 +57,50 @@ function initChapters() {
 }
 
 function scrollChapters(pixels) {
-    var chapterInZone = false;
-    $('.chapter').each(function(index){
+    var chapterInZone = false,
+        currentPhase = 0,
+        currentInZone = null,
+        direction = 0,
+        fadeZone = 100;
+    $('.chapter').each(function(){
         var thisTop = parseInt($(this).attr('top')) - pixels,
             destination = parseInt($(this).attr('destination')),
             difference = thisTop - destination,
-            fadeZone = 100,
-            active,
             index = parseInt($(this).attr('i'));
+
+        // reached endzone
+        // make chapter sticky
+        if (thisTop <= destination) {
+            $(this).addClass('destination');
+            thisTop = destination;
+            // hightest entered destination
+            currentPhase = index;
+        } else {
+            $(this).removeClass('destination');
+        }
+
         // fade in chapter
         if (difference < fadeZone) {
             $(this).css('opacity', (1 - difference / fadeZone));
-            if (difference > 0) {
+            if (difference > -fadeZone) {
+                currentInZone = index;
                 chapterInZone = true;
-                app.setDirection(1);
-            } else if (difference > -fadeZone) {
-                chapterInZone = true;
-                app.setDirection(-1);
+                direction = difference;
             }
         } else {
             $(this).css('opacity', 0);
         }
 
 
-        // reached endzone
-        // make chapter sticky
-        if (thisTop < destination) {
-            thisTop = destination;
-            // first entering destination
-            if (($(this).attr('active') === '0')) {
-                app.setPhase(index);
-                active = '1';
-            }
-        } else {
-            active = '0';
-        }
-        $(this).css('top', thisTop).attr('active', active);
+
+        $(this).css('top', thisTop);
 
     });
-
-    if (!chapterInZone) {
+    app.setPhase(currentPhase);
+    if (currentInZone !== app.phase.index) {
+        app.setDirection(direction);
+    } else {
         app.setDirection(0);
     }
+
 }

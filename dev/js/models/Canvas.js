@@ -42,29 +42,30 @@ Canvas.prototype.hideElements = function(frame) {
 };
 
 Canvas.prototype.scrollPaths = function(frame) {
-    var stages = this.app.settings.path.stages,
-        positions = this.app.settings.path.positions,
-        y;
-        
-        
-    if (frame < stages[0]) {
-        y = positions[0];
-    } else if (frame < stages[1]) {
-        y = positions[0] + (positions[1] - positions[0]) * (frame - stages[0]) / (stages[1] - stages[0])
-    } else if (frame < stages[2]) {
-        y = positions[1];
-    } else if (frame < stages[3]) {
-        y = positions[1] + (positions[2] - positions[1]) * (frame - stages[2]) / (stages[3] - stages[2])
-    } else if (frame < stages[4]) {
-        y = positions[2];
-    } else if (frame < stages[5]) {
-        y = positions[2] + (positions[3] - positions[2]) * (frame - stages[4]) / (stages[5] - stages[4])
+    var y,
+        pos = this.app.settings.path.positions,
+        index = this.app.phase.index,
+        direction = this.app.phase.direction,
+        part;
+    if (direction !== 0) {
+        var current,
+            next;
+        if (this.app.phase.direction > 0) {
+            current = pos[index];
+            next = pos[index + 1];
+            part = (100 - direction) / 100;
+        } else {
+            current = pos[index];
+            next = pos[index - 1];
+            part = (100 + direction) / 100;
+        }
+        y = current + (next - current) * part;
     } else {
-        y = positions[3];
+        y = pos[index];
     }
     this.topFrame.attr({
         transform: 'translate(' + this.app.settings.path.left + ',' + -y + ')'
-    })
+    });
 };
 
 Canvas.prototype.scrollGraph = function(frame) {

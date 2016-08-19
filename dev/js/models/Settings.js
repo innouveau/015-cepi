@@ -3,7 +3,7 @@ function Settings(app) {
     this.container =  this.measureContainer();
     this.path = {
         stages: [500, 700, 1100, 1300, 1900, 2100],
-        positions: [-80, 200, 350, 900],
+        positions: [-80, 60, 200, 350, 500, 900],
         stroke: 2,
         left: 50
     };

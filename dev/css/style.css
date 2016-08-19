@@ -33,6 +33,10 @@ body {
     opacity: 0;
 }
 
+.destination {
+    color: pink;
+}
+
 .subtitle {
     position: fixed;
     right: 40px;
@@ -72,6 +76,7 @@ h2 {
     position: fixed;
     right: 0;
     top: 0;
+    z-index: 10;
 }
 
 .label {
