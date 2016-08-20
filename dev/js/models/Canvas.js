@@ -205,8 +205,8 @@ Canvas.prototype.getBottomFrame = function() {
     });
     this.createHeader(graph, settings);
     this.createBody(graph, settings);
-    this.createAxis(this.bottomFrameBody, settings, 'x', 'Reducing costs / little extra profit', 'Making serious money');
-    this.createAxis(this.bottomFrameBody, settings, 'y', 'Proven Technology', 'Technology for pioneers');
+    this.createAxis(this.bottomFrameBody, settings, 'x', ['Reducing costs / little extra profit'], ['Making serious money']);
+    this.createAxis(this.bottomFrameBody, settings, 'y', ['Proven', 'Technology'], ['Technology', 'for pioneers']);
     return graph;
 };
 
@@ -371,7 +371,7 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         arrow1 = 'M' + (positions[0] - 5) + ',' + (positions[1] + 7) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 5) + ',' + (positions[1] + 7);
         arrow2 = 'M' + (positions[2] - 5) + ',' + (positions[3] - 7) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] + 5) + ',' + (positions[3] - 7);
         xOffset = [20, 20];
-        yOffset = [10, -10];
+        yOffset = [6, -14];
     } else {
         positions = [settings.bottomFrame.margin, settings.bottomFrame.height + settings.bottomFrame.margin, settings.bottomFrame.width - settings.bottomFrame.margin, settings.bottomFrame.height + settings.bottomFrame.margin];
         arrow1 = 'M' + (positions[0] + 7) + ',' + (positions[1] -5) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 7) + ',' + (positions[1] + 5);
@@ -396,16 +396,21 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         class: 'arrowhead',
         fill: 'none'
     });
-    axis.append('text').attr({
-        class: 'graph-label',
-        x: positions[0] + xOffset[0],
-        y: positions[1] + yOffset[0]
-    }).text(label1);
-    axis.append('text').attr({
-        class: 'graph-label',
-        x: positions[2] + xOffset[1],
-        y: positions[3] + yOffset[1]
-    }).text(label2)
+    for (var i = 0, l = label1.length; i < l; i++) {
+        axis.append('text').attr({
+            class: 'graph-label',
+            x: positions[0] + xOffset[0],
+            y: positions[1] + yOffset[0] + i * this.app.settings.typography.lineHeight
+        }).text(label1[i]);
+    }
+    for (var j = 0, jl = label2.length; j < jl; j++) {
+        axis.append('text').attr({
+            class: 'graph-label',
+            x: positions[2] + xOffset[1],
+            y: positions[3] + yOffset[1] + j * this.app.settings.typography.lineHeight
+        }).text(label2[j])
+    }
+
 };
 
 

@@ -19,6 +19,9 @@ function Settings(app) {
         height: 250,
         margin: 10
     };
+    this.typography = {
+        lineHeight: 15
+    };
     this.animation = {
         valorisation: 1000,
         popup: 200,
