@@ -38,21 +38,23 @@ function addPhaseListeners() {
 }
 
 function initChapters() {
-    var intro = $('.intro'),
-        pause = 0,
-        height = parseInt(intro.css('top')) + intro.outerHeight() + pause;
-    $('.chapter').each(function(index){
-        var thisTop = height + (index + 1) * 400,
-            destination = 40;
-        $(this).prevAll().each(function(){
-            destination += $(this).outerHeight() + 10;
-        });
+    var offset = 400,
+        margin = 10,
+        intro = $('.intro'),
+        top = parseInt(intro.css('top')) + intro.outerHeight(),
+        thisTop = top,
+        destination = top + margin;
+
+    $('.chapter').each(function(index) {
+        thisTop += offset;
         $(this).attr('top', thisTop).attr({
             destination: destination,
             i: index + 1
         }).css('top', thisTop);
+        destination += $(this).outerHeight() + margin;
     
-    })
+    });
+    $('.scroll-trigger').fadeIn(500);
 }
 
 function scrollChapters(pixels) {
@@ -61,6 +63,9 @@ function scrollChapters(pixels) {
         currentInZone = null,
         direction = 0,
         fadeZone = 100;
+    if (pixels > 5) {
+        $('.scroll-trigger').fadeOut(500);
+    }
     $('.chapter').each(function(){
         var thisTop = parseInt($(this).attr('top')) - pixels,
             destination = parseInt($(this).attr('destination')),

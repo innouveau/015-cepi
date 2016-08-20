@@ -12,7 +12,9 @@ function Canvas(app) {
 }
 
 Canvas.prototype.scroll = function(frame) {
-    this.scrollPaths(frame);
+    if (this.app.phase.sector === 'top') {
+        this.scrollPaths(frame);
+    }
     this.hideElements(frame);
 };
 
@@ -48,6 +50,16 @@ Canvas.prototype.hideElements = function(frame) {
             $(this.sidestreamLabels[i][0]).fadeOut(this.app.settings.animation.labelFade);
         }
     }
+};
+
+Canvas.prototype.showTop = function() {
+    var y = -this.app.settings.topFrame.positions[this.app.phase.index];
+    this.topFrame.transition().duration(this.app.settings.animation.hideTopFrame).attr({
+        transform: 'translate(' + this.app.settings.topFrame.left + ',' + y + ')'
+    });
+    this.bottomFrame.transition().duration(this.app.settings.animation.showBottomFrame).attr({
+        transform: 'translate(' + this.app.settings.bottomFrame.left + ',' + this.app.settings.bottomFrame.startTop + ')'
+    })
 };
 
 Canvas.prototype.showGraph = function() {

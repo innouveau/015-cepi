@@ -9,7 +9,8 @@ function App(container) {
     this.canvas = null;
     this.phase = {
         index: 0,
-        direction: 0
+        direction: 0,
+        sector: 'top'
     };
 }
 
@@ -114,5 +115,15 @@ App.prototype.setDirection= function(direction) {
 };
 
 App.prototype.showGraph = function() {
+    $('.sector-top').fadeOut(100);
+    $('.sector-graph').fadeIn(1500);
     this.canvas.showGraph();
+    this.phase.sector = 'graph';
+};
+
+App.prototype.showTop = function() {
+    $('.sector-top').fadeIn(1500);
+    $('.sector-graph').fadeOut(100);
+    this.canvas.showTop();
+    this.phase.sector = 'top';
 };

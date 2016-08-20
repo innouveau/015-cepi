@@ -12,7 +12,7 @@ body {
 #story {
     width: 300px;
     padding: 40px;
-    height: 2000px;
+    height: 2500px;
     position: relative;
 }
 
@@ -21,9 +21,8 @@ body {
     left: 40px;
     top: 40px;
     width: 220px;
-    padding-bottom: 20px;
-    margin-bottom: 40px;
 }
+
 
 .chapter {
     position: fixed;
@@ -42,10 +41,30 @@ body {
     padding: 10px 4px;
 }
 
+.sector-graph {
+    margin-top: 40px;
+    display: none;
+}
+
+
+
+
+/* elements */
+
+.scroll-trigger {
+    margin-top: 20px;
+    display: none;
+}
+
+
+.roll {
+    display: none;
+}
+
 .continue-line {
     padding-bottom: 10px;
     border-bottom: 1px solid #000;
-    margin-bottom: 10px;
+    margin: 10px 0;
     position: relative;
 }
 
@@ -59,13 +78,22 @@ body {
     content: '';
 }
 
-.roll {
-    display: none;
+.link-container {
+    margin-top: 20px;
+}
+
+.link {
+    margin-right: 6px;
+    border: 0.5px solid #000;
+    padding: 6px;
+    display: inline-block;
+    cursor: pointer;
 }
 
 
 
-    /* typography */
+
+/* typography */
 
 h1 {
     font-size: 36px;
@@ -83,10 +111,8 @@ h2 {
     line-height: 16px;
 }
 
-.link {
-    font-style: italic;
-    cursor: pointer;
-}
+
+
 
 /* canvas */
 
