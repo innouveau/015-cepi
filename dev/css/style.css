@@ -185,7 +185,7 @@ h2 {
 
 /* popup */
 
-.valoriation-popup {
+.valoriation-popup, .disclaimer {
     position: fixed;
     left: calc(50% - 250px);
     top: 60px;
@@ -200,13 +200,23 @@ h2 {
     z-index: 100;
 }
 
-.close-valorisation {
+.disclaimer {
+    background: #000;
+    color: #fff;
+}
+
+.close-button {
     position:absolute;
     right: 20px;
     bottom: 20px;
     padding: 4px 6px;
     cursor: pointer;
     border: 0.5px solid #333;
+}
+
+.disclaimer .close-button {
+    border: 0.5px solid #fff;
+    color: #fff;
 }
 
 .valoriation-popup h2 {

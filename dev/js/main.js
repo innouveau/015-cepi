@@ -103,5 +103,12 @@ function scrollChapters(pixels) {
     } else {
         app.setDirection(0);
     }
+}
 
+function openDisclaimer() {
+    $('.disclaimer').fadeIn(100);
+}
+
+function closeDisclaimer() {
+    $('.disclaimer').fadeOut(100);
 }

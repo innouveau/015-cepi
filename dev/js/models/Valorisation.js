@@ -27,7 +27,7 @@ Valorisation.prototype.getPosition = function() {
 
 Valorisation.prototype.createPopup = function() {
     var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2>' + this.description + '<img src="images/' + this.image + '"></div>'),
-        closeButton = $('<div class="close-valorisation">Close</div>'),
+        closeButton = $('<div class="close-button">Close</div>'),
         self = this;
     div.append(closeButton);
     closeButton.click(function(){
