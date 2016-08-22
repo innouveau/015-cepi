@@ -15,7 +15,8 @@ $(window).ready(function(){
 function addPhaseListeners() {
     $(window).scroll(function(e){
         var top = $(document).scrollTop();
-        gotoFrame(top);
+        app.scroll(top);
+        scrollChapters(top);
     });
 
     document.addEventListener("keydown", function(e) {
