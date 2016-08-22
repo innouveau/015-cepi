@@ -54,6 +54,9 @@ function Settings(app) {
             left: 520,
             top: 700
         }
+    };
+    this.radar = {
+        gap: 3
     }
 }
 
