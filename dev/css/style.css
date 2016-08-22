@@ -244,3 +244,14 @@ h2 {
     font-weight: 300;
     font-size: 28px;
 }
+
+
+
+@media (max-width: 1300px) {
+
+    h1 {
+        margin-bottom: 4px;
+    }
+
+
+}
