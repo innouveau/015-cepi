@@ -12,6 +12,7 @@ function App(container) {
         direction: 0,
         sector: 'top'
     };
+    this.disclaimerShowed = false;
 }
 
 App.prototype.init = function() {
@@ -119,6 +120,10 @@ App.prototype.showGraph = function() {
     $('.sector-graph').fadeIn(1500);
     this.canvas.showGraph();
     this.phase.sector = 'graph';
+    if (!this.disclaimerShowed) {
+        openDisclaimer();
+        this.disclaimerShowed = true;
+    }
 };
 
 App.prototype.showTop = function() {
