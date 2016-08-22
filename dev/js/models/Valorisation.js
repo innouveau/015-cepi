@@ -66,10 +66,12 @@ Valorisation.prototype.getElement = function() {
     var element = this.app.canvas.valorisationContainer.append('g').attr({
         class: 'valorisation valorisation-' + this.id,
         transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
-    });
-    element.append('rect').attr({
-        width: this.size,
-        height: this.size,
+    }),
+        p = 0.5 * this.size;
+    element.append('circle').attr({
+        r: p,
+        cx: p,
+        cy: p,
         fill: '#fff'
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {

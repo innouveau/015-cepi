@@ -21,19 +21,16 @@ function addPhaseListeners() {
     document.addEventListener("keydown", function(e) {
         if (e.keyCode == '49') {
             $(document).scrollTop(0);
-            gotoFrame(0);
+            app.showTop();
         } else if (e.keyCode == '50') {
             $(document).scrollTop(3000);
-            gotoFrame(3000);
+            app.showGraph();
         }
     });
 
 
 
-    function gotoFrame(frame) {
-        app.scroll(frame);
-        scrollChapters(frame);
-    }
+
 
 }
 
