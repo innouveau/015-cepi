@@ -1,4 +1,4 @@
-function Path(name, path) {
+function Path(path) {
     this.app = app;
     this.type = path.type;
     this.points = path.points;
@@ -25,7 +25,13 @@ function Path(name, path) {
 Path.prototype = Object.create(_NodeModel.prototype);
 
 Path.prototype.build = function() {
-    this.container = this.app.canvas.paths.append('g').attr({
+    var cont;
+    if (this.name === 'raw') {
+        cont = 'raw';
+    } else {
+        cont = 'paths';
+    }
+    this.container = this.app.canvas[cont].append('g').attr({
         class: this.name
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {

@@ -30,7 +30,7 @@ App.prototype.getPaths = function() {
             model;
         switch (path.type) {
             case 'regular':
-                model = new Path(this, path);
+                model = new Path(path);
                 this.paths.push(model);
                 break;
             case 'static':

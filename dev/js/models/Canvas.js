@@ -4,8 +4,10 @@ function Canvas(app) {
     this.element = this.create();
     this.artboard = this.getArtboard();
     this.topFrame = this.getTopframe();
-    this.paths = this.getPaths();
-    this.cover = this.getCover();
+    this.paths = this.getPathsLayer();
+    this.cover = this.getCoverLayer();
+    this.static = this.getStaticLayer();
+    this.raw = this.getRawLayer();
     this.addLabels();
     this.sidestreamLabels = [];
     this.bottomFrame = this.getBottomFrame();
@@ -123,15 +125,27 @@ Canvas.prototype.getTopframe = function() {
     });
 };
 
-Canvas.prototype.getPaths = function () {
+Canvas.prototype.getPathsLayer = function () {
     return this.topFrame.append('g').attr({
         class: 'paths-container'
     });
 };
 
-Canvas.prototype.getCover = function () {
+Canvas.prototype.getCoverLayer = function () {
     return this.topFrame.append('g').attr({
         class: 'cover-paths-container'
+    });
+};
+
+Canvas.prototype.getRawLayer = function () {
+    return this.topFrame.append('g').attr({
+        class: 'raw-container'
+    });
+};
+
+Canvas.prototype.getStaticLayer = function () {
+    return this.topFrame.append('g').attr({
+        class: 'static-paths-container'
     });
 };
 
@@ -194,6 +208,10 @@ Canvas.prototype._getLabel = function(parent, texts, width, position, x, y) {
     return g;
 };
 
+
+
+// graph / bottom
+
 Canvas.prototype.getBottomFrame = function() {
     var settings = this.app.settings,
         header,
@@ -203,14 +221,14 @@ Canvas.prototype.getBottomFrame = function() {
         class: 'bottom-frame',
         transform: 'translate(' + settings.bottomFrame.left + ',' + settings.bottomFrame.startTop + ')'
     });
-    this.createHeader(graph, settings);
-    this.createBody(graph, settings);
+    this.createGraphHeader(graph, settings);
+    this.createGraphBody(graph, settings);
     this.createAxis(this.bottomFrameBody, settings, 'x', ['Reducing costs / little extra profit'], ['Making serious money']);
     this.createAxis(this.bottomFrameBody, settings, 'y', ['Proven', 'Technology'], ['Technology', 'for pioneers']);
     return graph;
 };
 
-Canvas.prototype.createHeader = function(graph, settings) {
+Canvas.prototype.createGraphHeader = function(graph, settings) {
     this.bottomFrameHeader = graph.append('g').attr({
         class: 'graph-header'
     });
@@ -233,7 +251,7 @@ Canvas.prototype.createHeader = function(graph, settings) {
     }).text('Choose the side stream(s) you would like to valorisate:');
 };
 
-Canvas.prototype.createBody = function(graph, settings) {
+Canvas.prototype.createGraphBody = function(graph, settings) {
     this.bottomFrameBody = graph.append('g').attr({
         class: 'graph-body',
         transform: 'translate(30,' + settings.bottomFrame.marginTop + ')'
