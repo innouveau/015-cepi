@@ -2,8 +2,8 @@ function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
     this.topFrame = {
-        positions: [-120, 100, 200, 350, 500, 900],
-        left: 0
+        positions: [-120, 100, 200, 350, 500, 710],
+        left: 60
     };
     this.path = {
         stroke: 2
@@ -14,7 +14,7 @@ function Settings(app) {
         startFrame: 1900,
         endFrame: 2100,
         endTop: 60,
-        left: 0,
+        left: 40,
         width: 600,
         height: 250,
         margin: 10

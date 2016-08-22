@@ -114,7 +114,7 @@ Canvas.prototype.create = function() {
 Canvas.prototype.getArtboard = function() {
     return this.element.append('g').attr({
         class: 'artboard',
-        transform: 'translate(60, 0)'
+        transform: 'translate(0, 0)'
     });
 };
 
