@@ -14,9 +14,9 @@ function Settings(app) {
         startFrame: 1900,
         endFrame: 2100,
         endTop: 60,
-        left: 40,
-        width: 600,
-        height: 250,
+        left: 60,
+        width: 520,
+        height: 220,
         margin: 10
     };
     this.typography = {
@@ -31,13 +31,13 @@ function Settings(app) {
     };
     this.filterSidestreams = {
         top: 90,
-        left: 15,
+        left: 0,
         setWidth: 100,
         labelsTop: 620 // the top position of the labels next to each sidestream
     };
     this.filterValorisations = {
         top: 140,
-        left: 664,
+        left: 560,
         setHeight: 30,
         color: '#ddd'
     };

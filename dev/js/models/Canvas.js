@@ -241,12 +241,12 @@ Canvas.prototype.createGraphHeader = function(graph, settings) {
     });
     this.bottomFrameHeader.append('text').attr({
         class: 'graph-header-text',
-        x: 10,
+        x: 0,
         y: 40
     }).text('Side stream valorization opportunities');
     this.bottomFrameHeader.append('text').attr({
         class: 'graph-header-sub',
-        x: 10,
+        x: 0,
         y: 62
     }).text('Choose the side stream(s) you would like to valorisate:');
 };
@@ -254,7 +254,7 @@ Canvas.prototype.createGraphHeader = function(graph, settings) {
 Canvas.prototype.createGraphBody = function(graph, settings) {
     this.bottomFrameBody = graph.append('g').attr({
         class: 'graph-body',
-        transform: 'translate(30,' + settings.bottomFrame.marginTop + ')'
+        transform: 'translate(10,' + settings.bottomFrame.marginTop + ')'
     });
     this.valorisationContainer = this.bottomFrameBody.append('g').attr('class', 'valorisation-container');
 };
