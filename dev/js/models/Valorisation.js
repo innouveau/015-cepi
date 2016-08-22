@@ -12,7 +12,7 @@ function Valorisation(app, valorisation) {
     this.element = this.getElement();
     this.popup = this.createPopup();
     this.visible = true;
-    this.elements = {}; // display is added by Canvas to be able to toggle it
+    this.legendElement = null;
     this.addListeners();
 }
 
@@ -50,8 +50,72 @@ Valorisation.prototype.addListeners = function() {
     var self = this;
     this.element.on('click', function(){
         self.openPopup();
-    })
+    });
+    this.element.on('mouseover', function(){
+        self.hoverGraph();
+    });
+    this.element.on('mouseout', function(){
+        self.hoverOutGraph();
+    });
 };
+
+Valorisation.prototype.hoverGraph = function() {
+    for (var i = 0, l = this.app.valorisations.length; i < l; i++) {
+        var valorisation = this.app.valorisations[i];
+        if (valorisation !== this) {
+            valorisation.dimButton();
+        } else {
+            valorisation.lightButton();
+        }
+    }
+};
+
+
+Valorisation.prototype.hoverButton = function() {
+    for (var i = 0, l = this.app.valorisations.length; i < l; i++) {
+        var valorisation = this.app.valorisations[i];
+        if (valorisation !== this) {
+            valorisation.dimElement();
+        } else {
+            valorisation.lightElement();
+        }
+    }
+};
+
+Valorisation.prototype.hoverOutGraph = function() {
+    for (var i = 0, l = this.app.valorisations.length; i < l; i++) {
+        var valorisation = this.app.valorisations[i];
+        valorisation.dimButton();
+    }
+};
+
+Valorisation.prototype.hoverOut = function() {
+    for (var i = 0, l = this.app.valorisations.length; i < l; i++) {
+        var valorisation = this.app.valorisations[i];
+        valorisation.lightElement();
+    }
+};
+
+Valorisation.prototype.dimButton = function() {
+    $(this.legendElement[0]).css('fill', '#eee');
+};
+
+Valorisation.prototype.lightButton = function() {
+    $(this.legendElement[0]).css('fill', '#aaa');
+};
+
+Valorisation.prototype.dimElement = function() {
+    $(this.element[0]).css('opacity', 0.2);
+};
+
+Valorisation.prototype.lightElement = function() {
+    $(this.element[0]).css('opacity', 1);
+};
+
+
+
+
+
 
 Valorisation.prototype.getSidestreams = function(ids) {
     var sidestreams = [];

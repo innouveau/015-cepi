@@ -307,29 +307,48 @@ Canvas.prototype.createFilterSidestreams = function() {
 };
 
 Canvas.prototype.createFilterValorisations = function() {
-    var filter = this.bottomFrame.append('g').attr({
+    var legenda = this.bottomFrame.append('g').attr({
         class: 'fitler filter-valorisations',
         transform: 'translate(' + this.app.settings.filterValorisations.left + ',' + this.app.settings.filterValorisations.top + ')'
     }),
     counter = 0;
     for (var i = 0, l = this.app.sets.length; i < l; i++) {
         var set = this.app.sets[i];
-        filter.append('text').attr({
-            class: 'checkbox-header',
+        legenda.append('text').attr({
+            class: 'legend-header',
             x: 0,
             y: (counter * this.app.settings.filterValorisations.setHeight)
         }).text(set.name);
         counter+= 0.5;
         for (var j = 0, jl = set.children.length; j < jl; j++) {
             var valorisation = set.children[j],
-                checkboxContainer = this._getCheckboxContainer(filter, 0, counter * this.app.settings.filterValorisations.setHeight, this.app.settings.filterValorisations.color, valorisation.name),
-                checkboxDisplay = this._getCheckboxDisplay(checkboxContainer);
-            valorisation.elements.display = checkboxDisplay;
+                container = legenda.append('g').attr({
+                    class: 'legend-button',
+                    transform: 'translate(0,' + counter * this.app.settings.filterValorisations.setHeight + ')'
+                }),
+                rect = container.append('rect').attr({
+                    x: 0,
+                    y: -5,
+                    width: 200,
+                    height: this.app.settings.filterValorisations.setHeight - 8
+                });
+                container.append('text').attr({
+                    class: 'legend-button-text',
+                    x: 4,
+                    y: 10
+                }).text(valorisation.name);
             (function (valorisation) {
-                checkboxContainer.on('click', function () {
-                    valorisation.toggle();
-                })
+                container.on('click', function () {
+                    valorisation.openPopup();
+                });
+                container.on('mouseover', function () {
+                    valorisation.hoverButton();
+                });
+                container.on('mouseout', function () {
+                    valorisation.hoverOut();
+                });
             })(valorisation);
+            valorisation.legendElement = rect;
             counter++;
         }
         // skip to make space for header
