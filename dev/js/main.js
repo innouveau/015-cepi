@@ -19,7 +19,7 @@ function addPhaseListeners() {
         scrollChapters(top);
     });
 
-    document.addEventListener("keydown", function(e) {
+    document.addEventListener('keydown', function(e) {
         if (e.keyCode == '49') {
             $(document).scrollTop(0);
             app.showTop();
@@ -37,7 +37,7 @@ function addPhaseListeners() {
 
 function initChapters() {
     var offset = 400,
-        margin = 10,
+        margin = 15,
         intro = $('.intro'),
         top = parseInt(intro.css('top')) + intro.outerHeight(),
         thisTop = top,
