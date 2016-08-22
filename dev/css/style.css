@@ -59,6 +59,10 @@ body {
     display: none;
 }
 
+.roll {
+    display: none;
+}
+
 .continue-line {
     padding-bottom: 10px;
     border-bottom: 1px solid #000;
