@@ -3,8 +3,10 @@ function Valorisation(app, valorisation) {
     this.app = app;
     this.name = valorisation.name;
     this.description = valorisation.description;
+    this.economicDescription = valorisation.economic;
+    this.trlDescription = valorisation.trlDescription;
     this.image = valorisation.image;
-    this.size = 60;
+    this.size = 40;
     this.sidestreams = this.getSidestreams(valorisation.sidestreams);
     this.tlr = valorisation.tlr;
     this.value =valorisation.value;
@@ -20,15 +22,19 @@ Valorisation.prototype = Object.create(_FilterModel.prototype);
 
 Valorisation.prototype.getPosition = function() {
     return {
-        x: this.tlr * this.app.settings.bottomFrame.width / 10,
-        y: (10 - this.value) * this.app.settings.bottomFrame.height / 10
+        x: this.value * this.app.settings.bottomFrame.width / 11,
+        y: (10 - this.tlr) * this.app.settings.bottomFrame.height / 11
     }
 };
 
 Valorisation.prototype.createPopup = function() {
     var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2>' + this.description + '<img src="images/' + this.image + '"></div>'),
+        economicDescription = $('<div class="economic-description"><b>Economic</b><p>' + this.economicDescription + '</p></div>'),
+        trlDescription = $('<div class="trl-description"><b>TRL</b><p>' + this.trlDescription + '</p></div>'),
         closeButton = $('<div class="close-button">Close</div>'),
         self = this;
+    div.append(economicDescription);
+    div.append(trlDescription);
     div.append(closeButton);
     closeButton.click(function(){
         self.closePopup();
