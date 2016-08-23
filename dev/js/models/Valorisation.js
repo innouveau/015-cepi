@@ -4,13 +4,14 @@ function Valorisation(app, valorisation) {
     this.name = valorisation.name;
     this.description = valorisation.description;
     this.image = valorisation.image;
-    this.size = 40;
     this.sidestreams = this.getSidestreams(valorisation.sidestreams);
+    this.liveSidestreams = [];
     this.tlr = valorisation.tlr;
     this.value = valorisation.value;
     this.position = this.getPosition();
     this.circles = [];
     this.element = this.getElement();
+    this.cover = this.getCover();
     this.popup = this.createPopup();
     this.elements = {}; // display is added by Canvas to be able to toggle it
     this.addListeners();
@@ -26,7 +27,7 @@ Valorisation.prototype.getElement = function() {
             class: 'valorisation valorisation-' + this.id,
             transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
         }),
-        p = 0.5 * this.size,
+        p = 0.5 * this.app.settings.radar.r,
         liveSidestreams = this.getLiveSidestreams();
     // hit area
     element.append('circle').attr({
@@ -41,14 +42,36 @@ Valorisation.prototype.getElement = function() {
         circle.updateSubCircles(liveSidestreams);
         this.circles.push(circle);
     }
-    return element
+    return element;
+};
+
+Valorisation.prototype.getCover = function() {
+    return new ArcCover(this.app, this);
 };
 
 Valorisation.prototype.update = function() {
-    var liveSidestreams = this.getLiveSidestreams();
-    console.log(liveSidestreams);
-    for (var i = 0, l = this.circles.length; i < 4; i++) {
-        this.circles[i].updateSubCircles(liveSidestreams);
+    var liveSidestreams = this.getLiveSidestreams(),
+        self = this;
+    if (liveSidestreams.length === 0) {
+        this.hide();
+    } else {
+        this.show();
+        if (liveSidestreams.length !== this.liveSidestreams.length) {
+            // 1. close
+            this.cover.close();
+            // 2. change radar
+            setTimeout(function () {
+                for (var i = 0, l = self.circles.length; i < 4; i++) {
+                    self.circles[i].updateSubCircles(liveSidestreams);
+                }
+            }, this.app.settings.radar.animation);
+            // 3. open
+            setTimeout(function () {
+                self.cover.open();
+            }, (this.app.settings.radar.animation * 1.2));
+            // 4. update state
+            this.liveSidestreams = liveSidestreams;
+        }
     }
 };
 
@@ -115,4 +138,12 @@ Valorisation.prototype.hasSidestream = function(sidestreams) {
         }
     }
     return false;
+};
+
+Valorisation.prototype.show = function() {
+    $(this.element[0]).fadeIn(1000);
+};
+
+Valorisation.prototype.hide = function() {
+    $(this.element[0]).fadeOut(1000);
 };

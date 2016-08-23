@@ -56,7 +56,9 @@ function Settings(app) {
         }
     };
     this.radar = {
-        gap: 3
+        r: 40,
+        gap: 3,
+        animation: 500
     }
 }
 
