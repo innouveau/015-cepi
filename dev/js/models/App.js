@@ -12,7 +12,7 @@ function App(container) {
         direction: 0,
         sector: 'top'
     };
-    this.disclaimerShowed = false;
+    this.disclaimerShowed = true;
 }
 
 App.prototype.init = function() {

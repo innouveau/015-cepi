@@ -9,15 +9,15 @@ function Settings(app) {
         stroke: 2
     };
     this.bottomFrame = {
-        marginTop: 150,
+        marginTop: 100,
         startTop: 1200,
         startFrame: 1900,
         endFrame: 2100,
         endTop: 60,
         left: 60,
-        width: 520,
-        height: 220,
-        margin: 10
+        width: 630,
+        height: 320,
+        margin: 20
     };
     this.typography = {
         lineHeight: 15
@@ -30,15 +30,15 @@ function Settings(app) {
         labelFade: 500
     };
     this.filterSidestreams = {
-        top: 90,
+        top: 0,
         left: 0,
         setWidth: 100,
         labelsTop: 620 // the top position of the labels next to each sidestream
     };
     this.filterValorisations = {
-        top: 140,
-        left: 560,
-        setHeight: 30,
+        top: 100,
+        left: 650,
+        setHeight: 20,
         color: '#ddd'
     };
     this.labels = {

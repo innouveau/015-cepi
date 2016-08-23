@@ -114,7 +114,7 @@ Canvas.prototype.create = function() {
 Canvas.prototype.getArtboard = function() {
     return this.element.append('g').attr({
         class: 'artboard',
-        transform: 'translate(0, 0)'
+        transform: 'translate(60, 0)'
     });
 };
 
@@ -232,29 +232,12 @@ Canvas.prototype.createGraphHeader = function(graph, settings) {
     this.bottomFrameHeader = graph.append('g').attr({
         class: 'graph-header'
     });
-    this.bottomFrameHeader.append('line').attr({
-        class: 'graph-top-bar',
-        x1: 0,
-        y1: 0,
-        x2: settings.bottomFrame.width,
-        y2: 0
-    });
-    this.bottomFrameHeader.append('text').attr({
-        class: 'graph-header-text',
-        x: 0,
-        y: 40
-    }).text('Side stream valorization opportunities');
-    this.bottomFrameHeader.append('text').attr({
-        class: 'graph-header-sub',
-        x: 0,
-        y: 62
-    }).text('Choose the side stream(s) you would like to valorisate:');
 };
 
 Canvas.prototype.createGraphBody = function(graph, settings) {
     this.bottomFrameBody = graph.append('g').attr({
         class: 'graph-body',
-        transform: 'translate(10,' + settings.bottomFrame.marginTop + ')'
+        transform: 'translate(0,' + settings.bottomFrame.marginTop + ')'
     });
     this.valorisationContainer = this.bottomFrameBody.append('g').attr('class', 'valorisation-container');
 };
@@ -296,7 +279,16 @@ Canvas.prototype.createFilterSidestreams = function() {
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
             checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color, ''),
-            checkboxDisplay = this._getCheckboxDisplay(checkboxContainer);
+            checkboxDisplay = this._getCheckboxDisplay(checkboxContainer),
+            lines = sidestream.name.split(' ');
+
+        for (var j = 0, jl = lines.length; j < jl; j++) {
+            checkboxContainer.append('text').attr({
+                class: 'sidestream-filter-label',
+                x: -2,
+                y: 34 + j * this.app.settings.typography.lineHeight
+            }).text(lines[j]);
+        }
         sidestream.elements.display = checkboxDisplay;
         (function(sidestream) {
             checkboxContainer.on('click', function () {
@@ -327,28 +319,21 @@ Canvas.prototype.createFilterValorisations = function() {
                     transform: 'translate(0,' + counter * this.app.settings.filterValorisations.setHeight + ')'
                 }),
                 rect = container.append('rect').attr({
-                    x: 0,
-                    y: -5,
+                    x: -10,
+                    y: -3,
                     width: 200,
-                    height: this.app.settings.filterValorisations.setHeight - 8
-                });
-                container.append('text').attr({
+                    height: this.app.settings.filterValorisations.setHeight
+                }),
+                text = container.append('text').attr({
                     class: 'legend-button-text',
-                    x: 4,
+                    fill: '#aaa',
+                    x: 0,
                     y: 10
                 }).text(valorisation.name);
             (function (valorisation) {
-                container.on('click', function () {
-                    valorisation.openPopup();
-                });
-                container.on('mouseover', function () {
-                    valorisation.hoverButton();
-                });
-                container.on('mouseout', function () {
-                    valorisation.hoverOut();
-                });
+                valorisation.button.legend = new LegendButton(this.app, valorisation, container, rect, text);
+
             })(valorisation);
-            valorisation.legendElement = rect;
             counter++;
         }
         // skip to make space for header
@@ -402,26 +387,27 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         arrow1,
         arrow2,
         xOffset = [],
-        yOffset = [];
+        yOffset = [],
+        textAnchor = 'start';
     if (direction === 'y') {
-        positions = [-settings.bottomFrame.margin, settings.bottomFrame.margin, -settings.bottomFrame.margin, settings.bottomFrame.height - settings.bottomFrame.margin];
+        positions = [0, 0, 0, settings.bottomFrame.height - settings.bottomFrame.margin];
         arrow1 = 'M' + (positions[0] - 5) + ',' + (positions[1] + 7) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 5) + ',' + (positions[1] + 7);
         arrow2 = 'M' + (positions[2] - 5) + ',' + (positions[3] - 7) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] + 5) + ',' + (positions[3] - 7);
-        xOffset = [20, 20];
+        xOffset = [-20, -20];
         yOffset = [6, -14];
     } else {
-        positions = [settings.bottomFrame.margin, settings.bottomFrame.height + settings.bottomFrame.margin, settings.bottomFrame.width - settings.bottomFrame.margin, settings.bottomFrame.height + settings.bottomFrame.margin];
+        positions = [0, settings.bottomFrame.height, settings.bottomFrame.width, settings.bottomFrame.height];
         arrow1 = 'M' + (positions[0] + 7) + ',' + (positions[1] -5) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 7) + ',' + (positions[1] + 5);
         arrow2 = 'M' + (positions[2] - 7) + ',' + (positions[3] -5) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] - 7) + ',' + (positions[3] + 5);
         xOffset = [0, -120];
         yOffset = [30, 30];
     }
     axis.append('line').attr({
-        'class':'graph-axis-line',
-        'x1': positions[0],
-        'y1': positions[1],
-        'x2': positions[2],
-        'y2': positions[3]
+        class:'graph-axis-line',
+        x1: positions[0],
+        y1: positions[1],
+        x2: positions[2],
+        y2: positions[3]
     });
     axis.append('path').attr({
         d: arrow1,
@@ -433,8 +419,12 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         class: 'arrowhead',
         fill: 'none'
     });
+    if (direction === 'y') {
+        textAnchor = 'end'
+    }
     for (var i = 0, l = label1.length; i < l; i++) {
         axis.append('text').attr({
+            'text-anchor': textAnchor,
             class: 'graph-label',
             x: positions[0] + xOffset[0],
             y: positions[1] + yOffset[0] + i * this.app.settings.typography.lineHeight
@@ -442,6 +432,7 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
     }
     for (var j = 0, jl = label2.length; j < jl; j++) {
         axis.append('text').attr({
+            'text-anchor': textAnchor,
             class: 'graph-label',
             x: positions[2] + xOffset[1],
             y: positions[3] + yOffset[1] + j * this.app.settings.typography.lineHeight

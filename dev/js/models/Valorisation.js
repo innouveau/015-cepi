@@ -6,7 +6,7 @@ function Valorisation(app, valorisation) {
     this.economicDescription = valorisation.economic;
     this.trlDescription = valorisation.trlDescription;
     this.image = valorisation.image;
-    this.size = 40;
+    this.size = 30;
     this.sidestreams = this.getSidestreams(valorisation.sidestreams);
     this.tlr = valorisation.tlr;
     this.value =valorisation.value;
@@ -14,18 +14,43 @@ function Valorisation(app, valorisation) {
     this.element = this.getElement();
     this.popup = this.createPopup();
     this.visible = true;
-    this.legendElement = null;
+    this.button = {
+        legend: null
+    };
     this.addListeners();
 }
 
 Valorisation.prototype = Object.create(_FilterModel.prototype);
 
-Valorisation.prototype.getPosition = function() {
-    return {
-        x: this.value * this.app.settings.bottomFrame.width / 11,
-        y: (10 - this.tlr) * this.app.settings.bottomFrame.height / 11
+Valorisation.prototype.getElement = function() {
+    var element = this.app.canvas.valorisationContainer.append('g').attr({
+            class: 'valorisation valorisation-' + this.id,
+            transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
+        }),
+        p = 0.5 * this.size;
+    element.append('circle').attr({
+        r: p,
+        cx: p,
+        cy: p,
+        fill: '#fff'
+    });
+    for (var i = 0, l = this.sidestreams.length; i < l; i++) {
+        var sidestream = this.sidestreams[i],
+            r = (this.size / 2) - i * 3;
+        element.append('circle').attr({
+            class: 'valorisation-sidestream',
+            r: r,
+            cx: this.size / 2,
+            cy: this.size / 2,
+            stroke: sidestream.color,
+            fill: 'none',
+            'stroke-width': 2
+        })
     }
+    return element
 };
+
+// popup
 
 Valorisation.prototype.createPopup = function() {
     var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2>' + this.description + '<img src="images/' + this.image + '"></div>'),
@@ -52,76 +77,61 @@ Valorisation.prototype.closePopup = function() {
     this.popup.fadeOut(this.app.settings.animation.popup);
 };
 
+
+// events
+
 Valorisation.prototype.addListeners = function() {
     var self = this;
     this.element.on('click', function(){
         self.openPopup();
     });
     this.element.on('mouseover', function(){
-        self.hoverGraph();
+        self.hover();
     });
     this.element.on('mouseout', function(){
-        self.hoverOutGraph();
+        self.hoverOut();
     });
 };
 
-Valorisation.prototype.hoverGraph = function() {
+Valorisation.prototype.hover = function() {
     for (var i = 0, l = this.app.valorisations.length; i < l; i++) {
         var valorisation = this.app.valorisations[i];
         if (valorisation !== this) {
-            valorisation.dimButton();
+            valorisation.fade();
+            valorisation.button.legend.normal();
         } else {
-            valorisation.lightButton();
+            valorisation.normal();
+            valorisation.button.legend.highlight();
         }
-    }
-};
-
-
-Valorisation.prototype.hoverButton = function() {
-    for (var i = 0, l = this.app.valorisations.length; i < l; i++) {
-        var valorisation = this.app.valorisations[i];
-        if (valorisation !== this) {
-            valorisation.dimElement();
-        } else {
-            valorisation.lightElement();
-        }
-    }
-};
-
-Valorisation.prototype.hoverOutGraph = function() {
-    for (var i = 0, l = this.app.valorisations.length; i < l; i++) {
-        var valorisation = this.app.valorisations[i];
-        valorisation.dimButton();
     }
 };
 
 Valorisation.prototype.hoverOut = function() {
     for (var i = 0, l = this.app.valorisations.length; i < l; i++) {
         var valorisation = this.app.valorisations[i];
-        valorisation.lightElement();
+        valorisation.normal();
+        valorisation.button.legend.normal();
     }
 };
 
-Valorisation.prototype.dimButton = function() {
-    $(this.legendElement[0]).css('fill', '#eee');
+
+Valorisation.prototype.show = function() {
+    $(this.element[0]).fadeIn(this.app.settings.animation.valorisation);
 };
 
-Valorisation.prototype.lightButton = function() {
-    $(this.legendElement[0]).css('fill', '#aaa');
+Valorisation.prototype.hide = function() {
+    $(this.element[0]).fadeOut(this.app.settings.animation.valorisation);
 };
 
-Valorisation.prototype.dimElement = function() {
+Valorisation.prototype.fade = function() {
     $(this.element[0]).css('opacity', 0.2);
 };
 
-Valorisation.prototype.lightElement = function() {
+Valorisation.prototype.normal = function() {
     $(this.element[0]).css('opacity', 1);
 };
 
-
-
-
-
+// helpers
 
 Valorisation.prototype.getSidestreams = function(ids) {
     var sidestreams = [];
@@ -130,34 +140,6 @@ Valorisation.prototype.getSidestreams = function(ids) {
         sidestreams.push(sidestream);
     }
     return sidestreams;
-};
-
-Valorisation.prototype.getElement = function() {
-    var element = this.app.canvas.valorisationContainer.append('g').attr({
-        class: 'valorisation valorisation-' + this.id,
-        transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
-    }),
-        p = 0.5 * this.size;
-    element.append('circle').attr({
-        r: p,
-        cx: p,
-        cy: p,
-        fill: '#fff'
-    });
-    for (var i = 0, l = this.sidestreams.length; i < l; i++) {
-        var sidestream = this.sidestreams[i],
-            r = (this.size / 2) - i * 3;
-        element.append('circle').attr({
-            class: 'valorisation-sidestream',
-            r: r,
-            cx: this.size / 2,
-            cy: this.size / 2,
-            stroke: sidestream.color,
-            fill: 'none',
-            'stroke-width': 2
-        })
-    }
-    return element
 };
 
 Valorisation.prototype.hasSidestream = function(sidestreams) {
@@ -170,10 +152,9 @@ Valorisation.prototype.hasSidestream = function(sidestreams) {
     return false;
 };
 
-Valorisation.prototype.show = function() {
-    $(this.element[0]).fadeIn(this.app.settings.animation.valorisation);
-};
-
-Valorisation.prototype.hide = function() {
-    $(this.element[0]).fadeOut(this.app.settings.animation.valorisation);
+Valorisation.prototype.getPosition = function() {
+    return {
+        x: this.value * this.app.settings.bottomFrame.width / 11,
+        y: (10 - this.tlr) * this.app.settings.bottomFrame.height / 11
+    }
 };
