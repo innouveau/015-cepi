@@ -49,7 +49,8 @@ Valorisation.prototype.getElement = function() {
         r: p,
         cx: 0,
         cy: 0,
-        fill: 'transparent'
+        fill: 'transparent',
+        class: 'hit-area'
     });
     return {
         main: mainElement,
@@ -198,7 +199,6 @@ Valorisation.prototype.hasSidestream = function(sidestreams) {
     }
     return false;
 };
-
 
 Valorisation.prototype.show = function() {
     var self = this;
