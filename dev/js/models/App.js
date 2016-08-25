@@ -7,11 +7,7 @@ function App(container) {
     this.sidestreams = [];
     this.streams = [];
     this.canvas = null;
-    this.phase = {
-        index: 0,
-        direction: 0,
-        sector: 'top'
-    };
+    this.story = new Story(this);
     this.disclaimerShowed = true;
 }
 
@@ -82,6 +78,7 @@ App.prototype.loaded = function() {
 };
 
 App.prototype.scroll = function(frame) {
+    this.story.scroll(frame);
     this.canvas.scroll(frame);
     for (var i = 0, l = this.paths.length; i < l; i++) {
         var path = this.paths[i];
@@ -96,28 +93,4 @@ App.prototype.filter = function() {
     }
 };
 
-App.prototype.setPhase = function(i) {
-    this.phase.index = i;
-};
 
-App.prototype.setDirection= function(direction) {
-    this.phase.direction = direction;
-};
-
-App.prototype.showGraph = function() {
-    $('.sector-top').fadeOut(100);
-    $('.sector-graph').fadeIn(1500);
-    this.canvas.showGraph();
-    this.phase.sector = 'graph';
-    if (!this.disclaimerShowed) {
-        openDisclaimer();
-        this.disclaimerShowed = true;
-    }
-};
-
-App.prototype.showTop = function() {
-    $('.sector-top').fadeIn(1500);
-    $('.sector-graph').fadeOut(100);
-    this.canvas.showTop();
-    this.phase.sector = 'top';
-};

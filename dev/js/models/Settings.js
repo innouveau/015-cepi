@@ -2,18 +2,15 @@ function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
     this.topFrame = {
-        positions: [-120, 100, 200, 350, 500, 710],
+        positions: [80, -200, -710],
         left: 60
     };
     this.path = {
         stroke: 2
     };
     this.bottomFrame = {
+        positions: [1200, 800, 60],
         marginTop: 100,
-        startTop: 1200,
-        startFrame: 1900,
-        endFrame: 2100,
-        endTop: 60,
         left: 60,
         width: 630,
         height: 320,

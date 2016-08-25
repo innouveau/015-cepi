@@ -14,9 +14,8 @@ function Canvas(app) {
 }
 
 Canvas.prototype.scroll = function(frame) {
-    if (this.app.phase.sector === 'top') {
-        this.scrollPaths(frame);
-    }
+    this.scrollWindow(frame, 'topFrame');
+    this.scrollWindow(frame, 'bottomFrame');
     this.hideElements(frame);
 };
 
@@ -54,50 +53,32 @@ Canvas.prototype.hideElements = function(frame) {
     }
 };
 
-Canvas.prototype.showTop = function() {
-    var y = -this.app.settings.topFrame.positions[this.app.phase.index];
-    this.topFrame.transition().duration(this.app.settings.animation.hideTopFrame).attr({
-        transform: 'translate(' + this.app.settings.topFrame.left + ',' + y + ')'
-    });
-    this.bottomFrame.transition().duration(this.app.settings.animation.showBottomFrame).attr({
-        transform: 'translate(' + this.app.settings.bottomFrame.left + ',' + this.app.settings.bottomFrame.startTop + ')'
-    })
-};
 
-Canvas.prototype.showGraph = function() {
-    var y = -this.app.settings.topFrame.positions[this.app.settings.topFrame.positions.length - 1];
-    this.topFrame.transition().duration(this.app.settings.animation.hideTopFrame).attr({
-        transform: 'translate(' + this.app.settings.topFrame.left + ',' + y + ')'
-    });
-    this.bottomFrame.transition().duration(this.app.settings.animation.showBottomFrame).attr({
-        transform: 'translate(' + this.app.settings.bottomFrame.left + ',' + this.app.settings.bottomFrame.endTop + ')'
-    })
-};
-
-Canvas.prototype.scrollPaths = function(frame) {
+Canvas.prototype.scrollWindow = function(frame, window) {
     var y,
-        pos = this.app.settings.topFrame.positions,
-        index = this.app.phase.index,
-        direction = this.app.phase.direction,
+        pos = this.app.settings[window].positions,
+        index = this.app.story.phase.index,
+        direction = this.app.story.phase.direction,
         part;
     if (direction !== 0) {
         var current,
             next;
-        if (this.app.phase.direction > 0) {
-            current = pos[index];
-            next = pos[index + 1];
-            part = (100 - direction) / 100;
-        } else {
+        if (this.app.story.phase.direction > 0) {
             current = pos[index];
             next = pos[index - 1];
+            part = (100 - direction) / 100;
+        } else {
+            console.log(direction);
+            current = pos[index];
+            next = pos[index + 1];
             part = (100 + direction) / 100;
         }
         y = current + (next - current) * part;
     } else {
         y = pos[index];
     }
-    this.topFrame.attr({
-        transform: 'translate(' + this.app.settings.topFrame.left + ',' + -y + ')'
+    this[window].attr({
+        transform: 'translate(' + this.app.settings[window].left + ',' + y + ')'
     });
 };
 
@@ -121,7 +102,7 @@ Canvas.prototype.getArtboard = function() {
 Canvas.prototype.getTopframe = function() {
     return this.artboard.append('g').attr({
         class: 'top-frame',
-        transform: 'translate(' + this.app.settings.topFrame.left + ',' + -this.app.settings.topFrame.positions[0]  + ')'
+        transform: 'translate(' + this.app.settings.topFrame.left + ',' + this.app.settings.topFrame.positions[0]  + ')'
     });
 };
 
@@ -219,7 +200,7 @@ Canvas.prototype.getBottomFrame = function() {
 
     graph = this.artboard.append('g').attr({
         class: 'bottom-frame',
-        transform: 'translate(' + settings.bottomFrame.left + ',' + settings.bottomFrame.startTop + ')'
+        transform: 'translate(' + settings.bottomFrame.left + ',' + settings.bottomFrame.positions[0] + ')'
     });
     this.createGraphHeader(graph, settings);
     this.createGraphBody(graph, settings);
