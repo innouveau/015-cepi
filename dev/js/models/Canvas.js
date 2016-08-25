@@ -59,19 +59,19 @@ Canvas.prototype.scrollWindow = function(frame, window) {
         pos = this.app.settings[window].positions,
         index = this.app.story.phase.index,
         direction = this.app.story.phase.direction,
-        part;
+        part,
+        buffer = this.app.story.buffer;
     if (direction !== 0) {
         var current,
             next;
         if (this.app.story.phase.direction > 0) {
             current = pos[index];
             next = pos[index - 1];
-            part = (100 - direction) / 100;
+            part = (buffer - direction) / buffer;
         } else {
-            console.log(direction);
             current = pos[index];
             next = pos[index + 1];
-            part = (100 + direction) / 100;
+            part = (buffer + direction) / buffer;
         }
         y = current + (next - current) * part;
     } else {
@@ -295,25 +295,9 @@ Canvas.prototype.createFilterValorisations = function() {
         }).text(set.name);
         counter+= 0.5;
         for (var j = 0, jl = set.children.length; j < jl; j++) {
-            var valorisation = set.children[j],
-                container = legenda.append('g').attr({
-                    class: 'legend-button',
-                    transform: 'translate(0,' + counter * this.app.settings.filterValorisations.setHeight + ')'
-                }),
-                rect = container.append('rect').attr({
-                    x: -10,
-                    y: -3,
-                    width: 200,
-                    height: this.app.settings.filterValorisations.setHeight
-                }),
-                text = container.append('text').attr({
-                    class: 'legend-button-text',
-                    fill: '#aaa',
-                    x: 0,
-                    y: 10
-                }).text(valorisation.name);
+            var valorisation = set.children[j];
             (function (valorisation) {
-                valorisation.button.legend = new LegendButton(self.app, valorisation, container, rect, text);
+                valorisation.button.legend = new LegendButton(self.app, valorisation);
 
             })(valorisation);
             counter++;

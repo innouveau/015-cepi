@@ -1,23 +1,27 @@
-function LegendButton(app, parent, container, rect, text) {
+function LegendButton(app, parent) {
     this.app = app;
     this.parent = parent;
-    this.element = {
-        container: container,
-        rect: rect,
-        text: text
-    };
+    this.element = this.getElement();
     this.addListeners();
 }
 
+
+LegendButton.prototype.getElement = function() {
+    var button = $('<div class="legend-button">' + this.parent.name + '</div>');
+    $('.legend').append(button);
+    return button;
+};
+
+
 LegendButton.prototype.addListeners = function() {
     var self = this;
-    this.element.container.on('click', function () {
+    this.element.on('click', function () {
         self.parent.openPopup();
     });
-    this.element.container.on('mouseover', function () {
+    this.element.on('mouseover', function () {
         self.hover();
     });
-    this.element.container.on('mouseout', function () {
+    this.element.on('mouseout', function () {
         self.hoverOut();
     });
 };
@@ -44,12 +48,10 @@ LegendButton.prototype.hoverOut = function() {
 };
 
 LegendButton.prototype.normal = function() {
-    $(this.element.rect[0]).css('fill', 'transparent');
-    $(this.element.text[0]).css('fill', '#aaa');
+    $(this.element).css('background', 'transparent');
 };
 
 LegendButton.prototype.highlight = function() {
-    $(this.element.rect[0]).css('fill', '#aaa');
-    $(this.element.text[0]).css('fill', '#000');
+    $(this.element).css('background', '#aaa');
 };
 

@@ -206,7 +206,7 @@ Valorisation.prototype.show = function() {
         opacity: 1
     }, self.app.settings.animation.valorisation, function() {});
     if (this.button.legend) {
-        $(this.button.legend.element.container[0]).animate({
+        $(this.button.legend.element).animate({
             opacity: 1
         }, self.app.settings.animation.valorisation, function () {
         });
@@ -219,7 +219,7 @@ Valorisation.prototype.hide = function() {
         opacity: 0
     }, self.app.settings.animation.valorisation, function() {});
     if (this.button.legend) {
-        $(this.button.legend.element.container[0]).animate({
+        $(this.button.legend.element).animate({
             opacity: 0
         }, self.app.settings.animation.valorisation, function () {
         });

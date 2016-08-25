@@ -2,7 +2,7 @@ function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
     this.topFrame = {
-        positions: [80, -200, -710],
+        positions: [80, -180, -710],
         left: 60
     };
     this.path = {
@@ -53,7 +53,7 @@ function Settings(app) {
         }
     };
     this.radar = {
-        r: 40, // to prevent a valorisation radar to overlap the graph (when value 1 or 10), this value should be > this.bottomFrame.height / 10
+        r: 30, // to prevent a valorisation radar to overlap the graph (when value 1 or 10), this value should be < this.bottomFrame.height / 10
         gap: 3,
         animation: 500
     }
