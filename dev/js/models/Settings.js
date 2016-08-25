@@ -2,7 +2,7 @@ function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
     this.topFrame = {
-        positions: [80, -180, -710],
+        positions: [80, -120, -710],
         left: 60
     };
     this.path = {
