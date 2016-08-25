@@ -225,7 +225,7 @@ Canvas.prototype.createGraphBody = function(graph, settings) {
 
 Canvas.prototype.buildFilters = function() {
     this.createFilterSidestreams();
-    this.createFilterValorisations();
+    this.createLegend();
     this.addSidestreamLabels();
 };
 
@@ -279,31 +279,17 @@ Canvas.prototype.createFilterSidestreams = function() {
     }
 };
 
-Canvas.prototype.createFilterValorisations = function() {
-    var legenda = this.bottomFrame.append('g').attr({
-        class: 'fitler filter-valorisations',
-        transform: 'translate(' + this.app.settings.filterValorisations.left + ',' + this.app.settings.filterValorisations.top + ')'
-    }),
-    counter = 0,
-    self = this;
+Canvas.prototype.createLegend = function() {
+    var self = this;
     for (var i = 0, l = this.app.sets.length; i < l; i++) {
         var set = this.app.sets[i];
-        legenda.append('text').attr({
-            class: 'legend-header',
-            x: 0,
-            y: (counter * this.app.settings.filterValorisations.setHeight)
-        }).text(set.name);
-        counter+= 0.5;
         for (var j = 0, jl = set.children.length; j < jl; j++) {
             var valorisation = set.children[j];
             (function (valorisation) {
                 valorisation.button.legend = new LegendButton(self.app, valorisation);
 
             })(valorisation);
-            counter++;
         }
-        // skip to make space for header
-        counter++;
     }
 };
 
