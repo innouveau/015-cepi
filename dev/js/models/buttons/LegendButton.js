@@ -6,10 +6,10 @@ function LegendButton(app, parent, container, rect, text) {
         rect: rect,
         text: text
     };
-    this.addEventListeners();
+    this.addListeners();
 }
 
-LegendButton.prototype.addEventListeners = function() {
+LegendButton.prototype.addListeners = function() {
     var self = this;
     this.element.container.on('click', function () {
         self.parent.openPopup();

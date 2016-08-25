@@ -303,7 +303,8 @@ Canvas.prototype.createFilterValorisations = function() {
         class: 'fitler filter-valorisations',
         transform: 'translate(' + this.app.settings.filterValorisations.left + ',' + this.app.settings.filterValorisations.top + ')'
     }),
-    counter = 0;
+    counter = 0,
+    self = this;
     for (var i = 0, l = this.app.sets.length; i < l; i++) {
         var set = this.app.sets[i];
         legenda.append('text').attr({
@@ -331,7 +332,7 @@ Canvas.prototype.createFilterValorisations = function() {
                     y: 10
                 }).text(valorisation.name);
             (function (valorisation) {
-                valorisation.button.legend = new LegendButton(this.app, valorisation, container, rect, text);
+                valorisation.button.legend = new LegendButton(self.app, valorisation, container, rect, text);
 
             })(valorisation);
             counter++;

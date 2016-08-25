@@ -23,7 +23,7 @@ function Settings(app) {
         lineHeight: 15
     };
     this.animation = {
-        valorisation: 1000,
+        valorisation: 750,
         popup: 200,
         showBottomFrame: 1000,
         hideTopFrame: 1000,
@@ -56,7 +56,7 @@ function Settings(app) {
         }
     };
     this.radar = {
-        r: 40,
+        r: 40, // to prevent a valorisation radar to overlap the graph (when value 1 or 10), this value should be > this.bottomFrame.height / 10
         gap: 3,
         animation: 500
     }

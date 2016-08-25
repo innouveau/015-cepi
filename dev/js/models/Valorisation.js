@@ -27,26 +27,34 @@ function Valorisation(app, valorisation) {
 Valorisation.prototype = Object.create(_FilterModel.prototype);
 
 Valorisation.prototype.getElement = function() {
-    var element = this.app.canvas.valorisationContainer.append('g').attr({
-            class: 'valorisation valorisation-' + this.id,
-            transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
-        }),
+    var mainElement,
+        subElement,
         p = 0.5 * this.app.settings.radar.r,
         liveSidestreams = this.getLiveSidestreams();
-    // hit area
-    element.append('circle').attr({
-        r: p,
-        cx: p,
-        cy: p,
-        fill: '#fff'
+    mainElement = this.app.canvas.valorisationContainer.append('g').attr({
+        class: 'valorisation valorisation-' + this.id,
+        transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
     });
+    subElement = mainElement.append('g').attr({
+        class: 'valorisation-sub-element'
+    })  ;
     for (var i = 0; i < 4; i++) {
         var r = p - i * 5,
-            circle = new Circle(this.app, this, element, r, p);
+            circle = new Circle(this.app, this, subElement, r, p);
         circle.updateSubCircles(liveSidestreams);
         this.circles.push(circle);
     }
-    return element;
+    // hit area
+    subElement.append('circle').attr({
+        r: p,
+        cx: 0,
+        cy: 0,
+        fill: 'transparent'
+    });
+    return {
+        main: mainElement,
+        sub: subElement
+    };
 };
 
 Valorisation.prototype.getCover = function() {
@@ -92,8 +100,8 @@ Valorisation.prototype.getLiveSidestreams = function() {
 
 Valorisation.prototype.getPosition = function() {
     return {
-        x: this.tlr * this.app.settings.bottomFrame.width / 10,
-        y: (10 - this.value) * this.app.settings.bottomFrame.height / 10
+        x: (this.value - 0.5) * this.app.settings.bottomFrame.width / 10,
+        y: (10.5 - this.tlr) * this.app.settings.bottomFrame.height / 10
     }
 };
 
@@ -129,13 +137,13 @@ Valorisation.prototype.closePopup = function() {
 
 Valorisation.prototype.addListeners = function() {
     var self = this;
-    this.element.on('click', function(){
+    this.element.main.on('click', function(){
         self.openPopup();
     });
-    this.element.on('mouseover', function(){
+    this.element.main.on('mouseover', function(){
         self.hover();
     });
-    this.element.on('mouseout', function(){
+    this.element.main.on('mouseout', function(){
         self.hoverOut();
     });
 };
@@ -162,20 +170,12 @@ Valorisation.prototype.hoverOut = function() {
 };
 
 
-Valorisation.prototype.show = function() {
-    $(this.element[0]).fadeIn(this.app.settings.animation.valorisation);
-};
-
-Valorisation.prototype.hide = function() {
-    $(this.element[0]).fadeOut(this.app.settings.animation.valorisation);
-};
-
 Valorisation.prototype.fade = function() {
-    $(this.element[0]).css('opacity', 0.2);
+    $(this.element.sub[0]).css('opacity', 0.2);
 };
 
 Valorisation.prototype.normal = function() {
-    $(this.element[0]).css('opacity', 1);
+    $(this.element.sub[0]).css('opacity', 1);
 };
 
 // helpers
@@ -201,9 +201,27 @@ Valorisation.prototype.hasSidestream = function(sidestreams) {
 
 
 Valorisation.prototype.show = function() {
-    $(this.element[0]).fadeIn(1000);
+    var self = this;
+    $(this.element.main[0]).animate({
+        opacity: 1
+    }, self.app.settings.animation.valorisation, function() {});
+    if (this.button.legend) {
+        $(this.button.legend.element.container[0]).animate({
+            opacity: 1
+        }, self.app.settings.animation.valorisation, function () {
+        });
+    }
 };
 
 Valorisation.prototype.hide = function() {
-    $(this.element[0]).fadeOut(1000);
+    var self = this;
+    $(this.element.main[0]).animate({
+        opacity: 0
+    }, self.app.settings.animation.valorisation, function() {});
+    if (this.button.legend) {
+        $(this.button.legend.element.container[0]).animate({
+            opacity: 0
+        }, self.app.settings.animation.valorisation, function () {
+        });
+    }
 };

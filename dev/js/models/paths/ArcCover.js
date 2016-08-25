@@ -10,7 +10,7 @@ ArcCover.prototype.getArc = function() {
 };
 
 ArcCover.prototype.build = function() {
-    return this.parent.element.append('path').datum({
+    return this.parent.element.sub.append('path').datum({
         endAngle: 0
     }).attr({
         'class': 'radar-cover',

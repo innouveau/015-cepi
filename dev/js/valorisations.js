@@ -11,8 +11,8 @@ var sets = [
                     trlDescription: 'Land spreading and use of sludge in landfill covers have been applied in practice for many years already but the regulatory framework has in many cases been shifting.',
                     link: '',
                     sidestreams: [0,1,3,4,5],
-                    tlr: 6,
-                    value: 8,
+                    tlr: 1,
+                    value: 1,
                     image: 'testimage.svg'
                 }, {
                     id: 1,
@@ -24,7 +24,7 @@ var sets = [
                     link: '',
                     sidestreams: [2,4],
                     tlr: 10,
-                    value: 1.5,
+                    value: 1,
                     image: 'testimage.svg'
                 }, {
                     id: 2,
@@ -35,8 +35,8 @@ var sets = [
                     trlDescription: 'Some options, such as the production of cement and bricks, have been commercially applied for a long time already.',
                     link: '',
                     sidestreams: [1,2,5],
-                    tlr: 10,
-                    value: 2.5,
+                    tlr: 1,
+                    value: 10,
                     image: 'testimage.svg'
                 }, {
                     id: 3,
