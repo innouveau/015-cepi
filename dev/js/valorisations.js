@@ -10,7 +10,7 @@ var sets = [
                     economic: 'Land management options, where legally allowed, do not appear to have a very attractive economic potential (gate fees, relatively low demand).',
                     trlDescription: 'Land spreading and use of sludge in landfill covers have been applied in practice for many years already but the regulatory framework has in many cases been shifting.',
                     link: '',
-                    sidestreams: [0,1,3],
+                    sidestreams: [0,1,3,4,5],
                     tlr: 6,
                     value: 8,
                     image: 'testimage.svg'

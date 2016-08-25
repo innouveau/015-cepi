@@ -28,11 +28,6 @@ function addPhaseListeners() {
             app.showGraph();
         }
     });
-
-
-
-
-
 }
 
 function initChapters() {

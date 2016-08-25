@@ -90,20 +90,9 @@ App.prototype.scroll = function(frame) {
 };
 
 App.prototype.filter = function() {
-    var actives = [];
-    for (var i = 0, l = this.sidestreams.length; i < l; i++) {
-        var sidestream = this.sidestreams[i];
-        if (sidestream.visible) {
-            actives.push(sidestream);
-        }
-    }
     for (var j = 0, jl = this.valorisations.length; j < jl; j++) {
         var valorisation = this.valorisations[j];
-        if (valorisation.hasSidestream(actives) && valorisation.visible) {
-            valorisation.show();
-        } else {
-            valorisation.hide();
-        }
+        valorisation.update();
     }
 };
 
