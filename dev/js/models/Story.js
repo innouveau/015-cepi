@@ -50,11 +50,14 @@ Story.prototype.getLockPosition = function() {
 
 Story.prototype.init = function() {
     var top = this.lockPosition,
+        minHeight = $(window).outerHeight() - this.lockPosition - parseInt(this.element.story.css('top')),
         self = this;
     $('.chapter').each(function() {
         $(this).css('top', top);
         top += self.offset;
     });
+    
+    $('.chapter:last-child').css('min-height', minHeight);
 };
 
 Story.prototype.setPhase = function(i) {

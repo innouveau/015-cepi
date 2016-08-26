@@ -14,7 +14,7 @@ function Cover(name, path) {
 Cover.prototype = Object.create(_NodeModel.prototype);
 
 Cover.prototype.build = function() {
-    this.container = this.app.canvas.cover.append('g').attr({
+    this.container = this.app.canvas.layers.top.cover.append('g').attr({
         class: this.name
     });
     this.path = new CoverSubpath(this.app, this);

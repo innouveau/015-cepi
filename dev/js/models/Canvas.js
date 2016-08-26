@@ -3,84 +3,44 @@ function Canvas(app) {
     this.name = name;
     this.element = this.create();
     this.artboard = this.getArtboard();
-    this.topFrame = this.getTopframe();
-    this.paths = this.getPathsLayer();
-    this.cover = this.getCoverLayer();
-    this.static = this.getStaticLayer();
-    this.raw = this.getRawLayer();
-    this.addLabels();
+    this.layers = {
+        top: {
+            container: null,
+            paths: null,
+            cover: null,
+            static: null,
+            raw: null
+        },
+        bottom: {
+            container: null,
+            header: null,
+            body: null,
+            valorisations: null
+        },
+        labels: null
+    };
+    this.init();
+
+
+
+
+
     this.sidestreamLabels = [];
-    this.bottomFrame = this.getBottomFrame();
+
 }
 
-Canvas.prototype.scroll = function(frame) {
-    this.scrollWindow(frame, 'topFrame');
-    this.scrollWindow(frame, 'bottomFrame');
-    this.hideElements(frame);
-};
-
-Canvas.prototype.hideElements = function(frame) {
-    // raw label
-    if (frame > 8) {
-        $(this.rawLabel[0]).fadeIn(this.app.settings.animation.labelFade);
-    } else {
-        $(this.rawLabel[0]).fadeOut(this.app.settings.animation.labelFade);
-    }
-
-    // profit label
-    if (frame > 680) {
-        $(this.profitLabel[0]).fadeIn(this.app.settings.animation.labelFade);
-        $('.roll').fadeIn(this.app.settings.animation.labelFade);
-    } else {
-        $(this.profitLabel[0]).fadeOut(this.app.settings.animation.labelFade);
-        $('.roll').fadeOut(this.app.settings.animation.labelFade);
-    }
-
-    // sidestream label
-    if (frame > 1000) {
-        $(this.sidestreamLabel[0]).fadeIn(this.app.settings.animation.labelFade);
-    } else {
-        $(this.sidestreamLabel[0]).fadeOut(this.app.settings.animation.labelFade);
-    }
-    // sidestream labels
-    var startFrame = 800;
-    for (var i = 0, l = this.sidestreamLabels.length; i < l; i++) {
-        if (frame > (startFrame + i * 10)) {
-            $(this.sidestreamLabels[i][0]).fadeIn(this.app.settings.animation.labelFade);
-        } else {
-            $(this.sidestreamLabels[i][0]).fadeOut(this.app.settings.animation.labelFade);
-        }
-    }
+Canvas.prototype.init = function() {
+    this.createTopframe();
+    this.createPathsLayer();
+    this.createCoverLayer();
+    this.createStaticLayer();
+    this.createRawLayer();
+    this.addLabels();
+    this.createBottomFrame();
 };
 
 
-Canvas.prototype.scrollWindow = function(frame, window) {
-    var y,
-        pos = this.app.settings[window].positions,
-        index = this.app.story.phase.index,
-        direction = this.app.story.phase.direction,
-        part,
-        buffer = this.app.story.buffer;
-    if (direction !== 0) {
-        var current,
-            next;
-        if (this.app.story.phase.direction > 0) {
-            current = pos[index];
-            next = pos[index - 1];
-            part = (buffer - direction) / buffer;
-        } else {
-            current = pos[index];
-            next = pos[index + 1];
-            part = (buffer + direction) / buffer;
-        }
-        y = current + (next - current) * part;
-    } else {
-        y = pos[index];
-    }
-    this[window].attr({
-        transform: 'translate(' + this.app.settings[window].left + ',' + y + ')'
-    });
-};
+
 
 
 // creation stuff
@@ -99,42 +59,42 @@ Canvas.prototype.getArtboard = function() {
     });
 };
 
-Canvas.prototype.getTopframe = function() {
-    return this.artboard.append('g').attr({
+Canvas.prototype.createTopframe = function() {
+    this.layers.top.container = this.artboard.append('g').attr({
         class: 'top-frame',
         transform: 'translate(' + this.app.settings.topFrame.left + ',' + this.app.settings.topFrame.positions[0]  + ')'
     });
 };
 
-Canvas.prototype.getPathsLayer = function () {
-    return this.topFrame.append('g').attr({
+Canvas.prototype.createPathsLayer = function () {
+    this.layers.top.paths = this.layers.top.container.append('g').attr({
         class: 'paths-container'
     });
 };
 
-Canvas.prototype.getCoverLayer = function () {
-    return this.topFrame.append('g').attr({
+Canvas.prototype.createCoverLayer = function () {
+    this.layers.top.cover = this.layers.top.container.append('g').attr({
         class: 'cover-paths-container'
     });
 };
 
-Canvas.prototype.getRawLayer = function () {
-    return this.topFrame.append('g').attr({
-        class: 'raw-container'
-    });
-};
 
-Canvas.prototype.getStaticLayer = function () {
-    return this.topFrame.append('g').attr({
+Canvas.prototype.createStaticLayer = function () {
+    this.layers.top.static = this.layers.top.container.append('g').attr({
         class: 'static-paths-container'
     });
 };
 
+Canvas.prototype.createRawLayer = function () {
+    this.layers.top.raw = this.layers.top.container.append('g').attr({
+        class: 'raw-container'
+    });
+};
+
 Canvas.prototype.addLabels = function() {
-    this.rawLabel = this._getLabel(this.topFrame, ['Raw Material:', 'Recycled Paper'], 130, 'right', this.app.settings.labels.raw.left, this.app.settings.labels.raw.top);
-    this.profitLabel = this._getLabel(this.topFrame, ['Paper product', '(profit)'], 110, 'top', this.app.settings.labels.profit.left, this.app.settings.labels.profit.top);
-    this.sidestreamLabel = this._getLabel(this.topFrame, ['Side streams', '(costs)'], 110, 'right', this.app.settings.labels.sidestream.left, this.app.settings.labels.sidestream.top);
-    $(this.rawLabel[0]).hide();
+    this.rawLabel = this._getLabel(this.layers.top.container, ['Raw Material:', 'Recycled Paper'], 130, 'right', this.app.settings.labels.raw.left, this.app.settings.labels.raw.top);
+    this.profitLabel = this._getLabel(this.layers.top.container, ['Paper product', '(profit)'], 110, 'top', this.app.settings.labels.profit.left, this.app.settings.labels.profit.top);
+    this.sidestreamLabel = this._getLabel(this.layers.top.container, ['Side streams', '(costs)'], 110, 'right', this.app.settings.labels.sidestream.left, this.app.settings.labels.sidestream.top);
     $(this.profitLabel[0]).hide();
     $(this.sidestreamLabel[0]).hide();
 };
@@ -193,34 +153,53 @@ Canvas.prototype._getLabel = function(parent, texts, width, position, x, y) {
 
 // graph / bottom
 
-Canvas.prototype.getBottomFrame = function() {
+Canvas.prototype.createBottomFrame = function() {
     var settings = this.app.settings,
-        header,
         graph;
-
-    graph = this.artboard.append('g').attr({
+    this.layers.bottom.container = this.artboard.append('g').attr({
         class: 'bottom-frame',
         transform: 'translate(' + settings.bottomFrame.left + ',' + settings.bottomFrame.positions[0] + ')'
     });
-    this.createGraphHeader(graph, settings);
-    this.createGraphBody(graph, settings);
-    this.createAxis(this.bottomFrameBody, settings, 'x', ['Reducing costs / little extra profit'], ['Making serious money']);
-    this.createAxis(this.bottomFrameBody, settings, 'y', ['Proven', 'Technology'], ['Technology', 'for pioneers']);
-    return graph;
+    this.createGraphHeader();
+    this.createGraphBody();
+    this.createAxis(this.layers.bottom.body, settings, 'x', ['Reducing costs / little extra profit'], ['Making serious money']);
+    this.createAxis(this.layers.bottom.body, settings, 'y', ['Proven', 'Technology'], ['Technology', 'for pioneers']);
 };
 
-Canvas.prototype.createGraphHeader = function(graph, settings) {
-    this.bottomFrameHeader = graph.append('g').attr({
+Canvas.prototype.createGraphHeader = function() {
+    this.layers.bottom.header = this.layers.bottom.container.append('g').attr({
         class: 'graph-header'
     });
+    this.layers.bottom.header.append('line').attr({
+        class: 'graph-top-bar',
+        x1: 0,
+        y1: 0,
+        x2: this.app.settings.bottomFrame.width,
+        y2: 0
+    });
+    this.layers.bottom.header.append('text').attr({
+        class: 'graph-header-text',
+        x: 0,
+        y: 100
+    }).text('Side stream valorization opportunities');
+    this.layers.bottom.header.append('text').attr({
+        class: 'graph-header-sub',
+        x: 0,
+        y: 132
+    }).text('The graph shows the potential of 16 side stream valorisation technologies, indicatively ordered by their ');
+    this.layers.bottom.header.append('text').attr({
+        class: 'graph-header-sub',
+        x: 0,
+        y: 148
+    }).text('economic potential and by their technology readyness level.');
 };
 
-Canvas.prototype.createGraphBody = function(graph, settings) {
-    this.bottomFrameBody = graph.append('g').attr({
+Canvas.prototype.createGraphBody = function() {
+    this.layers.bottom.body = this.layers.bottom.container.append('g').attr({
         class: 'graph-body',
-        transform: 'translate(0,' + settings.bottomFrame.marginTop + ')'
+        transform: 'translate(0,' + this.app.settings.bottomFrame.marginTop + ')'
     });
-    this.valorisationContainer = this.bottomFrameBody.append('g').attr('class', 'valorisation-container');
+    this.layers.bottom.valorisations =  this.layers.bottom.body.append('g').attr('class', 'valorisation-container');
 };
 
 Canvas.prototype.buildFilters = function() {
@@ -230,7 +209,7 @@ Canvas.prototype.buildFilters = function() {
 };
 
 Canvas.prototype.addSidestreamLabels = function() {
-    var container = this.topFrame.append('g').attr({
+    var container = this.layers.top.container.append('g').attr({
         class: 'sidestream-labels',
         transform: 'translate(20,' + this.app.settings.filterSidestreams.labelsTop + ')'
     });
@@ -253,24 +232,14 @@ Canvas.prototype.addSidestreamLabels = function() {
 };
 
 Canvas.prototype.createFilterSidestreams = function() {
-    var filter = this.bottomFrameHeader.append('g').attr({
+    var filter = this.layers.bottom.header.append('g').attr({
         class: 'filter filter-sidestreams',
         transform: 'translate(' + this.app.settings.filterSidestreams.left + ',' + this.app.settings.filterSidestreams.top + ')'
     });
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
             checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color, ''),
-            checkboxDisplay = this._getCheckboxDisplay(checkboxContainer),
-            lines = sidestream.name.split(' ');
-
-        for (var j = 0, jl = lines.length; j < jl; j++) {
-            checkboxContainer.append('text').attr({
-                class: 'sidestream-filter-label',
-                x: -2,
-                y: 34 + j * this.app.settings.typography.lineHeight
-            }).text(lines[j]);
-        }
-        sidestream.elements.display = checkboxDisplay;
+            checkboxDisplay = this._getCheckboxDisplay(checkboxContainer);
         (function(sidestream) {
             checkboxContainer.on('click', function () {
                 sidestream.toggle();
@@ -393,4 +362,64 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
 
 };
 
+Canvas.prototype.scroll = function(frame) {
+    this.scrollWindow(frame, 'top');
+    this.scrollWindow(frame, 'bottom');
+    this.hideElements(frame);
+};
 
+Canvas.prototype.hideElements = function(frame) {
+    // profit label
+    if (frame > 680) {
+        $(this.profitLabel[0]).fadeIn(this.app.settings.animation.labelFade);
+        $('.roll').fadeIn(this.app.settings.animation.labelFade);
+    } else {
+        $(this.profitLabel[0]).fadeOut(this.app.settings.animation.labelFade);
+        $('.roll').fadeOut(this.app.settings.animation.labelFade);
+    }
+
+    // sidestream label
+    if (frame > 1000) {
+        $(this.sidestreamLabel[0]).fadeIn(this.app.settings.animation.labelFade);
+    } else {
+        $(this.sidestreamLabel[0]).fadeOut(this.app.settings.animation.labelFade);
+    }
+    // sidestream labels
+    var startFrame = 800;
+    for (var i = 0, l = this.sidestreamLabels.length; i < l; i++) {
+        if (frame > (startFrame + i * 10)) {
+            $(this.sidestreamLabels[i][0]).fadeIn(this.app.settings.animation.labelFade);
+        } else {
+            $(this.sidestreamLabels[i][0]).fadeOut(this.app.settings.animation.labelFade);
+        }
+    }
+};
+
+
+Canvas.prototype.scrollWindow = function(frame, window) {
+    var y,
+        pos = this.app.settings[window + 'Frame'].positions,
+        index = this.app.story.phase.index,
+        direction = this.app.story.phase.direction,
+        part,
+        buffer = this.app.story.buffer;
+    if (direction !== 0) {
+        var current,
+            next;
+        if (this.app.story.phase.direction > 0) {
+            current = pos[index];
+            next = pos[index - 1];
+            part = (buffer - direction) / buffer;
+        } else {
+            current = pos[index];
+            next = pos[index + 1];
+            part = (buffer + direction) / buffer;
+        }
+        y = current + (next - current) * part;
+    } else {
+        y = pos[index];
+    }
+    this.layers[window].container.attr({
+        transform: 'translate(' + this.app.settings[window + 'Frame'].left + ',' + y + ')'
+    });
+};

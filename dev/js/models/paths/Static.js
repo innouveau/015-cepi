@@ -10,7 +10,7 @@ function Static(name, path) {
 }
 
 Static.prototype.build = function() {
-    this.container = this.app.canvas.static.append('g').attr({
+    this.container = this.app.canvas.layers.top.static.append('g').attr({
         class: this.name
     });
     this.container.append('path').attr({

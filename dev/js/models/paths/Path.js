@@ -25,13 +25,13 @@ function Path(path) {
 Path.prototype = Object.create(_NodeModel.prototype);
 
 Path.prototype.build = function() {
-    var cont;
+    var layer;
     if (this.name === 'raw') {
-        cont = 'raw';
+        layer = 'raw';
     } else {
-        cont = 'paths';
+        layer = 'paths';
     }
-    this.container = this.app.canvas[cont].append('g').attr({
+    this.container = this.app.canvas.layers.top[layer].append('g').attr({
         class: this.name
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {

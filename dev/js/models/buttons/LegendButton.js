@@ -8,7 +8,7 @@ function LegendButton(app, parent) {
 
 LegendButton.prototype.getElement = function() {
     var button = $('<div class="legend-button">' + this.parent.name + '</div>');
-    $('.legend').append(button);
+    this.parent.parent.element.append(button);
     return button;
 };
 

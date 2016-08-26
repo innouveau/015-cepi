@@ -1,6 +1,7 @@
-function Valorisation(app, valorisation) {
+function Valorisation(app, parent, valorisation) {
     this.id = valorisation.id;
     this.app = app;
+    this.parent = parent;
     this.name = valorisation.name;
     this.description = valorisation.description;
     this.economicDescription = valorisation.economic;
@@ -31,7 +32,7 @@ Valorisation.prototype.getElement = function() {
         subElement,
         p = 0.5 * this.app.settings.radar.r,
         liveSidestreams = this.getLiveSidestreams();
-    mainElement = this.app.canvas.valorisationContainer.append('g').attr({
+    mainElement = this.app.canvas.layers.bottom.valorisations.append('g').attr({
         class: 'valorisation valorisation-' + this.id,
         transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
     });

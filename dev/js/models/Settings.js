@@ -2,15 +2,15 @@ function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
     this.topFrame = {
-        positions: [80, -120, -710],
+        positions: [60, -200, -550],
         left: 60
     };
     this.path = {
         stroke: 2
     };
     this.bottomFrame = {
-        positions: [1200, 800, 60],
-        marginTop: 100,
+        positions: [2000, 2000, 180],
+        marginTop: 230,
         left: 60,
         width: 630,
         height: 320,
@@ -27,16 +27,10 @@ function Settings(app) {
         labelFade: 500
     };
     this.filterSidestreams = {
-        top: 0,
-        left: 0,
+        top: 20,
+        left: 24,
         setWidth: 100,
         labelsTop: 620 // the top position of the labels next to each sidestream
-    };
-    this.filterValorisations = {
-        top: 100,
-        left: 650,
-        setHeight: 20,
-        color: '#ddd'
     };
     this.labels = {
         raw : {
@@ -45,11 +39,11 @@ function Settings(app) {
         },
         profit : {
             left: 628,
-            top: 340
+            top: 240
         },
         sidestream : {
             left: 520,
-            top: 700
+            top: 520
         }
     };
     this.radar = {

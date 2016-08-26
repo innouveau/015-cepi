@@ -48,7 +48,7 @@ App.prototype.getValorisations = function() {
         this.sets.push(setModel);
         for (var j = 0, jl = set.valorisations.length; j < jl; j++) {
             var valorisation = set.valorisations[j],
-                valorisationModel = new Valorisation(this, valorisation);
+                valorisationModel = new Valorisation(this, setModel, valorisation);
             this.valorisations.push(valorisationModel);
             setModel.children.push(valorisationModel);
         }

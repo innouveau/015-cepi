@@ -5,20 +5,24 @@ function parseText() {
     for (var i = 0, l = paths.length; i < l; i++) {
         var pathString = cleanPath(paths[i]),
             properties = getProperties(pathString),
-            path = addProperties(properties);
+            path = addProperties(properties, i);
         textOut += path;
     }
     textOut = textOut.substr(0, textOut.length - 2);
     $('#text-out').val('var paths = [' + textOut + '];');
 }
 
-function addProperties(properties) {
+function addProperties(properties, counter) {
     var isPath = false,
         sidestreams = '[6,7,8]',
         dash = 22 - Math.round(Math.random() * 6),
         cover = 'false',
         type = 'regular',
+        name = 'path-' + counter,
         start = 0;
+    if (counter > 56 && counter < 74) {
+        name = 'raw';
+    }
     for (var i = 0, l = properties.length; i < l; i++) {
         var set = properties[i].split('=');
         if (set.length > 1) {
@@ -33,9 +37,9 @@ function addProperties(properties) {
             }
 
 
-
-
+            console.log(set[0]);
             if (set[0] === 'stroke') {
+                console.log(set[1]);
                 // detect cover
                 if (set[1] === '"#FF0055') {
                     cover = 'false';
@@ -47,6 +51,7 @@ function addProperties(properties) {
                     cover = 'true';
                 } else if (set[1] === '"#153D15') {
                     type = 'static';
+                    name = 'roll';
                     cover = false;
                 }
 
@@ -97,7 +102,7 @@ function addProperties(properties) {
     }
     if (isPath) {
         console.log(sidestreams);
-        return "{\n\tname: '', \n\ttype: '" + type + "',\n\tsidestreams: " + sidestreams + ", \n\tdash: " + dash + ", \n\tgap: 4, \n\tanimationStart: " + start + ", \n\tcover: " + cover + ", \n\tpoints: '" + value + "'\n}, ";
+        return "{\n\tname: '" + name +"', \n\ttype: '" + type + "',\n\tsidestreams: " + sidestreams + ", \n\tdash: " + dash + ", \n\tgap: 4, \n\tanimationStart: " + start + ", \n\tcover: " + cover + ", \n\tpoints: '" + value + "'\n}, ";
     }
     return '';
 }
