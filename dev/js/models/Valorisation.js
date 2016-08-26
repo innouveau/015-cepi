@@ -102,8 +102,8 @@ Valorisation.prototype.getLiveSidestreams = function() {
 
 Valorisation.prototype.getPosition = function() {
     return {
-        x: (this.value - 0.5) * this.app.settings.bottomFrame.width / 10,
-        y: (10.5 - this.tlr) * this.app.settings.bottomFrame.height / 10
+        x: (this.value - 0.5) * this.app.settings.layers.bottom.width / 10,
+        y: (10.5 - this.tlr) * this.app.settings.layers.bottom.height / 10
     }
 };
 

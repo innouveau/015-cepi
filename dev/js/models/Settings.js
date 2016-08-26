@@ -8,13 +8,24 @@ function Settings(app) {
     this.path = {
         stroke: 2
     };
-    this.bottomFrame = {
-        positions: [2000, 2000, 180],
-        marginTop: 230,
-        left: 60,
-        width: 630,
-        height: 320,
-        margin: 20
+    this.layers = {
+        top: {
+            positions: [60, -200, -550],
+            left: 60
+        },
+        bottom: {
+            positions: [2000, 2000, 180],
+            marginTop: 230,
+            left: 60,
+            width: 630,
+            height: 320,
+            margin: 20
+        },
+        labels: {
+            positions: [330, 330, 120],
+            left: 84,
+            offset: 100
+        }
     };
     this.typography = {
         lineHeight: 15
@@ -43,7 +54,7 @@ function Settings(app) {
         },
         sidestream : {
             left: 520,
-            top: 520
+            top: 470
         }
     };
     this.radar = {
