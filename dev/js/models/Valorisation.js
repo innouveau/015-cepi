@@ -110,13 +110,17 @@ Valorisation.prototype.getPosition = function() {
 // popup
 
 Valorisation.prototype.createPopup = function() {
-    var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2>' + this.description + '<img src="images/' + this.image + '"></div>'),
+    var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2></div>'),
+        description = $('<div class="valorisation-description"><b>Description</b><p>' + this.description + '</p></div>'),
+        image = $('<div class="valorisation-image"><img src="images/' + this.image + '"></div>'),
         economicDescription = $('<div class="economic-description"><b>Economic</b><p>' + this.economicDescription + '</p></div>'),
         trlDescription = $('<div class="trl-description"><b>TRL</b><p>' + this.trlDescription + '</p></div>'),
-        closeButton = $('<div class="close-button">Close</div>'),
+        closeButton = $('<div class="close-button">×</div>'),
         self = this;
-    div.append(economicDescription);
-    div.append(trlDescription);
+    description.append(economicDescription);
+    description.append(trlDescription);
+    div.append(description);
+    div.append(image);
     div.append(closeButton);
     closeButton.click(function(){
         self.closePopup();
@@ -126,11 +130,13 @@ Valorisation.prototype.createPopup = function() {
 };
 
 Valorisation.prototype.openPopup = function() {
+    $('.overlay').show();
     $('.valoriation-popup').hide();
     this.popup.fadeIn(this.app.settings.animation.popup);
 };
 
 Valorisation.prototype.closePopup = function() {
+    $('.overlay').hide();
     this.popup.fadeOut(this.app.settings.animation.popup);
 };
 

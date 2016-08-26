@@ -10,19 +10,19 @@ function Settings(app) {
     };
     this.layers = {
         top: {
-            positions: [60, -200, -550],
+            positions: [60, -200, -630],
             left: 60
         },
         bottom: {
-            positions: [2000, 2000, 180],
-            marginTop: 230,
+            positions: [2000, 2000, 100],
+            marginTop: 180,
             left: 60,
             width: 630,
             height: 320,
             margin: 20
         },
         labels: {
-            positions: [330, 330, 120],
+            positions: [330, 330, 40],
             left: 84,
             offset: 100
         }

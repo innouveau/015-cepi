@@ -1,3 +1,8 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     font-size: 11px;
     line-height: 13px;
@@ -5,6 +10,15 @@ body {
     background: #fff;
     padding: 0;
     margin: 0;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 
@@ -60,6 +74,17 @@ h1 {
     left: 0;
 }
 
+.overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(146,131,113,0.8);
+}
+
 
 
 /* elements */
@@ -76,7 +101,7 @@ h1 {
     text-decoration: none;
     display: block;
     color: #000;
-    z-index: 1000;
+    z-index: 100;
 }
 
 .scroll-trigger {
@@ -182,11 +207,10 @@ h1 {
 /* legend */
 
 .legend {
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .legend-header {
-    font-weight: 700
 }
 
 .legend-set {
@@ -195,9 +219,9 @@ h1 {
 
 .legend-button {
     cursor: pointer;
-    margin-left: -4px;
-    padding: 0 4px;
-    color: #ddd;
+    margin: -2px 0 -2px -4px;
+    padding: 2px 4px;
+    color: #B9B9B9;
 }
 
 .legend-button rect {
@@ -213,30 +237,46 @@ h1 {
 
 .valoriation-popup, .disclaimer {
     position: fixed;
-    left: 320px;
-    top: 50px;
-    max-height: calc(100% - 250px);
+    left: 120px;
+    top: 80px;
+    height: calc(100% - 160px);
     overflow: auto;
-    width: 500px;
-    padding: 20px 20px 120px 20px;
+    width: calc(100% - 240px);
+    padding: 40px;
     background: #fff;
     display: none;
-    border: 0.5px solid #333;
-    z-index: 100;
+    z-index: 10000;
 }
 
 h2 {
     font-weight: 400;
-    margin-bottom: 40px;
+    font-size: 20px;
+    line-height: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #000;
+    margin: 0;
+}
+
+.valorisation-description {
+    width: 260px;
+    padding-right: 60px;
+    float: left;
+    padding-top: 12px;
+}
+
+.valorisation-image {
+    width: calc(100% - 260px);
+    float: left;
 }
 
 .close-button {
     position:absolute;
-    right: 20px;
-    bottom: 20px;
-    padding: 4px 6px;
+    right: 12px;
+    top: 12px;
+    font-weight: 700;
+    padding: 8px;
     cursor: pointer;
-    border: 0.5px solid #333;
+    font-size: 20px;
 }
 
 .valoriation-popup h2 {

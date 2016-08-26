@@ -48,10 +48,16 @@ LegendButton.prototype.hoverOut = function() {
 };
 
 LegendButton.prototype.normal = function() {
-    $(this.element).css('background', 'transparent');
+    $(this.element).css({
+        background: 'transparent',
+        color: '#B9B9B9'
+    });
 };
 
 LegendButton.prototype.highlight = function() {
-    $(this.element).css('background', '#aaa');
+    $(this.element).css({
+        background: '#000',
+        color: '#fff'
+    });
 };
 

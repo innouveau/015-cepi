@@ -50,7 +50,7 @@ Story.prototype.getLockPosition = function() {
 
 Story.prototype.init = function() {
     var top = this.lockPosition,
-        minHeight = $(window).outerHeight() - this.lockPosition - parseInt(this.element.story.css('top')),
+        minHeight = $(window).outerHeight() - this.lockPosition - parseInt(this.element.story.css('top')) + 200, // todo look at this
         self = this;
     $('.chapter').each(function() {
         $(this).css('top', top);

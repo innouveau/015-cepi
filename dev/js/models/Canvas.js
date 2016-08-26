@@ -310,16 +310,15 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         arrow1,
         arrow2,
         xOffset = [],
-        yOffset = [],
-        textAnchor = 'start';
+        yOffset = [];
     if (direction === 'y') {
         positions = [0, 0, 0, settings.layers.bottom.height - settings.layers.bottom.margin];
         arrow1 = 'M' + (positions[0] - 5) + ',' + (positions[1] + 7) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 5) + ',' + (positions[1] + 7);
         arrow2 = 'M' + (positions[2] - 5) + ',' + (positions[3] - 7) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] + 5) + ',' + (positions[3] - 7);
-        xOffset = [-20, -20];
+        xOffset = [20, 20];
         yOffset = [6, -14];
     } else {
-        positions = [0, settings.layers.bottom.height, settings.layers.bottom.width, settings.layers.bottom.height];
+        positions = [settings.layers.bottom.margin, settings.layers.bottom.height + settings.layers.bottom.margin, settings.layers.bottom.width, settings.layers.bottom.height + settings.layers.bottom.margin];
         arrow1 = 'M' + (positions[0] + 7) + ',' + (positions[1] -5) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 7) + ',' + (positions[1] + 5);
         arrow2 = 'M' + (positions[2] - 7) + ',' + (positions[3] -5) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] - 7) + ',' + (positions[3] + 5);
         xOffset = [0, -120];
@@ -342,12 +341,8 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         class: 'arrowhead',
         fill: 'none'
     });
-    if (direction === 'y') {
-        textAnchor = 'end'
-    }
     for (var i = 0, l = label1.length; i < l; i++) {
         axis.append('text').attr({
-            'text-anchor': textAnchor,
             class: 'graph-label',
             x: positions[0] + xOffset[0],
             y: positions[1] + yOffset[0] + i * this.app.settings.typography.lineHeight
@@ -355,7 +350,6 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
     }
     for (var j = 0, jl = label2.length; j < jl; j++) {
         axis.append('text').attr({
-            'text-anchor': textAnchor,
             class: 'graph-label',
             x: positions[2] + xOffset[1],
             y: positions[3] + yOffset[1] + j * this.app.settings.typography.lineHeight

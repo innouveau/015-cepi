@@ -26,9 +26,11 @@ function addPhaseListeners() {
 }
 
 function openDisclaimer() {
+    $('.overlay').show();
     $('.disclaimer').fadeIn(100);
 }
 
 function closeDisclaimer() {
+    $('.overlay').hide();
     $('.disclaimer').fadeOut(100);
 }
