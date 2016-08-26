@@ -240,6 +240,7 @@ Canvas.prototype.createFilterSidestreams = function() {
         var sidestream = this.app.sidestreams[i],
             checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color, ''),
             checkboxDisplay = this._getCheckboxDisplay(checkboxContainer);
+        sidestream.elements.display = checkboxDisplay;
         (function(sidestream) {
             checkboxContainer.on('click', function () {
                 sidestream.toggle();
