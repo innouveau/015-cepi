@@ -27,6 +27,7 @@ function Canvas(app) {
         sidestream: null,
         sidestreams: []
     };
+    this.bars = [];
     this.init();
 }
 
@@ -37,6 +38,7 @@ Canvas.prototype.init = function() {
     this.createStaticLayer();
     this.createRawLayer();
     this.addLabels();
+    this.addBars();
     this.createBottomFrame();
 };
 
@@ -98,6 +100,23 @@ Canvas.prototype.addLabels = function() {
     this.labels.sidestream = this._getLabel(this.layers.top.container, ['Side streams', '(costs)'], 110, 'right', this.app.settings.labels.sidestream.left, this.app.settings.labels.sidestream.top);
     $(this.labels.profit[0]).hide();
     $(this.labels.sidestream[0]).hide();
+};
+
+Canvas.prototype.addBars = function() {
+    for (var i = 0; i < 6; i++) {
+        var container = this.layers.top.container.append('g').attr({
+            class: 'sidestream-bar',
+            transform: 'translate(' + (this.app.settings.layers.top.bar.left + (i * this.app.settings.filterSidestreams.setWidth)) + ',' + this.app.settings.layers.top.bar.top + ')'
+        });
+        container.append('line').attr({
+            x1: 0,
+            y1: 0,
+            x2: this.app.settings.layers.top.bar.width,
+            y2: 0
+        });
+        this.bars.push(container);
+        $(container[0]).hide();
+    }
 };
 
 
@@ -239,9 +258,8 @@ Canvas.prototype.createFilterSidestreams = function() {
     });
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
-            checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color, ''),
-            checkboxDisplay = this._getCheckboxDisplay(checkboxContainer);
-        sidestream.elements.display = checkboxDisplay;
+            checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color, '');
+        sidestream.elements.display = this._getCheckboxDisplay(checkboxContainer);
         (function(sidestream) {
             checkboxContainer.on('click', function () {
                 sidestream.toggle();
@@ -388,6 +406,15 @@ Canvas.prototype.hideElements = function(frame) {
             $(this.labels.sidestreams[i][0]).fadeIn(this.app.settings.animation.labelFade);
         } else {
             $(this.labels.sidestreams[i][0]).fadeOut(this.app.settings.animation.labelFade);
+        }
+    }
+    // sidestream bars
+    for (var j = 0, jl = this.bars.length; j < jl; j++) {
+        var sidestreamBar = this.app.settings.animation.sidestreamBars[j];
+        if (frame > sidestreamBar) {
+            $(this.bars[j][0]).show();
+        } else {
+            $(this.bars[j][0]).hide();
         }
     }
 };

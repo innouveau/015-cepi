@@ -11,7 +11,12 @@ function Settings(app) {
     this.layers = {
         top: {
             positions: [60, -200, -630],
-            left: 60
+            left: 60,
+            bar: {
+                left: 0,
+                top: 420,
+                width: 20
+            }
         },
         bottom: {
             positions: [2000, 2000, 100],
@@ -35,7 +40,8 @@ function Settings(app) {
         popup: 200,
         showBottomFrame: 1000,
         hideTopFrame: 1000,
-        labelFade: 500
+        labelFade: 500,
+        sidestreamBars: [100, 220, 340, 460, 580, 700]
     };
     this.filterSidestreams = {
         top: 20,
