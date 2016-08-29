@@ -1,16 +1,12 @@
 function Settings(app) {
     this.app = app;
     this.container =  this.measureContainer();
-    this.topFrame = {
-        positions: [60, -200, -550],
-        left: 60
-    };
     this.path = {
         stroke: 2
     };
     this.layers = {
         top: {
-            positions: [60, -200, -630],
+            positions: [300, -200, -630],
             left: 60,
             bar: {
                 left: 0,
@@ -19,7 +15,7 @@ function Settings(app) {
             }
         },
         bottom: {
-            positions: [2000, 2000, 100],
+            positions: [2000, 2000, 150],
             marginTop: 180,
             left: 60,
             width: 630,
