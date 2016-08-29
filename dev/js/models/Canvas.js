@@ -25,7 +25,8 @@ function Canvas(app) {
         raw: null,
         profit: null,
         sidestream: null,
-        sidestreams: []
+        sidestreams: [],
+        production: null
     };
     this.bars = [];
     this.init();
@@ -39,6 +40,7 @@ Canvas.prototype.init = function() {
     this.createRawLayer();
     this.addLabels();
     this.addBars();
+    this.addLightlabels();
     this.createBottomFrame();
 };
 
@@ -117,6 +119,19 @@ Canvas.prototype.addBars = function() {
         this.bars.push(container);
         $(container[0]).hide();
     }
+};
+
+Canvas.prototype.addLightlabels = function() {
+        var container = this.layers.top.container.append('g').attr({
+            class: 'lightlabel',
+            transform: 'translate(260,268)'
+        });
+        container.append('text').attr({
+            x: 0,
+            y: 0
+        }).text('Paper production process: schematic representation');
+        this.labels.production = container;
+        $(container[0]).hide();
 };
 
 
@@ -408,6 +423,12 @@ Canvas.prototype.hideElements = function(frame) {
             $(this.labels.sidestreams[i][0]).fadeOut(this.app.settings.animation.labelFade);
         }
     }
+    if (frame > 200) {
+        $(this.labels.production[0]).fadeIn(this.app.settings.animation.labelFade);
+    } else {
+        $(this.labels.production[0]).fadeOut(this.app.settings.animation.labelFade);
+    }
+
     // sidestream bars
     for (var j = 0, jl = this.bars.length; j < jl; j++) {
         var sidestreamBar = this.app.settings.animation.sidestreamBars[j];
