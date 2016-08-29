@@ -111,16 +111,18 @@ Valorisation.prototype.getPosition = function() {
 
 Valorisation.prototype.createPopup = function() {
     var div = $('<div class="valoriation-popup"><h2>' + this.name + '</h2></div>'),
-        description = $('<div class="valorisation-description"><b>Description</b><p>' + this.description + '</p></div>'),
+        container = $('<div class="valorisation-container"></div>'),
+        text = $('<div class="valorisation-text"><b>Description</b><p>' + this.description + '</p></div>'),
         image = $('<div class="valorisation-image"><img src="images/' + this.image + '"></div>'),
         economicDescription = $('<div class="economic-description"><b>Economic</b><p>' + this.economicDescription + '</p></div>'),
         trlDescription = $('<div class="trl-description"><b>TRL</b><p>' + this.trlDescription + '</p></div>'),
         closeButton = $('<div class="close-button">×</div>'),
         self = this;
-    description.append(economicDescription);
-    description.append(trlDescription);
-    div.append(description);
-    div.append(image);
+    text.append(economicDescription);
+    text.append(trlDescription);
+    container.append(text);
+    container.append(image);
+    div.append(container);
     div.append(closeButton);
     closeButton.click(function(){
         self.closePopup();
