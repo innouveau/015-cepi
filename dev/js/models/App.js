@@ -74,7 +74,7 @@ App.prototype.getOutstreams = function() {
 };
 
 App.prototype.loaded = function() {
-    $(this.container).addClass('loaded');
+    $('body').addClass('loaded');
 };
 
 App.prototype.scroll = function(frame) {
