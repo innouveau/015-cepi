@@ -253,8 +253,7 @@ Canvas.prototype.addSidestreamLabels = function() {
             lines = sidestream.name.split(' '),
             sideStreamLabel = this.layers.labels.container.append('g').attr({
                 class: 'label-container',
-                transform: 'translate(' + i * this.app.settings.layers.labels.offset + ',0)',
-                display: 'none'
+                transform: 'translate(' + i * this.app.settings.layers.labels.offset + ',0)'
             });
         for (var j = 0, jl = lines.length; j < jl; j++) {
             sideStreamLabel.append('text').attr({
@@ -270,7 +269,17 @@ Canvas.prototype.createFilterSidestreams = function() {
     var filter = this.layers.bottom.header.append('g').attr({
         class: 'filter filter-sidestreams',
         transform: 'translate(' + this.app.settings.filterSidestreams.left + ',' + this.app.settings.filterSidestreams.top + ')'
-    });
+    }),
+    label = filter.append('g').attr({
+        transform: 'translate(630, 10)'
+    }),
+    labelText = ['Filter by', 'sidestream'];
+    for (var j = 0; j < 2; j++) {
+        label.append('text').attr({
+            x: 0,
+            y: j * 12
+        }).text(labelText[j])
+    }
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
             checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color, '');
@@ -413,15 +422,6 @@ Canvas.prototype.hideElements = function(frame) {
         $(this.labels.sidestream[0]).fadeIn(this.app.settings.animation.labelFade);
     } else {
         $(this.labels.sidestream[0]).fadeOut(this.app.settings.animation.labelFade);
-    }
-    // sidestream labels
-    var startFrame = this.app.story.offset - 50;
-    for (var i = 0, l = this.labels.sidestreams.length; i < l; i++) {
-        if (frame > (startFrame + i * 10)) {
-            $(this.labels.sidestreams[i][0]).fadeIn(this.app.settings.animation.labelFade);
-        } else {
-            $(this.labels.sidestreams[i][0]).fadeOut(this.app.settings.animation.labelFade);
-        }
     }
     if (frame > 200) {
         $(this.labels.production[0]).fadeIn(this.app.settings.animation.labelFade);

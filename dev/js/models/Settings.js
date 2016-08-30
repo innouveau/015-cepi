@@ -6,7 +6,7 @@ function Settings(app) {
     };
     this.layers = {
         top: {
-            positions: [300, -200, -630],
+            positions: [180, -200, -640],
             left: 60,
             bar: {
                 left: 0,
@@ -15,7 +15,7 @@ function Settings(app) {
             }
         },
         bottom: {
-            positions: [2000, 2000, 150],
+            positions: [2000, 2000, 130],
             marginTop: 180,
             left: 60,
             width: 630,
@@ -23,7 +23,7 @@ function Settings(app) {
             margin: 20
         },
         labels: {
-            positions: [330, 330, 40],
+            positions: [2000, 330, 70],
             left: 84,
             offset: 100
         }

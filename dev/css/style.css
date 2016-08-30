@@ -68,48 +68,43 @@ body {
 .intro {
     position: fixed;
     left: 0;
-    top: 300px;
+    top: 180px;
 }
 
 #topbar {
     position: fixed;
     left: 0;
     top: 0;
-    padding: 30px;
+    padding: 30px 60px;
     width: 100%;
-    height: 210px;
+    height: 150px;
     background: #fff;
     z-index: 100;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.5);
+    box-shadow: 0 3px 3px rgba(0,0,0,0.2);
     transition: all 0.5s ease;
 }
 
 h1 {
-    font-size: 36px;
-    line-height: 36px;
+    font-size: 45px;
+    line-height: 45px;
     margin: 0;
     font-weight: 400;
     transition: all 0.5s ease;
 }
 
 .branding {
-    width: 240px;
-    margin-left: 30px;
+    width: 500px;
     transition: all 0.5s ease;
 }
 
 .active #topbar {
-    height: 70px;
-    padding: 10px;
-}
-
-.active .branding {
-    width: 80px;
+    height: 50px;
+    padding: 10px 60px;
 }
 
 .active #topbar h1 {
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 15px;
+    line-height: 15px;
 }
 
 
@@ -121,8 +116,6 @@ h1 {
     right: 10px;
     top: 10px;
     width: 200px;
-    background: #fff;
-    padding: 12px 0;
     text-decoration: none;
     display: block;
     color: #000;
@@ -320,6 +313,7 @@ h2 {
     top: 16px;
     width: 24px;
     height: 24px;
+    border: 1px solid transparent;
     border-radius: 12px;
     text-align: center;
     padding-top: 2px;
@@ -330,8 +324,7 @@ h2 {
 }
 
 .close-button:hover {
-    background: #000;
-    color: #fff;
+    border: 1px solid #000;
 }
 
 .valoriation-popup h2 {
