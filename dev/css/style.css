@@ -107,6 +107,10 @@ h1 {
     line-height: 15px;
 }
 
+.active .sender {
+    top: 10px
+}
+
 
 
 /* elements */
@@ -114,12 +118,13 @@ h1 {
 .sender {
     position: absolute;
     right: 10px;
-    top: 10px;
+    top: 40px;
     width: 200px;
     text-decoration: none;
     display: block;
     color: #000;
     z-index: 100;
+    transition: all 0.5s ease;
 }
 
 .continue-line {
@@ -151,13 +156,16 @@ h1 {
     cursor: pointer;
 }
 
+.roll {
+    display: none;
+}
 
 
 /* bouncer */
 
 .scroll-trigger {
     margin-top: 20px;
-    animation: bounce 1.5s infinite;
+    animation: bounce 2s infinite;
     transition: opacity 0.5s ease;
     position: relative;
     opacity: 1;
@@ -168,23 +176,14 @@ h1 {
 }
 
 @keyframes bounce {
-    0% {
-        top: 0;
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
     }
-    50% {
-        top: 10px;
+    40% {
+        transform: translateY(-12px);
     }
-    55% {
-        top: 14px;
-    }
-    65% {
-        top: 10px;
-    }
-    95% {
-        top: 0;
-    }
-    100% {
-        top: 0;
+    60% {
+        transform: translateY(-5px);
     }
 }
 
@@ -259,6 +258,10 @@ h1 {
     transition: all 0.5s ease;
 }
 
+.valorisation-sub-element {
+    transition: all 0.5s ease;
+}
+
 
 
 /* legend */
@@ -302,6 +305,11 @@ h1 {
     background: #fff;
     display: none;
     z-index: 10000;
+}
+
+.disclaimer {
+    max-width: 400px;
+    height: auto;
 }
 
 h2 {
