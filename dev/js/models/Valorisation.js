@@ -70,22 +70,22 @@ Valorisation.prototype.update = function() {
         this.hide();
     } else {
         this.show();
-        if (liveSidestreams.length !== this.liveSidestreams.length) {
-            // 1. close
-            this.cover.close();
-            // 2. change radar
-            setTimeout(function () {
-                for (var i = 0, l = self.circles.length; i < 4; i++) {
-                    self.circles[i].updateSubCircles(liveSidestreams);
-                }
-            }, this.app.settings.radar.animation);
-            // 3. open
-            setTimeout(function () {
-                self.cover.open();
-            }, (this.app.settings.radar.animation * 1.2));
-            // 4. update state
-            this.liveSidestreams = liveSidestreams;
-        }
+    }
+    if (liveSidestreams.length !== this.liveSidestreams.length) {
+        // 1. close
+        this.cover.close();
+        // 2. change radar
+        setTimeout(function () {
+            for (var i = 0, l = self.circles.length; i < 4; i++) {
+                self.circles[i].updateSubCircles(liveSidestreams);
+            }
+        }, this.app.settings.radar.animation);
+        // 3. open
+        setTimeout(function () {
+            self.cover.open();
+        }, (this.app.settings.radar.animation * 1.2));
+        // 4. update state
+        this.liveSidestreams = liveSidestreams;
     }
 };
 
