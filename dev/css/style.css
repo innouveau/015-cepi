@@ -122,14 +122,6 @@ h1 {
     z-index: 100;
 }
 
-.scroll-trigger {
-    margin-top: 20px;
-}
-
-.roll {
-    display: none;
-}
-
 .continue-line {
     padding-bottom: 10px;
     border-bottom: 1px solid #000;
@@ -158,6 +150,44 @@ h1 {
     display: inline-block;
     cursor: pointer;
 }
+
+
+
+/* bouncer */
+
+.scroll-trigger {
+    margin-top: 20px;
+    animation: bounce 1.5s infinite;
+    transition: opacity 0.5s ease;
+    position: relative;
+    opacity: 1;
+}
+
+.active .scroll-trigger {
+    opacity: 0;
+}
+
+@keyframes bounce {
+    0% {
+        top: 0;
+    }
+    50% {
+        top: 10px;
+    }
+    55% {
+        top: 14px;
+    }
+    65% {
+        top: 10px;
+    }
+    95% {
+        top: 0;
+    }
+    100% {
+        top: 0;
+    }
+}
+
 
 
 
