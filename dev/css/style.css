@@ -51,6 +51,11 @@ body {
     left: 0;
 }
 
+.fixed-chapter {
+    left: 60px;
+    width: 200px;
+}
+
 #infographic {
     width: calc(100% - 200px);
     height: 100%;

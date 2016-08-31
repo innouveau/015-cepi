@@ -6,12 +6,17 @@ function Story(app) {
     };
     this.element = {
         story: $('#story'),
-        intro: $('.intro')
+        intro: $('.intro'),
+        firstChapter: {
+            element: null,
+            top: 0
+        }
     };
     this.offset = 1000;
     this.buffer = 20;
     this.margin = 15;
     this.chapters = 3;
+    this.wait = 300;
     this.lockPosition = this.getLockPosition();
     this.init();
 }
@@ -34,6 +39,13 @@ Story.prototype.scroll = function(frame) {
     }
     this.phase.index = phaseCurrent;
 
+    // first chapter
+    var firstTop = this.element.firstChapter.top + this.wait - frame;
+    if (firstTop > this.element.firstChapter.top) {
+        firstTop = this.element.firstChapter.top;
+    }
+    this.element.firstChapter.element.css('top', firstTop);
+
 
     // outer zones
     if (this.phase.index === 0 && this.phase.direction > 0) {
@@ -52,11 +64,23 @@ Story.prototype.init = function() {
     var top = this.lockPosition,
         minHeight = $(window).outerHeight() - this.lockPosition - parseInt(this.element.story.css('top')) + 200, // todo look at this
         self = this;
-    $('.chapter').each(function() {
-        $(this).css('top', top);
+    $('.chapter').each(function(index) {
+        if (index === 0) {
+            var firstTop = top + parseInt(self.element.story.css('top'));
+            self.element.firstChapter.element = $(this);
+            self.element.firstChapter.top = firstTop;
+            $(this).css({
+                top: firstTop,
+                position: 'fixed'
+            });
+            $(this).addClass('fixed-chapter');
+        } else {
+            $(this).css('top', top);
+        }
         top += self.offset;
     });
-    
+
+
     $('.chapter:last-child').css('min-height', minHeight);
 };
 
