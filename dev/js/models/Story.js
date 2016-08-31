@@ -9,7 +9,7 @@ function Story(app) {
         intro: $('.intro')
     };
     this.offset = 1000;
-    this.buffer = 200;
+    this.buffer = 20;
     this.margin = 15;
     this.chapters = 3;
     this.lockPosition = this.getLockPosition();

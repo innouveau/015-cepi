@@ -97,7 +97,7 @@ Canvas.prototype.createRawLayer = function () {
 };
 
 Canvas.prototype.addLabels = function() {
-    this.labels.raw = this._getLabel(this.layers.top.container, ['Raw Material:', 'Recycled Paper'], 130, 'right', this.app.settings.labels.raw.left, this.app.settings.labels.raw.top);
+    this.labels.raw = this._getLabel(this.layers.top.container, ['Raw Material:', 'Paper for Recycling'], 130, 'right', this.app.settings.labels.raw.left, this.app.settings.labels.raw.top);
     this.labels.profit = this._getLabel(this.layers.top.container, ['Paper product', '(profit)'], 110, 'top', this.app.settings.labels.profit.left, this.app.settings.labels.profit.top);
     this.labels.sidestream = this._getLabel(this.layers.top.container, ['Side streams', '(costs)'], 110, 'right', this.app.settings.labels.sidestream.left, this.app.settings.labels.sidestream.top);
     $(this.labels.profit[0]).hide();
@@ -197,7 +197,7 @@ Canvas.prototype.createBottomFrame = function() {
     });
     this.createGraphHeader();
     this.createGraphBody();
-    this.createAxis(this.layers.bottom.body, settings, 'x', ['Reducing costs / little extra profit'], ['Making serious money']);
+    this.createAxis(this.layers.bottom.body, settings, 'x', ['Reducing costs'], ['Generating additional income']);
     this.createAxis(this.layers.bottom.body, settings, 'y', ['Proven', 'Technology'], ['Technology', 'for pioneers']);
 };
 
