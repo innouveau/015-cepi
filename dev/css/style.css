@@ -172,8 +172,8 @@ h1 {
 /* bouncer */
 
 .scroll-trigger {
-    margin-top: 20px;
-    animation: bounce 2s infinite;
+    margin-top: 60px;
+    animation: bounce 3s infinite;
     transition: opacity 0.5s ease;
     position: relative;
     opacity: 1;
@@ -362,7 +362,7 @@ h2 {
     border: 1px solid transparent;
     border-radius: 12px;
     text-align: center;
-    padding-top: 2px;
+    padding-top: 2px;gra
     font-weight: 700;
     cursor: pointer;
     font-size: 20px;
