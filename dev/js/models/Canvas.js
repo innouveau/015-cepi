@@ -453,7 +453,7 @@ Canvas.prototype.scrollWindow = function(frame, window) {
         index = this.app.story.phase.index,
         direction = this.app.story.phase.direction,
         part,
-        buffer = this.app.story.buffer;
+        buffer = this.app.settings.story.buffer;
     if (direction !== 0) {
         var current,
             next;

@@ -63,7 +63,14 @@ function Settings(app) {
         r: 30, // to prevent a valorisation radar to overlap the graph (when value 1 or 10), this value should be < this.bottomFrame.height / 10
         gap: 3,
         animation: 500
-    }
+    };
+    this.story = {
+        offset: 1000,
+        buffer: 20,
+        margin: 15,
+        chapters: 3,
+        wait: 300
+    };
 }
 
 

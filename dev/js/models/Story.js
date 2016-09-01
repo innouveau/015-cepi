@@ -12,25 +12,20 @@ function Story(app) {
             top: 0
         }
     };
-    this.offset = 1000;
-    this.buffer = 20;
-    this.margin = 15;
-    this.chapters = 3;
-    this.wait = 300;
     this.lockPosition = this.getLockPosition();
     this.init();
 }
 
 
 Story.prototype.scroll = function(frame) {
-    var rest = frame % this.offset,
-        phaseInZone = Math.round(frame / this.offset),
-        phaseCurrent = Math.floor(frame / this.offset);
+    var rest = frame % this.app.settings.story.offset,
+        phaseInZone = Math.round(frame / this.app.settings.story.offset),
+        phaseCurrent = Math.floor(frame / this.app.settings.story.offset);
     if (rest !== 0 && phaseInZone !== phaseCurrent) {
-        if (rest < this.buffer) {
+        if (rest < this.app.settings.story.buffer) {
             this.phase.direction = rest;
-        } else if (rest > (this.offset - this.buffer)) {
-            this.phase.direction = rest - this.offset;
+        } else if (rest > (this.app.settings.story.offset - this.app.settings.story.buffer)) {
+            this.phase.direction = rest - this.app.settings.story.offset;
         } else {
             this.phase.direction = 0;
         }
@@ -40,7 +35,7 @@ Story.prototype.scroll = function(frame) {
     this.phase.index = phaseCurrent;
 
     // first chapter
-    var firstTop = this.element.firstChapter.top + this.wait - frame;
+    var firstTop = this.element.firstChapter.top + this.app.settings.story.wait - frame;
     if (firstTop > this.element.firstChapter.top) {
         firstTop = this.element.firstChapter.top;
     }
@@ -51,13 +46,13 @@ Story.prototype.scroll = function(frame) {
     if (this.phase.index === 0 && this.phase.direction > 0) {
         this.phase.direction = 0;
     }
-    if (this.phase.index === (this.chapters - 1) && this.phase.direction < 0) {
+    if (this.phase.index === (this.app.settings.story.chapters - 1) && this.phase.direction < 0) {
         this.phase.direction = 0;
     }
 };
 
 Story.prototype.getLockPosition = function() {
-    return parseInt(this.element.intro.css('top')) + this.element.intro.outerHeight() + this.margin - parseInt(this.element.story.css('top'));
+    return parseInt(this.element.intro.css('top')) + this.element.intro.outerHeight() + this.app.settings.story.margin - parseInt(this.element.story.css('top'));
 };
 
 Story.prototype.init = function() {
@@ -77,7 +72,7 @@ Story.prototype.init = function() {
         } else {
             $(this).css('top', top);
         }
-        top += self.offset;
+        top += self.app.settings.story.offset;
     });
 
 
