@@ -30,7 +30,7 @@ Valorisation.prototype = Object.create(_FilterModel.prototype);
 Valorisation.prototype.getElement = function() {
     var mainElement,
         subElement,
-        p = 0.5 * this.app.settings.radar.r,
+        p = 0.5 * this.app.settings.properties.radar.r,
         liveSidestreams = this.getLiveSidestreams();
     mainElement = this.app.canvas.layers.bottom.valorisations.append('g').attr({
         class: 'valorisation valorisation-' + this.id,
@@ -79,11 +79,11 @@ Valorisation.prototype.update = function() {
             for (var i = 0, l = self.circles.length; i < 4; i++) {
                 self.circles[i].updateSubCircles(liveSidestreams);
             }
-        }, this.app.settings.radar.animation);
+        }, this.app.settings.animation.radar);
         // 3. open
         setTimeout(function () {
             self.cover.open();
-        }, (this.app.settings.radar.animation * 1.2));
+        }, (this.app.settings.animation.radar * 1.2));
         // 4. update state
         this.liveSidestreams = liveSidestreams;
     }
@@ -102,8 +102,8 @@ Valorisation.prototype.getLiveSidestreams = function() {
 
 Valorisation.prototype.getPosition = function() {
     return {
-        x: (this.value - 0.5 + 2) * this.app.settings.layers.bottom.width / 12,
-        y: (10.5 - this.tlr) * this.app.settings.layers.bottom.height / 10
+        x: (this.value - 0.5 + 2) * this.app.settings.sizes.layers.bottom.width / 12,
+        y: (10.5 - this.tlr) * this.app.settings.sizes.layers.bottom.height / 10
     }
 };
 

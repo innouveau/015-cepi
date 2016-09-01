@@ -14,7 +14,7 @@ CoverSubpath.prototype.create = function() {
         'd': this.parent.points,
         'stroke': '#fff',
         'fill': 'none',
-        'stroke-width': this.app.settings.path.stroke + 1
+        'stroke-width': this.app.settings.properties.path.stroke + 1
     });
 };
 

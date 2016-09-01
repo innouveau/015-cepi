@@ -6,7 +6,7 @@ function ArcCover(app, parent) {
 }
 
 ArcCover.prototype.getArc = function() {
-    return d3.svg.arc().innerRadius(0).outerRadius(this.app.settings.radar.r / 1.7).startAngle(0);
+    return d3.svg.arc().innerRadius(0).outerRadius(this.app.settings.properties.radar.r / 1.7).startAngle(0);
 };
 
 ArcCover.prototype.build = function() {
@@ -20,12 +20,12 @@ ArcCover.prototype.build = function() {
 };
 
 ArcCover.prototype.close = function() {
-    this.element.transition().duration(this.app.settings.radar.animation).attrTween('d', this.arcTween(2 * Math.PI));
+    this.element.transition().duration(this.app.settings.animation.radar).attrTween('d', this.arcTween(2 * Math.PI));
 };
 
 ArcCover.prototype.open = function() {
     var element = this.element;
-    element.transition().duration(this.app.settings.radar.animation).attrTween('d', this.arcTween(0));
+    element.transition().duration(this.app.settings.animation.radar).attrTween('d', this.arcTween(0));
 };
 
 // https://bl.ocks.org/mbostock/5100636

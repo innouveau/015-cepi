@@ -16,7 +16,7 @@ Subpath.prototype.create = function() {
             'd': this.parent.points,
             'stroke': this.sidestream.color,
             'fill': 'none',
-            'stroke-width': this.app.settings.path.stroke
+            'stroke-width': this.app.settings.properties.path.stroke
         });
 };
 

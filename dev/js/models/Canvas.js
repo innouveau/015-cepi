@@ -67,7 +67,7 @@ Canvas.prototype.getArtboard = function() {
 Canvas.prototype.createTopframe = function() {
     this.layers.top.container = this.artboard.append('g').attr({
         class: 'top-frame',
-        transform: 'translate(' + this.app.settings.layers.top.left + ',' + this.app.settings.layers.top.positions[0]  + ')'
+        transform: 'translate(' + this.app.settings.sizes.layers.top.left + ',' + this.app.settings.sizes.layers.top.positions[0]  + ')'
     });
 };
 
@@ -97,9 +97,9 @@ Canvas.prototype.createRawLayer = function () {
 };
 
 Canvas.prototype.addLabels = function() {
-    this.labels.raw = this._getLabel(this.layers.top.container, ['Raw Material:', 'Paper for Recycling'], 130, 'right', this.app.settings.labels.raw.left, this.app.settings.labels.raw.top);
-    this.labels.profit = this._getLabel(this.layers.top.container, ['Paper product', '(profit)'], 110, 'top', this.app.settings.labels.profit.left, this.app.settings.labels.profit.top);
-    this.labels.sidestream = this._getLabel(this.layers.top.container, ['Side streams', '(costs)'], 110, 'right', this.app.settings.labels.sidestream.left, this.app.settings.labels.sidestream.top);
+    this.labels.raw = this._getLabel(this.layers.top.container, ['Raw Material:', 'Paper for Recycling'], 130, 'right', this.app.settings.sizes.labels.raw.left, this.app.settings.sizes.labels.raw.top);
+    this.labels.profit = this._getLabel(this.layers.top.container, ['Paper product', '(profit)'], 110, 'top', this.app.settings.sizes.labels.profit.left, this.app.settings.sizes.labels.profit.top);
+    this.labels.sidestream = this._getLabel(this.layers.top.container, ['Side streams', '(costs)'], 110, 'right', this.app.settings.sizes.labels.sidestream.left, this.app.settings.sizes.labels.sidestream.top);
     $(this.labels.profit[0]).hide();
     $(this.labels.sidestream[0]).hide();
 };
@@ -108,12 +108,12 @@ Canvas.prototype.addBars = function() {
     for (var i = 0; i < 6; i++) {
         var container = this.layers.top.container.append('g').attr({
             class: 'sidestream-bar',
-            transform: 'translate(' + (this.app.settings.layers.top.bar.left + (i * this.app.settings.filterSidestreams.setWidth)) + ',' + this.app.settings.layers.top.bar.top + ')'
+            transform: 'translate(' + (this.app.settings.sizes.layers.top.bar.left + (i * this.app.settings.sizes.filterSidestreams.setWidth)) + ',' + this.app.settings.sizes.layers.top.bar.top + ')'
         });
         container.append('line').attr({
             x1: 0,
             y1: 0,
-            x2: this.app.settings.layers.top.bar.width,
+            x2: this.app.settings.sizes.layers.top.bar.width,
             y2: 0
         });
         this.bars.push(container);
@@ -193,7 +193,7 @@ Canvas.prototype.createBottomFrame = function() {
         graph;
     this.layers.bottom.container = this.artboard.append('g').attr({
         class: 'bottom-frame',
-        transform: 'translate(' + settings.layers.bottom.left + ',' + settings.layers.bottom.positions[0] + ')'
+        transform: 'translate(' + settings.sizes.layers.bottom.left + ',' + settings.sizes.layers.bottom.positions[0] + ')'
     });
     this.createGraphHeader();
     this.createGraphBody();
@@ -209,7 +209,7 @@ Canvas.prototype.createGraphHeader = function() {
         class: 'graph-top-bar',
         x1: 0,
         y1: 0,
-        x2: this.app.settings.layers.bottom.width,
+        x2: this.app.settings.sizes.layers.bottom.width,
         y2: 0
     });
     this.layers.bottom.header.append('text').attr({
@@ -232,7 +232,7 @@ Canvas.prototype.createGraphHeader = function() {
 Canvas.prototype.createGraphBody = function() {
     this.layers.bottom.body = this.layers.bottom.container.append('g').attr({
         class: 'graph-body',
-        transform: 'translate(0,' + this.app.settings.layers.bottom.marginTop + ')'
+        transform: 'translate(0,' + this.app.settings.sizes.layers.bottom.marginTop + ')'
     });
     this.layers.bottom.valorisations =  this.layers.bottom.body.append('g').attr('class', 'valorisation-container');
 };
@@ -246,14 +246,14 @@ Canvas.prototype.buildFilters = function() {
 Canvas.prototype.addSidestreamLabels = function() {
     this.layers.labels.container = this.artboard.append('g').attr({
         class: 'sidestream-labels',
-        transform: 'translate(' + this.app.settings.layers.labels.left + ',' + this.app.settings.layers.labels.positions[0] + ')'
+        transform: 'translate(' + this.app.settings.sizes.layers.labels.left + ',' + this.app.settings.sizes.layers.labels.positions[0] + ')'
     });
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
             lines = sidestream.name.split(' '),
             sideStreamLabel = this.layers.labels.container.append('g').attr({
                 class: 'label-container',
-                transform: 'translate(' + i * this.app.settings.layers.labels.offset + ',0)'
+                transform: 'translate(' + i * this.app.settings.sizes.layers.labels.offset + ',0)'
             });
         for (var j = 0, jl = lines.length; j < jl; j++) {
             sideStreamLabel.append('text').attr({
@@ -268,7 +268,7 @@ Canvas.prototype.addSidestreamLabels = function() {
 Canvas.prototype.createFilterSidestreams = function() {
     var filter = this.layers.bottom.header.append('g').attr({
         class: 'filter filter-sidestreams',
-        transform: 'translate(' + this.app.settings.filterSidestreams.left + ',' + this.app.settings.filterSidestreams.top + ')'
+        transform: 'translate(' + this.app.settings.sizes.filterSidestreams.left + ',' + this.app.settings.sizes.filterSidestreams.top + ')'
     }),
     label = filter.append('g').attr({
         transform: 'translate(630, 10)'
@@ -282,7 +282,7 @@ Canvas.prototype.createFilterSidestreams = function() {
     }
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
-            checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.filterSidestreams.setWidth, 0, sidestream.color, '');
+            checkboxContainer = this._getCheckboxContainer(filter, i * this.app.settings.sizes.filterSidestreams.setWidth, 0, sidestream.color, '');
         sidestream.elements.display = this._getCheckboxDisplay(checkboxContainer);
         (function(sidestream) {
             checkboxContainer.on('click', function () {
@@ -354,13 +354,13 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         xOffset = [],
         yOffset = [];
     if (direction === 'y') {
-        positions = [0, 0, 0, settings.layers.bottom.height - settings.layers.bottom.margin];
+        positions = [0, 0, 0, settings.sizes.layers.bottom.height - settings.sizes.layers.bottom.margin];
         arrow1 = 'M' + (positions[0] - 5) + ',' + (positions[1] + 7) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 5) + ',' + (positions[1] + 7);
         arrow2 = 'M' + (positions[2] - 5) + ',' + (positions[3] - 7) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] + 5) + ',' + (positions[3] - 7);
         xOffset = [20, 20];
         yOffset = [6, -14];
     } else {
-        positions = [settings.layers.bottom.margin, settings.layers.bottom.height + settings.layers.bottom.margin, settings.layers.bottom.width, settings.layers.bottom.height + settings.layers.bottom.margin];
+        positions = [settings.sizes.layers.bottom.margin, settings.sizes.layers.bottom.height + settings.sizes.layers.bottom.margin, settings.sizes.layers.bottom.width, settings.sizes.layers.bottom.height + settings.sizes.layers.bottom.margin];
         arrow1 = 'M' + (positions[0] + 7) + ',' + (positions[1] -5) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 7) + ',' + (positions[1] + 5);
         arrow2 = 'M' + (positions[2] - 7) + ',' + (positions[3] -5) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] - 7) + ',' + (positions[3] + 5);
         xOffset = [0, -120];
@@ -431,7 +431,7 @@ Canvas.prototype.hideElements = function(frame) {
 
     // sidestream bars
     for (var j = 0, jl = this.bars.length; j < jl; j++) {
-        var sidestreamBar = this.app.settings.animation.sidestreamBars[j];
+        var sidestreamBar = this.app.settings.timing.sidestreamBars[j];
         if (frame > sidestreamBar) {
             $(this.bars[j][0]).show();
         } else {
@@ -449,11 +449,11 @@ Canvas.prototype.hideElements = function(frame) {
 
 Canvas.prototype.scrollWindow = function(frame, window) {
     var y,
-        pos = this.app.settings.layers[window].positions,
+        pos = this.app.settings.sizes.layers[window].positions,
         index = this.app.story.phase.index,
         direction = this.app.story.phase.direction,
         part,
-        buffer = this.app.settings.story.buffer;
+        buffer = this.app.settings.sizes.story.buffer;
     if (direction !== 0) {
         var current,
             next;
@@ -471,6 +471,6 @@ Canvas.prototype.scrollWindow = function(frame, window) {
         y = pos[index];
     }
     this.layers[window].container.attr({
-        transform: 'translate(' + this.app.settings.layers[window].left + ',' + y + ')'
+        transform: 'translate(' + this.app.settings.sizes.layers[window].left + ',' + y + ')'
     });
 };

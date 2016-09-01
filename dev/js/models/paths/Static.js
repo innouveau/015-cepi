@@ -18,6 +18,6 @@ Static.prototype.build = function() {
         'd': this.points,
         'stroke': '#D6D6D6',
         'fill': 'none',
-        'stroke-width': this.app.settings.path.stroke 
+        'stroke-width': this.app.settings.properties.path.stroke 
     });
 };
