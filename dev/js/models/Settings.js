@@ -1,6 +1,8 @@
 function Settings(app) {
     this.app = app;
-    this.container =  this.measureContainer();
+
+    this.device = '';
+    this.container = {};
 
     this.properties = {
         path: {
@@ -35,64 +37,160 @@ function Settings(app) {
         }
     };
     
-    this.sizes = {
-        layers: {
-            top: {
-                positions: [180, -200, -640],
-                left: 60,
-                bar: {
-                    left: 0,
-                    top: 420,
-                    width: 20
-                }
-            },
-            bottom: {
-                positions: [2000, 2000, 130],
-                marginTop: 180,
-                left: 60,
-                width: 630,
-                height: 320,
-                margin: 20
-            },
-            labels: {
-                positions: [2000, 330, 70],
-                left: 84,
-                offset: 100
-            }
-        },
-        labels: {
-            raw: {
-                left: 170,
-                top: 70
-            },
-            profit: {
-                left: 628,
-                top: 240
-            },
-            sidestream: {
-                left: 520,
-                top: 470
-            }
-        },
-        filterSidestreams: {
-            top: 20,
-            left: 24,
-            setWidth: 100,
-            labelsTop: 620 // the top position of the labels next to each sidestream
-        },
-        story: {
-            offset: 1000,
-            buffer: 20,
-            margin: 15
-        }
-    };
+    this.sizes = {};
+    this.addWindowListener();
+    this.measure();
 }
 
+Settings.prototype.addWindowListener = function() {
+    var self = this;
+    $(window).resize(function(){
+        self.measure();
+    });
+};
 
-Settings.prototype.measureContainer = function(canvases) {
+Settings.prototype.measure = function() {
+    this.container = this.measureContainer();
+    this.sizes = this.getSizes();
+    if (this.app.canvas && this.app.canvas.drawn) {
+        // do a redraw
+        this.app.redraw();
+    }
+};
+
+
+Settings.prototype.measureContainer = function() {
+    var width = $(this.app.container).outerWidth(),
+        height = $(this.app.container).outerHeight();
+    if (width < 640) {
+        this.device = 0; // smartphone
+    } else if (width < 768) {
+        this.device = 1; // tablet portrait
+    } else if (width < 1024) {
+        this.device = 2; // table landscape
+    } else {
+        this.device = 3; // desktop
+    }
     return {
-        width: $(this.app.container).outerWidth(),
-        height: $(this.app.container).outerHeight(),
+        width: width,
+        height: height,
         margin: 20
+    }
+};
+
+Settings.prototype.getSizes = function() {
+    switch (this.device) {
+        case 0:
+        case 1:
+        case 2:  // tablet sizing set:
+            return {
+                layers: {
+                    top: {
+                        positions: [180, -200, -640],
+                        left: 60,
+                        bar: {
+                            left: 0,
+                            top: 420,
+                            width: 20
+                        }
+                    },
+                    bottom: {
+                        positions: [2000, 2000, 100],
+                        marginTop: 160,
+                        header: 85,
+                        left: 60,
+                        width: 630,
+                        height: 200,
+                        margin: 20
+                    },
+                    labels: {
+                        positions: [2000, 330, 70],
+                        left: 84,
+                        offset: 100
+                    }
+                },
+                labels: {
+                    raw: {
+                        left: 170,
+                        top: 70
+                    },
+                    profit: {
+                        left: 628,
+                        top: 240
+                    },
+                    sidestream: {
+                        left: 520,
+                        top: 470
+                    }
+                },
+                filterSidestreams: {
+                    top: 20,
+                    left: 24,
+                    setWidth: 100,
+                    labelLeft: 540,
+                    labelsTop: 620 // the top position of the labels next to each sidestream
+                },
+                story: {
+                    offset: 1000,
+                    buffer: 20,
+                    margin: 15
+                }
+            };
+            break;
+        case 3: // desktop sizing set:
+            return {
+                layers: {
+                    top: {
+                        positions: [180, -200, -640],
+                        left: 60,
+                        bar: {
+                            left: 0,
+                            top: 420,
+                            width: 20
+                        }
+                    },
+                    bottom: {
+                        positions: [2000, 2000, 130],
+                        marginTop: 180,
+                        header: 100,
+                        left: 60,
+                        width: 630,
+                        height: 320,
+                        margin: 20
+                    },
+                    labels: {
+                        positions: [2000, 330, 70],
+                        left: 84,
+                        offset: 100
+                    }
+                },
+                labels: {
+                    raw: {
+                        left: 170,
+                        top: 70
+                    },
+                    profit: {
+                        left: 628,
+                        top: 240
+                    },
+                    sidestream: {
+                        left: 520,
+                        top: 470
+                    }
+                },
+                filterSidestreams: {
+                    top: 20,
+                    left: 24,
+                    setWidth: 100,
+                    labelLeft: 630,
+                    labelsTop: 620 // the top position of the labels next to each sidestream
+                },
+                story: {
+                    offset: 1000,
+                    buffer: 20,
+                    margin: 15
+                }
+            };
+            break;
     }
 };

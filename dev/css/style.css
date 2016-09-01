@@ -4,8 +4,8 @@ html {
 }
 
 body {
-    font-size: 11px;
-    line-height: 13px;
+    font-size: 13px;
+    line-height: 19px;
     font-family: 'Rubik';
     background: #fff;
     padding: 0;
@@ -34,8 +34,6 @@ body {
     position: absolute;
     left: 60px;
     top: 60px;
-    font-size: 13px;
-    line-height: 19px;
     width: 200px;
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -384,7 +382,39 @@ h2 {
 
 
 
+@media (max-width: 1024px) {
+
+    body {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    #story {
+        left: 30px;
+        top: 30px;
+        width: 130px;
+    }
+
+    .fixed-chapter {
+        left: 30px;
+        width: 130px;
+    }
+
+    #infographic {
+        width: calc(100% - 100px);
+    }
+
+    #topbar {
+        padding: 20px 30px;
+        height: 140px;
+    }
+}
+
+
+
 @media (max-width: 768px) {
+
+    /* popup */
 
     .valorisation-image, .valorisation-text {
         width: 100%;

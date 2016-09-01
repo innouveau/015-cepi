@@ -29,10 +29,11 @@ function Canvas(app) {
         production: null
     };
     this.bars = [];
-    this.init();
+    this.drawn = false;
+    this.draw();
 }
 
-Canvas.prototype.init = function() {
+Canvas.prototype.draw = function() {
     this.createTopframe();
     this.createPathsLayer();
     this.createCoverLayer();
@@ -42,6 +43,11 @@ Canvas.prototype.init = function() {
     this.addBars();
     this.addLightlabels();
     this.createBottomFrame();
+    this.drawn = true;
+};
+
+Canvas.prototype.redraw = function() {
+
 };
 
 
@@ -51,6 +57,7 @@ Canvas.prototype.init = function() {
 // creation stuff
 
 Canvas.prototype.create = function() {
+    $(this.app.container).empty();
     return d3.select(this.app.container).append('svg').attr({
         width: '100%',
         height: '100%'
@@ -97,9 +104,9 @@ Canvas.prototype.createRawLayer = function () {
 };
 
 Canvas.prototype.addLabels = function() {
-    this.labels.raw = this._getLabel(this.layers.top.container, ['Raw Material:', 'Paper for Recycling'], 130, 'right', this.app.settings.sizes.labels.raw.left, this.app.settings.sizes.labels.raw.top);
-    this.labels.profit = this._getLabel(this.layers.top.container, ['Paper product', '(profit)'], 110, 'top', this.app.settings.sizes.labels.profit.left, this.app.settings.sizes.labels.profit.top);
-    this.labels.sidestream = this._getLabel(this.layers.top.container, ['Side streams', '(costs)'], 110, 'right', this.app.settings.sizes.labels.sidestream.left, this.app.settings.sizes.labels.sidestream.top);
+    this.labels.raw = this._getLabel(this.layers.top.container, ['Raw Material:', 'Paper for Recycling'], 150, 'right', this.app.settings.sizes.labels.raw.left, this.app.settings.sizes.labels.raw.top);
+    this.labels.profit = this._getLabel(this.layers.top.container, ['Paper product', '(profit)'], 120, 'top', this.app.settings.sizes.labels.profit.left, this.app.settings.sizes.labels.profit.top);
+    this.labels.sidestream = this._getLabel(this.layers.top.container, ['Sidestreams', '(costs)'], 110, 'right', this.app.settings.sizes.labels.sidestream.left, this.app.settings.sizes.labels.sidestream.top);
     $(this.labels.profit[0]).hide();
     $(this.labels.sidestream[0]).hide();
 };
@@ -215,17 +222,17 @@ Canvas.prototype.createGraphHeader = function() {
     this.layers.bottom.header.append('text').attr({
         class: 'graph-header-text',
         x: 0,
-        y: 100
-    }).text('Side stream valorization opportunities');
+        y: this.app.settings.sizes.layers.bottom.header
+    }).text('Sidestream valorization opportunities');
     this.layers.bottom.header.append('text').attr({
         class: 'graph-header-sub',
         x: 0,
-        y: 132
-    }).text('The graph shows the potential of 16 side stream valorisation technologies, indicatively ordered by their ');
+        y: this.app.settings.sizes.layers.bottom.header + 32
+    }).text('The graph shows the potential of 16 sidestream valorisation technologies, indicatively ordered by their ');
     this.layers.bottom.header.append('text').attr({
         class: 'graph-header-sub',
         x: 0,
-        y: 148
+        y: this.app.settings.sizes.layers.bottom.header + 48
     }).text('economic potential and by their technology readyness level.');
 };
 
@@ -271,7 +278,7 @@ Canvas.prototype.createFilterSidestreams = function() {
         transform: 'translate(' + this.app.settings.sizes.filterSidestreams.left + ',' + this.app.settings.sizes.filterSidestreams.top + ')'
     }),
     label = filter.append('g').attr({
-        transform: 'translate(630, 10)'
+        transform: 'translate(' + this.app.settings.sizes.filterSidestreams.labelLeft + ', 10)'
     }),
     labelText = ['Filter by', 'sidestream'];
     for (var j = 0; j < 2; j++) {

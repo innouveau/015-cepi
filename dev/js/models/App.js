@@ -21,6 +21,27 @@ App.prototype.init = function() {
     this.loaded();
 };
 
+App.prototype.redraw = function() {
+    this.empty();
+    this.canvas = new Canvas(this);
+    this.story = new Story(this);
+    this.getSidestreams();
+    this.getOutstreams();
+    this.getPaths();
+    this.getValorisations();
+    this.canvas.buildFilters(); // execute after valorisations and sidestreams are injected
+    this.loaded();
+    $(window).scrollTop(0);
+};
+
+App.prototype.empty = function() {
+    this.paths = [];
+    this.sets = [];
+    this.valorisations = [];
+    this.sidestreams = [];
+    this.streams = [];
+};
+
 App.prototype.getPaths = function() {
     for (var i = 0, l = paths.length; i < l; i++) {
         var path = paths[i],
@@ -42,6 +63,7 @@ App.prototype.getPaths = function() {
 };
 
 App.prototype.getValorisations = function() {
+    $('.legend').empty(); // empty for a redraw
     for (var i = 0, l = sets.length; i < l; i++) {
         var set = sets[i],
             setModel = new Set(this, set);

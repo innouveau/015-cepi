@@ -12,10 +12,10 @@ var sidestreams = [
         name: 'Process water',
         color: '#95C4E0'
     }, {
-        name: 'Primary wastewater treatment sludge',
+        name: 'Primary sludge',
         color: '#72B0B0'
     }, {
-        name: 'Secondary wastewater treatment sludge',
+        name: 'Secondary sludge',
         color: '#B0D6B1'
     }
 ];
