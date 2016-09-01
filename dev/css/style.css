@@ -422,3 +422,76 @@ h2 {
     }
 
 }
+
+@media (max-width: 700px) {
+
+    #story {
+        left: auto;
+        right: 10px;
+        top: 20px;
+        width: 140px;
+        z-index: 100000;
+    }
+
+    .fixed-chapter {
+        right: 10px;
+        left: auto;
+        width: 140px;
+    }
+
+    #infographic {
+        width: 100%;
+    }
+
+    .chapter {
+        background: #fff;
+        padding: 10px;
+    }
+
+    .chapter:last-child {
+        opacity: 0;
+    }
+
+    .intro {
+        position: fixed;
+        left: 0;
+        top: 80px;
+    }
+
+    #topbar {
+        padding: 20px 20px;
+        height: 80px;
+    }
+
+    h1 {
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    .branding {
+        width: 200px;
+    }
+
+    .active #topbar {
+        height: 40px;
+        padding: 10px 20px;
+    }
+
+    .active #topbar h1 {
+        font-size: 10px;
+        line-height: 10px;
+    }
+
+    .sender {
+        top: 30px;
+    }
+
+    .active .sender {
+        display: none;
+    }
+
+    .legend {
+        display: none;
+    }
+
+}

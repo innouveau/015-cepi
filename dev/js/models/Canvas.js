@@ -46,13 +46,6 @@ Canvas.prototype.draw = function() {
     this.drawn = true;
 };
 
-Canvas.prototype.redraw = function() {
-
-};
-
-
-
-
 
 // creation stuff
 
@@ -67,7 +60,7 @@ Canvas.prototype.create = function() {
 Canvas.prototype.getArtboard = function() {
     return this.element.append('g').attr({
         class: 'artboard',
-        transform: 'translate(60, 0)'
+        transform: 'translate(' + this.app.settings.sizes.artboard.left + ', ' + this.app.settings.sizes.artboard.top + ')'
     });
 };
 
@@ -370,7 +363,7 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
         positions = [settings.sizes.layers.bottom.margin, settings.sizes.layers.bottom.height + settings.sizes.layers.bottom.margin, settings.sizes.layers.bottom.width, settings.sizes.layers.bottom.height + settings.sizes.layers.bottom.margin];
         arrow1 = 'M' + (positions[0] + 7) + ',' + (positions[1] -5) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 7) + ',' + (positions[1] + 5);
         arrow2 = 'M' + (positions[2] - 7) + ',' + (positions[3] -5) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] - 7) + ',' + (positions[3] + 5);
-        xOffset = [0, -120];
+        xOffset = [0, -175];
         yOffset = [30, 30];
     }
     axis.append('line').attr({
