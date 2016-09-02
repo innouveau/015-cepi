@@ -217,7 +217,7 @@ Settings.prototype.getSizes = function() {
                         }
                     },
                     bottom: {
-                        positions: [2000, 2000, 130],
+                        positions: [2000, 2000, 100],
                         marginTop: 180,
                         header: 100,
                         left: 60,
