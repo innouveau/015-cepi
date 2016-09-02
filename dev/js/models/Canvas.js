@@ -124,7 +124,7 @@ Canvas.prototype.addBars = function() {
 Canvas.prototype.addLightlabels = function() {
         var container = this.layers.top.container.append('g').attr({
             class: 'lightlabel',
-            transform: 'translate(260,268)'
+            transform: 'translate(220,258)'
         });
         container.append('text').attr({
             x: 0,
