@@ -370,7 +370,7 @@ a.menu-button:hover, a.menu-button.active-button {
     left: 120px;
     top: 80px;
     height: calc(100% - 160px);
-    width: calc(100% - 240px);
+    width: 720px;
     padding: 40px;
     background: #fff;
     display: none;
@@ -382,14 +382,7 @@ a.menu-button:hover, a.menu-button.active-button {
     height: auto;
 }
 
-h2 {
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #000;
-    margin: 0;
-}
+
 
 .valorisation-container {
     overflow: auto;
@@ -397,15 +390,30 @@ h2 {
     height: 100%;
 }
 
+.valorisation-head {
+    height: 50px;
+    border-bottom: 1px solid #000;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+}
+
+.valorisation-body {
+}
+
 .valorisation-text {
-    width: 260px;
-    padding-right: 60px;
+    width: 200px;
+    padding-right: 40px;
     float: left;
     padding-top: 12px;
 }
 
 .valorisation-image {
-    width: calc(100% - 260px);
+    width: 400px;
     float: left;
 }
 

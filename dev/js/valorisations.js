@@ -13,7 +13,7 @@ var sets = [
                 sidestreams: [0,1,3],
                 tlr: 6,
                 value: 8,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v01_land_management.svg'
             }, {
                 id: 1,
                 name: 'Absorbent materials',
@@ -25,7 +25,7 @@ var sets = [
                 sidestreams: [2,4],
                 tlr: 10,
                 value: 1.5,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v02_absorbent_materials.svg'
             }, {
                 id: 2,
                 name: 'Building materials',
@@ -37,7 +37,7 @@ var sets = [
                 sidestreams: [1,2,5],
                 tlr: 10,
                 value: 2.5,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v03_building_materials.svg'
             }, {
                 id: 3,
                 name: 'Wood-plastic composites ',
@@ -49,7 +49,7 @@ var sets = [
                 sidestreams: [1],
                 tlr: 8,
                 value: 5,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v04_wood_plastic_composites.svg'
             }, {
                 id: 4,
                 name: 'Fractionation',
@@ -61,7 +61,7 @@ var sets = [
                 sidestreams: [1],
                 tlr: 8,
                 value: 7.5,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v05_fractionation.svg'
             }, {
                 id: 5,
                 name: 'Hydrolysis',
@@ -73,7 +73,7 @@ var sets = [
                 sidestreams: [1],
                 tlr: 4,
                 value: 7,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v06_hydrolysis_fermentation.svg'
             }, {
                 id: 6,
                 name: 'Nanocellulose',
@@ -85,7 +85,7 @@ var sets = [
                 sidestreams: [1],
                 tlr: 5,
                 value: 7,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v07_nanocellulose.svg'
             }, {
                 id: 7,
                 name: 'PHAs',
@@ -97,7 +97,7 @@ var sets = [
                 sidestreams: [1],
                 tlr: 6,
                 value: 7,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v08_polyhydroxyalkanoates .svg'
             }, {
                 id: 8,
                 name: 'Alginates',
@@ -109,7 +109,7 @@ var sets = [
                 sidestreams: [1],
                 tlr: 8,
                 value: 8.5,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v09_alginates .svg'
             }
         ]
     }, {
@@ -126,7 +126,7 @@ var sets = [
                 sidestreams: [0, 5],
                 tlr: 10,
                 value: 6,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v10_incineration.svg'
             }, {
                 id: 1,
                 name: 'Gasification',
@@ -138,7 +138,7 @@ var sets = [
                 sidestreams: [2, 3],
                 tlr: 9,
                 value: 6,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v11_gasification.svg'
             }, {
                 id: 2,
                 name: 'Pyrolysis',
@@ -150,7 +150,7 @@ var sets = [
                 sidestreams: [4],
                 tlr: 9,
                 value: 7,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v12_pyrolysis.svg'
             }, {
                 id: 3,
                 name: 'Anaerobic digestion',
@@ -162,7 +162,7 @@ var sets = [
                 sidestreams: [1, 2, 5],
                 tlr: 10,
                 value: 8,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v13_anaerobic_digestion.svg'
             }, {
                 id: 4,
                 name: 'Secondary fuels',
@@ -174,7 +174,7 @@ var sets = [
                 sidestreams: [1, 2, 5],
                 tlr: 10,
                 value: 5,
-                image: 'testimage-1.svg'
+                image: 'CEPI_flows_v1_v14_secondary_fuels.svg'
             }
         ]
     }
