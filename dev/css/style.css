@@ -370,7 +370,7 @@ a.menu-button:hover, a.menu-button.active-button {
     left: 120px;
     top: 80px;
     height: calc(100% - 160px);
-    width: 720px;
+    width: 740px;
     padding: 40px;
     background: #fff;
     display: none;
@@ -407,7 +407,7 @@ h2 {
 
 .valorisation-text {
     width: 200px;
-    padding-right: 40px;
+    margin-right: 40px;
     float: left;
     padding-top: 12px;
 }
