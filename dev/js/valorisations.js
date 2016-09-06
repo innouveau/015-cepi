@@ -136,7 +136,7 @@ var sets = [
                 trlDescription: 'Gasification is a mature technology, primarily for coal, with biomass and waste streams expected to grow in significance.',
                 link: '',
                 sidestreams: [2, 3],
-                tlr: 9,
+                tlr: 8.5,
                 value: 6,
                 image: 'CEPI_flows_v1_v11_gasification.svg'
             }, {
