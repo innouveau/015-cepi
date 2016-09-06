@@ -254,7 +254,7 @@ Settings.prototype.getSizes = function() {
                 },
                 story: {
                     offset: 1350,
-                    buffer: 10,
+                    buffer: 675,
                     margin: 15
                 }
             };
