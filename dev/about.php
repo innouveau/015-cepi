@@ -22,7 +22,7 @@
                 agreement n° 604187
             </p>
             <div class="content-footer">
-                <a href="index.php" target="_self" class="menu-button">Back to infographic</a>
+                <a href="index.php" target="_self" class="link">Back to infographic</a>
             </div>
         </div>
 

@@ -10,7 +10,7 @@
                 In hac habitasse platea dictumst. Maecenas quis massa ut lacus porta egestas nec sed lectus. Cras sodales arcu faucibus lacus ullamcorper laoreet. Proin id magna dui. Vivamus id felis quis metus cursus malesuada vel nec odio. Suspendisse vehicula eu dolor sit amet iaculis. Praesent sit amet metus ut justo egestas vulputate et nec dolor. Nullam imperdiet sit amet orci a scelerisque. Nulla gravida magna ac tellus ultrices elementum. Nulla nisl urna, rhoncus vel dapibus id, facilisis in tortor. Nullam facilisis leo et ex dictum efficitur. Mauris ut finibus mauris, in posuere orci. In rutrum nibh non fringilla sodales. Donec magna nibh, placerat a sagittis at, posuere quis urna. Aliquam pulvinar mattis enim, sit amet interdum ante. Integer commodo mattis nunc, non luctus libero finibus sodales.
             </p>
             <div class="content-footer">
-                <a href="index.php" target="_self" class="menu-button">Back to infographic</a>
+                <a href="index.php" target="_self" class="link">Back to infographic</a>
             </div>
         </div>
 
