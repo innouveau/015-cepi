@@ -33,7 +33,7 @@ function Settings(app) {
     this.timing = {
         sidestreamBars: [100, 220, 340, 460, 580, 700],
         story: {
-            wait: 300
+            wait: 1200
         }
     };
     
@@ -135,7 +135,7 @@ Settings.prototype.getSizes = function() {
                     labelsTop: 620 // the top position of the labels next to each sidestream
                 },
                 story: {
-                    offset: 1000,
+                    offset: 500,
                     buffer: 20,
                     margin: 15
                 }
@@ -253,8 +253,8 @@ Settings.prototype.getSizes = function() {
                     labelsTop: 620 // the top position of the labels next to each sidestream
                 },
                 story: {
-                    offset: 1000,
-                    buffer: 20,
+                    offset: 1350,
+                    buffer: 10,
                     margin: 15
                 }
             };
