@@ -82,124 +82,7 @@ Settings.prototype.getSizes = function() {
     switch (this.device) {
         case 0:
         case 1:
-        case 2:  // tablet sizing set:
-            return {
-                artboard : {
-                    left: 20,
-                    top : 0
-                },
-                layers: {
-                    top: {
-                        positions: [90, -200, -800],
-                        left: 0,
-                        bar: {
-                            left: 0,
-                            top: 420,
-                            width: 20
-                        }
-                    },
-                    bottom: {
-                        positions: [2000, 2000, 30],
-                        marginTop: 160,
-                        header: 75,
-                        left: 0,
-                        width: 630,
-                        height: 160,
-                        margin: 20
-                    },
-                    labels: {
-                        positions: [2000, 330, 20],
-                        left: 24,
-                        offset: 100
-                    }
-                },
-                labels: {
-                    raw: {
-                        left: 170,
-                        top: 70
-                    },
-                    profit: {
-                        left: 628,
-                        top: 240
-                    },
-                    sidestream: {
-                        left: 520,
-                        top: 470
-                    }
-                },
-                filterSidestreams: {
-                    top: 20,
-                    left: 24,
-                    setWidth: 100,
-                    labelLeft: 540,
-                    labelsTop: 620 // the top position of the labels next to each sidestream
-                },
-                story: {
-                    offset: 500,
-                    buffer: 20,
-                    margin: 15
-                }
-            };
-            break;
-        case 2:  // tablet sizing set:
-            return {
-                artboard : {
-                    left: 60,
-                    top : 0
-                },
-                layers: {
-                    top: {
-                        positions: [180, -200, -640],
-                        left: 60,
-                        bar: {
-                            left: 0,
-                            top: 420,
-                            width: 20
-                        }
-                    },
-                    bottom: {
-                        positions: [2000, 2000, 100],
-                        marginTop: 160,
-                        header: 85,
-                        left: 60,
-                        width: 630,
-                        height: 200,
-                        margin: 20
-                    },
-                    labels: {
-                        positions: [2000, 330, 70],
-                        left: 84,
-                        offset: 100
-                    }
-                },
-                labels: {
-                    raw: {
-                        left: 170,
-                        top: 70
-                    },
-                    profit: {
-                        left: 628,
-                        top: 240
-                    },
-                    sidestream: {
-                        left: 520,
-                        top: 470
-                    }
-                },
-                filterSidestreams: {
-                    top: 20,
-                    left: 24,
-                    setWidth: 100,
-                    labelLeft: 540,
-                    labelsTop: 620 // the top position of the labels next to each sidestream
-                },
-                story: {
-                    offset: 1000,
-                    buffer: 20,
-                    margin: 15
-                }
-            };
-            break;
+        case 2:
         case 3: // desktop sizing set:
             return {
                 artboard : {
@@ -217,7 +100,7 @@ Settings.prototype.getSizes = function() {
                         }
                     },
                     bottom: {
-                        positions: [2000, 2000, 100],
+                        positions: [2000, 1200, 100],
                         marginTop: 180,
                         header: 100,
                         left: 60,
@@ -226,7 +109,7 @@ Settings.prototype.getSizes = function() {
                         margin: 20
                     },
                     labels: {
-                        positions: [2000, 330, 70],
+                        positions: [1200, 330, 70],
                         left: 84,
                         offset: 100
                     }
