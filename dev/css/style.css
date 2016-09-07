@@ -399,6 +399,10 @@ a.menu-button:hover, a.menu-button.active-button, .link:hover {
     height: auto;
 }
 
+.disclaimer a {
+    color: #000;
+}
+
 
 
 .valorisation-container {
