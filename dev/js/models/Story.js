@@ -49,6 +49,11 @@ Story.prototype.scroll = function(frame) {
     if (this.phase.index === (this.app.settings.properties.story.chapters - 1) && this.phase.direction < 0) {
         this.phase.direction = 0;
     }
+
+    // fix for accelaration bug, see main.js
+    if (this.phase.index > 2) {
+        this.phase.index = 2;
+    }
 };
 
 Story.prototype.getLockPosition = function() {
@@ -70,7 +75,7 @@ Story.prototype.init = function() {
             });
             $(this).addClass('fixed-chapter');
         } else {
-            $(this).css('top', top);
+            //$(this).css('top', top);
         }
         top += self.app.settings.sizes.story.offset;
     });

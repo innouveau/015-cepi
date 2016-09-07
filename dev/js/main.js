@@ -12,11 +12,18 @@ $(window).ready(function(){
 
 function addPhaseListeners() {
     $(window).scroll(function(e){
-        var top = $(document).scrollTop();
+        var top = $(document).scrollTop(),
+            edge = 1400,
+            acceleration = 5;
         if (top < 0) {
             // prevents safari negative values
             top = 0;
         }
+        if (top > edge) {
+            top = (top - edge) * acceleration + edge;
+        }
+        console.clear();
+        console.log($(document).scrollTop(), top);
         app.scroll(top);
     });
 
