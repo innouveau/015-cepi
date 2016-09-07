@@ -35,7 +35,7 @@ Story.prototype.scroll = function(frame) {
     this.phase.index = phaseCurrent;
 
     // first chapter
-    var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
+    var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - $(document).scrollTop(); // todo repair scrollTop to frame
     if (firstTop > this.element.firstChapter.top) {
         firstTop = this.element.firstChapter.top;
     }

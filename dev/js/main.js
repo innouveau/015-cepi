@@ -13,15 +13,15 @@ $(window).ready(function(){
 function addPhaseListeners() {
     $(window).scroll(function(e){
         var top = $(document).scrollTop(),
-            edge = 2000,
-            acceleration = 5;
+            edge = 1200;
         if (top < 0) {
             // prevents safari negative values
             top = 0;
         }
         if (top > edge) {
-            top = (top - edge) * acceleration + edge;
+            top = top + 400;
         }
+
         app.scroll(top);
     });
 

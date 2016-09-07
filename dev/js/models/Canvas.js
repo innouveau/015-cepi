@@ -409,7 +409,7 @@ Canvas.prototype.scroll = function(frame) {
 
 Canvas.prototype.hideElements = function(frame) {
     // profit label
-    if (frame > 680) {
+    if (frame > 620) {
         $(this.labels.profit[0]).fadeIn(this.app.settings.animation.labelFade);
         $('.roll').fadeIn(this.app.settings.animation.labelFade);
     } else {

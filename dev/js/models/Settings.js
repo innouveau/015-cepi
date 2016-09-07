@@ -100,7 +100,7 @@ Settings.prototype.getSizes = function() {
                         }
                     },
                     bottom: {
-                        positions: [2000, 1000, 100],
+                        positions: [2000, 1200, 100],
                         marginTop: 180,
                         header: 100,
                         left: 60,
@@ -109,7 +109,7 @@ Settings.prototype.getSizes = function() {
                         margin: 20
                     },
                     labels: {
-                        positions: [2000, 330, 70],
+                        positions: [1200, 330, 70],
                         left: 84,
                         offset: 100
                     }
@@ -137,7 +137,7 @@ Settings.prototype.getSizes = function() {
                 },
                 story: {
                     offset: 1350,
-                    buffer: 675,
+                    buffer: 500,
                     margin: 15
                 }
             };
