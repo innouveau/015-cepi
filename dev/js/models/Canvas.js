@@ -189,8 +189,7 @@ Canvas.prototype._getLabel = function(parent, texts, width, position, x, y) {
 // graph / bottom
 
 Canvas.prototype.createBottomFrame = function() {
-    var settings = this.app.settings,
-        graph;
+    var settings = this.app.settings;
     this.layers.bottom.container = this.artboard.append('g').attr({
         class: 'bottom-frame',
         transform: 'translate(' + settings.sizes.layers.bottom.left + ',' + settings.sizes.layers.bottom.positions[0] + ')'

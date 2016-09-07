@@ -1,5 +1,7 @@
 function Story(app) {
     this.app = app;
+    this.previousPhaseIndex = -1;
+    this.scrollDirection = 1;
     this.phase = {
         index: 0,
         direction: 0
@@ -18,37 +20,80 @@ function Story(app) {
 
 
 Story.prototype.scroll = function(frame) {
-    var rest = frame % this.app.settings.sizes.story.offset,
-        phaseInZone = Math.round(frame / this.app.settings.sizes.story.offset),
-        phaseCurrent = Math.floor(frame / this.app.settings.sizes.story.offset);
-    if (rest !== 0 && phaseInZone !== phaseCurrent) {
-        if (rest < this.app.settings.sizes.story.buffer) {
-            this.phase.direction = rest;
-        } else if (rest > (this.app.settings.sizes.story.offset - this.app.settings.sizes.story.buffer)) {
-            this.phase.direction = rest - this.app.settings.sizes.story.offset;
+    this.getScrollDirection();
+
+    var index = this.getPhaseIndex(frame);
+    this.phase.direction = this.getPhaseDirection(frame, index);
+
+    if (index !== this.previousPhaseIndex) {
+        this.previousPhaseIndex = this.phase.index;
+    }
+
+    this.phase.index = index;
+
+    console.clear();
+    console.log(this.phase.index);
+    console.log(this.phase.direction);
+    console.log(this.previousPhaseIndex);
+    console.log(this.scrollDirection);
+
+    this.holdFirstChapter(frame);
+};
+
+Story.prototype.getScrollDirection = function() {
+    if (this.phase.index > this.previousPhaseIndex) {
+        this.scrollDirection = 1;
+    } else {
+        this.scrollDirection = -1;
+    }
+};
+
+Story.prototype.getPhaseDirection = function(frame, index) {
+    var chapter1 = this.app.settings.sizes.story.offset[0],
+        chapter2 = this.app.settings.sizes.story.offset[1],
+        buffer = this.app.settings.sizes.story.buffer;
+    if (index === 0) {
+        if (frame > chapter1 - buffer && frame < chapter1) {
+            return frame - chapter1;
         } else {
-            this.phase.direction = 0;
+            return 0;
+        }
+    } else if (index === 1) {
+        if (frame > chapter1 && frame < chapter1 + buffer) {
+            return frame - chapter1;
+        } else if (frame > chapter1 + chapter2 - buffer && frame < chapter1 + chapter2) {
+            return frame - (chapter1 + chapter2);
+        } else {
+            return 0;
         }
     } else {
-        this.phase.direction = 0;
+        return 0;
     }
-    this.phase.index = phaseCurrent;
+};
 
-    // first chapter
+Story.prototype.getPhaseIndex = function(frame) {
+    var chapterLength1 = this.app.settings.sizes.story.offset[0],
+        chapterLength2 = this.app.settings.sizes.story.offset[1],
+        extra = 0;
+    if (this.scrollDirection === -1) {
+        extra = this.app.settings.sizes.story.buffer;
+    }
+
+    if (frame < chapterLength1 - extra) {
+        return 0;
+    } else if (frame < chapterLength1 + chapterLength2 - extra) {
+        return 1;
+    } else {
+        return 2;
+    }
+};
+
+Story.prototype.holdFirstChapter = function(frame) {
     var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
     if (firstTop > this.element.firstChapter.top) {
         firstTop = this.element.firstChapter.top;
     }
     this.element.firstChapter.element.css('top', firstTop);
-
-
-    // outer zones
-    if (this.phase.index === 0 && this.phase.direction > 0) {
-        this.phase.direction = 0;
-    }
-    if (this.phase.index === (this.app.settings.properties.story.chapters - 1) && this.phase.direction < 0) {
-        this.phase.direction = 0;
-    }
 };
 
 Story.prototype.getLockPosition = function() {
@@ -72,7 +117,7 @@ Story.prototype.init = function() {
         } else {
             $(this).css('top', top);
         }
-        top += self.app.settings.sizes.story.offset;
+        top += self.app.settings.sizes.story.offset[index];
     });
 
 
