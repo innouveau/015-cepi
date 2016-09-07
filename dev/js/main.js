@@ -22,8 +22,6 @@ function addPhaseListeners() {
         if (top > edge) {
             top = (top - edge) * acceleration + edge;
         }
-        console.clear();
-        console.log($(document).scrollTop(), top);
         app.scroll(top);
     });
 
