@@ -99,7 +99,7 @@ Canvas.prototype.createRawLayer = function () {
 Canvas.prototype.addLabels = function() {
     this.labels.raw = this._getLabel(this.layers.top.container, ['Raw Material:', 'Paper for Recycling'], 150, 'right', this.app.settings.sizes.labels.raw.left, this.app.settings.sizes.labels.raw.top);
     this.labels.profit = this._getLabel(this.layers.top.container, ['Paper product', '(profit)'], 120, 'top', this.app.settings.sizes.labels.profit.left, this.app.settings.sizes.labels.profit.top);
-    this.labels.sidestream = this._getLabel(this.layers.top.container, ['Sidestreams', '(costs)'], 110, 'right', this.app.settings.sizes.labels.sidestream.left, this.app.settings.sizes.labels.sidestream.top);
+    this.labels.sidestream = this._getLabel(this.layers.top.container, ['Side streams', '(costs)'], 110, 'right', this.app.settings.sizes.labels.sidestream.left, this.app.settings.sizes.labels.sidestream.top);
     $(this.labels.profit[0]).hide();
     $(this.labels.sidestream[0]).hide();
 };
@@ -216,12 +216,12 @@ Canvas.prototype.createGraphHeader = function() {
         class: 'graph-header-text',
         x: 0,
         y: this.app.settings.sizes.layers.bottom.header
-    }).text('Sidestream valorization opportunities');
+    }).text('Side stream valorization opportunities');
     this.layers.bottom.header.append('text').attr({
         class: 'graph-header-sub',
         x: 0,
         y: this.app.settings.sizes.layers.bottom.header + 32
-    }).text('The graph shows the potential of 16 sidestream valorisation technologies, indicatively ordered by their ');
+    }).text('The graph shows the potential of 16 side stream valorisation technologies, indicatively ordered by their ');
     this.layers.bottom.header.append('text').attr({
         class: 'graph-header-sub',
         x: 0,
@@ -273,7 +273,7 @@ Canvas.prototype.createFilterSidestreams = function() {
     label = filter.append('g').attr({
         transform: 'translate(' + this.app.settings.sizes.filterSidestreams.labelLeft + ', 10)'
     }),
-    labelText = ['Filter by', 'sidestream'];
+    labelText = ['Filter by', 'side stream'];
     for (var j = 0; j < 2; j++) {
         label.append('text').attr({
             x: 0,
