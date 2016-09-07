@@ -13,7 +13,7 @@ $(window).ready(function(){
 function addPhaseListeners() {
     $(window).scroll(function(e){
         var top = $(document).scrollTop(),
-            edge = 1400,
+            edge = 2000,
             acceleration = 5;
         if (top < 0) {
             // prevents safari negative values
