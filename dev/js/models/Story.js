@@ -123,6 +123,15 @@ Story.prototype.init = function() {
 
 
     $('.chapter:last-child').css('min-height', height);
+
+    $('.blauw').css({
+        top: self.lockPosition + parseInt(self.element.story.css('top')),
+        height: self.app.settings.sizes.story.buffer[0]
+    })
+    $('.groen').css({
+        top: self.lockPosition + parseInt(self.element.story.css('top')),
+        height: self.app.settings.sizes.story.buffer[1]
+    })
 };
 
 Story.prototype.setPhase = function(i) {
