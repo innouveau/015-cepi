@@ -20,15 +20,13 @@ function Story(app) {
 
 
 Story.prototype.scroll = function(frame) {
-    console.clear();
-    console.log('frame: ' + frame);
     var closestObj = this.getClosest(frame),
         distance = closestObj.distance,
         closest = closestObj.index,
         current = this.getCurrentPhase(frame);
 
     if (distance !== 0 && closest !== current) {
-        if (distance < Math.abs(this.app.settings.sizes.story.buffer[current])) { // todo make buffer specific to closest
+        if (distance < Math.abs(this.app.settings.sizes.story.buffer[current])) {
             this.phase.direction = distance;
         } else {
             this.phase.direction = 0;
@@ -72,7 +70,6 @@ Story.prototype.getCurrentPhase = function(frame) {
         }
         length += this.app.settings.sizes.story.offset[i];
     }
-    console.log('current: ' + current);
     return current;
 };
 
@@ -89,8 +86,6 @@ Story.prototype.getClosest = function(frame) {
         }
         length += this.app.settings.sizes.story.offset[i];
     }
-    console.log('closest: ' + closest);
-    console.log('rest: ' + closestDistance);
     return {
         index: closest,
         distance: closestDistance
@@ -115,10 +110,7 @@ Story.prototype.init = function() {
                 position: 'fixed'
             });
             $(this).addClass('fixed-chapter');
-        } else {
-            $(this).css('top', top);
         }
-        top += self.app.settings.sizes.story.offset[index];
     });
 
 

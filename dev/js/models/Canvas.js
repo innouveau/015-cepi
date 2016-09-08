@@ -3,6 +3,7 @@ function Canvas(app) {
     this.name = name;
     this.element = this.create();
     this.artboard = this.getArtboard();
+    this.timedElements = [];
     this.layers = {
         top: {
             container: null,
@@ -46,6 +47,11 @@ Canvas.prototype.draw = function() {
     this.drawn = true;
 };
 
+Canvas.prototype.createTimedElement = function(element, settings) {
+    var timedElement = new Timer(this.app, element, settings);
+    this.timedElements.push(timedElement);
+};
+
 
 // creation stuff
 
@@ -69,6 +75,7 @@ Canvas.prototype.createTopframe = function() {
         class: 'top-frame',
         transform: 'translate(' + this.app.settings.sizes.layers.top.left + ',' + this.app.settings.sizes.layers.top.positions[0]  + ')'
     });
+    this.createTimedElement( this.layers.top.container, this.app.settings.timing.top);
 };
 
 Canvas.prototype.createPathsLayer = function () {
@@ -82,7 +89,6 @@ Canvas.prototype.createCoverLayer = function () {
         class: 'cover-paths-container'
     });
 };
-
 
 Canvas.prototype.createStaticLayer = function () {
     this.layers.top.static = this.layers.top.container.append('g').attr({
@@ -195,6 +201,7 @@ Canvas.prototype.createBottomFrame = function() {
         class: 'bottom-frame',
         transform: 'translate(' + settings.sizes.layers.bottom.left + ',' + settings.sizes.layers.bottom.positions[0] + ')'
     });
+    this.createTimedElement( this.layers.bottom.container, this.app.settings.timing.bottom);
     this.createGraphHeader();
     this.createGraphBody();
     this.createAxis(this.layers.bottom.body, settings, 'x', ['Reducing costs'], ['Generating additional income']);
@@ -248,6 +255,7 @@ Canvas.prototype.addSidestreamLabels = function() {
         class: 'sidestream-labels',
         transform: 'translate(' + this.app.settings.sizes.layers.labels.left + ',' + this.app.settings.sizes.layers.labels.positions[0] + ')'
     });
+    this.createTimedElement( this.layers.labels.container, this.app.settings.timing.labels);
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
             lines = sidestream.name.split(' '),
@@ -401,9 +409,9 @@ Canvas.prototype.createAxis = function(graph, settings, direction, label1, label
 };
 
 Canvas.prototype.scroll = function(frame) {
-    this.scrollWindow(frame, 'top');
-    this.scrollWindow(frame, 'bottom');
-    this.scrollWindow(frame, 'labels');
+    for (var i = 0, l = this.timedElements.length; i < l; i++) {
+        this.timedElements[i].scroll(frame);
+    }
     this.hideElements(frame);
 };
 
@@ -447,30 +455,3 @@ Canvas.prototype.hideElements = function(frame) {
 };
 
 
-Canvas.prototype.scrollWindow = function(frame, window) {
-    var y,
-        pos = this.app.settings.sizes.layers[window].positions,
-        index = this.app.story.phase.current,
-        direction = this.app.story.phase.direction,
-        part,
-        buffer = this.app.settings.sizes.story.buffer[this.app.story.phase.current];
-    if (direction !== 0) {
-        var current,
-            next;
-        if (this.app.story.phase.direction > 0) {
-            current = pos[index];
-            next = pos[index - 1];
-            part = (buffer - direction) / buffer;
-        } else {
-            current = pos[index];
-            next = pos[index + 1];
-            part = (buffer + direction) / buffer;
-        }
-        y = current + (next - current) * part;
-    } else {
-        y = pos[index];
-    }
-    this.layers[window].container.attr({
-        transform: 'translate(' + this.app.settings.sizes.layers[window].left + ',' + y + ')'
-    });
-};
