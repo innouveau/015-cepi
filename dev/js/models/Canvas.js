@@ -450,10 +450,10 @@ Canvas.prototype.hideElements = function(frame) {
 Canvas.prototype.scrollWindow = function(frame, window) {
     var y,
         pos = this.app.settings.sizes.layers[window].positions,
-        index = this.app.story.phase.index,
+        index = this.app.story.phase.current,
         direction = this.app.story.phase.direction,
         part,
-        buffer = this.app.settings.sizes.story.buffer;
+        buffer = this.app.settings.sizes.story.buffer[this.app.story.phase.current];
     if (direction !== 0) {
         var current,
             next;

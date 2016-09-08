@@ -1,9 +1,11 @@
 function Story(app) {
     this.app = app;
     this.phase = {
-        index: 0,
+        current: 0,
+        closest: 0,
         direction: 0
     };
+    this.length = 3;
     this.element = {
         story: $('#story'),
         intro: $('.intro'),
@@ -18,37 +20,81 @@ function Story(app) {
 
 
 Story.prototype.scroll = function(frame) {
-    var rest = frame % this.app.settings.sizes.story.offset,
-        phaseInZone = Math.round(frame / this.app.settings.sizes.story.offset),
-        phaseCurrent = Math.floor(frame / this.app.settings.sizes.story.offset);
-    if (rest !== 0 && phaseInZone !== phaseCurrent) {
-        if (rest < this.app.settings.sizes.story.buffer) {
-            this.phase.direction = rest;
-        } else if (rest > (this.app.settings.sizes.story.offset - this.app.settings.sizes.story.buffer)) {
-            this.phase.direction = rest - this.app.settings.sizes.story.offset;
+    console.clear();
+    console.log('frame: ' + frame);
+    var closestObj = this.getClosest(frame),
+        distance = closestObj.distance,
+        closest = closestObj.index,
+        current = this.getCurrentPhase(frame);
+
+    if (distance !== 0 && closest !== current) {
+        if (distance < Math.abs(this.app.settings.sizes.story.buffer[current])) { // todo make buffer specific to closest
+            this.phase.direction = distance;
         } else {
             this.phase.direction = 0;
         }
     } else {
         this.phase.direction = 0;
     }
-    this.phase.index = phaseCurrent;
 
-    // first chapter
-    var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
-    if (firstTop > this.element.firstChapter.top) {
-        firstTop = this.element.firstChapter.top;
-    }
-    this.element.firstChapter.element.css('top', firstTop);
+
+    this.phase.current = current;
+    this.phase.closest = closest;
+
 
 
     // outer zones
     if (this.phase.index === 0 && this.phase.direction > 0) {
         this.phase.direction = 0;
     }
-    if (this.phase.index === (this.app.settings.properties.story.chapters - 1) && this.phase.direction < 0) {
+    if (this.phase.index === (this.length - 1) && this.phase.direction < 0) {
         this.phase.direction = 0;
     }
+
+    this.holdFirstChapter(frame);
+};
+
+
+Story.prototype.holdFirstChapter = function(frame) {
+    var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
+    if (firstTop > this.element.firstChapter.top) {
+        firstTop = this.element.firstChapter.top;
+    }
+    this.element.firstChapter.element.css('top', firstTop);
+};
+
+Story.prototype.getCurrentPhase = function(frame) {
+    var length = 0,
+        current = 0;
+    for (var i = 0, l = this.length; i < l; i++) {
+        if (frame >= length) {
+            current = i;
+        }
+        length += this.app.settings.sizes.story.offset[i];
+    }
+    console.log('current: ' + current);
+    return current;
+};
+
+Story.prototype.getClosest = function(frame) {
+    var closest = null,
+        closestDistance = 0,
+        length = 0,
+        distance;
+    for (var i = 0, l = this.length; i < l; i++) {
+        distance = frame - length;
+        if (closest === null || Math.abs(distance) < Math.abs(closestDistance)) {
+            closest = i;
+            closestDistance = distance;
+        }
+        length += this.app.settings.sizes.story.offset[i];
+    }
+    console.log('closest: ' + closest);
+    console.log('rest: ' + closestDistance);
+    return {
+        index: closest,
+        distance: closestDistance
+    };
 };
 
 Story.prototype.getLockPosition = function() {
@@ -57,7 +103,7 @@ Story.prototype.getLockPosition = function() {
 
 Story.prototype.init = function() {
     var top = this.lockPosition,
-        height = $(window).outerHeight() - this.app.settings.sizes.layers.bottom.positions[2],
+        height = $(window).outerHeight() - (this.app.settings.sizes.layers.bottom.positions[2] + this.app.settings.sizes.layers.bottom.header),
         self = this;
     $('.chapter').each(function(index) {
         if (index === 0) {
@@ -72,7 +118,7 @@ Story.prototype.init = function() {
         } else {
             $(this).css('top', top);
         }
-        top += self.app.settings.sizes.story.offset;
+        top += self.app.settings.sizes.story.offset[index];
     });
 
 

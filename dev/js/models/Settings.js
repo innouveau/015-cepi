@@ -11,9 +11,6 @@ function Settings(app) {
         radar: {
             r: 30, // to prevent a valorisation radar to overlap the graph (when value 1 or 10), this value should be < this.bottomFrame.height / 10
             gap: 3
-        },
-        story: {
-            chapters: 3
         }
     };
 
@@ -100,7 +97,7 @@ Settings.prototype.getSizes = function() {
                         }
                     },
                     bottom: {
-                        positions: [2000, 1200, 100],
+                        positions: [2000, 1000, 100],
                         marginTop: 180,
                         header: 100,
                         left: 60,
@@ -136,8 +133,8 @@ Settings.prototype.getSizes = function() {
                     labelsTop: 620 // the top position of the labels next to each sidestream
                 },
                 story: {
-                    offset: 1350,
-                    buffer: 675,
+                    offset: [1400, 600],
+                    buffer: [700, 300],
                     margin: 15
                 }
             };
