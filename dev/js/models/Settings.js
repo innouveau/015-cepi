@@ -32,18 +32,18 @@ function Settings(app) {
         },
         disclaimer: 2000,
         topFrame: {
-            origin: [60, 180],
+            origin: [60, 180], // [x,y]
             transitions: [
                 {
                     start: 1100,
                     end: 1400,
-                    origin: 180,
+                    origin: 180, // keep this one the same as origin[1]
                     destination: -200 
                 },
                 {
                     start: 1600,
                     end: 2000,
-                    origin: -200,
+                    origin: -200, // keep this on the same as previous destination
                     destination: -640
                 }
             ]
@@ -96,7 +96,7 @@ Settings.prototype.getGraph = function() {
         case 2: // tablet landscape sizing set:
             return {
                 width: 630,
-                height: 180,
+                height: 320,
                 margin: 10
             };
         case 3: // desktop sizing set:
@@ -114,16 +114,16 @@ Settings.prototype.getSizes = function() {
         case 1: // tablet portrait sizing set:
         case 2: // tablet landscape sizing set:
             return {
-                artboard: [60,0],
+                artboard: [40,0],
                 topFrame: this.timing.topFrame.origin,
                 rawLabel: [170,70],
                 profitLabel: [628,240],
-                sidestreamLabel: [520,470],
+                sidestreamLabel: [420,470],
                 productionLabel: [220,258],
                 bottomFrame: this.timing.bottomFrame.origin,
-                graphHeaderText: [0, 100],
+                graphHeaderText: [0, 80],
                 filterSidestreams: [24,20],
-                graphBody: [0,180],
+                graphBody: [0,160],
                 sidestreamLabels: this.timing.sidestreamLabels.origin
             };
         case 3: // desktop sizing set:
