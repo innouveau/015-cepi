@@ -4,19 +4,18 @@ function Timer(app, element, settings) {
     this.element = element;
     this.origin = settings.origin;
     this.transitions = settings.transitions;
-    this.left = settings.left;
 }
 
 Timer.prototype.scroll = function(frame) {
     var y = this.getY(frame);
     this.element.attr({
-        transform: 'translate(' + this.left + ',' + y + ')'
+        transform: 'translate(' + this.origin[0] + ',' + y + ')'
     });
 };
 
 Timer.prototype.getY = function(frame) {
     if (frame < this.transitions[0].start) {
-        return this.origin;
+        return this.origin[1];
     } else {
         for (var i = 0, l = this.transitions.length; i < l; i++) {
             var transition = this.transitions[i];

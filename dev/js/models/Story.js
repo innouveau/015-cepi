@@ -10,17 +10,17 @@ function Story(app) {
     };
     this.lockPosition = this.getLockPosition();
     this.init();
-    this.disclaimerShowed = false;
+    this.disclaimerShowed = true; // todo set false
 }
 
 
 Story.prototype.getLockPosition = function() {
-    return parseInt(this.element.intro.css('top')) + this.element.intro.outerHeight() + this.app.settings.sizes.story.margin - parseInt(this.element.story.css('top'));
+    return parseInt(this.element.intro.css('top')) + this.element.intro.outerHeight() + this.app.settings.properties.story.margin - parseInt(this.element.story.css('top'));
 };
 
 Story.prototype.init = function() {
     var top = this.lockPosition,
-        height = $(window).outerHeight() - (this.app.settings.sizes.layers.bottom.positions[2] + this.app.settings.sizes.layers.bottom.header),
+        height = $(window).outerHeight() - (this.app.settings.timing.bottomFrame.transitions[1].destination + this.app.settings.sizes.graphBody[1]),
         self = this;
     $('.chapter').each(function(index) {
         if (index === 0) {

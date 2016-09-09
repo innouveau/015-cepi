@@ -1,9 +1,7 @@
 function Settings(app) {
     this.app = app;
-
-    this.device = '';
+    this.device = null;
     this.container = {};
-
     this.properties = {
         path: {
             stroke: 2
@@ -11,13 +9,14 @@ function Settings(app) {
         radar: {
             r: 30, // to prevent a valorisation radar to overlap the graph (when value 1 or 10), this value should be < this.bottomFrame.height / 10
             gap: 3
+        },
+        story: {
+            margin: 15
         }
     };
-
     this.typography = {
         lineHeight: 15
     };
-
     this.animation = {
         valorisation: 750,
         popup: 200,
@@ -26,17 +25,14 @@ function Settings(app) {
         labelFade: 500,
         radar: 500
     };
-    
     this.timing = {
         sidestreamBars: [100, 220, 340, 460, 580, 700],
         story: {
             wait: 1500
         },
         disclaimer: 2000,
-        top: {
-            name: 'top',
-            left: 60,
-            origin: 180,
+        topFrame: {
+            origin: [60, 180],
             transitions: [
                 {
                     start: 1100,
@@ -52,10 +48,8 @@ function Settings(app) {
                 }
             ]
         },
-        bottom: {
-            name: 'bottom',
-            left: 60,
-            origin: 2000,
+        bottomFrame: {
+            origin: [60, 2000],
             transitions: [
                 {
                     start: 700,
@@ -71,10 +65,8 @@ function Settings(app) {
                 }
             ]
         },
-        labels: {
-            name: 'labels',
-            left: 84,
-            origin: 1200,
+        sidestreamLabels: {
+            origin: [84, 1200],
             transitions: [
                 {
                     start: 650,
@@ -91,11 +83,65 @@ function Settings(app) {
             ]
         }
     };
-    
     this.sizes = {};
+    this.graph = {};
     this.addWindowListener();
     this.measure();
 }
+
+Settings.prototype.getGraph = function() {
+    switch (this.device) {
+        case 0: // mobile  sizing set:
+        case 1: // tablet portrait sizing set:
+        case 2: // tablet landscape sizing set:
+            return {
+                width: 630,
+                height: 180,
+                margin: 10
+            };
+        case 3: // desktop sizing set:
+            return {
+                width: 630,
+                height: 320,
+                margin: 20
+            };
+    }
+};
+
+Settings.prototype.getSizes = function() {
+    switch (this.device) {
+        case 0: // mobile  sizing set:
+        case 1: // tablet portrait sizing set:
+        case 2: // tablet landscape sizing set:
+            return {
+                artboard: [60,0],
+                topFrame: this.timing.topFrame.origin,
+                rawLabel: [170,70],
+                profitLabel: [628,240],
+                sidestreamLabel: [520,470],
+                productionLabel: [220,258],
+                bottomFrame: this.timing.bottomFrame.origin,
+                graphHeaderText: [0, 100],
+                filterSidestreams: [24,20],
+                graphBody: [0,180],
+                sidestreamLabels: this.timing.sidestreamLabels.origin
+            };
+        case 3: // desktop sizing set:
+            return {
+                artboard: [60,0],
+                topFrame: this.timing.topFrame.origin,
+                rawLabel: [170,70],
+                profitLabel: [628,240],
+                sidestreamLabel: [520,470],
+                productionLabel: [220,258],
+                bottomFrame: this.timing.bottomFrame.origin,
+                graphHeaderText: [0, 100], 
+                filterSidestreams: [24,20],
+                graphBody: [0,180],
+                sidestreamLabels: this.timing.sidestreamLabels.origin
+            };
+    }
+};
 
 Settings.prototype.addWindowListener = function() {
     var self = this;
@@ -107,8 +153,8 @@ Settings.prototype.addWindowListener = function() {
 Settings.prototype.measure = function() {
     this.container = this.measureContainer();
     this.sizes = this.getSizes();
+    this.graph = this.getGraph();
     if (this.app.canvas && this.app.canvas.drawn) {
-        // do a redraw
         this.app.redraw();
     }
 };
@@ -130,72 +176,5 @@ Settings.prototype.measureContainer = function() {
         width: width,
         height: height,
         margin: 20
-    }
-};
-
-Settings.prototype.getSizes = function() {
-    switch (this.device) {
-        case 0:
-        case 1:
-        case 2:
-        case 3: // desktop sizing set:
-            return {
-                artboard : {
-                    left: 60,
-                    top : 0
-                },
-                layers: {
-                    top: {
-                        positions: [180, -200, -640],
-                        left: 60,
-                        bar: {
-                            left: 0,
-                            top: 420,
-                            width: 20
-                        }
-                    },
-                    bottom: {
-                        positions: [2000, 1000, 100],
-                        marginTop: 180,
-                        header: 100,
-                        left: 60,
-                        width: 630,
-                        height: 320,
-                        margin: 20
-                    },
-                    labels: {
-                        positions: [1200, 330, 70],
-                        left: 84,
-                        offset: 100
-                    }
-                },
-                labels: {
-                    raw: {
-                        left: 170,
-                        top: 70
-                    },
-                    profit: {
-                        left: 628,
-                        top: 240
-                    },
-                    sidestream: {
-                        left: 520,
-                        top: 470
-                    }
-                },
-                filterSidestreams: {
-                    top: 20,
-                    left: 24,
-                    setWidth: 100,
-                    labelLeft: 630,
-                    labelsTop: 620 // the top position of the labels next to each sidestream
-                },
-                story: {
-                    offset: [1400, 600],
-                    buffer: [700, 300],
-                    margin: 15
-                }
-            };
-            break;
     }
 };

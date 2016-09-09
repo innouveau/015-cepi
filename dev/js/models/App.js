@@ -8,6 +8,7 @@ function App(container) {
     this.streams = [];
     this.canvas = null;
     this.story = new Story(this);
+    this.frame = 0;
 }
 
 App.prototype.init = function() {
@@ -16,21 +17,19 @@ App.prototype.init = function() {
     this.getOutstreams();
     this.getPaths();
     this.getValorisations();
-    this.canvas.buildFilters(); // execute after valorisations and sidestreams are injected
+    // execute after valorisations and sidestreams are injected
+    this.canvas.createSidestreamContent();
+    // if that is done, we can set all the positions right
+    this.canvas.setPositions();
     this.loaded();
 };
 
 App.prototype.redraw = function() {
-    this.empty();
-    this.canvas = new Canvas(this);
-    this.story = new Story(this);
-    this.getSidestreams();
-    this.getOutstreams();
-    this.getPaths();
-    this.getValorisations();
-    this.canvas.buildFilters(); // execute after valorisations and sidestreams are injected
-    this.loaded();
-    $(window).scrollTop(0);
+    this.canvas.redraw();
+    for (var i = 0, l = this.valorisations.length; i < l; i++) {
+        this.valorisations[i].reposition();
+    }
+    this.scroll(this.frame);
 };
 
 App.prototype.empty = function() {
@@ -105,6 +104,7 @@ App.prototype.scroll = function(frame) {
         var path = this.paths[i];
         path.scroll(frame);
     }
+    this.frame = frame;
 };
 
 App.prototype.filter = function() {
