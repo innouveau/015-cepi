@@ -30,28 +30,64 @@ function Settings(app) {
     this.timing = {
         sidestreamBars: [100, 220, 340, 460, 580, 700],
         story: {
-            wait: 1350
+            wait: 1500
         },
         top: {
             name: 'top',
             left: 60,
-            positions: [180, -200, -640],
-            stops: [0, 1400, 2000],
-            zones: [300, 300]
+            origin: 180,
+            transitions: [
+                {
+                    start: 1100,
+                    end: 1400,
+                    origin: 180,
+                    destination: -200 
+                },
+                {
+                    start: 1600,
+                    end: 2000,
+                    origin: -200,
+                    destination: -640
+                }
+            ]
         },
         bottom: {
             name: 'bottom',
             left: 60,
-            positions: [2000, 1000, 100],
-            stops: [0, 1200, 2000],
-            zones: [500, 400]
+            origin: 2000,
+            transitions: [
+                {
+                    start: 700,
+                    end: 1200,
+                    origin: 2000,
+                    destination: 1000
+                },
+                {
+                    start: 1600,
+                    end: 2000,
+                    origin: 1000,
+                    destination: 100
+                }
+            ]
         },
         labels: {
             name: 'labels',
             left: 84,
-            positions: [1200, 330, 70],
-            stops: [0, 1400, 2000],
-            zones: [700, 300]
+            origin: 1200,
+            transitions: [
+                {
+                    start: 650,
+                    end: 1600,
+                    origin: 1200,
+                    destination: 330
+                },
+                {
+                    start: 1600,
+                    end: 2000,
+                    origin: 330,
+                    destination: 70
+                }
+            ]
         }
     };
     

@@ -2,100 +2,44 @@ function Timer(app, element, settings) {
     this.app = app;
     this.name = settings.name;
     this.element = element;
-    this.phase = {
-        current: 0,
-        closest: 0,
-        direction: 0
-    };
-    this.positions = settings.positions;
-    this.stops = settings.stops;
-    this.zones = settings.zones;
+    this.origin = settings.origin;
+    this.transitions = settings.transitions;
     this.left = settings.left;
 }
 
 Timer.prototype.scroll = function(frame) {
-    var closestObj = this.getClosest(frame),
-        distance = closestObj.distance,
-        closest = closestObj.index,
-        current = this.getCurrentPhase(frame);
-
-    if (distance !== 0 && closest !== current) {
-        if (Math.abs(distance) < this.zones[current]) {
-            this.phase.direction = distance;
-        } else {
-            this.phase.direction = 0;
-        }
-    } else {
-        this.phase.direction = 0;
-    }
-
-    this.phase.current = current;
-    this.phase.closest = closest;
-
-
-
-    // outer zones
-    if (this.phase.index === 0 && this.phase.direction > 0) {
-        this.phase.direction = 0;
-    }
-    if (this.phase.index === (this.length - 1) && this.phase.direction < 0) {
-        this.phase.direction = 0;
-    }
     var y = this.getY(frame);
     this.element.attr({
         transform: 'translate(' + this.left + ',' + y + ')'
     });
 };
 
-Timer.prototype.getCurrentPhase = function(frame) {
-    var current = 0;
-    for (var i = 0; i < 3; i++) {
-        if (frame >= this.stops[i]) {
-            current = i;
-        }
-    }
-    return current;
-};
-
-Timer.prototype.getClosest = function(frame) {
-    var closest = null,
-        closestDistance = 0,
-        length = 0,
-        distance;
-    for (var i = 0; i < 3; i++) {
-        distance = frame - this.stops[i];
-        if (closest === null || Math.abs(distance) < Math.abs(closestDistance)) {
-            closest = i;
-            closestDistance = distance;
-        }
-    }
-    return {
-        index: closest,
-        distance: closestDistance
-    };
-};
-
 Timer.prototype.getY = function(frame) {
-    var y,
-        index = this.phase.current,
-        part,
-        zone = this.zones[this.phase.current];
-    if (this.phase.direction !== 0) {
-        var current,
-            next;
-        if (this.phase.direction > 0) {
-            current = this.positions[index];
-            next = this.positions[index - 1];
-            part = (zone - this.phase.direction) / zone;
-        } else {
-            current = this.positions[index];
-            next = this.positions[index + 1];
-            part = (zone + this.phase.direction) / zone;
-        }
-        y = current + (next - current) * part;
+    console.clear();
+    console.log(frame);
+    if (frame < this.transitions[0].start) {
+        console.log('origin');
+        return this.origin;
     } else {
-        y = this.positions[index];
+        for (var i = 0, l = this.transitions.length; i < l; i++) {
+            var transition = this.transitions[i];
+            // inside a transition
+            if (frame >= transition.start && frame <= transition.end) {
+                console.log('inside');
+                return this.getTransitionState(frame, transition);
+            } else if ((i + 1) > (l - 1) || frame < this.transitions[i + 1].start) { // sticky in this phase
+                console.log('end');
+                return transition.destination;
+            }
+        }
     }
+};
 
-    return y;
+Timer.prototype.getTransitionState = function(frame, transition) {
+    var progression = frame - transition.start,
+        length = transition.end - transition.start,
+        part = progression / length,
+        distance = transition.destination - transition.origin,
+        done = part * distance;
+    return transition.origin + done;
 };
