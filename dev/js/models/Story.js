@@ -19,8 +19,9 @@ Story.prototype.getLockPosition = function() {
 };
 
 Story.prototype.init = function() {
+    console.log(this.app.settings.timing.bottomFrame.transitions[1].destination);
     var top = this.lockPosition,
-        height = $(window).outerHeight() - (this.app.settings.timing.bottomFrame.transitions[1].destination + this.app.settings.sizes.graphBody[1]),
+        height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination,
         self = this;
     $('.chapter').each(function(index) {
         if (index === 0) {
