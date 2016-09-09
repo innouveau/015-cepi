@@ -8,7 +8,6 @@ function App(container) {
     this.streams = [];
     this.canvas = null;
     this.story = new Story(this);
-    this.disclaimerShowed = false;
 }
 
 App.prototype.init = function() {
@@ -105,11 +104,6 @@ App.prototype.scroll = function(frame) {
     for (var i = 0, l = this.paths.length; i < l; i++) {
         var path = this.paths[i];
         path.scroll(frame);
-    }
-
-    if (this.story.phase.index === 2 && !this.disclaimerShowed) {
-        openDisclaimer();
-        this.disclaimerShowed = true;
     }
 };
 

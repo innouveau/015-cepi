@@ -1,11 +1,5 @@
 function Story(app) {
     this.app = app;
-    this.phase = {
-        current: 0,
-        closest: 0,
-        direction: 0
-    };
-    this.length = 3;
     this.element = {
         story: $('#story'),
         intro: $('.intro'),
@@ -16,81 +10,9 @@ function Story(app) {
     };
     this.lockPosition = this.getLockPosition();
     this.init();
+    this.disclaimerShowed = false;
 }
 
-
-Story.prototype.scroll = function(frame) {
-    var closestObj = this.getClosest(frame),
-        distance = closestObj.distance,
-        closest = closestObj.index,
-        current = this.getCurrentPhase(frame);
-
-    if (distance !== 0 && closest !== current) {
-        if (distance < Math.abs(this.app.settings.sizes.story.buffer[current])) {
-            this.phase.direction = distance;
-        } else {
-            this.phase.direction = 0;
-        }
-    } else {
-        this.phase.direction = 0;
-    }
-
-
-    this.phase.current = current;
-    this.phase.closest = closest;
-
-
-
-    // outer zones
-    if (this.phase.index === 0 && this.phase.direction > 0) {
-        this.phase.direction = 0;
-    }
-    if (this.phase.index === (this.length - 1) && this.phase.direction < 0) {
-        this.phase.direction = 0;
-    }
-
-    this.holdFirstChapter(frame);
-};
-
-
-Story.prototype.holdFirstChapter = function(frame) {
-    var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
-    if (firstTop > this.element.firstChapter.top) {
-        firstTop = this.element.firstChapter.top;
-    }
-    this.element.firstChapter.element.css('top', firstTop);
-};
-
-Story.prototype.getCurrentPhase = function(frame) {
-    var length = 0,
-        current = 0;
-    for (var i = 0, l = this.length; i < l; i++) {
-        if (frame >= length) {
-            current = i;
-        }
-        length += this.app.settings.sizes.story.offset[i];
-    }
-    return current;
-};
-
-Story.prototype.getClosest = function(frame) {
-    var closest = null,
-        closestDistance = 0,
-        length = 0,
-        distance;
-    for (var i = 0, l = this.length; i < l; i++) {
-        distance = frame - length;
-        if (closest === null || Math.abs(distance) < Math.abs(closestDistance)) {
-            closest = i;
-            closestDistance = distance;
-        }
-        length += this.app.settings.sizes.story.offset[i];
-    }
-    return {
-        index: closest,
-        distance: closestDistance
-    };
-};
 
 Story.prototype.getLockPosition = function() {
     return parseInt(this.element.intro.css('top')) + this.element.intro.outerHeight() + this.app.settings.sizes.story.margin - parseInt(this.element.story.css('top'));
@@ -112,18 +34,19 @@ Story.prototype.init = function() {
             $(this).addClass('fixed-chapter');
         }
     });
-
-
     $('.chapter:last-child').css('min-height', height);
 };
 
-Story.prototype.setPhase = function(i) {
-    this.phase.index = i;
+Story.prototype.scroll = function(frame) {
+    if (frame > this.app.settings.timing.disclaimer && !this.disclaimerShowed) {
+        openDisclaimer();
+        this.disclaimerShowed = true;
+    }
+
+    var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
+    if (firstTop > this.element.firstChapter.top) {
+        firstTop = this.element.firstChapter.top;
+    }
+    this.element.firstChapter.element.css('top', firstTop);
 };
-
-Story.prototype.setDirection= function(direction) {
-    this.phase.direction = direction;
-};
-
-
 

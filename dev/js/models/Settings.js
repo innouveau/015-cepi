@@ -32,6 +32,7 @@ function Settings(app) {
         story: {
             wait: 1500
         },
+        disclaimer: 2000,
         top: {
             name: 'top',
             left: 60,
