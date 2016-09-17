@@ -102,9 +102,16 @@ Valorisation.prototype.getLiveSidestreams = function() {
 
 Valorisation.prototype.getPosition = function() {
     return {
-        x: (this.value - 0.5 + 2) * this.app.settings.sizes.layers.bottom.width / 12,
-        y: (10.5 - this.tlr) * this.app.settings.sizes.layers.bottom.height / 10
+        x: (this.value - 0.5 + 2) * this.app.settings.graph.width / 12,
+        y: (10.5 - this.tlr) * this.app.settings.graph.height / 10
     }
+};
+
+Valorisation.prototype.reposition = function() {
+    this.position = this.getPosition();
+    this.element.main.attr({
+        transform: 'translate(' + this.position.x + ',' + this.position.y + ')'
+    })
 };
 
 // popup
