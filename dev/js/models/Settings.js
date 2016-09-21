@@ -53,7 +53,7 @@ function Settings(app) {
             transitions: [
                 {
                     start: 1200,
-                    end: 2000,
+                    end: 1700,
                     origin: 1600,
                     destination: 430
                 },
