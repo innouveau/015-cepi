@@ -4,15 +4,15 @@ var sets = [
         valorisations: [
             {
                 id: 0,
-                name: 'Landfill/composting',
+                name: 'Land management',
                 application: 'Application in land management',
                 description: '<p>A number of land management options is available as an outlet for PBI sludges. The following options can make use of favourable sludge characteristics:</p><ul><li>Land spreading</li><li>Land remediation</li><li> Landfill cover</li><li> Composting</li><p>The sludge is directly applied in the area selected.</p></ul>',
                 economic: 'Land management options, where legally allowed, do not appear to have a very attractive economic potential (gate fees, relatively low demand).',
                 trlDescription: 'Land spreading and use of sludge in landfill covers have been applied in practice for many years already but the regulatory framework has in many cases been shifting.',
                 link: '',
                 sidestreams: [0,1,3],
-                tlr: 6,
-                value: 8,
+                tlr: 10,
+                value: 1,
                 image: 'CEPI_flows_v1_v01_land_management.svg'
             }, {
                 id: 1,
@@ -24,7 +24,7 @@ var sets = [
                 link: '',
                 sidestreams: [2,4],
                 tlr: 10,
-                value: 1.5,
+                value: 1.75,
                 image: 'CEPI_flows_v1_v02_absorbent_materials.svg'
             }, {
                 id: 2,
