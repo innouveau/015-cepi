@@ -44,6 +44,8 @@
 	.st37{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:21.0526,5.2632,21.0526,3.1579;}
 	.st38{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:16.9492,2.5424;}
 	.st39{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:16.9492,2.5424,16.9492,2.5424;}
+	.st40{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:22.2222,3.3333;}
+	.st41{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:22.2222,3.3333,22.2222,3.3333;}
 </style>
 <g id="Laag_1">
 	<g>
@@ -672,17 +674,17 @@
 		<g>
 			<g>
 				<g>
-					<line class="st21" x1="85.1" y1="100" x2="85.1" y2="90"/>
-					<line class="st31" x1="85.1" y1="84.7" x2="85.1" y2="62.1"/>
-					<line class="st32" x1="85.1" y1="60.5" x2="85.1" y2="11.6"/>
-					<line class="st21" x1="85.1" y1="10" x2="85.1" y2="0"/>
+					<line class="st35" x1="85.1" y1="100" x2="85.1" y2="90"/>
+					<line class="st40" x1="85.1" y1="86.7" x2="85.1" y2="62.8"/>
+					<line class="st41" x1="85.1" y1="61.1" x2="85.1" y2="11.7"/>
+					<line class="st35" x1="85.1" y1="10" x2="85.1" y2="0"/>
 				</g>
 			</g>
 			<g>
 				<g>
-					<line class="st21" x1="90.2" y1="100" x2="90.2" y2="90"/>
-					<line class="st24" x1="90.2" y1="87.5" x2="90.2" y2="69.2"/>
-					<line class="st25" x1="90.2" y1="68" x2="90.2" y2="-8.7"/>
+					<line class="st35" x1="90.2" y1="100" x2="90.2" y2="90"/>
+					<line class="st38" x1="90.2" y1="87.5" x2="90.2" y2="69.2"/>
+					<line class="st39" x1="90.2" y1="68" x2="90.2" y2="-8.7"/>
 				</g>
 			</g>
 			<g>

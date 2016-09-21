@@ -44,6 +44,8 @@
 	.st37{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:21.0526,5.2632,21.0526,3.1579;}
 	.st38{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:16.9492,2.5424;}
 	.st39{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:16.9492,2.5424,16.9492,2.5424;}
+	.st40{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:22.2222,3.3333;}
+	.st41{fill:none;stroke:#95C4E0;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:22.2222,3.3333,22.2222,3.3333;}
 </style>
 <g id="Laag_1">
 	<g>
@@ -365,10 +367,10 @@
 		</g>
 		<g>
 			<g>
-				<path class="st12" d="M202.6,285.7V120"/>
+				<line class="st12" x1="202.6" y1="285.7" x2="202.6" y2="120"/>
 			</g>
 			<g>
-				<path class="st12" d="M197.4,285.7V120"/>
+				<line class="st12" x1="197.4" y1="285.7" x2="197.4" y2="120"/>
 			</g>
 		</g>
 	</g>
