@@ -35,16 +35,16 @@ function Settings(app) {
             origin: [60, 180], // [x,y]
             transitions: [
                 {
-                    start: 1100,
-                    end: 1400,
+                    start: 100,
+                    end: 1500,
                     origin: 180, // keep this one the same as origin[1]
-                    destination: -200 
+                    destination: -150 
                 },
                 {
-                    start: 1600,
-                    end: 2000,
-                    origin: -200, // keep this on the same as previous destination
-                    destination: -640
+                    start: 2000,
+                    end: 2400,
+                    origin: -150, // keep this on the same as previous destination
+                    destination: -500
                 }
             ]
         },
@@ -52,32 +52,32 @@ function Settings(app) {
             origin: [60, 2000],
             transitions: [
                 {
-                    start: 700,
-                    end: 1200,
-                    origin: 2000,
-                    destination: 1000
+                    start: 1200,
+                    end: 2000,
+                    origin: 1600,
+                    destination: 430
                 },
                 {
-                    start: 1600,
-                    end: 2000,
-                    origin: 1000,
+                    start: 2000,
+                    end: 2400,
+                    origin: 430,
                     destination: 100
                 }
             ]
         },
         sidestreamLabels: {
-            origin: [84, 1200],
+            origin: [84, 1600],
             transitions: [
                 {
-                    start: 650,
-                    end: 1600,
-                    origin: 1200,
-                    destination: 330
+                    start: 300,
+                    end: 1500,
+                    origin: 1600,
+                    destination: 390
                 },
                 {
-                    start: 1600,
-                    end: 2000,
-                    origin: 330,
+                    start: 2000,
+                    end: 2400,
+                    origin: 390,
                     destination: 70
                 }
             ]
