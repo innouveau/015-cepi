@@ -246,17 +246,17 @@ Canvas.prototype.createGraphHeader = function() {
         class: 'graph-header-text',
         x: 0,
         y: 0
-    }).text('Side stream valorization opportunities');
+    }).text('Side stream valorisation opportunities');
     this.elements.graphHeaderText.append('text').attr({
         class: 'graph-header-sub',
         x: 0,
         y: 32
-    }).text('The graph shows the potential of 16 side stream valorisation technologies, indicatively ordered by their ');
+    }).text('The graph shows the potential of 14 side stream valorisation technologies, indicatively ordered by their ');
     this.elements.graphHeaderText.append('text').attr({
         class: 'graph-header-sub',
         x: 0,
         y: 48
-    }).text('economic potential and by their technology readyness level.');
+    }).text('economic potential and by their technology readiness level. Click on the circles to explore the opportunities.');
 };
 
 
