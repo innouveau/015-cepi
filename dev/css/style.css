@@ -469,6 +469,30 @@ h2 {
     font-size: 28px;
 }
 
+#arrow {
+    position: fixed;
+    left: 950px;
+    top: 148px;
+    z-index: 100;
+    animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0.9;
+    }
+    60% {
+        opacity: 0;
+    }
+    90% {
+        opacity: 0.9;
+    }
+}
+
+
 
 
 @media (max-width: 1024px) {
