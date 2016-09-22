@@ -239,6 +239,13 @@ Canvas.prototype.createGraphHeader = function() {
         x2: 630,
         y2: 0
     });
+    this.layers.bottom.graphHeader.append('rect').attr({
+        fill: '#fff',
+        width: this.app.settings.graph.width + 10,
+        height: this.app.settings.graph.height,
+        x: -5,
+        y: 60
+    });
     this.elements.graphHeaderText = this.layers.bottom.graphHeader.append('g').attr({
         class: 'graph-header-texts'
     });
