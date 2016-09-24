@@ -103,7 +103,7 @@ Valorisation.prototype.getLiveSidestreams = function() {
 Valorisation.prototype.getPosition = function() {
     return {
         x: (this.value - 0.5 + 2) * this.app.settings.graph.width / 12,
-        y: (10.5 - this.tlr) * this.app.settings.graph.height / 10
+        y: (11.5 - this.tlr) * this.app.settings.graph.height / 11
     }
 };
 

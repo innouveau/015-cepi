@@ -1,6 +1,5 @@
 function Settings(app) {
     this.app = app;
-    this.device = null;
     this.container = {};
 
     this.typography = {
@@ -26,11 +25,11 @@ function Settings(app) {
 }
 
 Settings.prototype.getGraph = function() {
-    switch (this.device) {
+    switch (window.device) {
         case 0: // mobile  sizing set:
             return {
                 width: this.container.width - 40,
-                height: this.container.height - 320,
+                height: this.container.height - 300,
                 margin: 10
             };
             break;
@@ -47,7 +46,7 @@ Settings.prototype.getGraph = function() {
 };
 
 Settings.prototype.getProperties = function() {
-    switch (this.device) {
+    switch (window.device) {
         case 0: // mobile  sizing set:
             return {
                 path: {
@@ -84,7 +83,7 @@ Settings.prototype.getProperties = function() {
 };
 
 Settings.prototype.getTiming = function() {
-    switch (this.device) {
+    switch (window.device) {
         case 0: // mobile  sizing set:
             return {
                 sidestreamBars: [100, 100, 100, 100, 100, 100],
@@ -122,7 +121,7 @@ Settings.prototype.getTiming = function() {
                             start: 2000,
                             end: 2400,
                             origin: 430,
-                            destination: 100
+                            destination: 80
                         }
                     ]
                 },
@@ -211,15 +210,15 @@ Settings.prototype.getTiming = function() {
 };
 
 Settings.prototype.getSizes = function() {
-    switch (this.device) {
+    switch (window.device) {
         case 0: // mobile  sizing set:
             return {
                 artboard: [0,0],
                 topFrame: this.timing.topFrame.origin,
-                rawLabel: [170,70],
-                profitLabel: [628,240],
-                sidestreamLabel: [420,470],
-                productionLabel: [220,258],
+                rawLabel: [40,70],
+                profitLabel: [210,250],
+                sidestreamLabel: [40,470],
+                productionLabel: [30,230],
                 bottomFrame: this.timing.bottomFrame.origin,
                 graphHeaderText: [0, 80],
                 filterSidestreams: [24,20],
@@ -283,15 +282,6 @@ Settings.prototype.measure = function() {
 Settings.prototype.measureContainer = function() {
     var width = $(this.app.container).outerWidth(),
         height = $(this.app.container).outerHeight();
-    if (width < 700) {
-        this.device = 0; // smartphone
-    } else if (width < 768) {
-        this.device = 1; // tablet portrait
-    } else if (width < 1024) {
-        this.device = 2; // table landscape
-    } else {
-        this.device = 3; // desktop
-    }
     return {
         width: width,
         height: height,

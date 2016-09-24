@@ -20,7 +20,7 @@ Story.prototype.getLockPosition = function() {
 
 Story.prototype.init = function() {
     var self = this;
-    if (this.app.settings.device === 0) {
+    if (window.device === 0) {
         var display;
         // todo this is temp a hardcoded number
         $('#scroller').css('height', 5000);
@@ -53,7 +53,7 @@ Story.prototype.init = function() {
 };
 
 Story.prototype.scroll = function(frame) {
-    if (this.app.settings.device === 0) {
+    if (window.device === 0) {
         $('.chapter').each(function (index) {
             var top = parseInt($(this).attr('top')) - frame;
             if (top < 0) {

@@ -343,7 +343,8 @@ Canvas.prototype._createAxis = function(graph, settings, direction, label1, labe
         arrow1,
         arrow2,
         xOffset = [],
-        yOffset = [];
+        yOffset = [],
+        align = 'start';
     if (direction === 'y') {
         positions = [0, 0, 0, settings.graph.height - settings.graph.margin];
         arrow1 = 'M' + (positions[0] - 5) + ',' + (positions[1] + 7) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 5) + ',' + (positions[1] + 7);
@@ -354,8 +355,9 @@ Canvas.prototype._createAxis = function(graph, settings, direction, label1, labe
         positions = [settings.graph.margin, settings.graph.height + settings.graph.margin, settings.graph.width, settings.graph.height + settings.graph.margin];
         arrow1 = 'M' + (positions[0] + 7) + ',' + (positions[1] -5) + 'L' + (positions[0]) + ',' + positions[1] + 'L' + (positions[0] + 7) + ',' + (positions[1] + 5);
         arrow2 = 'M' + (positions[2] - 7) + ',' + (positions[3] -5) + 'L' + (positions[2]) + ',' + positions[3] + 'L' + (positions[2] - 7) + ',' + (positions[3] + 5);
-        xOffset = [0, -175];
+        xOffset = [0, 0];
         yOffset = [30, 30];
+        align = 'end';
     }
     axis.append('line').attr({
         class:'graph-axis-line',
@@ -385,7 +387,8 @@ Canvas.prototype._createAxis = function(graph, settings, direction, label1, labe
         axis.append('text').attr({
             class: 'graph-label',
             x: positions[2] + xOffset[1],
-            y: positions[3] + yOffset[1] + j * this.app.settings.typography.lineHeight
+            y: positions[3] + yOffset[1] + j * this.app.settings.typography.lineHeight,
+            'text-anchor': align
         }).text(label2[j])
     }
 

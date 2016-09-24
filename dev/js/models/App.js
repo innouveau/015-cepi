@@ -42,7 +42,7 @@ App.prototype.empty = function() {
 
 App.prototype.getPaths = function() {
     var thisPaths;
-    if (this.settings.device > 2) {
+    if (window.device > 2) {
         thisPaths = paths;
     } else {
         thisPaths = pathsMobile;
