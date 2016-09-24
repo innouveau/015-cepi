@@ -39,8 +39,8 @@ Valorisation.prototype.getElement = function() {
     subElement = mainElement.append('g').attr({
         class: 'valorisation-sub-element'
     })  ;
-    for (var i = 0; i < 4; i++) {
-        var r = p - i * 5,
+    for (var i = 0, l = this.app.settings.properties.radar.n; i < l; i++) {
+        var r = p - i * this.app.settings.properties.radar.gap,
             circle = new Circle(this.app, this, subElement, r, p);
         circle.updateSubCircles(liveSidestreams);
         this.circles.push(circle);
@@ -76,7 +76,7 @@ Valorisation.prototype.update = function() {
         this.cover.close();
         // 2. change radar
         setTimeout(function () {
-            for (var i = 0, l = self.circles.length; i < 4; i++) {
+            for (var i = 0, l = self.circles.length; i < l; i++) {
                 self.circles[i].updateSubCircles(liveSidestreams);
             }
         }, this.app.settings.animation.radar);

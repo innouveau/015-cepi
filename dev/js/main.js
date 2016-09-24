@@ -1,5 +1,6 @@
 $(window).ready(function(){
 
+    initHamburger();
     var container = document.getElementById('infographic');
 
     window.app = new App(container);
@@ -37,4 +38,46 @@ function openDisclaimer() {
 function closeDisclaimer() {
     $('.overlay').hide();
     $('.disclaimer').fadeOut(100);
+}
+
+function initHamburger() {
+    var hamburgerOpen = false;
+
+    $('#hamburger').click(function() {
+        if (hamburgerOpen) {
+            hamburgerHide();
+        } else {
+            hamburgerShow();
+        }
+
+    });
+
+    $('body').click(function(event) {
+        if (window.app.settings.device === 0) {
+            if (isHamburger(event.target)) {
+                hamburgerHide();
+            }
+        }
+    });
+
+    function hamburgerHide() {
+        $('.menu').hide();
+        $('body').removeClass('hamburger-open');
+        hamburgerOpen = false;
+    }
+
+    function hamburgerShow() {
+        $('.menu').show();
+        $('body').addClass('hamburger-open');
+        hamburgerOpen = true;
+
+    }
+
+    function isHamburger(element) {
+        if ($(element).attr('id') === 'hamburger' || $(element).parents('#hamburger').length > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -41,8 +41,15 @@ App.prototype.empty = function() {
 };
 
 App.prototype.getPaths = function() {
-    for (var i = 0, l = paths.length; i < l; i++) {
-        var path = paths[i],
+    var thisPaths;
+    if (this.settings.device > 2) {
+        thisPaths = paths;
+    } else {
+        thisPaths = pathsMobile;
+    }
+
+    for (var i = 0, l = thisPaths.length; i < l; i++) {
+        var path = thisPaths[i],
             model;
         switch (path.type) {
             case 'regular':

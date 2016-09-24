@@ -19,35 +19,62 @@ Story.prototype.getLockPosition = function() {
 };
 
 Story.prototype.init = function() {
-    console.log(this.app.settings.timing.bottomFrame.transitions[1].destination);
-    var top = this.lockPosition,
-        height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination,
-        self = this;
-    $('.chapter').each(function(index) {
-        if (index === 0) {
-            var firstTop = top + parseInt(self.element.story.css('top'));
-            self.element.firstChapter.element = $(this);
-            self.element.firstChapter.top = firstTop;
+    var self = this;
+    if (this.app.settings.device === 0) {
+        var display;
+        // todo this is temp a hardcoded number
+        $('#scroller').css('height', 5000);
+
+
+        $('.chapter').each(function(index) {
+            var top = self.app.settings.timing.story.chapter[index];
             $(this).css({
-                top: firstTop,
-                position: 'fixed'
-            });
-            $(this).addClass('fixed-chapter');
-        }
-    });
-    $('.chapter:last-child').css('min-height', height);
+                top: top,
+                position: 'absolute'
+            }).attr('top', top);
+        });
+    } else {
+        var top = this.lockPosition,
+            height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination;
+        $('.chapter').each(function (index) {
+            if (index === 0) {
+                var firstTop = top + parseInt(self.element.story.css('top'));
+                self.element.firstChapter.element = $(this);
+                self.element.firstChapter.top = firstTop;
+                $(this).css({
+                    top: firstTop,
+                    position: 'fixed'
+                });
+                $(this).addClass('fixed-chapter');
+            }
+        });
+        $('.chapter:last-child').css('min-height', height);
+    }
 };
 
 Story.prototype.scroll = function(frame) {
-    if (frame > this.app.settings.timing.disclaimer && !this.disclaimerShowed) {
-        openDisclaimer();
-        this.disclaimerShowed = true;
-    }
+    if (this.app.settings.device === 0) {
+        $('.chapter').each(function (index) {
+            var top = parseInt($(this).attr('top')) - frame;
+            if (top < 0) {
+                top = 0;
+            }
+            $(this).css({
+                top: top
+            });
 
-    var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
-    if (firstTop > this.element.firstChapter.top) {
-        firstTop = this.element.firstChapter.top;
+        });
+    } else {
+        if (frame > this.app.settings.timing.disclaimer && !this.disclaimerShowed) {
+            openDisclaimer();
+            this.disclaimerShowed = true;
+        }
+
+        var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
+        if (firstTop > this.element.firstChapter.top) {
+            firstTop = this.element.firstChapter.top;
+        }
+        this.element.firstChapter.element.css('top', firstTop);
     }
-    this.element.firstChapter.element.css('top', firstTop);
 };
 
