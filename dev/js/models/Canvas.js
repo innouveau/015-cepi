@@ -73,7 +73,7 @@ Canvas.prototype.scroll = function(frame) {
 
 Canvas.prototype.hideElements = function(frame) {
     // profit label
-    if (frame > 620) {
+    if (frame > this.app.settings.timing.labels.profitLabel) {
         $(this.elements.profitLabel[0]).fadeIn(this.app.settings.animation.labelFade);
         $('.roll').fadeIn(this.app.settings.animation.labelFade);
     } else {
@@ -82,12 +82,12 @@ Canvas.prototype.hideElements = function(frame) {
     }
 
     // sidestream label
-    if (frame > 1000) {
+    if (frame > this.app.settings.timing.labels.sidestreamLabel) {
         $(this.elements.sidestreamLabel[0]).fadeIn(this.app.settings.animation.labelFade);
     } else {
         $(this.elements.sidestreamLabel[0]).fadeOut(this.app.settings.animation.labelFade);
     }
-    if (frame > 200) {
+    if (frame > this.app.settings.timing.labels.productionLabel) {
         $(this.elements.productionLabel[0]).fadeIn(this.app.settings.animation.labelFade);
     } else {
         $(this.elements.productionLabel[0]).fadeOut(this.app.settings.animation.labelFade);
@@ -161,15 +161,16 @@ Canvas.prototype.createPathsContainers = function() {
 };
 
 Canvas.prototype.addLabels = function(labelsContainer) {
-    this.elements.rawLabel = this._getLabel(labelsContainer, ['Raw Material:', 'Paper for Recycling'], 150, 'right');
-    this.elements.profitLabel = this._getLabel(labelsContainer, ['Paper product', '(profit)'], 120, 'top');
-    this.elements.sidestreamLabel = this._getLabel(labelsContainer, ['Side streams', '(costs)'], 110, 'right');
+    this.elements.rawLabel = this._getLabel(labelsContainer, ['Raw Material:', 'Paper for Recycling'], this.app.settings.labels.rawLabel);
+    this.elements.profitLabel = this._getLabel(labelsContainer, ['Paper product', '(profit)'], this.app.settings.labels.profitLabel);
+    this.elements.sidestreamLabel = this._getLabel(labelsContainer, ['Side streams', '(costs)'], this.app.settings.labels.sidestreamLabel);
     $(this.elements.profitLabel[0]).hide();
     $(this.elements.sidestreamLabel[0]).hide();
 };
 
 Canvas.prototype.addBars = function(labelsContainer) {
-    for (var i = 0; i < 6; i++) {
+    var n = window.device === 0 ? 2 : 6;
+    for (var i = 0; i < n; i++) {
         var container = labelsContainer.append('g').attr({
             class: 'sidestream-bar',
             transform: 'translate(' + (i * 100) + ',' + 420 + ')'
@@ -242,7 +243,7 @@ Canvas.prototype.createGraphHeader = function() {
     this.layers.bottom.graphHeader.append('rect').attr({
         fill: '#fff',
         width: this.app.settings.graph.width + 10,
-        height: this.app.settings.graph.height,
+        height: this.app.settings.graph.height + 300,
         x: -5,
         y: 60
     });
@@ -254,16 +255,15 @@ Canvas.prototype.createGraphHeader = function() {
         x: 0,
         y: 0
     }).text('Side stream valorisation opportunities');
-    this.elements.graphHeaderText.append('text').attr({
-        class: 'graph-header-sub',
-        x: 0,
-        y: 32
-    }).text('The graph shows the potential of 14 side stream valorisation technologies, indicatively ordered by their ');
-    this.elements.graphHeaderText.append('text').attr({
-        class: 'graph-header-sub',
-        x: 0,
-        y: 48
-    }).text('economic potential and by their technology readiness level. Click on the circles to explore the opportunities.');
+    var subTexts = window.device === 0 ? ['The graph shows the potential of 14 side stream valorisation', 'technologies, indicatively ordered by their economic potential', 'and by their technology readiness level.', 'Click on the circles to explore the opportunities.'] : ['The graph shows the potential of 14 side stream valorisation technologies, indicatively ordered by their', 'economic potential and by their technology readiness level. Click on the circles to explore the opportunities.'];
+
+    for (var i = 0, l = subTexts.length; i < l; i++) {
+        this.elements.graphHeaderText.append('text').attr({
+            class: 'graph-header-sub',
+            x: 0,
+            y: this.app.settings.sizes.graphSubHeader[1] + (i * this.app.settings.typography.lineHeight)
+        }).text(subTexts[i]);
+    }
 };
 
 
@@ -397,19 +397,19 @@ Canvas.prototype._createAxis = function(graph, settings, direction, label1, labe
 
 // helpers
 
-Canvas.prototype._getLabel = function(parent, texts, width, position) {
+Canvas.prototype._getLabel = function(parent, texts, model) {
     var height = texts.length * 14 + 12,
-        distance = 100,
+        distance = model.distance,
         x1, y1, x2, y2, cx, cy, rx, ry, tx, ty;
     g = parent.append('g').attr({
         class: 'label'
     });
-    switch (position) {
+    switch (model.position) {
         case 'top':
-            x1 = 0; y1 = height; x2 = 0; y2 = distance + height; cx = 0; cy = distance + height; rx = -0.5 * width; ry = 0; tx = -0.5 * width + 15; ty = 0;
+            x1 = 0; y1 = height; x2 = 0; y2 = distance + height; cx = 0; cy = distance + height; rx = -0.5 * model.width; ry = 0; tx = -0.5 * model.width + 15; ty = 0;
             break;
         case 'bottom':
-            x1 = 0; y1 = 0; x2 = 0; y2 = distance; cx = 0; cy = 0; rx = -0.5 * width; ry = distance; tx = -0.5 * width + 15; ty = distance;
+            x1 = 0; y1 = 0; x2 = 0; y2 = distance; cx = 0; cy = 0; rx = -0.5 * model.width; ry = distance; tx = -0.5 * model.width + 15; ty = distance;
             break;
         case 'right':
             x1 = 0; y1 = 20; x2 = distance; y2 = 20; cx = 0; cy = 20; rx = distance; ry = 0; tx = distance + 15; ty = 0;
@@ -431,7 +431,7 @@ Canvas.prototype._getLabel = function(parent, texts, width, position) {
     g.append('rect').attr({
         x: rx,
         y: ry,
-        width: width,
+        width: model.width,
         height: height,
         fill: '#000'
     });

@@ -23,7 +23,7 @@ Story.prototype.init = function() {
     if (window.device === 0) {
         var display;
         // todo this is temp a hardcoded number
-        $('#scroller').css('height', 5000);
+        $('#scroller').css('height', 2000);
 
 
         $('.chapter').each(function(index) {

@@ -14,15 +14,61 @@ function Settings(app) {
         radar: 500
     };
 
-
-    this.graph = {};
     this.addWindowListener();
     this.measure();
     this.timing = this.getTiming();
     this.sizes = this.getSizes();
     this.graph = this.getGraph();
+    this.labels = this.getLabels();
     this.properties = this.getProperties();
 }
+
+Settings.prototype.getLabels = function() {
+    switch (window.device) {
+        case 0: // mobile  sizing set:
+            return {
+                rawLabel: {
+                    distance: 20,
+                    width: 130,
+                    position: 'right'
+                },
+                profitLabel: {
+                    distance: 50,
+                    width: 110,
+                    position: 'top'
+                },
+                sidestreamLabel: {
+                    distance: 60,
+                    width: 110,
+                    position: 'right'
+                }
+
+            };
+            break;
+        case 1: // tablet portrait sizing set:
+        case 2: // tablet landscape sizing set:
+        case 3: // desktop sizing set:
+            return {
+                rawLabel: {
+                    distance: 100,
+                    width: 150,
+                    position: 'right'
+                },
+                profitLabel: {
+                    distance: 100,
+                    width: 120,
+                    position: 'top'
+                },
+                sidestreamLabel: {
+                    distance: 100,
+                    width: 110,
+                    position: 'right'
+                }
+                
+            };
+            break;
+    }
+};
 
 Settings.prototype.getGraph = function() {
     switch (window.device) {
@@ -86,19 +132,24 @@ Settings.prototype.getTiming = function() {
     switch (window.device) {
         case 0: // mobile  sizing set:
             return {
-                sidestreamBars: [100, 100, 100, 100, 100, 100],
+                sidestreamBars: [100, 240],
+                labels: {
+                    profitLabel: 220,
+                    sidestreamLabel: 600,
+                    productionLabel: 270
+                },
                 story: {
-                    chapter: [0, 800, 1600]
+                    chapter: [0, 650, 1000]
                 },
                 disclaimer: 2000,
                 topFrame: {
                     origin: [20, 280], // [x,y]
                     transitions: [
                         {
-                            start: 100,
-                            end: 1500,
-                            origin: 180, // keep this one the same as origin[1]
-                            destination: -150
+                            start: 50,
+                            end: 500,
+                            origin: 280, // keep this one the same as origin[1]
+                            destination: -250
                         },
                         {
                             start: 2000,
@@ -112,15 +163,15 @@ Settings.prototype.getTiming = function() {
                     origin: [20, 2000],
                     transitions: [
                         {
-                            start: 1200,
-                            end: 1700,
+                            start: 400,
+                            end: 500,
                             origin: 1600,
-                            destination: 430
+                            destination: 800
                         },
                         {
-                            start: 2000,
-                            end: 2400,
-                            origin: 430,
+                            start: 800,
+                            end: 1100,
+                            origin: 800,
                             destination: 80
                         }
                     ]
@@ -149,6 +200,11 @@ Settings.prototype.getTiming = function() {
         case 3: // desktop sizing set:
             return {
                 sidestreamBars: [100, 220, 340, 460, 580, 700],
+                labels: {
+                    profitLabel: 620,
+                    sidestreamLabel: 1000,
+                    productionLabel: 200
+                },
                 story: {
                     wait: 1500
                 },
@@ -215,12 +271,13 @@ Settings.prototype.getSizes = function() {
             return {
                 artboard: [0,0],
                 topFrame: this.timing.topFrame.origin,
-                rawLabel: [40,70],
-                profitLabel: [210,250],
-                sidestreamLabel: [40,470],
+                rawLabel: [140,80],
+                profitLabel: [228,280],
+                sidestreamLabel: [40,500],
                 productionLabel: [30,230],
                 bottomFrame: this.timing.bottomFrame.origin,
                 graphHeaderText: [0, 80],
+                graphSubHeader: [0, 16],
                 filterSidestreams: [24,20],
                 graphBody: [0,160],
                 sidestreamLabels: this.timing.sidestreamLabels.origin
@@ -237,6 +294,7 @@ Settings.prototype.getSizes = function() {
                 productionLabel: [220,258],
                 bottomFrame: this.timing.bottomFrame.origin,
                 graphHeaderText: [0, 80],
+                graphSubHeader: [0, 32],
                 filterSidestreams: [24,20],
                 graphBody: [0,160],
                 sidestreamLabels: this.timing.sidestreamLabels.origin
@@ -252,6 +310,7 @@ Settings.prototype.getSizes = function() {
                 productionLabel: [220,258],
                 bottomFrame: this.timing.bottomFrame.origin,
                 graphHeaderText: [0, 100], 
+                graphSubHeader: [0, 32],
                 filterSidestreams: [24,20],
                 graphBody: [0,180],
                 sidestreamLabels: this.timing.sidestreamLabels.origin

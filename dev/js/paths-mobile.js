@@ -121,7 +121,7 @@ var pathsMobile = [{
     sidestreams: [0],
     dash: 20,
     gap: 4,
-    animationStart: 100,
+    animationStart: 280,
     cover: true,
     points: 'M0,438.967 0,474.377 0,796 '
 }, {
@@ -130,7 +130,7 @@ var pathsMobile = [{
     sidestreams: [1],
     dash: 19,
     gap: 4,
-    animationStart: 100,
+    animationStart: 284,
     cover: true,
     points: 'M3.998,445.544 3.998,471.881 3.998,796 '
 }, {
@@ -139,7 +139,7 @@ var pathsMobile = [{
     sidestreams: [2],
     dash: 21,
     gap: 4,
-    animationStart: 110,
+    animationStart: 310,
     cover: true,
     points: 'M8,450.023 8,497.43 8,796 '
 }, {
@@ -148,7 +148,7 @@ var pathsMobile = [{
     sidestreams: [3],
     dash: 17,
     gap: 4,
-    animationStart: 102,
+    animationStart: 302,
     cover: true,
     points: 'M12,454.408 12,518.314 12,796 '
 }, {
@@ -157,7 +157,7 @@ var pathsMobile = [{
     sidestreams: [4],
     dash: 22,
     gap: 4,
-    animationStart: 108,
+    animationStart: 308,
     cover: true,
     points: 'M16,457.648 16,547.028 16,796 '
 }, {
@@ -166,7 +166,7 @@ var pathsMobile = [{
     sidestreams: [5],
     dash: 17,
     gap: 4,
-    animationStart: 105,
+    animationStart: 305,
     cover: true,
     points: 'M20,459.27 20,567.912 20,796 '
 }, {

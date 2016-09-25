@@ -613,12 +613,24 @@ h2 {
     
     /* infographic */
     
-    .checkbox-container, .sidestream-label {
+    .filter-sidestreams,
+    .sidestream-label,
+    .graph-header line
+    {
         display: none;
     }
 
+    .graph-header-text {
+        font-size: 15px;
+    }
 
-    /* legend */
+    .graph-header-sub {
+        font-size: 9px;
+    }
+
+
+
+        /* legend */
 
     .legend {
         margin: 0;
@@ -634,6 +646,10 @@ h2 {
 
     .legend-children, .legend-button {
         display: inline-block;
+    }
+
+    .legend-button {
+        margin-right: 2px;
     }
 
     .disclaimer-link {
@@ -680,14 +696,14 @@ h2 {
     .valoriation-popup, .disclaimer {
         position: fixed;
         left: 0;
-        top: 190px;
-        height: calc(100% - 190px);
+        top: 210px;
+        height: calc(100% - 210px);
         width: 100%;
         padding: 20px;
-        background: #fff;
+        background: #eee;
         display: none;
         z-index: 10000;
-        border-top: 0.5px solid #000;
+        box-shadow: 0 -3px 3px rgba(0,0,0,0.2);
     }
 
 
