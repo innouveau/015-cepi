@@ -11,12 +11,12 @@ $(window).resize(function(){
 function getScreenWidth() {
     var width = $(window).outerWidth(),
         height = $(window).outerHeight();
-    if (width < 700) {
+    if (width <= 700) {
         window.device = 0; // smartphone
-    } else if (width < 768) {
+    } else if (width <= 768) {
         window.device = 1; // tablet portrait
-    } else if (width < 1024) {
-        window.device = 2; // table landscape
+    } else if (width <= 1024) {
+        window.device = 2; // tablet landscape
     } else {
         window.device = 3; // desktop
     }
