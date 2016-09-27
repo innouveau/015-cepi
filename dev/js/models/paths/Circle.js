@@ -37,7 +37,7 @@ Circle.prototype.updateSubCircles = function(liveSidestreams) {
                 start = i * (length + gap) + 0.5 * gap,
                 startAngle = start * (Math.PI / 180),
                 endAngle = (start + length) * (Math.PI / 180),
-                arc = d3.svg.arc().innerRadius(this.r).outerRadius(this.r + this.app.settings.properties.path.stroke).startAngle(startAngle).endAngle(endAngle);
+                arc = d3.svg.arc().innerRadius(this.r).outerRadius(this.r + this.app.settings.properties.radar.stroke).startAngle(startAngle).endAngle(endAngle);
             new Arc(this.app, this, this.element, liveSidestream, arc);
         }
     }

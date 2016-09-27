@@ -173,12 +173,12 @@ Canvas.prototype.addBars = function(labelsContainer) {
     for (var i = 0; i < n; i++) {
         var container = labelsContainer.append('g').attr({
             class: 'sidestream-bar',
-            transform: 'translate(' + (i * 100) + ',' + 420 + ')'
+            transform: 'translate(' + (i * this.app.settings.properties.graph.offset) + ',' + this.app.settings.properties.graph.bar.y + ')'
         });
         container.append('line').attr({
             x1: 0,
             y1: 0,
-            x2: 20,
+            x2: this.app.settings.properties.graph.bar.width,
             y2: 0
         });
         this.bars.push(container);
@@ -298,7 +298,7 @@ Canvas.prototype.createSidestreamLabels = function() {
             lines = sidestream.name.split(' '),
             sideStreamLabel = this.elements.sidestreamLabels.append('g').attr({
                 class: 'label-container',
-                transform: 'translate(' + i * 100 + ',0)'
+                transform: 'translate(' + i * this.app.settings.properties.graph.offset + ',0)'
             });
         for (var j = 0, jl = lines.length; j < jl; j++) {
             sideStreamLabel.append('text').attr({
@@ -327,7 +327,7 @@ Canvas.prototype.createFilterSidestreams = function() {
     }
     for (var i = 0, l = this.app.sidestreams.length; i < l; i++) {
         var sidestream = this.app.sidestreams[i],
-            checkboxContainer = this._getCheckboxContainer(this.elements.filterSidestreams, i * 100, 0, sidestream.color, '');
+            checkboxContainer = this._getCheckboxContainer(this.elements.filterSidestreams, i * this.app.settings.properties.graph.offset, 0, sidestream.color, '');
         sidestream.elements.display = this._getCheckboxDisplay(checkboxContainer);
         (function(sidestream) {
             checkboxContainer.on('click', function () {

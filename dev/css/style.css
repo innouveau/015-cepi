@@ -104,7 +104,6 @@ h1 {
 }
 
 .branding {
-    width: 500px;
     transition: all 0.5s ease;
     display: inline-block;
 }
@@ -375,6 +374,7 @@ a.menu-button:hover, a.menu-button.active-button, .link:hover {
     top: 80px;
     height: calc(100% - 160px);
     width: 740px;
+    max-width: calc(100% - 240px);
     padding: 40px;
     background: #fff;
     display: none;
@@ -499,6 +499,13 @@ h2 {
 
 
 @media (max-width: 768px) {
+
+    /* topbar */
+
+    h1 {
+        font-size: 40px;
+        line-height: 40px;
+    }
 
     /* popup */
 

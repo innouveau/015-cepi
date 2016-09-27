@@ -13,7 +13,7 @@ function getScreenWidth() {
         height = $(window).outerHeight();
     if (width <= 700) {
         window.device = 0; // smartphone
-    } else if (width <= 768) {
+    } else if (width <= 800) {
         window.device = 1; // tablet portrait
     } else if (width <= 1024) {
         window.device = 2; // tablet landscape

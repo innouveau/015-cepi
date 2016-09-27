@@ -46,6 +46,25 @@ Settings.prototype.getLabels = function() {
             };
             break;
         case 1: // tablet portrait sizing set:
+            return {
+                rawLabel: {
+                    distance: 100,
+                    width: 130,
+                    position: 'right'
+                },
+                profitLabel: {
+                    distance: 100,
+                    width: 110,
+                    position: 'top'
+                },
+                sidestreamLabel: {
+                    distance: 100,
+                    width: 100,
+                    position: 'right'
+                }
+
+            };
+            break;
         case 2: // tablet landscape sizing set:
         case 3: // desktop sizing set:
             return {
@@ -80,6 +99,12 @@ Settings.prototype.getGraph = function() {
             };
             break;
         case 1: // tablet portrait sizing set:
+            return {
+                width: 500,
+                height: 400,
+                margin: 20
+            };
+            break;
         case 2: // tablet landscape sizing set:
         case 3: // desktop sizing set:
             return {
@@ -101,14 +126,44 @@ Settings.prototype.getProperties = function() {
                 radar: {
                     r: 20,
                     gap: 3,
-                    n: 3
+                    n: 3,
+                    stroke: 1.5
                 },
                 story: {
                     margin: 15
+                },
+                graph: {
+                    offset: 0,
+                    bar: {
+                        y: 420,
+                        width: 20
+                    }
                 }
             };
             break;
         case 1: // tablet portrait sizing set:
+            return {
+                path: {
+                    stroke: 1.5
+                },
+                radar: {
+                    r: 30,
+                    gap: 5,
+                    n: 4,
+                    stroke: 2
+                },
+                story: {
+                    margin: 15
+                },
+                graph: {
+                    offset: 75,
+                    bar: {
+                        y: 315,
+                        width: 15
+                    }
+                }
+            };
+            break;
         case 2: // tablet landscape sizing set:
         case 3: // desktop sizing set:
             return {
@@ -118,10 +173,18 @@ Settings.prototype.getProperties = function() {
                 radar: {
                     r: 30, // to prevent a valorisation radar to overlap the graph (when value 1 or 10), this value should be < this.bottomFrame.height / 10
                     gap: 5,
-                    n: 4
+                    n: 4,
+                    stroke: 2
                 },
                 story: {
                     margin: 15
+                },
+                graph: {
+                    offset: 100,
+                    bar: {
+                        y: 420,
+                        width: 20
+                    }
                 }
             };
             break;
@@ -347,6 +410,21 @@ Settings.prototype.getSizes = function() {
             };
             break;
         case 1: // tablet portrait sizing set:
+            return {
+                artboard: [20,0],
+                topFrame: this.timing.topFrame.origin,
+                rawLabel: [120,55],
+                profitLabel: [470,150],
+                sidestreamLabel: [340,380],
+                productionLabel: [110,180],
+                bottomFrame: this.timing.bottomFrame.origin,
+                graphHeaderText: [0, 80],
+                graphSubHeader: [0, 16],
+                filterSidestreams: [24,20],
+                graphBody: [0,160],
+                sidestreamLabels: this.timing.sidestreamLabels.origin
+            };
+            break;
         case 2: // tablet landscape sizing set:
             return {
                 artboard: [40,0],
