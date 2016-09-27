@@ -245,7 +245,7 @@ Canvas.prototype.createGraphHeader = function() {
         width: this.app.settings.graph.width + 10,
         height: this.app.settings.graph.height + 300,
         x: -5,
-        y: 60
+        y: 40
     });
     this.elements.graphHeaderText = this.layers.bottom.graphHeader.append('g').attr({
         class: 'graph-header-texts'
