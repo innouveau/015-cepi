@@ -8,6 +8,7 @@ function Story(app) {
             top: 0
         }
     };
+    this.chapters = [];
     this.lockPosition = this.getLockPosition();
     this.init();
     this.disclaimerShowed = true; // todo set false
@@ -33,26 +34,35 @@ Story.prototype.init = function() {
                 top: top,
                 position: 'absolute'
             }).attr('top', top).removeClass('fixed-chapter');
+            self.chapters.push({
+                element: $(this),
+                top: top
+            });
         });
     } else {
-        var top = this.lockPosition;
+        var lockPosition = this.lockPosition,
+            top;
         this.measureScrollLength();
         $('.chapter').each(function (index) {
             if (index === 0) {
-                var firstTop = top + parseInt(self.element.story.css('top'));
+                top = lockPosition + parseInt(self.element.story.css('top'));
                 self.element.firstChapter.element = $(this);
                 self.element.firstChapter.top = firstTop;
                 $(this).css({
-                    top: firstTop,
+                    top: top,
                     position: 'fixed'
                 });
                 $(this).addClass('fixed-chapter');
             } else {
-                var thisTop = self.app.settings.timing.story.chapter[index];
+                top = self.app.settings.timing.story.chapter[index];
                 $(this).css({
-                    top: thisTop
+                    top: top
                 });
             }
+            self.chapters.push({
+                element: $(this),
+                top: top
+            });
         });
     }
 };
@@ -64,16 +74,16 @@ Story.prototype.measureScrollLength = function() {
 
 Story.prototype.scroll = function(frame) {
     if (window.device === 0) {
-        $('.chapter').each(function (index) {
-            var top = parseInt($(this).attr('top')) - frame;
-            if (top < 0) {
-                top = 0;
+        for (var i = 0, l = this.chapters.length; i < l; i++) {
+            var chapter = this.chapters[i],
+                currentTop = chapter.top - frame;
+            if (currentTop < 0) {
+                currentTop = 0;
             }
-            $(this).css({
-                top: top
+            chapter.element.css({
+                top: currentTop
             });
-
-        });
+        }
     } else {
         if (frame > this.app.settings.timing.disclaimer && !this.disclaimerShowed) {
             openDisclaimer();
