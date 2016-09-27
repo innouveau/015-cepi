@@ -1,11 +1,8 @@
 $(window).ready(function(){
     var container = document.getElementById('infographic');
     addPhaseListeners();
-
     window.app = new App(container);
-    app.init();
 
-    $(window).scrollTop(0);
 });
 
 

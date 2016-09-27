@@ -1,17 +1,20 @@
 function App(container) {
     this.container = container;
-    this.settings = new Settings(this);
+    this.settings = {};
     this.paths = [];
     this.sets = [];
     this.valorisations = [];
     this.sidestreams = [];
     this.streams = [];
     this.canvas = null;
-    this.story = new Story(this);
+    this.story = {};
     this.frame = 0;
+    this.init();
 }
 
 App.prototype.init = function() {
+    this.settings = new Settings(this);
+    this.story = new Story(this);
     this.canvas = new Canvas(this);
     this.getSidestreams();
     this.getOutstreams();
@@ -21,16 +24,15 @@ App.prototype.init = function() {
     this.canvas.createSidestreamContent();
     // if that is done, we can set all the positions right
     this.canvas.setPositions();
+    $(document).scrollTop(0);
     this.loaded();
 };
 
 App.prototype.redraw = function() {
     $('.valoriation-popup').remove();
     this.empty();
-    this.settings = new Settings(this);
-    this.story = new Story(this);
     this.init();
-    $(document).scrollTop(0)
+
 };
 
 App.prototype.empty = function() {
@@ -57,7 +59,7 @@ App.prototype.getPaths = function() {
             model;
         switch (path.type) {
             case 'regular':
-                model = new Path(path);
+                model = new Path(this, path);
                 this.paths.push(model);
                 break;
             case 'static':

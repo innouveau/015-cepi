@@ -1,4 +1,4 @@
-function Cover(name, path) {
+function Cover(app, path) {
     this.app = app;
     this.type = path.type;
     this.points = path.points;
