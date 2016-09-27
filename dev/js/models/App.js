@@ -27,6 +27,8 @@ App.prototype.init = function() {
 App.prototype.redraw = function() {
     $('.valoriation-popup').remove();
     this.empty();
+    this.settings = new Settings(this);
+    this.story = new Story(this);
     this.init();
     $(document).scrollTop(0)
 };
