@@ -1,3 +1,6 @@
+var redrawTimer = null;
+
+
 getScreenWidth();
 
 $(window).ready(function(){
@@ -6,11 +9,16 @@ $(window).ready(function(){
 
 $(window).resize(function(){
     getScreenWidth();
+    clearTimeout(redrawTimer);
+    redrawTimer = setTimeout(function(){
+        window.app.redraw();
+    }, 500)
+
+
 });
 
 function getScreenWidth() {
-    var width = $(window).outerWidth(),
-        height = $(window).outerHeight();
+    var width = $(window).outerWidth();
     if (width <= 700) {
         window.device = 0; // smartphone
     } else if (width <= 800) {

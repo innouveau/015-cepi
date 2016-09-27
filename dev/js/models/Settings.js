@@ -1,6 +1,5 @@
 function Settings(app) {
     this.app = app;
-    this.container = {};
 
     this.typography = {
         lineHeight: 15
@@ -14,8 +13,7 @@ function Settings(app) {
         radar: 500
     };
 
-    this.addWindowListener();
-    this.measure();
+    this.container = this.measureContainer();
     this.timing = this.getTiming();
     this.sizes = this.getSizes();
     this.graph = this.getGraph();
@@ -149,7 +147,7 @@ Settings.prototype.getProperties = function() {
                 radar: {
                     r: 30,
                     gap: 5,
-                    n: 4,
+                    n: 3,
                     stroke: 2
                 },
                 story: {
@@ -173,7 +171,7 @@ Settings.prototype.getProperties = function() {
                 radar: {
                     r: 30, // to prevent a valorisation radar to overlap the graph (when value 1 or 10), this value should be < this.bottomFrame.height / 10
                     gap: 5,
-                    n: 4,
+                    n: 3,
                     stroke: 2
                 },
                 story: {
@@ -459,25 +457,6 @@ Settings.prototype.getSizes = function() {
             break;
     }
 };
-
-Settings.prototype.addWindowListener = function() {
-    var self = this;
-    $(window).resize(function(){
-        self.measure();
-        self.timing = self.getTiming();
-        self.sizes = self.getSizes();
-        self.graph = self.getGraph();
-        self.properties = self.getProperties();
-    });
-};
-
-Settings.prototype.measure = function() {
-    this.container = this.measureContainer();
-    if (this.app.canvas && this.app.canvas.drawn) {
-        this.app.redraw();
-    }
-};
-
 
 Settings.prototype.measureContainer = function() {
     var width = $(this.app.container).outerWidth(),

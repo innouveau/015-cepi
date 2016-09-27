@@ -49,8 +49,7 @@ Canvas.prototype.createTimedElement = function(element, settings) {
 };
 
 Canvas.prototype.redraw = function() {
-    this.setPositions();
-    this.createAxes();
+    this.create();
 };
 
 Canvas.prototype.setPositions = function() {

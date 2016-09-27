@@ -25,14 +25,13 @@ App.prototype.init = function() {
 };
 
 App.prototype.redraw = function() {
-    this.canvas.redraw();
-    for (var i = 0, l = this.valorisations.length; i < l; i++) {
-        this.valorisations[i].reposition();
-    }
-    this.scroll(this.frame);
+    $('.valoriation-popup').remove();
+    this.empty();
+    this.init();
 };
 
 App.prototype.empty = function() {
+    this.settings = new Settings(this);
     this.paths = [];
     this.sets = [];
     this.valorisations = [];
