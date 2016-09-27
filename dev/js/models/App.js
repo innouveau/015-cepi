@@ -107,13 +107,20 @@ App.prototype.loaded = function() {
 };
 
 App.prototype.scroll = function(frame) {
-    this.story.scroll(frame);
-    this.canvas.scroll(frame);
-    for (var i = 0, l = this.paths.length; i < l; i++) {
-        var path = this.paths[i];
-        path.scroll(frame);
+    var self = this;
+    function scrollActions() {
+        self.story.scroll(frame);
+        self.canvas.scroll(frame);
+        for (var i = 0, l = self.paths.length; i < l; i++) {
+            var path = self.paths[i];
+            path.scroll(frame);
+        }
+        self.frame = frame;
     }
-    this.frame = frame;
+
+    window.requestAnimationFrame(scrollActions);
+
+
 };
 
 App.prototype.filter = function() {
