@@ -47,7 +47,7 @@ Story.prototype.init = function() {
             if (index === 0) {
                 top = lockPosition + parseInt(self.element.story.css('top'));
                 self.element.firstChapter.element = $(this);
-                self.element.firstChapter.top = firstTop;
+                self.element.firstChapter.top = top;
                 $(this).css({
                     top: top,
                     position: 'fixed'
