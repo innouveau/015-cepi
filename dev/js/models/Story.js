@@ -32,7 +32,7 @@ Story.prototype.init = function() {
             $(this).css({
                 top: top,
                 position: 'absolute'
-            }).attr('top', top);
+            }).attr('top', top).removeClass('fixed-chapter');
         });
     } else {
         var top = this.lockPosition;
@@ -47,6 +47,11 @@ Story.prototype.init = function() {
                     position: 'fixed'
                 });
                 $(this).addClass('fixed-chapter');
+            } else {
+                var thisTop = self.app.settings.timing.story.chapter[index];
+                $(this).css({
+                    top: thisTop
+                });
             }
         });
     }

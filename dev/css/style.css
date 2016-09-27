@@ -717,6 +717,7 @@ h2 {
         top: 210px;
         height: calc(100% - 210px);
         width: 100%;
+        max-width: 100%;
         padding: 20px;
         background: #eee;
         display: none;

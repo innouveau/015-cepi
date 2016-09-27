@@ -28,6 +28,7 @@ App.prototype.redraw = function() {
     $('.valoriation-popup').remove();
     this.empty();
     this.init();
+    $(document).scrollTop(0)
 };
 
 App.prototype.empty = function() {

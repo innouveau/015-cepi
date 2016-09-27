@@ -18,14 +18,6 @@ function addPhaseListeners() {
         }
         app.scroll(top);
     });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.keyCode == '49') {
-            $(document).scrollTop(0);
-        } else if (e.keyCode == '50') {
-            $(document).scrollTop(3000);
-        }
-    });
 }
 
 function openDisclaimer() {
