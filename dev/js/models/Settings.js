@@ -197,6 +197,69 @@ Settings.prototype.getTiming = function() {
             break;
         case 1: // tablet portrait sizing set:
         case 2: // tablet landscape sizing set:
+            return {
+                sidestreamBars: [100, 220, 340, 460, 580, 700],
+                labels: {
+                    profitLabel: 620,
+                    sidestreamLabel: 1000,
+                    productionLabel: 200
+                },
+                story: {
+                    wait: 1400
+                },
+                disclaimer: 2000,
+                topFrame: {
+                    origin: [60, 180], // [x,y]
+                    transitions: [
+                        {
+                            start: 100,
+                            end: 1500,
+                            origin: 180, // keep this one the same as origin[1]
+                            destination: -150
+                        },
+                        {
+                            start: 2000,
+                            end: 2400,
+                            origin: -150, // keep this on the same as previous destination
+                            destination: -500
+                        }
+                    ]
+                },
+                bottomFrame: {
+                    origin: [60, 2000],
+                    transitions: [
+                        {
+                            start: 1200,
+                            end: 1700,
+                            origin: 1600,
+                            destination: 430
+                        },
+                        {
+                            start: 2000,
+                            end: 2400,
+                            origin: 430,
+                            destination: 70
+                        }
+                    ]
+                },
+                sidestreamLabels: {
+                    origin: [84, 1600],
+                    transitions: [
+                        {
+                            start: 300,
+                            end: 1500,
+                            origin: 1600,
+                            destination: 390
+                        },
+                        {
+                            start: 2000,
+                            end: 2400,
+                            origin: 390,
+                            destination: 40
+                        }
+                    ]
+                }
+            };
         case 3: // desktop sizing set:
             return {
                 sidestreamBars: [100, 220, 340, 460, 580, 700],
