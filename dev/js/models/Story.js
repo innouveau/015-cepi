@@ -54,7 +54,6 @@ Story.prototype.init = function() {
 
 Story.prototype.measureScrollLength = function() {
     var height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination;
-    window.alert(height);
     $('.chapter:last-child').css('min-height', height);
 };
 
