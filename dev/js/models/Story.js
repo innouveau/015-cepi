@@ -11,6 +11,7 @@ function Story(app) {
     this.lockPosition = this.getLockPosition();
     this.init();
     this.disclaimerShowed = true; // todo set false
+    this.measuredAgain = false;
 }
 
 
@@ -34,8 +35,8 @@ Story.prototype.init = function() {
             }).attr('top', top);
         });
     } else {
-        var top = this.lockPosition,
-            height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination;
+        var top = this.lockPosition;
+        this.measureScrollLength();
         $('.chapter').each(function (index) {
             if (index === 0) {
                 var firstTop = top + parseInt(self.element.story.css('top'));
@@ -48,8 +49,13 @@ Story.prototype.init = function() {
                 $(this).addClass('fixed-chapter');
             }
         });
-        $('.chapter:last-child').css('min-height', height);
     }
+};
+
+Story.prototype.measureScrollLength = function() {
+    var height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination;
+    window.alert(height);
+    $('.chapter:last-child').css('min-height', height);
 };
 
 Story.prototype.scroll = function(frame) {
@@ -75,6 +81,17 @@ Story.prototype.scroll = function(frame) {
             firstTop = this.element.firstChapter.top;
         }
         this.element.firstChapter.element.css('top', firstTop);
+    }
+
+    // on tablets and smartphone the window height changes during scrolling
+    // due to hiding system menu
+    if (window.device < 3) {
+        if (frame > 500 && !this.measuredAgain) {
+
+            this.measuredAgain = true;
+            this.measureScrollLength();
+
+        }
     }
 };
 
