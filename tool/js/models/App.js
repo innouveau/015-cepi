@@ -10,6 +10,10 @@ function App(container) {
     this.story = {};
     this.frame = 0;
     this.init();
+    this.animate = {
+        open: true,
+        fps: 12
+    }
 }
 
 App.prototype.init = function() {
@@ -112,7 +116,9 @@ App.prototype.loaded = function() {
 
 App.prototype.scroll = function(frame) {
     var self = this;
+
     function scrollActions() {
+        console.log("!");
         self.story.scroll(frame);
         self.canvas.scroll(frame);
         for (var i = 0, l = self.paths.length; i < l; i++) {
@@ -121,8 +127,13 @@ App.prototype.scroll = function(frame) {
         }
         self.frame = frame;
     }
-
-    window.requestAnimationFrame(scrollActions);
+    if (this.animate.open) {
+        this.animate.open = false;
+        window.requestAnimationFrame(scrollActions);
+        setTimeout(function(){
+            self.animate.open = true;
+        }, (1000 /self.animate.fps))
+    }
 
 
 };
