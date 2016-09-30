@@ -32,9 +32,9 @@ body {
 
 #story {
     position: absolute;
-    left: 60px;
-    top: 60px;
-    width: 200px;
+    width: 100%;
+    top: 0;
+    left: 0;
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -45,8 +45,8 @@ body {
 
 .chapter {
     position: absolute;
-    width: 100%;
-    left: 0;
+    width: 200px;
+    left: 60px;
 }
 
 .fixed-chapter {
@@ -464,9 +464,8 @@ h2 {
         line-height: 16px;
     }
 
-    #story {
+    .chapter {
         left: 30px;
-        top: 30px;
         width: 130px;
     }
 
@@ -621,6 +620,7 @@ h2 {
     }
 
     .chapter {
+        left: 0;
         padding: 10px 20px;
         width: 100%;
         background: #fff;
