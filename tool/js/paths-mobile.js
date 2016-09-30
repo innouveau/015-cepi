@@ -1,7 +1,7 @@
 var pathsMobile = [{
     name: 'path-1',
     type: 'regular',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 19,
     gap: 4,
     animationStart: 100,
@@ -10,7 +10,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 18,
     gap: 4,
     animationStart: 100,
@@ -19,7 +19,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 17,
     gap: 4,
     animationStart: 100,
@@ -28,7 +28,7 @@ var pathsMobile = [{
 }, {
     name: 'path-4',
     type: 'regular',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 18,
     gap: 4,
     animationStart: 100,
@@ -37,7 +37,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 18,
     gap: 4,
     animationStart: 100,
@@ -46,7 +46,7 @@ var pathsMobile = [{
 }, {
     name: 'path-6',
     type: 'regular',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 20,
     gap: 4,
     animationStart: 100,
@@ -55,7 +55,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 19,
     gap: 4,
     animationStart: 100,
@@ -64,7 +64,7 @@ var pathsMobile = [{
 }, {
     name: 'path-8',
     type: 'regular',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 19,
     gap: 4,
     animationStart: 100,
@@ -73,7 +73,7 @@ var pathsMobile = [{
 }, {
     name: 'path-9',
     type: 'regular',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 16,
     gap: 4,
     animationStart: 100,
@@ -82,7 +82,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 17,
     gap: 4,
     animationStart: 100,
@@ -91,7 +91,7 @@ var pathsMobile = [{
 }, {
     name: 'path-11',
     type: 'regular',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 22,
     gap: 4,
     animationStart: 100,
@@ -100,7 +100,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 22,
     gap: 4,
     animationStart: 0,
@@ -109,7 +109,7 @@ var pathsMobile = [{
 }, {
     name: 'path-13',
     type: 'regular',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 19,
     gap: 4,
     animationStart: 100,
@@ -172,7 +172,7 @@ var pathsMobile = [{
 }, {
     name: 'path-20',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -181,7 +181,7 @@ var pathsMobile = [{
 }, {
     name: 'path-21',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -190,7 +190,7 @@ var pathsMobile = [{
 }, {
     name: 'path-22',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -199,7 +199,7 @@ var pathsMobile = [{
 }, {
     name: 'path-23',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -208,7 +208,7 @@ var pathsMobile = [{
 }, {
     name: 'path-24',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -217,7 +217,7 @@ var pathsMobile = [{
 }, {
     name: 'path-25',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -226,7 +226,7 @@ var pathsMobile = [{
 }, {
     name: 'path-26',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -235,7 +235,7 @@ var pathsMobile = [{
 }, {
     name: 'path-27',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -244,7 +244,7 @@ var pathsMobile = [{
 }, {
     name: 'path-28',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -253,7 +253,7 @@ var pathsMobile = [{
 }, {
     name: 'path-29',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -262,7 +262,7 @@ var pathsMobile = [{
 }, {
     name: 'path-30',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -271,7 +271,7 @@ var pathsMobile = [{
 }, {
     name: 'path-31',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -280,7 +280,7 @@ var pathsMobile = [{
 }, {
     name: 'path-32',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -289,7 +289,7 @@ var pathsMobile = [{
 }, {
     name: 'path-33',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -298,7 +298,7 @@ var pathsMobile = [{
 }, {
     name: 'path-34',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -307,7 +307,7 @@ var pathsMobile = [{
 }, {
     name: 'path-35',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -316,7 +316,7 @@ var pathsMobile = [{
 }, {
     name: 'path-36',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -325,7 +325,7 @@ var pathsMobile = [{
 }, {
     name: 'path-37',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -334,7 +334,7 @@ var pathsMobile = [{
 }, {
     name: 'path-38',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -343,7 +343,7 @@ var pathsMobile = [{
 }, {
     name: 'path-39',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -352,7 +352,7 @@ var pathsMobile = [{
 }, {
     name: 'path-40',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -361,7 +361,7 @@ var pathsMobile = [{
 }, {
     name: 'path-41',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -370,7 +370,7 @@ var pathsMobile = [{
 }, {
     name: 'path-42',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -379,7 +379,7 @@ var pathsMobile = [{
 }, {
     name: 'path-43',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -388,7 +388,7 @@ var pathsMobile = [{
 }, {
     name: 'path-44',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -397,7 +397,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -406,7 +406,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -415,7 +415,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -424,7 +424,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -433,7 +433,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -442,7 +442,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -451,7 +451,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -460,7 +460,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -469,7 +469,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -478,7 +478,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -487,7 +487,7 @@ var pathsMobile = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,

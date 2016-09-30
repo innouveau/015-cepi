@@ -15,7 +15,7 @@ function Path(app, path) {
         length: 0,
         dashes: 0
     };
-
+    this.hasOutStream = false;
     this.build();
     this.measure();
     this.sets = this.intialSets();
@@ -31,7 +31,9 @@ Path.prototype.build = function() {
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {
         var stream = this.app.streams[this.sidestreams[i]];
-        console.log(stream);
+        if (stream.type === 'outstream') {
+            this.hasOutStream = true;
+        }
         this.subpaths.push(new Subpath(this.app, this, stream, i));
     }
     if (this.cover) {
@@ -71,9 +73,13 @@ Path.prototype.scroll = function(frame) {
 Path.prototype.intialSets = function() {
     var set = [],
         steps = Math.ceil(this.settings.length / (this.dash + this.gap)),
-        hit;
+        hit,
+        l = this.hasOutStream ? (this.sidestreams.length + 2) : this.sidestreams.length; // throw more outsreams in the mix
     for (var i = 0; i < steps; i++) {
-        hit = this.random(this.sidestreams.length);
+        hit = this.random(l);
+        if (hit > this.sidestreams.length - 1) {
+            hit = this.sidestreams.length - 1;
+        }
         set.push(hit);
     }
     return this.setsToStrokeArray(set);

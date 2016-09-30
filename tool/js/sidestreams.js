@@ -23,9 +23,5 @@ var sidestreams = [
 var outstreams = [
     {
         color: '#D6D6D6'
-    }, {
-        color: '#D6D6D6'
-    }, {
-        color: '#D6D6D6'
     }
 ];

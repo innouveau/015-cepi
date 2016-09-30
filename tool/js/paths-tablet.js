@@ -1,7 +1,7 @@
 var pathsTablet = [{
     name: 'path-1',
     type: 'cover',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -10,7 +10,7 @@ var pathsTablet = [{
 }, {
     name: 'path-2',
     type: 'cover',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -19,7 +19,7 @@ var pathsTablet = [{
 }, {
     name: 'path-3',
     type: 'cover',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -28,7 +28,7 @@ var pathsTablet = [{
 }, {
     name: 'path-4',
     type: 'cover',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 22,
     gap: 4,
     animationStart: 0,
@@ -37,7 +37,7 @@ var pathsTablet = [{
 }, {
     name: 'path-5',
     type: 'cover',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -46,7 +46,7 @@ var pathsTablet = [{
 }, {
     name: 'path-6',
     type: 'cover',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -55,7 +55,7 @@ var pathsTablet = [{
 }, {
     name: 'path-7',
     type: 'cover',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -64,7 +64,7 @@ var pathsTablet = [{
 }, {
     name: 'path-8',
     type: 'regular',
-    sidestreams: [1,2,3,4,5,6,7,8],
+    sidestreams: [1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -73,7 +73,7 @@ var pathsTablet = [{
 }, {
     name: 'path-9',
     type: 'regular',
-    sidestreams: [2,3,4,5,6,7,8],
+    sidestreams: [2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -82,7 +82,7 @@ var pathsTablet = [{
 }, {
     name: 'path-10',
     type: 'regular',
-    sidestreams: [3,4,5,6,7,8],
+    sidestreams: [3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -91,7 +91,7 @@ var pathsTablet = [{
 }, {
     name: 'path-11',
     type: 'regular',
-    sidestreams: [4,5,6,7,8],
+    sidestreams: [4,5,6],
     dash: 22,
     gap: 4,
     animationStart: 0,
@@ -100,7 +100,7 @@ var pathsTablet = [{
 }, {
     name: 'path-12',
     type: 'regular',
-    sidestreams: [5,6,7,8],
+    sidestreams: [5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -109,7 +109,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 22,
     gap: 4,
     animationStart: 0,
@@ -118,7 +118,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -127,7 +127,7 @@ var pathsTablet = [{
 }, {
     name: 'path-15',
     type: 'regular',
-    sidestreams: [5,6,7,8],
+    sidestreams: [5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -136,7 +136,7 @@ var pathsTablet = [{
 }, {
     name: 'path-16',
     type: 'regular',
-    sidestreams: [4,5,6,7,8],
+    sidestreams: [4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -145,7 +145,7 @@ var pathsTablet = [{
 }, {
     name: 'path-17',
     type: 'regular',
-    sidestreams: [3,4,5,6,7,8],
+    sidestreams: [3,4,5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -154,7 +154,7 @@ var pathsTablet = [{
 }, {
     name: 'path-18',
     type: 'regular',
-    sidestreams: [2,3,4,5,6,7,8],
+    sidestreams: [2,3,4,5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -163,7 +163,7 @@ var pathsTablet = [{
 }, {
     name: 'path-19',
     type: 'regular',
-    sidestreams: [1,2,3,4,5,6,7,8],
+    sidestreams: [1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -172,7 +172,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -181,7 +181,7 @@ var pathsTablet = [{
 }, {
     name: 'path-21',
     type: 'regular',
-    sidestreams: [5,6,7,8],
+    sidestreams: [5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -190,7 +190,7 @@ var pathsTablet = [{
 }, {
     name: 'path-22',
     type: 'regular',
-    sidestreams: [4,5,6,7,8],
+    sidestreams: [4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -199,7 +199,7 @@ var pathsTablet = [{
 }, {
     name: 'path-23',
     type: 'regular',
-    sidestreams: [3,4,5,6,7,8],
+    sidestreams: [3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -208,7 +208,7 @@ var pathsTablet = [{
 }, {
     name: 'path-24',
     type: 'regular',
-    sidestreams: [2,3,4,5,6,7,8],
+    sidestreams: [2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -217,7 +217,7 @@ var pathsTablet = [{
 }, {
     name: 'path-25',
     type: 'regular',
-    sidestreams: [1,2,3,4,5,6,7,8],
+    sidestreams: [1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -226,7 +226,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -235,7 +235,7 @@ var pathsTablet = [{
 }, {
     name: 'path-27',
     type: 'regular',
-    sidestreams: [5,6,7,8],
+    sidestreams: [5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -244,7 +244,7 @@ var pathsTablet = [{
 }, {
     name: 'path-28',
     type: 'regular',
-    sidestreams: [4,5,6,7,8],
+    sidestreams: [4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -253,7 +253,7 @@ var pathsTablet = [{
 }, {
     name: 'path-29',
     type: 'regular',
-    sidestreams: [3,4,5,6,7,8],
+    sidestreams: [3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -262,7 +262,7 @@ var pathsTablet = [{
 }, {
     name: 'path-30',
     type: 'regular',
-    sidestreams: [2,3,4,5,6,7,8],
+    sidestreams: [2,3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -271,7 +271,7 @@ var pathsTablet = [{
 }, {
     name: 'path-31',
     type: 'regular',
-    sidestreams: [1,2,3,4,5,6,7,8],
+    sidestreams: [1,2,3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -280,7 +280,7 @@ var pathsTablet = [{
 }, {
     name: 'path-32',
     type: 'regular',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -289,7 +289,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 22,
     gap: 4,
     animationStart: 0,
@@ -298,7 +298,7 @@ var pathsTablet = [{
 }, {
     name: 'path-34',
     type: 'regular',
-    sidestreams: [5,6,7,8],
+    sidestreams: [5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -307,7 +307,7 @@ var pathsTablet = [{
 }, {
     name: 'path-35',
     type: 'regular',
-    sidestreams: [4,5,6,7,8],
+    sidestreams: [4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -316,7 +316,7 @@ var pathsTablet = [{
 }, {
     name: 'path-36',
     type: 'regular',
-    sidestreams: [3,4,5,6,7,8],
+    sidestreams: [3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -325,7 +325,7 @@ var pathsTablet = [{
 }, {
     name: 'path-37',
     type: 'regular',
-    sidestreams: [2,3,4,5,6,7,8],
+    sidestreams: [2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -334,7 +334,7 @@ var pathsTablet = [{
 }, {
     name: 'path-38',
     type: 'regular',
-    sidestreams: [1,2,3,4,5,6,7,8],
+    sidestreams: [1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -343,7 +343,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -352,7 +352,7 @@ var pathsTablet = [{
 }, {
     name: 'path-40',
     type: 'regular',
-    sidestreams: [5,6,7,8],
+    sidestreams: [5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -361,7 +361,7 @@ var pathsTablet = [{
 }, {
     name: 'path-41',
     type: 'regular',
-    sidestreams: [4,5,6,7,8],
+    sidestreams: [4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -370,7 +370,7 @@ var pathsTablet = [{
 }, {
     name: 'path-42',
     type: 'regular',
-    sidestreams: [3,4,5,6,7,8],
+    sidestreams: [3,4,5,6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -379,7 +379,7 @@ var pathsTablet = [{
 }, {
     name: 'path-43',
     type: 'regular',
-    sidestreams: [2,3,4,5,6,7,8],
+    sidestreams: [2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -388,7 +388,7 @@ var pathsTablet = [{
 }, {
     name: 'path-44',
     type: 'regular',
-    sidestreams: [1,2,3,4,5,6,7,8],
+    sidestreams: [1,2,3,4,5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -505,7 +505,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -514,7 +514,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -523,7 +523,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -532,7 +532,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -541,7 +541,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -550,7 +550,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -559,7 +559,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -568,7 +568,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -577,7 +577,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -586,7 +586,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -595,7 +595,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 22,
     gap: 4,
     animationStart: 0,
@@ -604,7 +604,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -613,7 +613,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -622,7 +622,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -631,7 +631,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -640,7 +640,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -649,7 +649,7 @@ var pathsTablet = [{
 }, {
     name: 'raw',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -658,7 +658,7 @@ var pathsTablet = [{
 }, {
     name: 'path-74',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -667,7 +667,7 @@ var pathsTablet = [{
 }, {
     name: 'path-75',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 22,
     gap: 4,
     animationStart: 0,
@@ -676,7 +676,7 @@ var pathsTablet = [{
 }, {
     name: 'path-76',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -685,7 +685,7 @@ var pathsTablet = [{
 }, {
     name: 'path-77',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -694,7 +694,7 @@ var pathsTablet = [{
 }, {
     name: 'path-78',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -703,7 +703,7 @@ var pathsTablet = [{
 }, {
     name: 'path-79',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -712,7 +712,7 @@ var pathsTablet = [{
 }, {
     name: 'path-80',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -721,7 +721,7 @@ var pathsTablet = [{
 }, {
     name: 'path-81',
     type: 'regular',
-    sidestreams: [0,1,2,3,4,5,6,7,8],
+    sidestreams: [0,1,2,3,4,5,6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -730,7 +730,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 17,
     gap: 4,
     animationStart: 0,
@@ -739,7 +739,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 16,
     gap: 4,
     animationStart: 0,
@@ -748,7 +748,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 22,
     gap: 4,
     animationStart: 0,
@@ -757,7 +757,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -766,7 +766,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -775,7 +775,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 18,
     gap: 4,
     animationStart: 0,
@@ -784,7 +784,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -793,7 +793,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 20,
     gap: 4,
     animationStart: 0,
@@ -802,7 +802,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 21,
     gap: 4,
     animationStart: 0,
@@ -811,7 +811,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 19,
     gap: 4,
     animationStart: 0,
@@ -820,7 +820,7 @@ var pathsTablet = [{
 }, {
     name: 'roll',
     type: 'static',
-    sidestreams: [6,7,8],
+    sidestreams: [6],
     dash: 17,
     gap: 4,
     animationStart: 0,
