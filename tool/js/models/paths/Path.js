@@ -25,17 +25,13 @@ function Path(app, path) {
 Path.prototype = Object.create(_NodeModel.prototype);
 
 Path.prototype.build = function() {
-    var layer;
-    if (this.name === 'raw') {
-        layer = 'raw';
-    } else {
-        layer = 'paths';
-    }
+    var layer = this.name === 'raw' ? 'raw' : 'paths';
     this.container = this.app.canvas.layers.top[layer].append('g').attr({
         class: this.name
     });
     for (var i = 0, l = this.sidestreams.length; i < l; i++) {
         var stream = this.app.streams[this.sidestreams[i]];
+        console.log(stream);
         this.subpaths.push(new Subpath(this.app, this, stream, i));
     }
     if (this.cover) {
