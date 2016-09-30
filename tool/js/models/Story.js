@@ -69,7 +69,6 @@ Story.prototype.init = function() {
 };
 
 Story.prototype.measureScrollLength = function() {
-    console.log("!");
     var height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination + this.app.settings.timing.story.chapter[2];
     $('#scroller').css('height', height);
 };
