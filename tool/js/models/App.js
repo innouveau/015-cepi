@@ -66,6 +66,8 @@ App.prototype.getPaths = function() {
                 this.paths.push(model);
                 break;
             case 'static':
+                // statics don't get pushed in the array, cause they dont
+                // have scroll function
                 model = new Static(this, path);
                 break;
             case 'cover':
