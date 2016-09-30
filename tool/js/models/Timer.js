@@ -4,13 +4,18 @@ function Timer(app, element, settings) {
     this.element = element;
     this.origin = settings.origin;
     this.transitions = settings.transitions;
+    this.lastY = 0;
 }
 
 Timer.prototype.scroll = function(frame) {
     var y = this.getY(frame);
-    this.element.attr({
-        transform: 'translate(' + this.origin[0] + ',' + y + ')'
-    });
+    // minimize dom operations
+    if (y !== this.lastY) {
+        this.element.attr({
+            transform: 'translate(' + this.origin[0] + ',' + Math.round(y) + ')'
+        });
+        this.lastY = y;
+    }
 };
 
 Timer.prototype.getY = function(frame) {
