@@ -10,8 +10,9 @@ function Animation(app) {
     this.t = 100;
     this.open = true;
     this.init();
-
 }
+
+// todo clean up here
 
 Animation.prototype.init = function() {
     this.freq = this.t / this.fps;
