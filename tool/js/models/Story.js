@@ -56,7 +56,8 @@ Story.prototype.init = function() {
             } else {
                 top = self.app.settings.timing.story.chapter[index];
                 $(this).css({
-                    top: top
+                    top: top,
+                    position: 'fixed'
                 });
             }
             self.chapters.push({
@@ -68,34 +69,45 @@ Story.prototype.init = function() {
 };
 
 Story.prototype.measureScrollLength = function() {
-    var height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination;
-    $('.chapter:last-child').css('min-height', height);
+    var height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination + this.app.settings.timing.story.chapter[2];
+    $('#story').css('height', height);
 };
 
 Story.prototype.scroll = function(frame) {
-    if (window.device === 0) {
-        for (var i = 0, l = this.chapters.length; i < l; i++) {
-            var chapter = this.chapters[i],
-                currentTop = chapter.top - frame;
-            if (currentTop < 0) {
-                currentTop = 0;
+    for (var i = 0, l = this.chapters.length; i < l; i++) {
+        var chapter = this.chapters[i];
+
+        if (window.device > 0 && i === 0) {
+            var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
+            if (firstTop > this.element.firstChapter.top) {
+                firstTop = this.element.firstChapter.top;
             }
+            chapter.element.css('top', firstTop);
+
+        } else {
+            var currentTop = chapter.top - frame;
             chapter.element.css({
                 top: currentTop
             });
         }
-    } else {
-        if (frame > this.app.settings.timing.disclaimer && !this.disclaimerShowed) {
-            openDisclaimer();
-            this.disclaimerShowed = true;
-        }
-
-        var firstTop = this.element.firstChapter.top + this.app.settings.timing.story.wait - frame;
-        if (firstTop > this.element.firstChapter.top) {
-            firstTop = this.element.firstChapter.top;
-        }
-        this.element.firstChapter.element.css('top', firstTop);
     }
+
+    // show disclaimer
+    if (frame > this.app.settings.timing.disclaimer && !this.disclaimerShowed) {
+        openDisclaimer();
+        this.disclaimerShowed = true;
+    }
+
+    // hide trigger
+    if (frame > 50) {
+        $('body').addClass('active');
+    } else {
+        $('body').removeClass('active');
+    }
+
+
+
+
 
     // on tablets and smartphone the window height changes during scrolling
     // due to hiding system menu

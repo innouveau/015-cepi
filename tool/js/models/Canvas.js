@@ -101,12 +101,6 @@ Canvas.prototype.hideElements = function(frame) {
             $(this.bars[j][0]).hide();
         }
     }
-
-    if (frame > 50) {
-        $('body').addClass('active');
-    } else {
-        $('body').removeClass('active');
-    }
 };
 
 
