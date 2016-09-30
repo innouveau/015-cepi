@@ -7,19 +7,18 @@ function App(container) {
     this.sidestreams = [];
     this.streams = [];
     this.canvas = null;
+    this.animation = null;
     this.story = {};
     this.frame = 0;
     this.init();
-    this.animate = {
-        open: true,
-        fps: 12
-    }
+    this.timer = null;
 }
 
 App.prototype.init = function() {
     this.settings = new Settings(this);
     this.story = new Story(this);
     this.canvas = new Canvas(this);
+    this.animation = new Animation(this);
     this.getSidestreams();
     this.getOutstreams();
     this.getPaths();
@@ -116,26 +115,10 @@ App.prototype.loaded = function() {
 
 App.prototype.scroll = function(frame) {
     var self = this;
-
-    function scrollActions() {
-        console.log("!");
-        self.story.scroll(frame);
-        self.canvas.scroll(frame);
-        for (var i = 0, l = self.paths.length; i < l; i++) {
-            var path = self.paths[i];
-            path.scroll(frame);
-        }
-        self.frame = frame;
-    }
-    if (this.animate.open) {
-        this.animate.open = false;
-        window.requestAnimationFrame(scrollActions);
-        setTimeout(function(){
-            self.animate.open = true;
-        }, (1000 /self.animate.fps))
-    }
-
-
+    clearInterval(this.timer);
+    this.timer = setTimeout(function(){
+        self.animation.askfor(frame);
+    }, 1);
 };
 
 App.prototype.filter = function() {

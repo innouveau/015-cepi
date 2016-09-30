@@ -331,7 +331,7 @@ Settings.prototype.getTiming = function() {
                     productionLabel: 200
                 },
                 story: {
-                    chapter: [0, 1800, 2400],
+                    chapter: [0, 1860, 2460],
                     wait: 1500
                 },
                 disclaimer: 2000,
