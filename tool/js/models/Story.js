@@ -25,7 +25,7 @@ Story.prototype.init = function() {
     if (window.device === 0) {
         var display;
         // todo this is temp a hardcoded number
-        $('#scroller').css('height', 2000);
+        $('#scroller').css('height', 3000);
 
 
         $('.chapter').each(function(index) {
@@ -69,8 +69,9 @@ Story.prototype.init = function() {
 };
 
 Story.prototype.measureScrollLength = function() {
+    console.log("!");
     var height = $(window).outerHeight() - this.app.settings.timing.bottomFrame.transitions[1].destination + this.app.settings.timing.story.chapter[2];
-    $('#story').css('height', height);
+    $('#scroller').css('height', height);
 };
 
 Story.prototype.scroll = function(frame) {
@@ -86,6 +87,11 @@ Story.prototype.scroll = function(frame) {
 
         } else {
             var currentTop = chapter.top - frame;
+            if (window.device === 0) {
+                if (currentTop < 0) {
+                    currentTop = 0;
+                }
+            }
             chapter.element.css({
                 top: currentTop
             });
@@ -111,7 +117,8 @@ Story.prototype.scroll = function(frame) {
 
     // on tablets and smartphone the window height changes during scrolling
     // due to hiding system menu
-    if (window.device < 3) {
+    // but for smarthphone we dont do this, cause there we use a fixed height
+    if (window.device > 0 && window.device < 3) {
         if (frame > 500 && !this.measuredAgain) {
 
             this.measuredAgain = true;
