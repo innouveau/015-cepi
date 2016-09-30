@@ -278,15 +278,6 @@ var paths = [{
     cover: false,
     points: 'M12,421.066V425c0,12.682,10.318,23,23,23 s23-10.318,23-23V295c0-14.889,12.112-27,27-27s27,12.111,27,27v130c0,3.355,0.723,6.547,2.021,9.425'
 }, {
-    name: 'path-32',
-    type: 'regular',
-    sidestreams: [6,7,8],
-    dash: 20,
-    gap: 4,
-    animationStart: 0,
-    cover: false,
-    points: 'M589.89,444'
-}, {
     name: 'roll',
     type: 'static',
     sidestreams: [6,7,8],
