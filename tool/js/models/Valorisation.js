@@ -117,7 +117,7 @@ Valorisation.prototype.reposition = function() {
 // popup
 
 Valorisation.prototype.createPopup = function() {
-    var div = $('<div class="valoriation-popup"></div>'),
+    var div = $('<div class="valorisation-popup hidden"></div>'),
         container = $('<div class="valorisation-container"></div>'),
         head = $('<div class="valorisation-head"><h2>' + this.name + '</h2></div>'),
         body = $('<div class="valorisation-body"></div>'),
@@ -143,14 +143,32 @@ Valorisation.prototype.createPopup = function() {
 };
 
 Valorisation.prototype.openPopup = function() {
+    var self = this;
     $('.overlay').show();
-    $('.valoriation-popup').hide();
-    this.popup.fadeIn(this.app.settings.animation.popup);
+    $('.valorisation-popup').each(function(){
+        if (this === self.popup[0]) {
+            if (window.device === 0) {
+                $(this).removeClass('hidden');
+            } else {
+                $(this).fadeIn(self.app.settings.animation.popup);
+            }
+        } else {
+            if (window.device === 0) {
+                $(this).addClass('hidden');
+            } else {
+                $(this).fadeOut(self.app.settings.animation.popup);
+            }
+        }
+    })
 };
 
 Valorisation.prototype.closePopup = function() {
     $('.overlay').hide();
-    this.popup.fadeOut(this.app.settings.animation.popup);
+    if (window.device === 0) {
+        this.popup.addClass('hidden');
+    } else {
+        this.popup.fadeOut(this.app.settings.animation.popup);
+    }
 };
 
 

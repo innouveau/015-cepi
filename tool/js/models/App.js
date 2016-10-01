@@ -32,7 +32,7 @@ App.prototype.init = function() {
 };
 
 App.prototype.redraw = function() {
-    $('.valoriation-popup').remove();
+    $('.valorisation-popup').remove();
     this.empty();
     this.init();
 
