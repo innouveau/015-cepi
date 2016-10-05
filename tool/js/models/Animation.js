@@ -52,7 +52,7 @@ Animation.prototype.perform = function(frame) {
         }
     });
     this.select.subPaths.attr({
-        'stroke-dashoffset': -3 * frame
+        'stroke-dashoffset': -frame
     });
 };
 
