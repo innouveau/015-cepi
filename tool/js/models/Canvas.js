@@ -37,7 +37,8 @@ function Canvas(app) {
         graphHeaderText: null,
         filterSidestreams: null,
         graphBody: null,
-        sidestreamLabels: null
+        sidestreamLabels: null,
+        filterLabel: null
     };
     this.create();
     this.drawn = true;
@@ -230,7 +231,7 @@ Canvas.prototype.createGraphHeader = function() {
         class: 'graph-top-bar',
         x1: 0,
         y1: 0,
-        x2: 630,
+        x2: 590,
         y2: 0
     });
     this.layers.bottom.graphHeader.append('rect').attr({
@@ -308,13 +309,11 @@ Canvas.prototype.createFilterSidestreams = function() {
     this.elements.filterSidestreams = this.layers.bottom.graphHeader.append('g').attr({
         class: 'filter filter-sidestreams'
     });
-    label = this.elements.filterSidestreams.append('g').attr({
-        transform: 'translate(626, 3)'
-    });
-    this.createFilterLabelBox(label);
+    this.elements.filterLabel = this.elements.filterSidestreams.append('g');
+    this.createFilterLabelBox(this.elements.filterLabel);
     labelText = ['Filter by', 'side stream'];
     for (var j = 0; j < 2; j++) {
-        label.append('text').attr({
+        this.elements.filterLabel.append('text').attr({
             x: 0,
             y: j * 12
         }).text(labelText[j])
@@ -334,16 +333,16 @@ Canvas.prototype.createFilterSidestreams = function() {
 Canvas.prototype.createFilterLabelBox = function(parent) {
     var box = parent.append('g').attr({
         class: 'filter-label-box',
-        transform: 'translate(-66, -17)'
+        transform: 'translate(-' + (this.app.settings.labels.sidestreamLabel.distance + 10) + ', -17)'
     });
     box.append('rect').attr({
-        x: 55,
+        x: 50,
         y: 0,
-        width: 92,
+        width: this.app.settings.labels.sidestreamLabel.width,
         height: 40
     });
     box.append('line').attr({
-        x1: 55,
+        x1: this.app.settings.labels.sidestreamLabel.distance,
         y1: 20,
         x2: 0,
         y2: 20
@@ -416,27 +415,28 @@ Canvas.prototype._createAxis = function(graph, settings, direction, label1, labe
 Canvas.prototype._getLabel = function(parent, texts, model) {
     var height = texts.length * 14 + 12,
         distance = model.distance,
-        x1, y1, x2, y2, cx, cy, rx, ry, tx, ty;
+        x1, y1, x2, y2, cx, cy, rx, ry, tx, ty, g, center;
     g = parent.append('g').attr({
         class: 'label'
     });
     switch (model.position) {
         case 'top':
-            x1 = 0; y1 = height; x2 = 0; y2 = distance + height; cx = 0; cy = distance + height; rx = -0.5 * model.width; ry = 0; tx = -0.5 * model.width + 15; ty = 0;
+            center = model.junction === 'center' ? 0 : model.junction;
+            x1 = center; y1 = height; x2 = center; y2 = distance + height; cx = center; cy = distance + height; rx = -0.5 * model.width; ry = 0; tx = -0.5 * model.width + 10; ty = 0;
+            g.append('polyline').attr({
+                points: (cx - 5) + ',' + (cy - 7) + ' ' + cx + ',' + cy + ' ' + (cx + 5) + ',' + (cy - 7)
+            });
             break;
         case 'bottom':
-            x1 = 0; y1 = 0; x2 = 0; y2 = distance; cx = 0; cy = 0; rx = -0.5 * model.width; ry = distance; tx = -0.5 * model.width + 15; ty = distance;
+            x1 = 0; y1 = 0; x2 = 0; y2 = distance; cx = 0; cy = 0; rx = -0.5 * model.width; ry = distance; tx = -0.5 * model.width + 10; ty = distance;
             break;
         case 'right':
-            x1 = 0; y1 = 20; x2 = distance; y2 = 20; cx = 0; cy = 20; rx = distance; ry = 0; tx = distance + 15; ty = 0;
+            x1 = 0; y1 = 20; x2 = distance; y2 = 20; cx = 0; cy = 20; rx = distance; ry = 0; tx = distance + 10; ty = 0;
+            g.append('polyline').attr({
+                points: (cx + 7) + ',' + (cy - 5) + ' ' + cx + ',' + cy + ' ' + (cx + 7) + ',' + (cy + 5)
+            });
             break;
     }
-    g.append('circle').attr({
-        cx: cx,
-        cy: cy,
-        r: 5,
-        fill: '#000'
-    });
     g.append('line').attr({
         x1: x1,
         y1: y1,

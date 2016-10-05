@@ -28,17 +28,24 @@ Settings.prototype.getLabels = function() {
                 rawLabel: {
                     distance: 20,
                     width: 130,
+                    junction: 'center',
                     position: 'right'
                 },
                 profitLabel: {
                     distance: 50,
                     width: 110,
+                    junction: 'center',
                     position: 'top'
                 },
                 sidestreamLabel: {
                     distance: 60,
                     width: 110,
+                    junction: 'center',
                     position: 'right'
+                },
+                filterLabel: {
+                    distance: 50,
+                    width: 110
                 }
 
             };
@@ -46,40 +53,79 @@ Settings.prototype.getLabels = function() {
         case 1: // tablet portrait sizing set:
             return {
                 rawLabel: {
-                    distance: 100,
+                    distance: 50,
                     width: 130,
+                    junction: 'center',
                     position: 'right'
                 },
                 profitLabel: {
-                    distance: 100,
-                    width: 110,
+                    distance: 50,
+                    width: 100,
+                    junction: 'center',
                     position: 'top'
                 },
                 sidestreamLabel: {
-                    distance: 100,
-                    width: 100,
+                    distance: 49,
+                    width: 90,
+                    junction: 'center',
                     position: 'right'
+                },
+                filterLabel: {
+                    distance: 50,
+                    width: 90
+                }
+            };
+            break;
+        case 2: // tablet landscape sizing set:
+            return {
+                rawLabel: {
+                    distance: 60,
+                    width: 150,
+                    junction: 'center',
+                    position: 'right'
+                },
+                profitLabel: {
+                    distance: 60,
+                    width: 95,
+                    junction: -35,
+                    position: 'top'
+                },
+                sidestreamLabel: {
+                    distance: 49,
+                    width: 95,
+                    junction: 'center',
+                    position: 'right'
+                },
+                filterLabel: {
+                    distance: 50,
+                    width: 95
                 }
 
             };
             break;
-        case 2: // tablet landscape sizing set:
         case 3: // desktop sizing set:
             return {
                 rawLabel: {
-                    distance: 100,
+                    distance: 60,
                     width: 150,
+                    junction: 'center',
                     position: 'right'
                 },
                 profitLabel: {
-                    distance: 100,
-                    width: 120,
+                    distance: 60,
+                    width: 110,
+                    junction: -35,
                     position: 'top'
                 },
                 sidestreamLabel: {
-                    distance: 100,
+                    distance: 49,
                     width: 110,
+                    junction: 'center',
                     position: 'right'
+                },
+                filterLabel: {
+                    distance: 50,
+                    width: 110
                 }
                 
             };
@@ -99,7 +145,7 @@ Settings.prototype.getGraph = function() {
         case 1: // tablet portrait sizing set:
             return {
                 width: 500,
-                height: 400,
+                height: this.container.height < 680 ? this.container.height - 360 : 320,
                 margin: 20
             };
             break;
@@ -107,7 +153,7 @@ Settings.prototype.getGraph = function() {
         case 3: // desktop sizing set:
             return {
                 width: 630,
-                height: this.container.height < 620 ? this.container.height - 360 : 320,
+                height: this.container.height < 680 ? this.container.height - 360 : 320,
                 margin: 20
             };
             break;
@@ -122,7 +168,7 @@ Settings.prototype.getProperties = function() {
                     stroke: 1.5
                 },
                 radar: {
-                    r: 20,
+                    r: this.graph.width > 440 ? this.graph.width / 22 : 20,
                     gap: 3,
                     n: 3,
                     stroke: 1.5
@@ -397,8 +443,8 @@ Settings.prototype.getSizes = function() {
             return {
                 artboard: [0,0],
                 topFrame: this.timing.topFrame.origin,
-                rawLabel: [140,80],
-                profitLabel: [228,280],
+                rawLabel: [200,80],
+                profitLabel: [228,255],
                 sidestreamLabel: [40,500],
                 productionLabel: [30,230],
                 bottomFrame: this.timing.bottomFrame.origin,
@@ -406,55 +452,59 @@ Settings.prototype.getSizes = function() {
                 graphSubHeader: [0, 16],
                 filterSidestreams: [24,20],
                 graphBody: [0,160],
-                sidestreamLabels: this.timing.sidestreamLabels.origin
+                sidestreamLabels: this.timing.sidestreamLabels.origin,
+                filterLabel: [595,5]
             };
             break;
         case 1: // tablet portrait sizing set:
             return {
                 artboard: [20,0],
                 topFrame: this.timing.topFrame.origin,
-                rawLabel: [120,55],
-                profitLabel: [470,150],
-                sidestreamLabel: [340,380],
+                rawLabel: [160,55],
+                profitLabel: [470,160],
+                sidestreamLabel: [427,380],
                 productionLabel: [110,180],
                 bottomFrame: this.timing.bottomFrame.origin,
                 graphHeaderText: [0, 80],
                 graphSubHeader: [0, 16],
                 filterSidestreams: [24,20],
                 graphBody: [0,160],
-                sidestreamLabels: this.timing.sidestreamLabels.origin
+                sidestreamLabels: this.timing.sidestreamLabels.origin,
+                filterLabel: [460,5]
             };
             break;
         case 2: // tablet landscape sizing set:
             return {
                 artboard: [40,0],
                 topFrame: this.timing.topFrame.origin,
-                rawLabel: [170,70],
+                rawLabel: [210,80],
                 profitLabel: [628,240],
-                sidestreamLabel: [420,470],
+                sidestreamLabel: [562,480],
                 productionLabel: [220,258],
                 bottomFrame: this.timing.bottomFrame.origin,
                 graphHeaderText: [0, 80],
                 graphSubHeader: [0, 32],
                 filterSidestreams: [24,20],
                 graphBody: [0,160],
-                sidestreamLabels: this.timing.sidestreamLabels.origin
+                sidestreamLabels: this.timing.sidestreamLabels.origin,
+                filterLabel: [595,5]
             };
             break;
         case 3: // desktop sizing set:
             return {
                 artboard: [60,0],
                 topFrame: this.timing.topFrame.origin,
-                rawLabel: [170,70],
-                profitLabel: [628,240],
-                sidestreamLabel: [520,470],
+                rawLabel: [210,80],
+                profitLabel: [663,240],
+                sidestreamLabel: [562,480],
                 productionLabel: [220,258],
                 bottomFrame: this.timing.bottomFrame.origin,
                 graphHeaderText: [0, 100], 
                 graphSubHeader: [0, 32],
                 filterSidestreams: [24,20],
                 graphBody: [0,180],
-                sidestreamLabels: this.timing.sidestreamLabels.origin
+                sidestreamLabels: this.timing.sidestreamLabels.origin,
+                filterLabel: [595,5]
             };
             break;
     }

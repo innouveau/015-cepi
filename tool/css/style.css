@@ -270,6 +270,11 @@ a.menu-button:hover, a.menu-button.active-button, .link:hover {
 
 /* canvas */
 
+.label polyline {
+    stroke: #333;
+    stroke-width: 1px;
+    fill: none;
+}
 
 
 .label {
