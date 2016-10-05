@@ -80,7 +80,7 @@ var sets = [
                 application: 'Nanocellulose production',
                 description: 'Work is being done on the production of nanocrystalline cellulose (NCC) with PBI side streams serving as the feedstock for an acid hydrolysis process. NCC could also have a future as an additive in paper production/converting for improving certain product properties.',
                 economic: 'This route offers the possibility to valorise current side streams by converting them into a high-value product with a multitude of potential applications within various sectors.',
-                trlDescription: 'The first demonstration plant for the production of NCC from bleached pulp will become operational within 2016.',
+                trlDescription: 'The first demonstration plant for the production of NCC from bleached pulp by means of acid hydrolysis will become operational within 2016.',
                 link: '',
                 sidestreams: [2,4],
                 tlr: 5,
