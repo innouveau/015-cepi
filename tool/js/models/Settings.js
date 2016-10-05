@@ -105,7 +105,6 @@ Settings.prototype.getGraph = function() {
             break;
         case 2: // tablet landscape sizing set:
         case 3: // desktop sizing set:
-            console.log(this.container.height);
             return {
                 width: 630,
                 height: this.container.height < 620 ? this.container.height - 360 : 320,

@@ -12,7 +12,7 @@ Timer.prototype.scroll = function(frame) {
     // minimize dom operations
     if (y !== this.lastY) {
         this.element.attr({
-            transform: 'translate(' + this.origin[0] + ',' + Math.round(y) + ')'
+            transform: 'translate(' + this.origin[0] + ',' + y + ')'
         });
         this.lastY = y;
     }

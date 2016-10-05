@@ -12,7 +12,7 @@ Subpath.prototype = Object.create(_NodeModel.prototype);
 
 Subpath.prototype.create = function() {
     return this.parent.container.append('path').attr({
-        'class': this.parent.name + '-sub-' + this.index,
+        'class': this.parent.name + '-sub-' + this.index + ' sub-path',
         'd': this.parent.points,
         'stroke': this.sidestream.color,
         'fill': 'none',
@@ -24,11 +24,5 @@ Subpath.prototype.init = function(set) {
     this.set = set;
     this.element.attr({
         'stroke-dasharray': set
-    });
-};
-
-Subpath.prototype.scroll = function(frame) {
-    this.element.attr({
-        'stroke-dashoffset': -frame
     });
 };

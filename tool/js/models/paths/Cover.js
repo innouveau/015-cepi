@@ -24,12 +24,3 @@ Cover.prototype.measure = function() {
     this.length = this.path.element[0][0].getTotalLength();
     this.path.init([this.length, 100 * this.length])
 };
-
-
-Cover.prototype.scroll = function(frame) {
-    var delta = frame - this.animationStart;
-    if (delta < 0) {
-        delta = 0;
-    }
-    this.path.scroll(delta);
-};

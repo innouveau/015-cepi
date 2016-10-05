@@ -56,20 +56,6 @@ Path.prototype.assignDashes = function() {
     }
 };
 
-Path.prototype.scroll = function(frame) {
-    for (var i = 0, l = this.subpaths.length; i < l; i++) {
-        var subpath = this.subpaths[i];
-        subpath.scroll(frame);
-    }
-    var delta = frame - this.animationStart;
-    if (delta < 0) {
-        delta = 0;
-    }
-    if (this.cover) {
-        this.coversubPath.scroll(delta);
-    }
-};
-
 Path.prototype.intialSets = function() {
     var set = [],
         steps = Math.ceil(this.settings.length / (this.dash + this.gap)),

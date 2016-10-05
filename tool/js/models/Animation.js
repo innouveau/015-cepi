@@ -8,100 +8,60 @@ function Animation(app) {
     this.timer = null;
     this.freq = 0;
     this.t = 100;
-    this.open = true;
+    this.select = {
+        subPaths: null,
+        coverSubPaths: null
+    };
     this.init();
 }
 
-// todo clean up here
-
 Animation.prototype.init = function() {
+    var dataset = [];
     this.freq = this.t / this.fps;
+    // make d3 selections
+    this.select.subPaths = d3.selectAll('.sub-path');
+    this.select.coverSubPaths = d3.selectAll('.cover-sub-path');
+    this.select.coverSubPaths.each(function(){
+        // read the data point from the attribute
+        dataset.push(parseInt($(this).attr('data-animation-start')));
+    });
+    // bind the dataset to the selection
+    this.select.coverSubPaths.data(dataset);
 };
 
-Animation.prototype.askfor = function(frame) {
-    this.direct(frame);
-};
-
-Animation.prototype.animate = function(frame) {
-    var usedFps,
-        self = this,
-        jump,
-        i = 0,
-        delta = Math.abs(frame - this.frame.current);
-
-    if (delta > 0) {
-        // do faster animation for small scrolls
-        if (delta < 50) {
-            usedFps = this.fps * delta / 50
-        } else {
-            usedFps = this.fps
-        }
-
-        clearInterval(self.timer);
-        this.frame.last = this.frame.current;
-        jump = (frame - this.frame.last) / usedFps;
-
-
-        this.timer = setInterval(function () {
-            self.frame.current += jump;
-            self.indirect(Math.round(self.frame.current));
-            i++;
-            if (i === self.fps) {
-                clearInterval(self.timer);
-                self.frame.last = self.frame.current;
-            }
-        }, this.freq);
+Animation.prototype.scroll = function(frame) {
+    var self = this;
+    function requestAccepted() {
+        self.perform(frame)
     }
+    window.requestAnimationFrame(requestAccepted);
 };
 
-Animation.prototype.direct = function(frame) {
+
+
+Animation.prototype.perform = function(frame) {
     this.app.story.scroll(frame);
     this.app.canvas.scroll(frame);
-    for (var i = 0, l = this.app.paths.length; i < l; i++) {
-        var path = this.app.paths[i];
-        path.scroll(frame);
-    }
-
-};
-
-Animation.prototype.indirect = function(frame) {};
-
-
-
-
-
-
-
-Animation.prototype.x_askfor = function(frame) {
-    var usedFps,
-        self = this,
-        jump,
-        i = 0,
-        delta = Math.abs(frame - this.frame.current);
-
-    if (delta > 0) {
-        // do faster animation for small scrolls
-        if (delta < 50) {
-            usedFps = this.fps * delta / 50
-        } else {
-            usedFps = this.fps
-        }
-        jump = (frame - this.frame.last) / usedFps;
-        clearInterval(self.timer);
-
-
-        this.timer = setInterval(function () {
-            self.frame.current += jump;
-            self.do(self.frame.current);
-            i++;
-            if (i === self.fps) {
-                clearInterval(self.timer);
-                self.frame.last = self.frame.current;
+    this.select.coverSubPaths.attr({
+        'stroke-dashoffset': function(d){
+            var delta = frame - d;
+            if (delta < 0) {
+                delta = 0;
             }
-        }, this.freq);
-    }
-        
+            return -3 * delta;
+        }
+    });
+    this.select.subPaths.attr({
+        'stroke-dashoffset': -3 * frame
+    });
 };
 
+Animation.prototype.getAv = function() {
+    var sum = 0;
+    for (var i = 0, l = this.draws.length; i < l; i++) {
+        sum += this.draws[i];
+    }
+    return Math.floor(sum / l);
+};
 
 

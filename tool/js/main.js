@@ -2,9 +2,7 @@ $(window).ready(function(){
     var container = document.getElementById('infographic');
     addPhaseListeners();
     window.app = new App(container);
-
 });
-
 
 function addPhaseListeners() {
     $(window).scroll(function(e){
@@ -26,3 +24,24 @@ function closeDisclaimer() {
     $('.overlay').hide();
     $('.disclaimer').fadeOut(100);
 }
+
+// window.time = null;
+// window.testMe = function() {
+//     console.log("Starting test\n------------------------------------");
+//     window.time = new Date();
+//     $('html').animate({
+//         scrollTop: 200
+//     }, 400, function(){
+//         $('html').animate({
+//             scrollTop: 600
+//         }, 100, function(){
+//             $('html').animate({
+//                 scrollTop: 1200
+//             }, 1000, function(){
+//                 $('html').animate({
+//                     scrollTop: 0
+//                 }, 100)
+//             })
+//         });
+//     });
+// };

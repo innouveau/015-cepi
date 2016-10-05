@@ -10,15 +10,15 @@ function App(container) {
     this.animation = null;
     this.story = {};
     this.frame = 0;
-    this.init();
     this.timer = null;
+    this.init();
 }
 
 App.prototype.init = function() {
+    $('html').scrollTop(0);
     this.settings = new Settings(this);
     this.story = new Story(this);
     this.canvas = new Canvas(this);
-    this.animation = new Animation(this);
     this.getSidestreams();
     this.getOutstreams();
     this.getPaths();
@@ -27,7 +27,8 @@ App.prototype.init = function() {
     this.canvas.createSidestreamContent();
     // if that is done, we can set all the positions right
     this.canvas.setPositions();
-    $(document).scrollTop(0);
+    // finaly the animation, in where the d3 selection is done
+    this.animation = new Animation(this);
     this.loaded();
 };
 
@@ -116,11 +117,7 @@ App.prototype.loaded = function() {
 };
 
 App.prototype.scroll = function(frame) {
-    var self = this;
-    clearInterval(this.timer);
-    this.timer = setTimeout(function(){
-        self.animation.askfor(frame);
-    }, 1);
+    this.animation.scroll(frame);
 };
 
 App.prototype.filter = function() {
