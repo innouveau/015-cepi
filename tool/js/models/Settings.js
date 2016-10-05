@@ -105,9 +105,10 @@ Settings.prototype.getGraph = function() {
             break;
         case 2: // tablet landscape sizing set:
         case 3: // desktop sizing set:
+            console.log(this.container.height);
             return {
                 width: 630,
-                height: 320,
+                height: this.container.height < 620 ? this.container.height - 360 : 320,
                 margin: 20
             };
             break;
@@ -365,7 +366,7 @@ Settings.prototype.getTiming = function() {
                             start: 2000,
                             end: 2400,
                             origin: 430,
-                            destination: 100
+                            destination: 85
                         }
                     ]
                 },
@@ -382,7 +383,7 @@ Settings.prototype.getTiming = function() {
                             start: 2000,
                             end: 2400,
                             origin: 390,
-                            destination: 70
+                            destination: 55
                         }
                     ]
                 }
