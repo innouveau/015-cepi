@@ -94,7 +94,7 @@ var sets = [
                 economic: 'Various business models are possible when the production of PHAs out of PBI process water is considered. For the time being, however, a PHAs market still needs to be developed.',
                 trlDescription: 'Pilot-scale installations for PHAs production out of wastewater have been operational within various sectors, including municipal wastewater treatment, the food industry and the paper industry.',
                 link: '',
-                sidestreams: [4,5],
+                sidestreams: [3,5],
                 tlr: 6,
                 value: 7,
                 image: 'CEPI_flows_v1_v08_polyhydroxyalkanoates .svg'
