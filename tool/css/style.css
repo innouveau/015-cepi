@@ -344,6 +344,9 @@ a.menu-button:hover, a.menu-button.active-button, .link:hover {
 }
 
 .legend-header {
+    border-bottom: 0.5px solid #333;
+    padding: 0 4px 2px 4px;
+    margin: 0 -4px 4px -4px;
 }
 
 .legend-set {
