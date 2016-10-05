@@ -309,8 +309,9 @@ Canvas.prototype.createFilterSidestreams = function() {
         class: 'filter filter-sidestreams'
     });
     label = this.elements.filterSidestreams.append('g').attr({
-        transform: 'translate(' + 630 + ', 10)'
+        transform: 'translate(626, 3)'
     });
+    this.createFilterLabelBox(label);
     labelText = ['Filter by', 'side stream'];
     for (var j = 0; j < 2; j++) {
         label.append('text').attr({
@@ -328,6 +329,28 @@ Canvas.prototype.createFilterSidestreams = function() {
             })
         })(sidestream);
     }
+};
+
+Canvas.prototype.createFilterLabelBox = function(parent) {
+    var box = parent.append('g').attr({
+        class: 'filter-label-box',
+        transform: 'translate(-66, -17)'
+    });
+    box.append('rect').attr({
+        x: 55,
+        y: 0,
+        width: 92,
+        height: 40
+    });
+    box.append('line').attr({
+        x1: 55,
+        y1: 20,
+        x2: 0,
+        y2: 20
+    });
+    box.append('polyline').attr({
+        points: '7,15 0,20 7,25'
+    });
 };
 
 Canvas.prototype._createAxis = function(graph, settings, direction, label1, label2) {

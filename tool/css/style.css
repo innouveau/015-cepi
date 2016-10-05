@@ -286,9 +286,15 @@ a.menu-button:hover, a.menu-button.active-button, .link:hover {
 
 /* graph */
 
-.graph-axis-line, .arrowhead {
+.graph-axis-line,
+.arrowhead,
+.filter-label-box rect,
+.filter-label-box line,
+.filter-label-box polyline
+{
     stroke: #aaa;
     stroke-width: 1px;
+    fill: none;
 }
 
 .graph-label {
