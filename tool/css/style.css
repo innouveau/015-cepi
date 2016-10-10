@@ -389,7 +389,6 @@ a.menu-button:hover, a.menu-button.active-button, .link:hover {
     height: calc(100% - 160px);
     width: 740px;
     max-width: calc(100% - 240px);
-    padding: 40px;
     background: #fff;
     z-index: 10000;
     display: none;
@@ -401,18 +400,18 @@ a.menu-button:hover, a.menu-button.active-button, .link:hover {
 .disclaimer {
     max-width: 400px;
     height: auto;
+    padding: 40px;
 }
 
 .disclaimer a {
     color: #000;
 }
 
-
-
 .valorisation-container {
     overflow: auto;
     width: 100%;
     height: 100%;
+    padding: 40px;
 }
 
 .valorisation-head {
@@ -436,6 +435,14 @@ h2 {
     margin-right: 40px;
     float: left;
     padding-top: 12px;
+}
+
+.external-link {
+    padding: 36px 0;
+}
+
+.external-link a {
+    color: #000;
 }
 
 .valorisation-image {
@@ -467,8 +474,7 @@ h2 {
 }
 
 .close-button:hover {
-    border: 0.5px solid #000;
-    background: #fff;
+    background: #ddd;
 }
 
 .valorisation-popup h2 {
@@ -511,10 +517,6 @@ h2 {
 
     .valorisation-head {
         border-bottom: 1px solid #000;
-    }
-
-    .close-button:hover {
-        border: 1px solid #000;
     }
 
 }
@@ -673,7 +675,7 @@ h2 {
 
 
 
-        /* legend */
+    /* legend */
 
     .legend {
         margin: 0;
@@ -743,16 +745,28 @@ h2 {
         height: calc(100% - 210px);
         width: 100%;
         max-width: 100%;
-        padding: 20px;
         background: #eee;
         z-index: 10000;
         display: block;
         box-shadow: 0 -3px 3px rgba(0,0,0,0.2);
     }
 
+    .disclaimer {
+        padding: 20px;
+    }
+
+    .valorisation-container {
+        padding: 20px;
+    }
+
     .valorisation-popup.hidden, .disclaimer.hidden {
         top: 100%;
     }
+
+    .close-button:hover {
+        background: #fff;
+    }
+
 
 
     /* pages */

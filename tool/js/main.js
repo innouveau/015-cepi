@@ -17,12 +17,21 @@ function addPhaseListeners() {
 
 function openDisclaimer() {
     $('.overlay').show();
-    $('.disclaimer').fadeIn(100);
+    if (window.device === 0) {
+        $('.disclaimer').removeClass('hidden')
+    } else {
+        $('.disclaimer').fadeIn(100);
+    }
+
 }
 
 function closeDisclaimer() {
     $('.overlay').hide();
-    $('.disclaimer').fadeOut(100);
+    if (window.device === 0) {
+        $('.disclaimer').addClass('hidden')
+    } else {
+        $('.disclaimer').fadeOut(100);
+    }
 }
 
 // window.time = null;

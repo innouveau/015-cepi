@@ -11,7 +11,7 @@ function Story(app) {
     this.chapters = [];
     this.lockPosition = this.getLockPosition();
     this.init();
-    this.disclaimerShowed = true; // todo set false
+    this.disclaimerShowed = false;
     this.measuredAgain = false;
 }
 
@@ -24,7 +24,6 @@ Story.prototype.init = function() {
     var self = this;
     if (window.device === 0) {
         var display;
-        // todo this is temp a hardcoded number
         $('#scroller').css('height', 3000);
 
 
