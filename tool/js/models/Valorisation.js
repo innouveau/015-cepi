@@ -126,7 +126,7 @@ Valorisation.prototype.createPopup = function() {
         image = $('<div class="valorisation-image"><img src="images/flows/' + this.image + '"></div>'),
         economicDescription = $('<div class="economic-description"><b>Economic</b><p>' + this.economicDescription + '</p></div>'),
         trlDescription = $('<div class="trl-description"><b>TRL</b><p>' + this.trlDescription + '</p></div>'),
-        externalLink = $('<div class="external-link"><a href="' + this.externalLink + '" target="_blank">Read more in the PDF</a></div>'),
+        externalLink = $('<div class="external-link"><a href="' + this.externalLink + '" target="_blank">Read more in PDF</a></div>'),
         closeButton = $('<div class="close-button">×</div>'),
         self = this;
     text.append(economicDescription);
