@@ -6,6 +6,7 @@ getScreenWidth();
 
 $(window).ready(function(){
     initHamburger();
+    initKeys();
 });
 
 $(window).resize(function(){
@@ -19,6 +20,19 @@ $(window).resize(function(){
 
 
 });
+
+function initKeys() {
+    $('body').keypress(function(e){
+        console.log(e);
+        if(e.keyCode == 27){
+            for (var i = 0, l = window.app.valorisations.length; i < l; i++) {
+                valorisation = window.app.valorisations[i];
+                valorisation.closePopup();
+            }
+            closeDisclaimer();
+        }
+    });
+}
 
 function getScreenWidth() {
     var width = $(window).outerWidth();
